@@ -16,6 +16,10 @@
             = image_tag picture.image.url(:medium)
       .modal-footer
         %p
+          - if picture.photographed_at
+            Photographed at
+            = succeed '.' do
+              = local_time picture.photographed_at
           Uploaded
           = time_ago_in_words picture.created_at
           ago.

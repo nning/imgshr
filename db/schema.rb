@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726223235) do
+ActiveRecord::Schema.define(version: 20140726232347) do
 
   create_table "galleries", force: true do |t|
     t.string   "slug",                   null: false
@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 20140726223235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.datetime "photographed_at"
   end
-
-  add_index "pictures", ["image_fingerprint"], name: "index_pictures_on_image_fingerprint", unique: true
 
 end
