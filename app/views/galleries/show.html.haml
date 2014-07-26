@@ -6,12 +6,7 @@
           = icon :upload
           Upload
   .text-center
-    - if @gallery.name
-      %h2= best_in_place @gallery, :name
-    - else
-      %h2
-        = @gallery.slug
-        %small= best_in_place @gallery, :name
+    %h2= best_in_place @gallery, :name, nil: @gallery.slug
 
 = render partial: 'upload'
 
