@@ -22,6 +22,9 @@ class GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find_by_slug(params[:slug]) || not_found
+
+    @gallery.visits += 1
+    @gallery.save!
   end
 
   def update
@@ -33,6 +36,6 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.require(:gallery).permit(:name, :slug)
+    params.require(:gallery).permit(:name)
   end
 end

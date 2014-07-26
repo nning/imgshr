@@ -1,0 +1,24 @@
+.modal.fade#info{tabindex: -1, role: 'dialog', aria: {hidden: true, labelledby: 'label_info'}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}
+          %span{aria: {hidden: true}}
+            &times;
+          %span.sr-only Close
+        %h4.modal-title#label_info Gallery info
+      .modal-body
+        %table.table.table-bordered
+          %tr
+            %td Slug
+            %td= link_to @gallery.slug, gallery_path(@gallery.slug)
+          %tr
+            %td Visits
+            %td= @gallery.visits
+          %tr
+            %td Picture count
+            %td= @gallery.pictures.count
+      .modal-footer
+        %button.btn.btn-default{data: {dismiss: 'modal'}}
+          = icon :remove
+          Close

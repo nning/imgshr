@@ -6,7 +6,7 @@
           %span{aria: {hidden: true}}
             &times;
           %span.sr-only Close
-        %h4.modal-title#label_upload Upload
+        %h4.modal-title#label_upload Upload pictures
       = form_for Picture.new, url: gallery_pictures_path(@gallery), html: {multipart: true} do |f|
         .modal-body
           .alert.alert-info Please choose files for upload...

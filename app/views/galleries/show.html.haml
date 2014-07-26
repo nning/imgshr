@@ -1,14 +1,18 @@
-.header
+.gallery-header
   .pull-right
     .btn-toolbar
       .btn-group
         = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
           = icon :upload
           Upload
+        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
+          = icon :info_sign
+          Info
   .text-center
     %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
 
 = render partial: 'upload'
+= render partial: 'info'
 
 %ul
   - @gallery.pictures.in_groups_of(4, false).each do |group|

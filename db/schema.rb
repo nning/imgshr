@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726111306) do
+ActiveRecord::Schema.define(version: 20140726211746) do
 
   create_table "galleries", force: true do |t|
-    t.string   "slug",       null: false
+    t.string   "slug",                   null: false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "visits",     default: 0, null: false
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true
