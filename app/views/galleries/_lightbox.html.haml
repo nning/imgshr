@@ -12,7 +12,8 @@
           = best_in_place picture, :title, path: gallery_picture_path(picture.gallery, picture), nil: "<small>Set a title by clicking here!</small>"
       .modal-body
         .text-center
-          = image_tag picture.image.url(:medium)
+          = link_to picture.image.url do
+            = image_tag picture.image.url(:medium)
       .modal-footer
         %p
           Uploaded
