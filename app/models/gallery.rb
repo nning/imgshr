@@ -1,5 +1,5 @@
 class Gallery < ActiveRecord::Base
-  has_many :pictures
+  has_many :pictures, dependent: :destroy
 
   after_initialize do
     if new_record?
