@@ -1,0 +1,19 @@
+.modal.fade#upload{tabindex: -1, role: 'dialog', aria: {hidden: true, labelledby: 'label_upload'}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}
+          %span{aria: {hidden: true}}
+            &times;
+          %span.sr-only Close
+        %h4.modal-title#label_upload Upload
+      = form_for Picture.new, url: gallery_pictures_path(@gallery), html: {multipart: true} do |f|
+        .modal-body
+          = f.file_field :image
+        .modal-footer
+          %button.btn.btn-success{type: 'submit', name: 'commit'}
+            = icon :upload
+            Upload!
+          %button.btn.btn-default{data: {dismiss: 'modal'}}
+            = icon :remove
+            Close

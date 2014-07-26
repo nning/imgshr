@@ -2,10 +2,9 @@
   .pull-right
     .btn-toolbar
       .btn-group
-        = link_to root_path, class: 'btn btn-default' do
+        = link_to '#', class: 'btn btn-default', data: {toggle: 'modal', target: '#upload'} do
           = icon :upload
-        = link_to root_path, class: 'btn btn-default' do
-          = icon :trash
+          Upload
   .text-center
     - if @gallery.name
       %h2= best_in_place @gallery, :name
@@ -13,6 +12,8 @@
       %h2
         = @gallery.slug
         %small= best_in_place @gallery, :name
+
+= render partial: 'upload'
 
 %ul
   - @gallery.pictures.in_groups_of(4, false).each do |group|

@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   get '/!:slug' => 'galleries#show', as: :gallery
   put '/!:id' => 'galleries#update'
 
-  resources :galleries, only: [:create, :index]
+  resources :galleries, only: [:create, :index] do
+    resources :pictures, on: :collection, only: [:create]
+  end
 end
