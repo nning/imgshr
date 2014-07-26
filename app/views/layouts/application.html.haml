@@ -21,6 +21,9 @@
             = icon :list
       %h1.text-muted IMGSHR
 
+    .row.flash-messages
+      = render partial: 'shared/flash_messages'
+
     .row
       = yield
 

@@ -6,9 +6,13 @@
     %th Slug
     %th Name
     %th Number of images
+    %th
   - @galleries.each do |gallery|
     %tr
       %td= gallery.id
-      %td= link_to gallery.slug, gallery_path(slug: gallery.slug)
+      %td= link_to gallery.slug, gallery_path(gallery.slug)
       %td= gallery.name
       %td= gallery.pictures.count
+      %td
+        = link_to gallery_path(gallery), method: :delete, data: {confirm: "Really delete #{gallery}?"} do
+          = icon :trash

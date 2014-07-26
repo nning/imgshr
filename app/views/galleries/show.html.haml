@@ -2,11 +2,11 @@
   .pull-right
     .btn-toolbar
       .btn-group
-        = link_to '#', class: 'btn btn-default', data: {toggle: 'modal', target: '#upload'} do
+        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
           = icon :upload
           Upload
   .text-center
-    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here, to edit!)</small>"
+    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
 
 = render partial: 'upload'
 

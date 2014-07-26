@@ -9,7 +9,7 @@ class PicturesController < ApplicationController
       picture.save!
     end
 
-    redirect_to gallery_path(slug: gallery.slug)
+    redirect_to gallery_path(gallery.slug)
   end
 
   private

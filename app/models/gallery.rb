@@ -6,4 +6,8 @@ class Gallery < ActiveRecord::Base
       self.slug ||= Base64.encode64(UUIDTools::UUID.random_create)[0..7]
     end
   end
+
+  def to_s
+    name? ? name : slug
+  end
 end

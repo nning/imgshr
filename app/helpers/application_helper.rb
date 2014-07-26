@@ -1,4 +1,9 @@
 module ApplicationHelper
+  # Convert flash message type to bootstrap class.
+  def flash_class(type)
+    ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s
+  end
+
   # Helper for glyphicon span tags.
   def icon(name, options = {})
     name = name.to_s.gsub(/_/, '-')

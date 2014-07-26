@@ -2,13 +2,18 @@ class GalleriesController < ApplicationController
   http_basic_authenticate_with \
     name: Settings.authentication.username,
     password: Settings.authentication.password,
-    only: :index
+    only: [:index, :destroy]
 
   respond_to :html, :json
 
   def create
     gallery = Gallery.create
-    redirect_to gallery_path(slug: gallery.slug)
+    redirect_to gallery_path(gallery.slug)
+  end
+
+  def destroy
+    Gallery.find_by_id(params[:id]).destroy!
+    redirect_to galleries_path, flash: {info: 'Gallery deleted.'}
   end
 
   def index
