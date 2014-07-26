@@ -19,6 +19,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'rails_config'
 gem 'best_in_place', github: 'luckie/best_in_place', branch: 'multi-select'
+gem 'paperclip'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

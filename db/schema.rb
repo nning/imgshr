@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726093239) do
+ActiveRecord::Schema.define(version: 20140726111306) do
 
   create_table "galleries", force: true do |t|
     t.string   "slug",       null: false
@@ -21,5 +21,15 @@ ActiveRecord::Schema.define(version: 20140726093239) do
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true
+
+  create_table "pictures", force: true do |t|
+    t.integer  "gallery_id",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
