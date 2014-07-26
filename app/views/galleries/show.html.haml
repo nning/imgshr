@@ -1,0 +1,7 @@
+.page-header
+  - if @gallery.name
+    %h1= best_in_place @gallery, :name
+  - else
+    %h1
+      = @gallery.slug
+      %small= best_in_place @gallery, :name

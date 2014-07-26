@@ -1,0 +1,9 @@
+.page-header
+  %h1 Ultra secret IMGSHR gallery index
+
+%ul
+  - @galleries.each do |gallery|
+    %li
+      = link_to gallery.slug, gallery_path(slug: gallery.slug)
+      - if gallery.name
+        %span= "(#{gallery.name})"
