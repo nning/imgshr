@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 20140726111306) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "image_fingerprint",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "pictures", ["image_fingerprint"], name: "index_pictures_on_image_fingerprint", unique: true
 
 end

@@ -10,9 +10,13 @@
   = csrf_meta_tag
 
 %body
-  %main#content
-    .container
-      .row
-        = yield
+  .container
+    .page-header
+      %ul.nav.nav-pills.pull-right
+        %li.active= link_to 'Home', root_path
+      %h1.text-muted IMGSHR
+
+    .row
+      = yield
 
   = javascript_include_tag 'application', data_turbolinks_track: true

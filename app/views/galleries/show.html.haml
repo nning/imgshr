@@ -1,13 +1,21 @@
-.page-header
-  - if @gallery.name
-    %h1= best_in_place @gallery, :name
-  - else
-    %h1
-      = @gallery.slug
-      %small= best_in_place @gallery, :name
+.header
+  .pull-right
+    .btn-toolbar
+      .btn-group
+        = link_to root_path, class: 'btn btn-default' do
+          = icon :upload
+        = link_to root_path, class: 'btn btn-default' do
+          = icon :trash
+  .text-center
+    - if @gallery.name
+      %h2= best_in_place @gallery, :name
+    - else
+      %h2
+        = @gallery.slug
+        %small= best_in_place @gallery, :name
 
 %ul
-  - @gallery.pictures.in_groups_of(4).each do |group|
+  - @gallery.pictures.in_groups_of(4, false).each do |group|
     .row
       - group.each do |picture|
         .col-xs-6.col-md-3

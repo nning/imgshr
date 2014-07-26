@@ -1,4 +1,8 @@
-.page-header
+.jumbotron.text-center
   %h1 IMGSHR
-
-= link_to 'I want my own gallery, now!', galleries_path, method: :post
+  %p
+    Welcome! This is a simply image gallery sharing website.
+  %p
+    = link_to galleries_path, method: :post, class: 'btn btn-lg btn-success' do
+      = icon :plus_sign
+      Create gallery!
