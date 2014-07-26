@@ -5,3 +5,11 @@
     %h1
       = @gallery.slug
       %small= best_in_place @gallery, :name
+
+%ul
+  - @gallery.pictures.in_groups_of(4).each do |group|
+    .row
+      - group.each do |picture|
+        .col-xs-6.col-md-3
+          = link_to picture.image.url, class: 'thumbnail' do
+            = image_tag picture.image.url(:thumb)

@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment'
+
+def usage
+  $stderr.puts "#{File.basename($0)} <gallery> <files>"
+  exit 1
+end
+
+usage if ARGV.size < 2
+
+slug  = ARGV.shift
+files = ARGV
+
+gallery = Gallery.find_by_slug(slug)
+
+if gallery
+  files.each do |pattern|
+    Dir[pattern].each do |file|
+      picture = gallery.pictures.build
+      picture.image = File.open(file)
+      picture.save!
+    end
+  end
+else
+  $stderr.puts "Gallery #{slug} not found!"
+  exit 1
+end
