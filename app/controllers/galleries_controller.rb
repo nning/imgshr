@@ -30,9 +30,9 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery = Gallery.find_by_id(params[:id])
-    @gallery.update_attributes(gallery_params)
-    respond_with @gallery
+    gallery = Gallery.find_by_id(params[:id])
+    gallery.update_attributes(gallery_params)
+    respond_with gallery
   end
 
   private

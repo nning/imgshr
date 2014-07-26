@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   delete '/!:id'   => 'galleries#destroy'
 
   resources :galleries, only: [:create, :index] do
-    resources :pictures, on: :collection, only: [:create]
+    resources :pictures, on: :collection, only: [:create, :update]
   end
 end

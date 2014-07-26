@@ -1,0 +1,20 @@
+.modal.fade{id: "lightbox#{picture.id}", tabindex: -1, role: 'dialog', aria: {hidden: true, labelledby: 'label_lightbox'}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}
+          %span{aria: {hidden: true}}
+            &times;
+          %span.sr-only Close
+        %h4.modal-title#label_lightbox
+          = link_to picture.image.url do
+            = icon :download
+          = best_in_place picture, :title, path: gallery_picture_path(picture.gallery, picture), nil: "<small>Set a title by clicking here!</small>"
+      .modal-body
+        .text-center
+          = image_tag picture.image.url(:medium)
+      .modal-footer
+        %p
+          Uploaded
+          = time_ago_in_words picture.created_at
+          ago.

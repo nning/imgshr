@@ -24,5 +24,6 @@
     .row
       - group.each do |picture|
         .col-xs-6.col-md-3
-          = link_to picture.image.url, class: 'thumbnail' do
+          = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
             = image_tag picture.image.url(:thumb)
+        = render partial: 'lightbox', locals: {picture: picture}
