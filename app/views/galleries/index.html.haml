@@ -10,9 +10,11 @@
   - @galleries.each do |gallery|
     %tr
       %td= gallery.id
-      %td= link_to gallery.slug, gallery_path(gallery.slug)
-      %td= gallery.name
+      %td= best_in_place gallery, :slug
+      %td= best_in_place gallery, :name
       %td= gallery.pictures.count
       %td
+        = link_to gallery_path(gallery.slug) do
+          = icon :eye_open
         = link_to gallery_path(gallery), method: :delete, data: {confirm: "Really delete #{gallery}?"} do
           = icon :trash
