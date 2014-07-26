@@ -6,7 +6,7 @@
           = icon :upload
           Upload
   .text-center
-    %h2= best_in_place @gallery, :name, nil: @gallery.slug
+    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here, to edit!)</small>"
 
 = render partial: 'upload'
 

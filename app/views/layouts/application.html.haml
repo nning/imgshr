@@ -13,7 +13,12 @@
   .container
     .page-header
       %ul.nav.nav-pills.pull-right
-        %li.active= link_to 'Home', root_path
+        %li
+          = link_to root_path do
+            = icon :home
+        %li
+          = link_to galleries_path do
+            = icon :list
       %h1.text-muted IMGSHR
 
     .row
