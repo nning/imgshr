@@ -1,8 +1,14 @@
-%h2 Gallery index
+%h2 Galleries
 
-%ul
+%table.table.table-striped
+  %tr
+    %th #
+    %th Slug
+    %th Name
+    %th Number of images
   - @galleries.each do |gallery|
-    %li
-      = link_to gallery.slug, gallery_path(slug: gallery.slug)
-      - if gallery.name
-        %span= "(#{gallery.name})"
+    %tr
+      %td= gallery.id
+      %td= link_to gallery.slug, gallery_path(slug: gallery.slug)
+      %td= gallery.name
+      %td= gallery.pictures.count

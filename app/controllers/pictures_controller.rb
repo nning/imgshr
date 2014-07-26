@@ -1,17 +1,20 @@
 class PicturesController < ApplicationController
   def create
     gallery = Gallery.find_by_id(params[:gallery_id])
-    picture = gallery.pictures.build
 
-    picture.update_attributes(picture_params)
-    picture.save!
+    picture_params.each do |image|
+      picture = gallery.pictures.build
 
-    redirect_to gallery_path(slug: picture.gallery.slug)
+      picture.update_attributes({image: image})
+      picture.save!
+    end
+
+    redirect_to gallery_path(slug: gallery.slug)
   end
 
   private
 
   def picture_params
-    params.require(:picture).permit(:image)
+    params.require(:picture).require(:image)
   end
 end
