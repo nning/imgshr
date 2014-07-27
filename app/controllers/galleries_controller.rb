@@ -26,7 +26,7 @@ class GalleriesController < ApplicationController
     @gallery.visits += 1
     @gallery.save!
 
-    @last_picture = @gallery.pictures.order('created_at asc').limit(1).first
+    @last_picture = @gallery.pictures.order('created_at desc').limit(1).first
   end
 
   def update
