@@ -12,7 +12,7 @@ usage if ARGV.size < 2
 slug  = ARGV.shift
 files = ARGV
 
-gallery = Gallery.find_by_slug(slug)
+gallery = Gallery.find_by_slug(slug) || Gallery.find_by_name(slug)
 
 if gallery
   files.each do |pattern|
