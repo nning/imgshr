@@ -17,9 +17,11 @@
       .modal-footer
         %p
           - if picture.photographed_at
-            Photographed at
-            = succeed '.' do
-              = local_time picture.photographed_at
-          Uploaded
-          = time_ago_in_words picture.created_at
-          ago.
+            Photographed on
+            = succeed ',' do
+              = timestamp_ago picture.photographed_at
+            uploaded
+          - else
+            Uploaded
+          = succeed '.' do
+            = timestamp_ago picture.created_at

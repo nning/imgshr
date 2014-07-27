@@ -75,6 +75,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.4.0)
+    momentjs-rails (2.5.1)
+      railties (>= 3.1)
     multi_json (1.10.1)
     paperclip (4.2.0)
       activemodel (>= 3.0.0)
@@ -152,6 +154,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   local_time
+  momentjs-rails
   paperclip
   rails (= 4.1.1)
   rails_config

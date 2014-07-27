@@ -13,8 +13,8 @@
     - if @last_picture
       %p.pull-right
         Last update was
-        = time_ago_in_words @last_picture.created_at
-        ago.
+        = succeed '.' do
+          = timestamp_ago @last_picture.created_at
 
 = render partial: 'upload'
 = render partial: 'info'
