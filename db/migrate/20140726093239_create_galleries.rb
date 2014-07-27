@@ -3,6 +3,7 @@ class CreateGalleries < ActiveRecord::Migration
     create_table :galleries do |t|
       t.string :slug, null: false
       t.string :name
+      t.integer :visits, default: 0, null: false
       t.timestamps
     end
 

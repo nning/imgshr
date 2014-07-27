@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726232347) do
+ActiveRecord::Schema.define(version: 20140726111306) do
 
   create_table "galleries", force: true do |t|
     t.string   "slug",                   null: false
     t.string   "name"
+    t.integer  "visits",     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "visits",     default: 0, null: false
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20140726232347) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_fingerprint",  null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "title"
     t.datetime "photographed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
