@@ -1,3 +1,7 @@
+= content_for :auto_discovery do
+  = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
+  = auto_discovery_link_tag :rss,  gallery_url(@gallery.slug, format: :rss)
+  
 .gallery-header
   .pull-right
     .btn-toolbar
@@ -14,7 +18,7 @@
       %p.pull-right
         Last update was
         = succeed '.' do
-          = timestamp_ago @last_picture.created_at
+          = timestamp_ago @gallery.last_update
 
 = render partial: 'upload'
 = render partial: 'info'
@@ -25,5 +29,5 @@
       - group.each do |picture|
         .col-xs-6.col-md-3
           = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-            = image_tag picture.image.url(:thumb)
+            = image_tag picture.image.url(:thumb), title: picture
         = render partial: 'lightbox', locals: {picture: picture}

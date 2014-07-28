@@ -9,6 +9,8 @@
   = stylesheet_link_tag 'application', media: :all, data_turbolinks_track: true
   = csrf_meta_tag
 
+  = yield :auto_discovery
+
 %body
   .container
     .page-header

@@ -6,13 +6,14 @@ class GalleriesController < ApplicationController
 
   respond_to :html, :json
 
+  before_action :set_gallery, only: [:destroy, :show, :update]
+
   def create
     gallery = Gallery.create
     redirect_to gallery_path(gallery.slug)
   end
 
   def destroy
-    gallery = Gallery.find_by_slug(params[:slug]) || not_found
     gallery.destroy!
     redirect_to galleries_path, flash: {info: 'Gallery deleted.'}
   end
@@ -22,16 +23,24 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.find_by_slug(params[:slug]) || not_found
+    respond_to do |format|
+      format.html do
+        @gallery.visits += 1
+        @gallery.save!
+      end
 
-    @gallery.visits += 1
-    @gallery.save!
+      format.atom do
+        @feed_pictures = @gallery.pictures.order('created_at desc').limit(15)
+        render layout: false
+      end
 
-    @last_picture = @gallery.pictures.order('created_at desc').limit(1).first
+      format.rss do
+        redirect_to gallery_path(@gallery.slug, format: :atom), status: :moved_permanently
+      end
+    end
   end
 
   def update
-    gallery = Gallery.find_by_slug(params[:slug]) || not_found
     gallery.update_attributes(gallery_params)
     respond_with gallery
   end
@@ -40,5 +49,9 @@ class GalleriesController < ApplicationController
 
   def gallery_params
     params.require(:gallery).permit(:name)
+  end
+
+  def set_gallery
+    @gallery = Gallery.find_by_slug(params[:slug]) || not_found
   end
 end

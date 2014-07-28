@@ -11,6 +11,10 @@ class Picture < ActiveRecord::Base
   after_image_post_process :set_photographed_at
 
 
+  def to_s
+    title.blank? ? 'Unnamed picture' : title
+  end
+
   private
 
   def set_photographed_at

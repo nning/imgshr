@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def absolute_url(relative_url)
+    URI(request.url) + relative_url
+  end
+
   def brand
     content_tag :div, class: 'imgshr-brand' do
       icon(:picture, class: 'imgshr-icon') + 'IMGSHR'

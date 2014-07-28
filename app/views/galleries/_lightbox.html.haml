@@ -13,7 +13,7 @@
       .modal-body
         .text-center
           = link_to picture.image.url do
-            = image_tag picture.image.url(:medium)
+            = image_tag picture.image.url(:medium), title: picture
       .modal-footer
         %p
           - if picture.photographed_at

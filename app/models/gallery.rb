@@ -7,6 +7,10 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  def last_update
+    pictures.order('created_at desc').limit(1).first.updated_at
+  end
+
   def to_s
     name? ? name : slug
   end
