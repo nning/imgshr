@@ -12,7 +12,7 @@
   - @galleries.each do |gallery|
     %tr
       %td= gallery.id
-      %td= link_to gallery.slug, gallery
+      %td= link_to gallery.slug, gallery, data: {no_turbolink: true}
       %td= best_in_place gallery, :name
       %td= gallery.pictures.count
       %td= gallery.visits
