@@ -10,11 +10,11 @@ class GalleriesController < ApplicationController
 
   def create
     gallery = Gallery.create
-    redirect_to gallery_path(gallery.slug)
+    redirect_to gallery
   end
 
   def destroy
-    gallery.destroy!
+    @gallery.destroy!
     redirect_to galleries_path, flash: {info: 'Gallery deleted.'}
   end
 
@@ -35,14 +35,14 @@ class GalleriesController < ApplicationController
       end
 
       format.rss do
-        redirect_to gallery_path(@gallery.slug, format: :atom), status: :moved_permanently
+        redirect_to gallery_path(@gallery, format: :atom), status: :moved_permanently
       end
     end
   end
 
   def update
-    gallery.update_attributes(gallery_params)
-    respond_with gallery
+    @gallery.update_attributes(gallery_params)
+    respond_with @gallery
   end
 
   private

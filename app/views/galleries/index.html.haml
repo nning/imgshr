@@ -12,11 +12,11 @@
   - @galleries.each do |gallery|
     %tr
       %td= gallery.id
-      %td= link_to gallery.slug, gallery_path(gallery.slug)
+      %td= link_to gallery.slug, gallery
       %td= best_in_place gallery, :name
       %td= gallery.pictures.count
       %td= gallery.visits
       %td= timestamp_ago gallery.created_at
       %td
-        = link_to gallery_path(gallery), method: :delete, data: {confirm: "Really delete #{gallery}?"} do
+        = link_to gallery, method: :delete, data: {confirm: "Really delete #{gallery}?"} do
           = icon :trash

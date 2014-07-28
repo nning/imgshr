@@ -7,7 +7,7 @@
             &times;
           %span.sr-only Close
         %h4.modal-title#label_upload Upload pictures
-      = form_for Picture.new, url: gallery_pictures_path(@gallery), html: {multipart: true} do |f|
+      = form_for Picture.new, url: @gallery, html: {multipart: true} do |f|
         .modal-body
           .alert.alert-info Please choose files for upload...
           = f.file_field :image, multiple: true

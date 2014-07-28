@@ -1,23 +1,21 @@
 class PicturesController < ApplicationController
   respond_to :html, :json
 
-  def create
-    gallery = Gallery.find_by_id(params[:gallery_id]) || not_found
+  before_action :set_gallery
 
+  def create
     upload_params.each do |image|
-      picture = gallery.pictures.build
+      picture = @gallery.pictures.build
 
       picture.update_attributes({image: image})
       picture.save!
     end
 
-    redirect_to gallery_path(gallery.slug)
+    redirect_to @gallery
   end
 
   def update
-    gallery = Gallery.find_by_slug(params[:slug]) || not_found
-
-    picture = gallery.pictures.find_by_id(params[:id]) || not_found
+    picture = @gallery.pictures.find_by_id(params[:id]) || not_found
 
     picture.update_attributes(update_params)
     picture.save!
@@ -26,6 +24,10 @@ class PicturesController < ApplicationController
   end
 
   private
+
+  def set_gallery
+    @gallery = Gallery.find_by_slug(params[:slug]) || not_found
+  end
 
   def update_params
     params.require(:picture).permit(:title)

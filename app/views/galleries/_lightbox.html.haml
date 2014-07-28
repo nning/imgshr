@@ -9,7 +9,7 @@
         %h4.modal-title#label_lightbox
           = link_to picture.image.url do
             = icon :download
-          = best_in_place picture, :title, path: picture_path(picture.gallery.slug, picture), nil: "<small>Set a title by clicking here!</small>"
+          = best_in_place picture, :title, path: [picture.gallery, picture], nil: "<small>Set a title by clicking here!</small>"
       .modal-body
         .text-center
           = link_to picture.image.url do
