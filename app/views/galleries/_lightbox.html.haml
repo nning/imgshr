@@ -17,7 +17,7 @@
       .modal-footer
         %p
           - if picture.photographed_at
-            Photographed on
+            Photographed
             = succeed ',' do
               = timestamp_ago picture.photographed_at
             uploaded
