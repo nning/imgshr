@@ -9,7 +9,7 @@
           = icon :info_sign
           Info
   .text-center
-    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>", path: gallery_path(@gallery.slug)
     - if @last_picture
       %p.pull-right
         Last update was

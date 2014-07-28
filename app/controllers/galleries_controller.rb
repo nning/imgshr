@@ -12,7 +12,8 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    Gallery.find_by_id(params[:id]).destroy!
+    gallery = Gallery.find_by_slug(params[:slug]) || not_found
+    gallery.destroy!
     redirect_to galleries_path, flash: {info: 'Gallery deleted.'}
   end
 
@@ -30,7 +31,7 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    gallery = Gallery.find_by_id(params[:id])
+    gallery = Gallery.find_by_slug(params[:slug]) || not_found
     gallery.update_attributes(gallery_params)
     respond_with gallery
   end
