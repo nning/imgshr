@@ -16,10 +16,12 @@
         %li
           = link_to root_path do
             = icon :home
+            %span.sr-only Home
         %li
           = link_to galleries_path do
             = icon :list
-      %h1.text-muted IMGSHR
+            %span.sr-only Index
+      %h1.text-muted= brand
 
     .row.flash-messages
       = render partial: 'shared/flash_messages'

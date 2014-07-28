@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lora'), local('Lora-Regular'), url(font-path('lora.woff')) format('woff');
+}
+
+.imgshr-brand {
+  font-family: 'Lora', serif;
+
+  .imgshr-icon {
+    font-size: .8125em;
+    margin-right: .3em;
+  }
+}
