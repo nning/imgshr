@@ -18,6 +18,6 @@ class Gallery < ActiveRecord::Base
   end
 
   def to_s
-    name? ? name : slug
+    name.blank? ? slug : name
   end
 end
