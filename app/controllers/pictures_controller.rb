@@ -7,8 +7,7 @@ class PicturesController < ApplicationController
     upload_params.each do |image|
       picture = @gallery.pictures.build
 
-      picture.update_attributes({image: image})
-      picture.save!
+      picture.update_attributes!({ image: image })
     end
 
     redirect_to @gallery
@@ -17,8 +16,7 @@ class PicturesController < ApplicationController
   def update
     picture = @gallery.pictures.find_by_id(params[:id]) || not_found
 
-    picture.update_attributes(update_params)
-    picture.save!
+    picture.update_attributes!(update_params)
 
     respond_with picture
   end

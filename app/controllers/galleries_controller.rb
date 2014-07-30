@@ -9,13 +9,13 @@ class GalleriesController < ApplicationController
   before_action :set_gallery, only: [:destroy, :show, :update]
 
   def create
-    gallery = Gallery.create
+    gallery = Gallery.create!
     redirect_to gallery
   end
 
   def destroy
     @gallery.destroy!
-    redirect_to galleries_path, flash: {info: 'Gallery deleted.'}
+    redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
   end
 
   def index
@@ -41,7 +41,7 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery.update_attributes(gallery_params)
+    @gallery.update_attributes!(gallery_params)
     respond_with @gallery
   end
 
