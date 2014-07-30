@@ -19,8 +19,8 @@
             %td Picture count
             %td= @gallery.pictures.count
           %tr
-            %td Created at
-            %td= time_ago_in_words @gallery.created_at
+            %td Created
+            %td= timestamp_ago @gallery.created_at
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
           = icon :remove

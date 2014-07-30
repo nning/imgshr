@@ -14,11 +14,10 @@
           Info
   .text-center
     %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
-    - if @last_picture
-      %p.pull-right
-        Last update was
-        = succeed '.' do
-          = timestamp_ago @gallery.last_update
+    %p.pull-right
+      Last update was
+      = succeed '.' do
+        = timestamp_ago @gallery.last_update
 
 = render partial: 'upload'
 = render partial: 'info'
