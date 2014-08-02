@@ -68,8 +68,12 @@ class GalleriesController < ApplicationController
 
   def increase_visits
     set_gallery
-    @gallery.visits += 1
-    @gallery.save!
+
+    unless session["counted#{@gallery}"] == 1
+      @gallery.visits += 1
+      @gallery.save!
+      session["counted#{@gallery}"] = 1
+    end
   end
 
   def set_gallery
