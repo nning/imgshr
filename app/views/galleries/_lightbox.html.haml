@@ -9,6 +9,8 @@
         %h4.modal-title{id: lightbox_picture_id(picture, label: true)}
           = link_to picture.image.url do
             = icon :download
+          = link_to gallery_picture_path(picture.gallery, picture), data: {no_turbolink: true} do
+            = icon :share
           = best_in_place picture, :title, path: [picture.gallery, picture], nil: "<small>Set a title by clicking here!</small>"
       .modal-body
         .text-center
