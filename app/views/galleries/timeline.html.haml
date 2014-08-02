@@ -3,8 +3,7 @@
 %ul
   - @picture_times.each do |time, pictures|
     .row
-      %center
-        %h3.picture-grid-time= time
+      %h3.picture-grid-time.text-center= time
       - pictures.in_groups_of(4, false).each do |group|
         .row
           - group.each do |picture|
