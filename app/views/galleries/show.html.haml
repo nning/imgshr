@@ -13,19 +13,19 @@
           Info
   .text-center
     %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+    %p.pull-right
+      Last update was
+      = succeed '.' do
+        = timestamp_ago @gallery.last_update
 
 = render partial: 'upload'
 = render partial: 'info'
 
 %ul
-  - @picture_times.each do |time, pictures|
+  - @gallery.pictures.order('created_at desc').in_groups_of(4, false).each do |group|
     .row
-      %center
-        %h3.picture-grid-time= time
-      - pictures.in_groups_of(4, false).each do |group|
-        .row
-          - group.each do |picture|
-            .col-md-3
-              = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-                = image_tag picture.image.url(:thumb), title: picture
-            = render partial: 'lightbox', locals: {picture: picture}
+      - group.each do |picture|
+        .col-xs-6.col-md-3
+          = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
+            = image_tag picture.image.url(:thumb), title: picture
+        = render partial: 'lightbox', locals: {picture: picture}

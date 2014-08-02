@@ -1,6 +1,4 @@
 class GalleriesController < ApplicationController
-  include ActionView::Helpers::DateHelper 
-
   http_basic_authenticate_with \
     name: Settings.authentication.username,
     password: Settings.authentication.password,
@@ -29,20 +27,6 @@ class GalleriesController < ApplicationController
       format.html do
         @gallery.visits += 1
         @gallery.save!
-
-        @pictures = @gallery.pictures
-          .sort_by { |p| p.photographed_at ? p.photographed_at : p.created_at }
-          .reverse
-
-        @picture_times ||= {}
-
-        @time = Time.now
-
-        @pictures.each do |picture|
-          time = time_ago_in_words(picture.photographed_or_created_at) + ' ago'
-          @picture_times[time] ||= []
-          @picture_times[time] << picture
-        end
       end
 
       format.atom do
