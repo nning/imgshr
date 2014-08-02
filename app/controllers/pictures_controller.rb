@@ -18,13 +18,13 @@ class PicturesController < ApplicationController
 
     picture.update_attributes!(update_params)
 
-    respond_with picture
+    respond_with @picture
   end
 
   private
 
   def set_gallery
-    @gallery = Gallery.find_by_slug(params[:slug]) || not_found
+    @gallery ||= Gallery.find_by_slug(params[:slug]) || not_found
   end
 
   def update_params
