@@ -1,25 +1,4 @@
-= content_for :auto_discovery do
-  = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
-  
-.gallery-header
-  .pull-right
-    .btn-toolbar
-      .btn-group
-        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
-          = icon :upload
-          Upload
-        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
-          = icon :info_sign
-          Info
-  .text-center
-    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
-    %p.pull-right
-      Last update was
-      = succeed '.' do
-        = timestamp_ago @gallery.last_update
-
-= render partial: 'upload'
-= render partial: 'info'
+= render partial: 'header'
 
 %ul
   - @gallery.pictures.order('created_at desc').in_groups_of(4, false).each do |group|

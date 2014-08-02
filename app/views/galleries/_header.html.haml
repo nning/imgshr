@@ -1,0 +1,32 @@
+= content_for :auto_discovery do
+  = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
+
+.gallery-header
+  .pull-right
+    .btn-toolbar
+      .btn-group
+        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+          = icon :upload
+          Upload
+        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
+          = icon :info_sign
+          Info
+        - if params[:action] == 'show'
+          = link_to gallery_timeline_path(@gallery), class: 'btn' do
+            = icon :time
+            Timeline
+        - else
+          = link_to gallery_path(@gallery), class: 'btn' do
+            = icon :th
+            Grid
+
+  .text-center
+    %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+    - if params[:action] == 'show'
+      %p.pull-right
+        Last update was
+        = succeed '.' do
+          = timestamp_ago @gallery.last_update
+
+= render partial: 'upload'
+= render partial: 'info'

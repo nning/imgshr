@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   put    '/!:slug' => 'galleries#update'
   delete '/!:slug' => 'galleries#destroy'
 
+  get    '/!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
+
   get    '/!:slug/:id' => 'galleries#show',  as: :gallery_picture
   patch  '/!:slug/:id' => 'pictures#update'
   post   '/!:slug'     => 'pictures#create'

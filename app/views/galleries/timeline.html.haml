@@ -1,0 +1,14 @@
+= render partial: 'header'
+
+%ul
+  - @picture_times.each do |time, pictures|
+    .row
+      %center
+        %h3.picture-grid-time= time
+      - pictures.in_groups_of(4, false).each do |group|
+        .row
+          - group.each do |picture|
+            .col-md-3
+              = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
+                = image_tag picture.image.url(:thumb), title: picture
+            = render partial: 'lightbox', locals: {picture: picture}
