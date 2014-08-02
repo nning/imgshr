@@ -33,10 +33,6 @@ class GalleriesController < ApplicationController
         @feed_pictures = @gallery.pictures.order('created_at desc').limit(15)
         render layout: false
       end
-
-      format.rss do
-        redirect_to gallery_path(@gallery, format: :atom), status: :moved_permanently
-      end
     end
   end
 

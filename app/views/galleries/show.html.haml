@@ -1,6 +1,5 @@
 = content_for :auto_discovery do
   = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
-  = auto_discovery_link_tag :rss,  gallery_url(@gallery.slug, format: :rss)
   
 .gallery-header
   .pull-right
