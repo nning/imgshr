@@ -17,16 +17,16 @@
             = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
               = icon :info_sign
               Info
-            - if params[:action] == 'show'
-              = link_to gallery_timeline_path(@gallery), class: 'btn' do
-                = icon :time
-                Timeline
-            - else
+            - if timeline?
               = link_to gallery_path(@gallery), class: 'btn' do
                 = icon :th
                 Grid
+            - else
+              = link_to gallery_timeline_path(@gallery), class: 'btn' do
+                = icon :time
+                Timeline
 
-        - if params[:action] == 'show'
+        - unless timeline?
           %p.pull-right
             Last update was
             = succeed '.' do
