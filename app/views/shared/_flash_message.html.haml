@@ -1,0 +1,10 @@
+.alert.alert-dismissable{class: "alert-#{flash_class(type)}"}
+  = link_to '#', class: 'close', :'data-dismiss' => 'alert' do
+    %span{:'aria-hidden' => 'true'} &times;
+    %span.sr-only Close
+  %p
+    %strong= flash_class(type).capitalize + ':'
+    - if defined? message
+      = message
+    - elsif defined? partial
+      = render partial: partial

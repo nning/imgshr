@@ -1,7 +1,9 @@
 = content_for :auto_discovery do
   = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
 
-.gallery-header
+= render partial: 'delete_token'
+
+.content-header
   .row
     .col-md-8
       .text-center

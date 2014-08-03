@@ -1,0 +1,17 @@
+- content_for :title do
+  Delete page for
+  = @delete_token.gallery
+  on IMGSHR
+
+.content-header
+  .row
+    .text-center
+      %h2
+        Delete page for
+        = link_to @delete_token.gallery, @delete_token.gallery
+
+.row
+  .text-center
+    = link_to gallery_delete_path(@delete_token), method: :delete, class: 'btn btn-danger', data: {confirm: "Really delete #{@delete_token.gallery}?"} do
+      = icon :delete
+      Delete the whole gallery!
