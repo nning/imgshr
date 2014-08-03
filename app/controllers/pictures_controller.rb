@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
   respond_to :html, :json
 
   before_action :set_gallery
+  before_action :set_picture, except: :create
 
   def create
     upload_params.each do |image|
@@ -13,10 +14,16 @@ class PicturesController < ApplicationController
     redirect_to @gallery
   end
 
-  def update
-    picture = @gallery.pictures.find_by_id(params[:id]) || not_found
+  def download
+    send_data \
+      File.read(@picture.image.path),
+      filename: @picture.image.original_filename,
+      disposition: 'attachment',
+      type: @picture.image.content_type
+  end
 
-    picture.update_attributes!(update_params)
+  def update
+    @picture.update_attributes!(update_params)
 
     respond_with @picture
   end
@@ -25,6 +32,11 @@ class PicturesController < ApplicationController
 
   def set_gallery
     @gallery ||= Gallery.find_by_slug(params[:slug]) || not_found
+  end
+
+  def set_picture
+    set_gallery
+    @picture ||= @gallery.pictures.find_by_id(params[:id]) || not_found
   end
 
   def update_params
