@@ -21,6 +21,10 @@
           %tr
             %td Created
             %td= timestamp_ago @gallery.created_at
+          - if @delete_token
+            %tr
+              %td Delete link
+              %td= link_to @delete_token.slug, gallery_delete_path(@delete_token)
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
           = icon :remove

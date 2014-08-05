@@ -1,9 +1,11 @@
 class Gallery < ActiveRecord::Base
   has_many :pictures, dependent: :destroy
+  has_one :delete_token
 
   after_initialize do
     if new_record?
       self.slug ||= Base64.encode64(UUIDTools::UUID.random_create)[0..7]
+      self.delete_token ||= DeleteToken.create!
     end
   end
 

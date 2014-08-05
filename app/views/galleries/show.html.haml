@@ -3,8 +3,4 @@
 %ul
   - @gallery.pictures.order('created_at desc').in_groups_of(4, false).each do |group|
     .row
-      - group.each do |picture|
-        .col-md-3
-          = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-            = image_tag picture.image.url(:thumb), title: picture
-        = render partial: 'lightbox', locals: {picture: picture}
+      = render partial: 'pictures/picture', collection: group

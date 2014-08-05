@@ -9,9 +9,13 @@ class GalleriesController < ApplicationController
   respond_to :html, :json
 
   before_action :set_gallery, only: [:destroy, :show, :timeline, :update]
+  before_action :set_delete_token, only: [:show, :timeline]
 
   def create
     gallery = Gallery.create!
+
+    session["delete_token_#{gallery.slug}"] = gallery.delete_token.slug
+
     redirect_to gallery
   end
 
@@ -69,10 +73,16 @@ class GalleriesController < ApplicationController
   def increase_visits
     set_gallery
 
-    unless session["counted#{@gallery}"] == 1
+    unless session["counted_#{@gallery.slug}"] == 1
       @gallery.visits += 1
       @gallery.save!
-      session["counted#{@gallery}"] = 1
+      session["counted_#{@gallery.slug}"] = 1
+    end
+  end
+
+  def set_delete_token
+    if session["delete_token_#{@gallery.slug}"]
+      @delete_token ||= DeleteToken.find_by_slug(session["delete_token_#{@gallery.slug}"])
     end
   end
 
