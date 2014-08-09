@@ -26,6 +26,7 @@ class GalleriesController < ApplicationController
 
   def index
     @galleries = Gallery.order('updated_at desc').all
+    session[:do_not_count] = true
   end
 
   def show
@@ -72,6 +73,8 @@ class GalleriesController < ApplicationController
 
   def increase_visits
     set_gallery
+
+    return if session[:do_not_count]
 
     unless session["counted_#{@gallery.slug}"] == 1
       @gallery.visits += 1
