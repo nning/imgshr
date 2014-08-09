@@ -18,3 +18,5 @@
 //= require best_in_place.purr
 //= require moment
 //= require_tree .
+
+$('.dropdown-toggle').dropdown();
