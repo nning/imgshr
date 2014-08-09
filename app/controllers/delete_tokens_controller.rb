@@ -6,6 +6,11 @@ class DeleteTokensController < ApplicationController
     redirect_to root_path, flash: {info: 'Gallery deleted!'}
   end
 
+  def destroy_picture
+    @delete_token.gallery.pictures.find(params[:id]).destroy!
+    redirect_to gallery_path(@delete_token.gallery), flash: {info: 'Picture deleted!'}
+  end
+
   def show
     if session["delete_token_#{@delete_token.gallery.slug}"].nil?
       session["delete_token_#{@delete_token.gallery.slug}"] = @delete_token.slug

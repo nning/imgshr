@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get    '/-:token' => 'delete_tokens#show',    as: :gallery_delete
   delete '/-:token' => 'delete_tokens#destroy'
 
+  delete '/-:token/:id' => 'delete_tokens#destroy_picture', as: :gallery_picture_delete
+
   get    '/!:slug/:id' => 'galleries#show',  as: :gallery_picture
   patch  '/!:slug/:id' => 'pictures#update'
   post   '/!:slug'     => 'pictures#create'
