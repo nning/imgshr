@@ -31,12 +31,12 @@ class PicturesController < ApplicationController
   private
 
   def set_gallery
-    @gallery ||= Gallery.find_by_slug(params[:slug]) || not_found
+    @gallery ||= Gallery.find_by_slug!(params[:slug])
   end
 
   def set_picture
     set_gallery
-    @picture ||= @gallery.pictures.find_by_id(params[:id]) || not_found
+    @picture ||= @gallery.pictures.find(params[:id])
   end
 
   def update_params

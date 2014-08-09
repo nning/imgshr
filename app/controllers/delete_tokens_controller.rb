@@ -17,6 +17,6 @@ class DeleteTokensController < ApplicationController
   private
 
   def set_delete_token
-    @delete_token ||= DeleteToken.find_by_slug(params[:token]) || not_found
+    @delete_token ||= DeleteToken.find_by_slug!(params[:token])
   end
 end

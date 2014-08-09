@@ -85,11 +85,11 @@ class GalleriesController < ApplicationController
 
   def set_delete_token
     if session["delete_token_#{@gallery.slug}"]
-      @delete_token ||= DeleteToken.find_by_slug(session["delete_token_#{@gallery.slug}"])
+      @delete_token ||= DeleteToken.find_by_slug!(session["delete_token_#{@gallery.slug}"])
     end
   end
 
   def set_gallery
-    @gallery ||= Gallery.find_by_slug(params[:slug]) || not_found
+    @gallery ||= Gallery.find_by_slug!(params[:slug])
   end
 end
