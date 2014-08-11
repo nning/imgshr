@@ -7,6 +7,7 @@
     %th Name
     %th Number of images
     %th Visits
+    %th Delete page
     %th Created at
     %th
   - @galleries.each do |gallery|
@@ -16,6 +17,9 @@
       %td= best_in_place gallery, :name
       %td= gallery.pictures.count
       %td= gallery.visits
+      %td
+        - if gallery.delete_token
+          = link_to gallery.delete_token.slug, gallery_delete_path(gallery.delete_token)
       %td= timestamp_ago gallery.created_at
       %td
         = link_to gallery, method: :delete, data: {confirm: "Really delete #{gallery}?"} do
