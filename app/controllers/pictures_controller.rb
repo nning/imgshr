@@ -8,7 +8,12 @@ class PicturesController < ApplicationController
     upload_params.each do |image|
       picture = @gallery.pictures.build
 
-      picture.update_attributes!({ image: image })
+      begin
+        picture.update_attributes!({ image: image })
+      rescue ActiveRecord::RecordInvalid
+        redirect_to @gallery, flash: {error: "Unsupported file format: #{image.content_type}!"}
+        return
+      end
     end
 
     redirect_to @gallery

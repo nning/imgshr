@@ -3,7 +3,7 @@
     %span{:'aria-hidden' => 'true'} &times;
     %span.sr-only Close
   %p
-    %strong= flash_class(type).capitalize + ':'
+    %strong= type.capitalize + ':'
     - if defined? message
       = message
     - elsif defined? partial
