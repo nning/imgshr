@@ -6,6 +6,7 @@
   config.csp = {
     enforce:      true,
     default_src:  'https://* self',
+    style_src:    'https://* self inline',
     report_uri:   '/content_security_policy/forward_report'
   }
 end
