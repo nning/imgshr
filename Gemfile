@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'rails', '~> 4.1.4'
 gem 'rails_config'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'secure_headers'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby
