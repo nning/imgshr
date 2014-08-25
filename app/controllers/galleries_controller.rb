@@ -25,7 +25,7 @@ class GalleriesController < ApplicationController
   end
 
   def index
-    @galleries = Gallery.order('updated_at desc').all
+    @galleries = Gallery.includes(:pictures).order('updated_at desc').all
     session[:do_not_count] = true
   end
 
