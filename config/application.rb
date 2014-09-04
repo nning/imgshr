@@ -21,5 +21,7 @@ module Imgshr
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
+
+    config.middleware.use Rack::Protection
   end
 end

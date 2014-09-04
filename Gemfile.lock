@@ -85,6 +85,8 @@ GEM
       mime-types
     polyglot (0.3.5)
     rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.5)
@@ -157,6 +159,7 @@ DEPENDENCIES
   local_time
   momentjs-rails
   paperclip
+  rack-protection
   rails (~> 4.1.4)
   rails_config
   sdoc (~> 0.4.0)

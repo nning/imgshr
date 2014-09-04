@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'local_time'
 gem 'momentjs-rails'
 gem 'paperclip'
+gem 'rack-protection'
 gem 'rails', '~> 4.1.4'
 gem 'rails_config'
 gem 'sdoc', '~> 0.4.0', group: :doc
