@@ -8,7 +8,11 @@ atom_feed language: 'en-US' do |feed|
       entry.title(picture)
       entry.url(url)
       entry.updated(picture.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ")) 
-      entry.content(feed_item_content(picture), type: 'html')
+      entry.content \
+        render(partial: 'feed_item_content_picture',
+               locals: { picture: picture },
+               formats: [:html]),
+        type: 'html'
     end
   end
 end

@@ -1,3 +1,6 @@
+= content_for :auto_discovery do
+  = auto_discovery_link_tag :atom, galleries_url(format: :atom)
+
 %h2 Galleries
 
 %table.table.table-striped
@@ -11,16 +14,4 @@
     %th Created at
     %th
   - @galleries.each do |gallery|
-    %tr
-      %td= gallery.id
-      %td= link_to gallery.slug, gallery, data: {no_turbolink: true}
-      %td= best_in_place gallery, :name
-      %td= gallery.pictures.count
-      %td= gallery.visits
-      %td
-        - if gallery.delete_token
-          = link_to gallery.delete_token.slug, gallery_delete_path(gallery.delete_token)
-      %td= timestamp_ago gallery.created_at
-      %td
-        = link_to gallery, method: :delete, data: {confirm: "Really delete #{gallery}?"} do
-          = icon :trash
+    = render partial: 'gallery', locals: { gallery: gallery }

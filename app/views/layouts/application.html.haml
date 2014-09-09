@@ -16,11 +16,11 @@
     .page-header
       %ul.nav.nav-pills.pull-right
         %li
-          = link_to root_path do
+          = link_to root_path, data: { no_turbolink: true } do
             = icon :home
             %span.sr-only Home
         %li
-          = link_to galleries_path do
+          = link_to galleries_path, data: { no_turbolink: true } do
             = icon :list
             %span.sr-only Index
       %h1.text-muted= brand

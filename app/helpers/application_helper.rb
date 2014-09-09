@@ -1,6 +1,7 @@
 module ApplicationHelper
   def absolute_url(relative_url)
-    URI(request.url) + relative_url
+    relative_url = url_for(relative_url) unless relative_url.is_a? String
+    (URI(request.url) + relative_url).to_s
   end
 
   def brand
