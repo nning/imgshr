@@ -1,0 +1,2 @@
+- if @boss_token && session["boss_page_visited_#{@boss_token.slug}"] != 1
+  = render partial: 'shared/flash_message', locals: {type: 'warning', partial: 'galleries/boss_token_message'}

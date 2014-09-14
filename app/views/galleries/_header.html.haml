@@ -1,21 +1,25 @@
 = content_for :auto_discovery do
   = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
 
-= render partial: 'delete_token'
+= render partial: 'boss_token'
 
 .content-header
   .row
     .col-md-8
       .text-center
-        %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+        - if writable?
+          %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+        - else
+          %h2= @gallery
 
     .col-md-4
       .pull-right
         .btn-toolbar
           .btn-group
-            = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
-              = icon :upload
-              Upload
+            - if writable?
+              = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+                = icon :upload
+                Upload
             = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
               = icon :info_sign
               Info

@@ -21,10 +21,14 @@
           %tr
             %td Created
             %td= timestamp_ago @gallery.created_at
-          - if @delete_token
+          - if @boss_token
             %tr
-              %td Delete link
-              %td= link_to @delete_token.slug, gallery_delete_path(@delete_token)
+              %td Write link
+              %td= link_to @boss_token, gallery_delete_path(@boss_token)
+            %tr
+              %td Read only
+              %td
+                = check_box_tag :read_only, nil, @gallery.read_only, data: {uri: gallery_path(@gallery)}
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
           = icon :remove

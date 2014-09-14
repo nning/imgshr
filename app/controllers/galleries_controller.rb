@@ -1,5 +1,6 @@
 class GalleriesController < ApplicationController
   include ActionView::Helpers::DateHelper 
+  include BossTokenAble
 
   http_basic_authenticate_with \
     name: Settings.authentication.username,
@@ -8,19 +9,20 @@ class GalleriesController < ApplicationController
 
   respond_to :html, :json
 
-  before_action :set_gallery, only: [:destroy, :show, :timeline, :update]
-  before_action :set_delete_token, only: [:show, :timeline]
+  before_filter :enforce_read_only, only: :update
+
+  before_action :gallery, except: [:create, :index, :new]
 
   def create
     gallery = Gallery.create!
 
-    session["delete_token_#{gallery.slug}"] = gallery.delete_token.slug
+    boss_token_session gallery
 
     redirect_to gallery
   end
 
   def destroy
-    @gallery.destroy!
+    gallery.destroy!
     redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
   end
 
@@ -45,7 +47,7 @@ class GalleriesController < ApplicationController
       end
 
       format.atom do
-        @feed_pictures = @gallery.pictures.order('created_at desc').limit(15)
+        @feed_pictures = gallery.pictures.order('created_at desc').limit(15)
         render layout: false
       end
     end
@@ -54,7 +56,7 @@ class GalleriesController < ApplicationController
   def timeline
     increase_visits
 
-    @pictures = @gallery.pictures
+    @pictures = gallery.pictures
       .sort_by { |p| p.photographed_at ? p.photographed_at : p.created_at }
       .reverse
 
@@ -70,35 +72,33 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    @gallery.update_attributes!(gallery_params)
-    respond_with @gallery
+    gallery.update_attributes!(gallery_params)
+    render nothing: true
   end
 
   private
 
   def gallery_params
-    params.require(:gallery).permit(:name)
+    if boss_token
+      params.require(:gallery).permit(:name, :read_only)
+    elsif !gallery.read_only
+      params.require(:gallery).permit(:name)
+    else
+      raise
+    end
   end
 
   def increase_visits
-    set_gallery
-
     return if session[:do_not_count]
 
-    unless session["counted_#{@gallery.slug}"] == 1
-      @gallery.visits += 1
-      @gallery.save!
-      session["counted_#{@gallery.slug}"] = 1
+    unless session["counted_#{gallery.slug}"] == 1
+      gallery.visits += 1
+      gallery.save!
+      session["counted_#{gallery.slug}"] = 1
     end
   end
 
-  def set_delete_token
-    if session["delete_token_#{@gallery.slug}"]
-      @delete_token ||= DeleteToken.find_by_slug(session["delete_token_#{@gallery.slug}"])
-    end
-  end
-
-  def set_gallery
+  def gallery
     @gallery ||= Gallery.find_by_slug!(params[:slug])
   end
 end

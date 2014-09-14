@@ -3,10 +3,11 @@
   %td= link_to gallery.slug, gallery, data: {no_turbolink: true}
   %td= best_in_place gallery, :name
   %td= gallery.pictures.count
+  %td= icon :ok if gallery.read_only
   %td= gallery.visits
   %td
-    - if gallery.delete_token
-      = link_to gallery.delete_token.slug, gallery_delete_path(gallery.delete_token)
+    - if gallery.boss_token
+      = link_to gallery.boss_token.slug, gallery_delete_path(gallery.boss_token)
   %td= timestamp_ago gallery.created_at
   %td
     = link_to gallery, method: :delete, data: {confirm: "Really delete #{gallery}?"} do

@@ -1,4 +1,4 @@
-class DeleteToken < ActiveRecord::Base
+class BossToken < ActiveRecord::Base
   belongs_to :gallery, dependent: :destroy
   has_many :pictures, through: :gallery
 
@@ -9,6 +9,10 @@ class DeleteToken < ActiveRecord::Base
   end
 
   def to_param
+    slug
+  end
+
+  def to_s
     slug
   end
 end

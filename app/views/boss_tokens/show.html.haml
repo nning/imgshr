@@ -1,0 +1,25 @@
+- content_for :title do
+  Boss page for
+  = @boss_token.gallery
+  on IMGSHR
+
+.content-header
+  .row
+    .text-center
+      %h2
+        Boss page for
+        = link_to @boss_token.gallery, @boss_token.gallery, data: {no_turbolink: true}
+
+.row
+  .col-md-2
+  .col-md-5
+    %p
+      Besides providing a gallery delete link (see on the right), this page
+      refreshes your boss token cookie for deletion of individual pictures
+      and modification of the read-only bit.
+  .col-md-3
+    %p.text-right
+      = link_to gallery_delete_path(@boss_token), method: :delete, class: 'btn btn-danger', data: {confirm: "Really delete #{@boss_token.gallery}?"} do
+        = icon :delete
+        Delete the whole gallery!
+  .col-md-2

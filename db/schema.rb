@@ -11,22 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803204257) do
+ActiveRecord::Schema.define(version: 20140914135421) do
 
-  create_table "delete_tokens", force: true do |t|
+  create_table "boss_tokens", force: true do |t|
     t.string  "slug",       null: false
     t.integer "gallery_id"
   end
 
-  add_index "delete_tokens", ["gallery_id"], name: "index_delete_tokens_on_gallery_id", unique: true
-  add_index "delete_tokens", ["slug"], name: "index_delete_tokens_on_slug", unique: true
+  add_index "boss_tokens", ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true
+  add_index "boss_tokens", ["slug"], name: "index_boss_tokens_on_slug", unique: true
 
   create_table "galleries", force: true do |t|
-    t.string   "slug",                   null: false
+    t.string   "slug",                       null: false
     t.string   "name"
-    t.integer  "visits",     default: 0, null: false
+    t.integer  "visits",     default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read_only",  default: false
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true

@@ -19,12 +19,15 @@
                 = link_to gallery_picture_path(picture.gallery, picture), data: {no_turbolink: true} do
                   = icon :share
                   Share
-              - if @delete_token
+              - if @boss_token
                 %li
-                  = link_to gallery_picture_delete_path(@delete_token, picture), method: :delete, data: {confirm: 'Really delete?'} do
+                  = link_to gallery_picture_delete_path(@boss_token, picture), method: :delete, data: {confirm: 'Really delete?'} do
                     = icon :trash
                     Delete
-          = best_in_place picture, :title, path: [picture.gallery, picture], nil: "<small>Set a title by clicking here!</small>"
+          - if writable?
+            = best_in_place picture, :title, path: [picture.gallery, picture], nil: "<small>Set a title by clicking here!</small>"
+          - else
+            = picture
       .modal-body
         .text-center
           = link_to picture.image.url do

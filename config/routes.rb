@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
   get    '/!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
 
-  get    '/-:token' => 'delete_tokens#show',    as: :gallery_delete
-  delete '/-:token' => 'delete_tokens#destroy'
+  get    '/-:token' => 'boss_tokens#show',    as: :gallery_delete
+  delete '/-:token' => 'boss_tokens#destroy'
 
-  delete '/-:token/:id' => 'delete_tokens#destroy_picture', as: :gallery_picture_delete
+  delete '/-:token/:id' => 'boss_tokens#destroy_picture', as: :gallery_picture_delete
 
   get    '/!:slug/:id' => 'galleries#show',  as: :gallery_picture
   patch  '/!:slug/:id' => 'pictures#update'
