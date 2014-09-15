@@ -23,7 +23,7 @@
             %td= timestamp_ago @gallery.created_at
           - if @boss_token
             %tr
-              %td Write link
+              %td Boss link
               %td= link_to @boss_token, gallery_delete_path(@boss_token)
             %tr
               %td Read only
