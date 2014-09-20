@@ -37,7 +37,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (3.0.1.20140826)
+    autoprefixer-rails (3.1.0.20140911)
       execjs
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
@@ -67,7 +67,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    libv8 (3.16.14.5)
+    libv8 (3.16.14.7)
     local_time (1.0.0)
       coffee-rails
     mail (2.6.1)
@@ -108,7 +108,7 @@ GEM
     rdoc (4.1.2)
       json (~> 1.4)
     ref (1.0.5)
-    sass (3.4.4)
+    sass (3.4.5)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
