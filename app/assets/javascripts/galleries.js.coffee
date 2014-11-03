@@ -2,6 +2,10 @@ $ ->
   $('.best_in_place').best_in_place()
   $('.modal[aria-hidden!=""]').modal('show')
 
+  $('img').unveil()
+  $('body').on 'shown.bs.modal', ->
+    $('img').unveil()
+
   box = $('#read_only')
   box.change (e) ->
     $.ajax
