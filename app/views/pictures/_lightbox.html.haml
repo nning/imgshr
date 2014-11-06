@@ -40,6 +40,9 @@
             Photographed
             = succeed ',' do
               = timestamp_ago picture.photographed_at
+              - if picture.camera
+                using a
+                %em= picture.camera
             uploaded
           - else
             Uploaded

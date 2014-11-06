@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914135421) do
+ActiveRecord::Schema.define(version: 20141106185103) do
 
   create_table "boss_tokens", force: true do |t|
     t.string  "slug",       null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140914135421) do
     t.datetime "photographed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "camera"
   end
 
 end
