@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106185103) do
+ActiveRecord::Schema.define(version: 20141106193121) do
 
   create_table "boss_tokens", force: true do |t|
     t.string  "slug",       null: false

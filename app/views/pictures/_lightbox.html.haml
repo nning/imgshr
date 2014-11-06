@@ -40,11 +40,13 @@
             Photographed
             = succeed ',' do
               = timestamp_ago picture.photographed_at
-              - if picture.camera
-                using a
-                %em= picture.camera
             uploaded
           - else
             Uploaded
           = succeed '.' do
             = timestamp_ago picture.created_at
+          - if picture.camera
+            %br
+            Camera model is
+            = succeed '.' do
+              %em= picture.camera
