@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+require_relative '../config/environment'
+
+def usage
+  $stderr.puts "#{File.basename($0)} <gallery> [target]"
+  exit 1
+end
+
+usage unless (1..2).include?(ARGV.size)
+
+slug, target = ARGV
+
+gallery = Gallery.find_by_slug(slug) || Gallery.find_by_name(slug)
+
+if gallery
+  if target.nil?
+    FileUtils.mkdir(slug)
+    target = slug
+  else
+    FileUtils.mkdir(target)
+  end
+
+  gallery.pictures.find_each do |picture|
+    FileUtils.cp \
+      picture.image.path,
+      File.join(target, picture.image.original_filename),
+      verbose: true
+  end
+else
+  $stderr.puts "Gallery #{slug} not found!"
+  exit 1
+end
