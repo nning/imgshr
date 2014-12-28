@@ -16,3 +16,6 @@
     %th
   - @galleries.each do |gallery|
     = render partial: 'gallery', locals: { gallery: gallery }
+
+= content_for :footer do
+  = render partial: 'shared/deploy_info'

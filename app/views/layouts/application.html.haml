@@ -13,7 +13,7 @@
 
 %body
   .container
-    .page-header
+    %header.page-header
       %ul.nav.nav-pills.pull-right
         %li
           = link_to root_path, data: { no_turbolink: true } do
@@ -30,5 +30,7 @@
 
     .row
       = yield
+
+    = render partial: 'shared/footer'
 
   = javascript_include_tag 'application', data_turbolinks_track: true
