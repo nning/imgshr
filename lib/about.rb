@@ -13,6 +13,8 @@ module About
 
   # Change time of Rails root.
   def self.last_deploy
-    File.ctime Rails.root
+    File.ctime('tmp/restart.txt')
+  rescue Errno::ENOENT
+    Time.new
   end
 end
