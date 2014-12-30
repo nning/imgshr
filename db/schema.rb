@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141106193121) do
 
-  create_table "boss_tokens", force: true do |t|
+  create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
     t.integer "gallery_id"
   end
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141106193121) do
   add_index "boss_tokens", ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true
   add_index "boss_tokens", ["slug"], name: "index_boss_tokens_on_slug", unique: true
 
-  create_table "galleries", force: true do |t|
+  create_table "galleries", force: :cascade do |t|
     t.string   "slug",                       null: false
     t.string   "name"
     t.integer  "visits",     default: 0,     null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20141106193121) do
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true
 
-  create_table "pictures", force: true do |t|
+  create_table "pictures", force: :cascade do |t|
     t.integer  "gallery_id",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"

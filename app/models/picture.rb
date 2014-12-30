@@ -36,7 +36,10 @@ class Picture < ActiveRecord::Base
 
     if exif && exif.exif?
       camera = exif.model
-      camera = [exif.make, camera].join(' ') unless exif.make.nil?
+
+      if !(exif.make.blank? || camera.starts_with?(exif.make))
+        camera = [exif.make, camera].join(' ')
+      end
 
       self.camera = camera
       self.photographed_at = exif.date_time_digitized

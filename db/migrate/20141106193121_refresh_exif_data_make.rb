@@ -1,8 +1,5 @@
 class RefreshExifDataMake < ActiveRecord::Migration
   def up
-    Picture.where.not(camera: nil).find_each do |picture|
-      picture.send(:set_exif_attributes)
-      picture.save!
-    end
+    Rake::Task['pictures:refresh_exif_data'].invoke
   end
 end
