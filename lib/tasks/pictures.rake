@@ -5,7 +5,7 @@ namespace :pictures do
 
     ActiveRecord::Base.logger = Logger.new($stderr)
 
-    Picture.where.not(camera: nil).find_each do |picture|
+    Picture.find_each do |picture|
       picture.send(:set_exif_attributes)
       picture.save!
     end
