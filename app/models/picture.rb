@@ -43,6 +43,12 @@ class Picture < ActiveRecord::Base
 
       self.camera = camera
       self.photographed_at = exif.date_time_digitized
+
+      self.focal_length  = exif.focal_length
+      self.aperture      = exif.aperture_value
+      self.shutter_speed = exif.shutter_speed_value
+      self.iso_speed     = exif.iso_speed_ratings
+      self.flash         = exif.flash != 0
     end
   end
 end
