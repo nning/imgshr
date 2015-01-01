@@ -61,15 +61,20 @@
               - unless picture.focal_length.nil?
                 %tr
                   %td  Focal length
-                  %td= picture.focal_length
+                  %td
+                    = picture.focal_length
+                    mm
               - unless picture.aperture.nil?
                 %tr
                   %td  Aperture
-                  %td= picture.aperture
+                  %td
+                    = 'f/' + picture.aperture.to_s
               - unless picture.shutter_speed.nil?
                 %tr
                   %td  Shutter speed
-                  %td= picture.shutter_speed
+                  %td
+                    = picture.shutter_speed
+                    s
               - unless picture.iso_speed.nil?
                 %tr
                   %td  ISO speed

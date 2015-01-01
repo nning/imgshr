@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101153500) do
+ActiveRecord::Schema.define(version: 20150101174836) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150101153500) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "camera"
-    t.string   "focal_length"
+    t.float    "focal_length"
     t.float    "aperture"
     t.string   "shutter_speed"
     t.integer  "iso_speed"
