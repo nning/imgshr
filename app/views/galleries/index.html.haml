@@ -3,19 +3,20 @@
 
 %h2 Galleries
 
-%table.table.table-striped
-  %tr
-    %th #
-    %th Slug
-    %th Name
-    %th Number of images
-    %th Read only?
-    %th Visits
-    %th Boss page
-    %th Created at
-    %th
-  - @galleries.each do |gallery|
-    = render partial: 'gallery', locals: { gallery: gallery }
+.table-responsive
+  %table.table.table-striped
+    %tr
+      %th #
+      %th Slug
+      %th Name
+      %th Number of images
+      %th Read only?
+      %th Visits
+      %th Boss page
+      %th Created at
+      %th
+    - @galleries.each do |gallery|
+      = render partial: 'gallery', locals: { gallery: gallery }
 
 = content_for :footer do
   = render partial: 'shared/deploy_info'
