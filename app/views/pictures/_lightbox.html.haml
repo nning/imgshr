@@ -77,8 +77,4 @@
               - unless picture.flash.nil?
                 %tr
                   %td  Flash
-                  %td
-                    - if picture.flash
-                      = icon :ok
-                    - else
-                      = icon :remove
+                  %td= exif_flash(picture)

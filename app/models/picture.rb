@@ -8,7 +8,7 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  after_image_post_process :set_exif_attributes
+  after_image_post_process :set_exif_attributes!
 
   def photographed_or_created_at
     photographed_at || created_at
@@ -20,7 +20,7 @@ class Picture < ActiveRecord::Base
 
   private
 
-  def set_exif_attributes
+  def set_exif_attributes!
     exif = nil
 
     path = begin
@@ -48,7 +48,9 @@ class Picture < ActiveRecord::Base
       self.aperture      = exif.aperture_value
       self.shutter_speed = exif.shutter_speed_value
       self.iso_speed     = exif.iso_speed_ratings
-      self.flash         = exif.flash != 0
+      self.flash         = exif.flash
+
+      exif
     end
   end
 end

@@ -1,4 +1,8 @@
 module PicturesHelper
+  def exif_flash(picture)
+    EXIF::FLASH_MAP[picture.flash]
+  end
+
   def lightbox_picture_id(picture, label: false, info: false, hash: false)
     s = "lightbox#{picture.id}"
 
