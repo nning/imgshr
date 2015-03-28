@@ -10,10 +10,6 @@ TODO
 * Rotation of images
 * Fancy multi upload with progress bars
 
-# galleries#timeline
-
-* TOC
-
 # galleries#index
 
 * Data tables?

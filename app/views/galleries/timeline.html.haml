@@ -1,9 +1,18 @@
 = render partial: 'header'
 
+.btn-group.pull-right
+  %button.btn.btn-default.dropdown-toggle{data: {toggle: 'dropdown'}}
+    Table of Contents
+    %span.caret
+  %ul.dropdown-menu{role: 'menu'}
+    - @picture_times.each do |time, _|
+      %li= link_to time, time_id(time)
+
 %ul
   - @picture_times.each do |time, pictures|
     .row
-      %h3.picture-grid-time.text-center= time
+      %h3.picture-grid-time.text-center{id: time_id(time, false)}
+        = link_to time, time_id(time)
       - pictures.in_groups_of(4, false).each do |group|
         .row
           = render partial: 'pictures/picture', collection: group
