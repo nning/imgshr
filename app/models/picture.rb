@@ -12,6 +12,10 @@ class Picture < ActiveRecord::Base
 
   after_image_post_process :set_exif_attributes!
 
+  def average_rating
+    (ratings.sum(:score) / ratings.count.to_f).round(2)
+  end
+
   def photographed_or_created_at
     photographed_at || created_at
   end

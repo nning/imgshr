@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
   include BossTokenAble
+  include SetGallery
+  include SetPicture
 
   respond_to :html, :json
 
@@ -34,14 +36,6 @@ class PicturesController < ApplicationController
   end
 
   private
-
-  def gallery
-    @gallery ||= Gallery.find_by_slug!(params[:slug])
-  end
-
-  def picture
-    @picture ||= gallery.pictures.find(params[:id])
-  end
   
   def update_params
     params.require(:picture).permit(:title)
