@@ -1,6 +1,8 @@
 class Picture < ActiveRecord::Base
   belongs_to :gallery
 
+  has_many :ratings
+
   has_attached_file :image,
     styles: {medium: '550x550>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
