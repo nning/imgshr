@@ -43,6 +43,7 @@ class GalleriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        session["#{gallery.slug}_action"] = 'show'
         increase_visits
       end
 
@@ -54,6 +55,7 @@ class GalleriesController < ApplicationController
   end
 
   def timeline
+    session["#{gallery.slug}_action"] = 'timeline'
     increase_visits
 
     @pictures = gallery.pictures

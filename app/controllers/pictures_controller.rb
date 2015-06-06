@@ -16,8 +16,12 @@ class PicturesController < ApplicationController
         return
       end
     end
-
-    redirect_to gallery
+    
+    if session["#{gallery.slug}_action"] == 'timeline'
+      redirect_to gallery_timeline_path(gallery)
+    else
+      redirect_to gallery
+    end
   end
 
   def download
