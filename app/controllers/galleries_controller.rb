@@ -83,7 +83,7 @@ class GalleriesController < ApplicationController
 
   def gallery_params
     if boss_token
-      params.require(:gallery).permit(:name, :read_only)
+      params.require(:gallery).permit(:name, :ratings_enabled, :read_only)
     elsif !gallery.read_only
       params.require(:gallery).permit(:name)
     else

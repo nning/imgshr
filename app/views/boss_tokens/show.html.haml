@@ -15,8 +15,8 @@
   .col-md-5
     %p
       Besides providing a gallery delete link (see on the right), this page
-      refreshes your boss token cookie for deletion of individual pictures
-      and modification of the read-only bit.
+      refreshes your boss token cookie. It can be used to delete individual
+      pictures, to make a gallery read only, and to enable or disable ratings.
   .col-md-3
     %p.text-right
       = link_to gallery_delete_path(@boss_token), method: :delete, class: 'btn btn-danger', data: {confirm: "Really delete #{@boss_token.gallery}?"} do

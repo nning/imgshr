@@ -22,6 +22,6 @@ module PicturesHelper
   end
 
   def rating_for(picture)
-    render 'shared/rating', picture: picture
+    render 'shared/rating', picture: picture if picture.gallery.ratings_enabled
   end
 end

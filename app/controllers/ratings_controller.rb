@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
   include SetPicture
 
   def create
-    if session[rated_cookie]
+    if session[rated_cookie] || !gallery.ratings_enabled
       render nothing: true, status: 403
     else
       picture.ratings.create!(create_params)
