@@ -1,6 +1,8 @@
 class Picture < ActiveRecord::Base
   belongs_to :gallery
 
+  has_many :ratings
+
   has_attached_file :image,
     styles: {medium: '550x550>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
@@ -9,6 +11,10 @@ class Picture < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_image_post_process :set_exif_attributes!
+
+  def average_rating
+    (ratings.sum(:score) / ratings.count.to_f).round(2)
+  end
 
   def photographed_or_created_at
     photographed_at || created_at

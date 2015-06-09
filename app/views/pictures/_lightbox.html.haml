@@ -34,10 +34,12 @@
             = picture
       .modal-body
         .text-center
-          = link_to picture.image.url do
-            = image_tag nil, data: {src: picture.image.url(:medium)}, title: picture
-            %noscript
-              = image_tag picture.image.url(:medium), title: picture
+          .image
+            = link_to picture.image.url do
+              = image_tag nil, data: {src: picture.image.url(:medium)}, title: picture
+              %noscript
+                = image_tag picture.image.url(:medium), title: picture
+          = rating_for picture
       .modal-footer
         - unless picture.photographed_at.nil?
           Photographed

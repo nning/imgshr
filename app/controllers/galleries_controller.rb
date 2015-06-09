@@ -1,6 +1,7 @@
 class GalleriesController < ApplicationController
   include ActionView::Helpers::DateHelper 
   include BossTokenAble
+  include SetGallery
 
   http_basic_authenticate_with \
     name: Settings.authentication.username,
@@ -98,9 +99,5 @@ class GalleriesController < ApplicationController
       gallery.save!
       session["counted_#{gallery.slug}"] = 1
     end
-  end
-
-  def gallery
-    @gallery ||= Gallery.find_by_slug!(params[:slug])
   end
 end

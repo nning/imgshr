@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post   '/!:slug'     => 'pictures#create'
   put    '/!:slug/:id' => 'pictures#update'
 
+  get    '/!:slug/:id/rating' => 'ratings#show',  as: :picture_rating
+  post   '/!:slug/:id/rating' => 'ratings#create'
+
   get    '/!:slug/:id/download' => 'pictures#download', as: :gallery_picture_download
 
   resources :galleries, only: [:create, :index]

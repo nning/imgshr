@@ -20,4 +20,8 @@ module PicturesHelper
   def picture_aria_hidden(picture)
     picture.id == params[:id].to_i ? {} : {hidden: true}
   end
+
+  def rating_for(picture)
+    render 'shared/rating', picture: picture
+  end
 end
