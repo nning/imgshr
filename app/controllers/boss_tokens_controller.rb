@@ -17,6 +17,8 @@ class BossTokensController < ApplicationController
     end
 
     session["boss_page_visited_#{@boss_token.slug}"] = 1
+
+    redirect_to gallery_path(boss_token.gallery) if params[:redir]
   end
 
   private
