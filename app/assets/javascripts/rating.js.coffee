@@ -1,5 +1,5 @@
 $('.rating').raty
-  path: '/assets'
+  path: '/images'
   score: ->
     $(this).attr('data-score')
   click: (score, _) ->
