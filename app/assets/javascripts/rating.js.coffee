@@ -3,10 +3,21 @@ $('.rating').raty
   score: ->
     $(this).attr('data-score')
   click: (score, _) ->
+    self = $(this)
+    url  = self.attr('data-uri')
+
+    self.find('img').unbind('click')
+
     $.ajax
-      type: 'post',
-      url: $(this).attr('data-uri'),
+      type: 'post'
+      url: url
       data:
         picture:
           score: score
-    $(this).find('img').unbind('click')
+      success: ->
+        $.ajax
+          type: 'get'
+          url: url
+          success: (data) ->
+            self.raty('score', data)
+            self.raty('readOnly', true)
