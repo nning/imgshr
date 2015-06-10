@@ -1,0 +1,42 @@
+%a{data: {toggle: 'collapse'}, href: lightbox_picture_id(picture, info: true, hash: true), aria: {expanded: 'false', controls: lightbox_picture_id(picture, info: true)}}
+  = icon :info_sign
+.collapse{id: lightbox_picture_id(picture, info: true)}
+  %br
+  .table-responsive
+    %table.table.table-condensed.table-hover.table-bordered
+      - unless picture.camera.nil?
+        %tr
+          %td  Camera
+          %td= picture.camera
+      - unless picture.focal_length.nil?
+        %tr
+          %td  Focal length
+          %td
+            = picture.focal_length
+            mm
+      - unless picture.aperture.nil?
+        %tr
+          %td  Aperture
+          %td
+            = 'f/' + picture.aperture.to_s
+      - unless picture.shutter_speed.nil?
+        %tr
+          %td  Shutter speed
+          %td
+            = picture.shutter_speed
+            s
+      - unless picture.iso_speed.nil?
+        %tr
+          %td  ISO speed
+          %td= picture.iso_speed
+      - unless picture.flash.nil?
+        %tr
+          %td  Flash
+          %td= exif_flash(picture)
+      - if picture.gallery.ratings_enabled
+        %tr
+          %td  Rating count
+          %td= picture.ratings.count
+        %tr
+          %td  Average rating
+          %td= picture.average_rating

@@ -1,0 +1,6 @@
+%h4.modal-title{id: lightbox_picture_id(picture, label: true)}
+  = render 'pictures/lightbox_menu', picture: picture
+  - if writable?
+    = best_in_place picture, :title, path: [picture.gallery, picture], nil: "<small>Set a title by clicking here!</small>"
+  - else
+    = picture

@@ -1,7 +1,7 @@
 = content_for :auto_discovery do
   = auto_discovery_link_tag :atom, gallery_url(@gallery.slug, format: :atom)
 
-= render partial: 'boss_token'
+= render 'galleries/boss_token'
 
 .content-header
   .row
@@ -14,23 +14,7 @@
 
     .col-md-4
       .pull-right
-        .btn-toolbar
-          .btn-group
-            - if writable?
-              = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
-                = icon :upload
-                Upload
-            = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
-              = icon :info_sign
-              Info
-            - if timeline?
-              = link_to gallery_path(@gallery), class: 'btn' do
-                = icon :th
-                Grid
-            - else
-              = link_to gallery_timeline_path(@gallery), class: 'btn' do
-                = icon :time
-                Timeline
+        = render 'galleries/menu', gallery: @gallery
 
         - unless timeline?
           %p.pull-right
@@ -38,5 +22,5 @@
             = succeed '.' do
               = timestamp_ago @gallery.last_update
 
-= render partial: 'upload'
-= render partial: 'info'
+= render 'galleries/upload'
+= render 'galleries/info'
