@@ -1,12 +1,12 @@
-$('.rating').raty
-  path: '/images'
-  score: ->
-    $(this).attr('data-score')
-  click: (score, _) ->
-    self = $(this)
-    url  = self.attr('data-uri')
+box       = $('.rating')
+old_score = box.attr('data-score')
+url       = box.attr('data-uri')
 
-    self.find('img').unbind('click')
+box.raty
+  path: '/images'
+  score: old_score
+  click: (score, _) ->
+    box.find('img').unbind('click')
 
     $.ajax
       type: 'post'
@@ -19,5 +19,9 @@ $('.rating').raty
           type: 'get'
           url: url
           success: (data) ->
-            self.raty('score', data)
-            self.raty('readOnly', true)
+            box.raty('score', data)
+            box.raty('readOnly', true)
+          error: ->
+            box.raty('score', old_score)
+      error: ->
+        box.raty('score', old_score)
