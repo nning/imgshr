@@ -1,11 +1,12 @@
-box       = $('.rating')
-old_score = box.attr('data-score')
-url       = box.attr('data-uri')
-
-box.raty
+$('.rating').raty
   path: '/images'
-  score: old_score
+  score: ->
+    $(this).attr('data-score')
   click: (score, _) ->
+    box       = $(this)
+    old_score = box.attr('data-score')
+    url       = box.attr('data-uri')
+
     box.find('img').unbind('click')
 
     $.ajax
