@@ -12,6 +12,8 @@ class Picture < ActiveRecord::Base
 
   after_image_post_process :set_exif_attributes!
 
+  scope :grid, -> { order('created_at desc') }
+
   def average_rating
     (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
