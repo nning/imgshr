@@ -1,10 +1,7 @@
-- content_for :title do
-  = @gallery
-  on IMGSHR
-
 = render partial: 'header'
 
-%ul
-  - @gallery.pictures.order('created_at desc').in_groups_of(4, false).each do |group|
-    .row
-      = render partial: 'pictures/picture', collection: group
+= cache [@gallery, :show] do
+  %ul
+    - @gallery.pictures.order('created_at desc').in_groups_of(4, false).each do |group|
+      .row
+        = render partial: 'pictures/picture', collection: group

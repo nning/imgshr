@@ -1,4 +1,5 @@
-.col-md-3
-  = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-    = image_tag nil, data: {src: picture.image.url(:thumb)}, title: picture
-= render partial: 'pictures/lightbox', locals: {picture: picture}
+= cache picture do
+  .col-md-3
+    = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
+      = image_tag nil, data: {src: picture.image.url(:thumb)}, title: picture
+  = render partial: 'pictures/lightbox', locals: {picture: picture}

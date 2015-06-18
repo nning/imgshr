@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  belongs_to :gallery
+  belongs_to :gallery, touch: true
 
   has_many :ratings
 
