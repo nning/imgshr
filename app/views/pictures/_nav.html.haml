@@ -1,8 +1,8 @@
 %nav
-  %ul.pager
+  %ul.pager{data: {id: picture.id}}
     - if picture.previous_id
       %li.previous
-        = link_to gallery_picture_path(picture.gallery, picture.previous_id) do
+        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{picture.previous_id}"} do
           = icon :chevron_left
     - else
       %li.previous.disabled
@@ -10,7 +10,7 @@
 
     - if picture.next_id
       %li.next
-        = link_to gallery_picture_path(picture.gallery, picture.next_id) do
+        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{picture.next_id}"} do
           = icon :chevron_right
     - else
       %li.next.disabled
