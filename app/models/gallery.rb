@@ -15,11 +15,28 @@ class Gallery < ActiveRecord::Base
     updated_at
   end
 
+  def next_picture_id(id)
+    i = picture_grid_ids.index(id) + 1
+    picture_grid_ids[i]
+  end
+
+  def previous_picture_id(id)
+    i = picture_grid_ids.index(id) - 1
+    return nil if i < 0
+    picture_grid_ids[i]
+  end
+
   def to_param
     slug
   end
 
   def to_s
     name.blank? ? slug : name
+  end
+
+  private
+
+  def picture_grid_ids
+    @picture_grid_ids ||= pictures.grid.pluck(:id)
   end
 end

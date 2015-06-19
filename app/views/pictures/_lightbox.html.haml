@@ -12,6 +12,7 @@
               %noscript
                 = image_tag picture.image.url(:medium), title: picture
           = rating_for picture
+          = nav_for picture
       .modal-footer
         - unless picture.photographed_at.nil?
           Photographed

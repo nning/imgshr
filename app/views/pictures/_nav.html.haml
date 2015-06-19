@@ -1,0 +1,17 @@
+%nav
+  %ul.pager
+    - if picture.previous_id
+      %li.previous
+        = link_to gallery_picture_path(picture.gallery, picture.previous_id) do
+          = icon :chevron_left
+    - else
+      %li.previous.disabled
+        = icon :chevron_left
+
+    - if picture.next_id
+      %li.next
+        = link_to gallery_picture_path(picture.gallery, picture.next_id) do
+          = icon :chevron_right
+    - else
+      %li.next.disabled
+        = icon :chevron_right

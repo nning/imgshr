@@ -17,11 +17,15 @@ module PicturesHelper
     s
   end
 
+  def nav_for(picture)
+    render 'pictures/nav', picture: picture
+  end
+
   def picture_aria_hidden(picture)
     picture.id == params[:id].to_i ? {} : {hidden: true}
   end
 
   def rating_for(picture)
-    render 'shared/rating', picture: picture if picture.gallery.ratings_enabled
+    render 'pictures/rating', picture: picture if picture.gallery.ratings_enabled
   end
 end

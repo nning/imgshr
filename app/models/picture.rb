@@ -18,8 +18,16 @@ class Picture < ActiveRecord::Base
     (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
 
+  def next_id
+    @next_id ||= gallery.next_picture_id(id)
+  end
+
   def photographed_or_created_at
     photographed_at || created_at
+  end
+
+  def previous_id
+    @previous_id ||= gallery.previous_picture_id(id)
   end
 
   def to_s
