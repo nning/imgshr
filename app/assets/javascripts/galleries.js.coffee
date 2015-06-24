@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'page:change', ->
   $('.best_in_place').best_in_place()
   $('.modal[aria-hidden!=""]').modal('show')
 

@@ -6,5 +6,5 @@ $.fn.relatizeTimestamps = ->
     time = moment($(this).text())
     $(this).text(time.fromNow()).attr('title', time.format('LLLL'))
 
-$ ->
+$(document).on 'page:change', ->
   $('body').relatizeTimestamps()
