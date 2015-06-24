@@ -3,10 +3,12 @@ class GalleriesController < ApplicationController
   include BossTokenAble
   include SetGallery
 
-  http_basic_authenticate_with \
-    name: Settings.authentication.username,
-    password: Settings.authentication.password,
-    only: [:index, :destroy]
+  unless Rails.env.development?
+    http_basic_authenticate_with \
+      name: Settings.authentication.username,
+      password: Settings.authentication.password,
+      only: [:index, :destroy]
+  end
 
   respond_to :html, :json
 
