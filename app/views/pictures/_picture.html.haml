@@ -1,4 +1,4 @@
-= cache picture do
+= cache [picture.gallery, picture] do
   .picture.col-md-3
     = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
       = image_tag nil, data: {src: picture.image.url(:thumb)}, title: picture
