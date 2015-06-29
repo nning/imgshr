@@ -8,3 +8,5 @@ $.fn.relatizeTimestamps = ->
 
 $(document).on 'page:change', ->
   $('body').relatizeTimestamps()
+	$('[data-toggle="tooltip"]').tooltip
+    trigger: 'click hover focus'

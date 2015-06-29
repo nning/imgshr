@@ -1,9 +1,13 @@
 module TimestampHelper
-  def timestamp(time)
-    content_tag :span, time.iso8601, class: :timestamp
+  def timestamp(time, klass: :timestamp)
+    content_tag(:span, title: time, data: {toggle: 'tooltip'}) do
+      content_tag(:span, class: klass) do
+        time.iso8601
+      end
+    end
   end
 
   def timestamp_ago(time)
-    content_tag :span, time.iso8601, class: :timestamp_ago
+    timestamp(time, klass: :timestamp_ago)
   end
 end
