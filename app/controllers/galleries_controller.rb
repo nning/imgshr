@@ -96,10 +96,9 @@ class GalleriesController < ApplicationController
   def increase_visits
     return if session[:do_not_count]
 
-    unless session["counted_#{gallery.slug}"] == 1
-      gallery.visits += 1
-      gallery.save!
-      session["counted_#{gallery.slug}"] = 1
+    unless session["counted_#{gallery.slug}"]
+      gallery.update_column(:visits, gallery.visits + 1)
+      session["counted_#{gallery.slug}"] = true
     end
   end
 end
