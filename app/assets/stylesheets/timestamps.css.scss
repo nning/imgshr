@@ -1,3 +1,7 @@
 [data-toggle="tooltip"] {
 	border-bottom: 1px #bbb dotted;
 }
+
+h3 [data-toggle="tooltip"] {
+	border: 0;
+}

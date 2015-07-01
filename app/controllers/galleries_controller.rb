@@ -65,12 +65,18 @@ class GalleriesController < ApplicationController
       .sort_by { |p| p.photographed_at ? p.photographed_at : p.created_at }
       .reverse
 
-    @picture_times ||= {}
+    @picture_groups ||= {}
+    @picture_times  ||= {}
 
     @time = Time.now
 
     @pictures.each do |picture|
-      time = time_ago_in_words(picture.photographed_or_created_at) + ' ago'
+      group = time_ago_in_words(picture.photographed_or_created_at)
+
+      @picture_groups[group] ||= picture.photographed_or_created_at
+
+      time = @picture_groups[group]
+
       @picture_times[time] ||= []
       @picture_times[time] << picture
     end

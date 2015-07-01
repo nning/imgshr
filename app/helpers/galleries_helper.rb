@@ -3,7 +3,7 @@ module GalleriesHelper
     s  = ''
     s << '#' if hash
     s << 'time-'
-    s << time.parameterize
+    s << time.to_s.parameterize
   end
 
   def timeline?
