@@ -31,7 +31,7 @@ class Picture < ActiveRecord::Base
   end
 
   def to_s
-    title.blank? ? 'Unnamed picture' : title
+    title.blank? ? 'Untitled picture' : title
   end
 
   private
