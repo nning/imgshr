@@ -6,21 +6,8 @@
         = render 'pictures/lightbox_title', picture: picture
       .modal-body
         .text-center
-          .image
-            = link_to picture.image.url do
-              = image_tag nil, data: {src: picture.image.url(:medium)}, title: picture
-              %noscript
-                = image_tag picture.image.url(:medium), title: picture
+          = render 'pictures/picture_image', picture: picture
           = rating_for picture
           = nav_for picture
       .modal-footer
-        - unless picture.photographed_at.nil?
-          Photographed
-          = succeed ',' do
-            = timestamp_ago picture.photographed_at
-          uploaded
-        - else
-          Uploaded
-        = succeed '.' do
-          = timestamp_ago picture.created_at
-        = render 'pictures/info', picture: picture
+        = render 'pictures/picture_metadata', picture: picture

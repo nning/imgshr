@@ -22,5 +22,7 @@ Rails.application.routes.draw do
 
   get    '/!:slug/:id/download' => 'pictures#download', as: :gallery_picture_download
 
+  get    '/+:fingerprint' => 'pictures#show', as: :picture
+
   resources :galleries, only: [:create, :index]
 end

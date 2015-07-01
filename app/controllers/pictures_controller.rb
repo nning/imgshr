@@ -7,6 +7,8 @@ class PicturesController < ApplicationController
 
   before_filter :enforce_read_only, only: [:create, :update]
 
+  skip_boss_token :show
+
   def create
     upload_params.each do |image|
       @picture = gallery.pictures.build
@@ -32,6 +34,10 @@ class PicturesController < ApplicationController
       filename: picture.image.original_filename,
       disposition: 'attachment',
       type: picture.image.content_type
+  end
+
+  def show
+    @picture = Picture.find_by_image_fingerprint!(params[:fingerprint])
   end
 
   def update

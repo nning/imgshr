@@ -1,0 +1,9 @@
+.pictures-show
+  .col-md-3
+  .col-md-6
+    .text-center
+      %h2= @picture
+      = render 'picture_image', picture: @picture
+      .metadata
+        = render 'picture_metadata', picture: @picture
+  .col-md-3

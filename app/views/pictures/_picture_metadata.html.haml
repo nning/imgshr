@@ -1,0 +1,10 @@
+- unless picture.photographed_at.nil?
+  Photographed
+  = succeed ',' do
+    = timestamp_ago picture.photographed_at
+  uploaded
+- else
+  Uploaded
+= succeed '.' do
+  = timestamp_ago picture.created_at
+= render 'pictures/info', picture: picture
