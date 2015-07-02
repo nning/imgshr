@@ -16,7 +16,7 @@
       %th Created at
       %th
     - @galleries.each do |gallery|
-      = render partial: 'gallery', locals: { gallery: gallery }
+      = render 'gallery', gallery: gallery
 
 = content_for :footer do
-  = render partial: 'shared/deploy_info'
+  = render 'shared/deploy_info'

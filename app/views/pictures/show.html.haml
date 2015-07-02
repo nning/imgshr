@@ -1,8 +1,16 @@
-.pictures-show
+- content_for :title do
+  = "\"#@picture\""
+  on IMGSHR
+
+.content-header
+  .row
+    .text-center
+      %h2= @picture
+
+.row.pictures-show
   .col-md-3
   .col-md-6
     .text-center
-      %h2= @picture
       = render 'picture_image', picture: @picture
       .metadata
         = render 'picture_metadata', picture: @picture

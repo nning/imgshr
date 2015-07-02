@@ -14,7 +14,7 @@
       .row
         %h3.picture-grid-time.text-center{id: time_id(time, false)}
           = link_to time_id(time) do
-            = timestamp_ago(pictures.first.photographed_or_created_at, tooltip: false)
+            = timestamp_ago(time, tooltip: false)
         - pictures.in_groups_of(4, false).each do |group|
           .row
             = render partial: 'pictures/picture', collection: group
