@@ -18,6 +18,10 @@ class Picture < ActiveRecord::Base
     (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
 
+  def image_fingerprint_short
+    @image_fingerprint_short ||= image_fingerprint[0..7]
+  end
+
   def next_id
     @next_id ||= gallery.next_picture_id(id)
   end

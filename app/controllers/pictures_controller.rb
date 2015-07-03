@@ -37,7 +37,13 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @picture = Picture.find_by_image_fingerprint!(params[:fingerprint])
+    fp = show_params[:fingerprint]
+
+    if fp.size == 8
+      @picture = Picture.where('image_fingerprint like ?', "#{fp}%").first!
+    else
+      @picture = Picture.find_by_image_fingerprint!(fp)
+    end
   end
 
   def update
@@ -47,6 +53,10 @@ class PicturesController < ApplicationController
 
   private
   
+  def show_params
+    params.permit(:fingerprint)
+  end
+
   def update_params
     params.require(:picture).permit(:title)
   end
