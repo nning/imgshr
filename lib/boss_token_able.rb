@@ -29,12 +29,8 @@ module BossTokenAble
   end
 
   def skip_boss_token(*actions)
-    @@_skip_boss_token ||= {}
-
-    actions.each do |action|
-      @@_skip_boss_token[self] ||= []
-      @@_skip_boss_token[self] << action.to_s
-    end
+    @@_skip_boss_token       ||= {}
+    @@_skip_boss_token[self]   = actions.map(&:to_s)
   end
 
   def skip_boss_token?
