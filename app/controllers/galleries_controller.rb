@@ -16,6 +16,8 @@ class GalleriesController < ApplicationController
 
   before_action :gallery, except: [:create, :index, :new]
 
+  protect_from_forgery except: :show
+
   def create
     gallery = Gallery.create!
 
@@ -47,7 +49,12 @@ class GalleriesController < ApplicationController
     respond_to do |format|
       format.html do
         session["#{gallery.slug}_action"] = 'show'
+        set_picture_groups
         increase_visits
+      end
+
+      format.js do
+        set_picture_groups
       end
 
       format.atom do
@@ -106,5 +113,10 @@ class GalleriesController < ApplicationController
       gallery.update_column(:visits, gallery.visits + 1)
       session["counted_#{gallery.slug}"] = true
     end
+  end
+
+  def set_picture_groups
+    @pictures = gallery.pictures.grid.page(params[:page])
+    @picture_groups = @pictures.in_groups_of(4, false)
   end
 end

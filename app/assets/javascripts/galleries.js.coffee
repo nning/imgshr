@@ -23,3 +23,8 @@ $(document).on 'page:change', ->
       data:
         gallery:
           ratings_enabled: e.target.checked
+
+  $('#pictures .picture_group').infinitescroll
+    navSelector: 'nav.pagination'
+    nextSelector: 'nav.pagination a[rel=next]'
+    itemSelector: '#pictures .picture'

@@ -1,7 +1,8 @@
 = render partial: 'header'
 
 = cache [@gallery, :show] do
-  %ul
-    - @gallery.pictures.grid.in_groups_of(4, false).each do |group|
-      .row
-        = render partial: 'pictures/picture', collection: group
+  #pictures
+    - @picture_groups.each do |group|
+      .row.picture_group= render group
+
+= paginate @pictures

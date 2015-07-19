@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery.turbolinks
+//= require jquery.infinitescroll
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets

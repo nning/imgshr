@@ -14,6 +14,8 @@ class Picture < ActiveRecord::Base
 
   scope :grid, -> { order('created_at desc') }
 
+  paginates_per 16
+
   def average_rating
     (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
