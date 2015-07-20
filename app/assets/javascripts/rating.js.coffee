@@ -1,4 +1,4 @@
-$(document).on 'page:change', ->
+$(document).on 'content:update', ->
   $('.rating').raty
     path: '/images'
     score: ->

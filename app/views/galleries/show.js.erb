@@ -3,3 +3,5 @@
 <% end %>
 
 $('#pictures .pagination').html('<%= j render 'pagination_links' %>');
+
+$(document).trigger('content:update');

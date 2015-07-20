@@ -1,6 +1,3 @@
-$(document).on 'content:update', ->
-  $('.best_in_place').best_in_place()
-  
 $(document).on 'page:change', ->
   $(document).trigger('content:update')
 
@@ -30,5 +27,3 @@ $(document).on 'page:change', ->
 
   $('#pictures').infinitePages
     debug: true
-    success: ->
-      $(document).trigger('content:update')
