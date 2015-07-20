@@ -24,7 +24,7 @@ $(document).on 'page:change', ->
         gallery:
           ratings_enabled: e.target.checked
 
-  $('#pictures .picture_group').infinitescroll
+  $('#pictures').infinitescroll
     navSelector: 'nav.pagination'
     nextSelector: 'nav.pagination a[rel=next]'
-    itemSelector: '#pictures .picture'
+    itemSelector: '#pictures .row'

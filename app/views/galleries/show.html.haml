@@ -3,6 +3,6 @@
 = cache [@gallery, :show] do
   #pictures
     - @picture_groups.each do |group|
-      .row.picture_group= render group
+      .row= render group
 
 = paginate @pictures
