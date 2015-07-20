@@ -24,5 +24,7 @@ Rails.application.routes.draw do
 
   get    '/+:fingerprint' => 'pictures#show', as: :picture
 
+  post   '/content_security_policy/forward_report' => 'content_security_policy#scribe'
+
   resources :galleries, only: [:create, :index]
 end

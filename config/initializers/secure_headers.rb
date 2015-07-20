@@ -3,10 +3,22 @@
   config.x_frame_options = 'DENY'
   config.x_content_type_options = 'nosniff'
   config.x_xss_protection = {value: 1, mode: 'block'}
-  config.csp = {
-    enforce:      true,
-    default_src:  'https://* self',
-    style_src:    'https://* self inline',
-    report_uri:   '/content_security_policy/forward_report'
-  }
+
+  if Rails.env.production?
+    config.csp = {
+      enforce:      true,
+      default_src:  'https: self',
+      script_src:   'https: self eval',
+      style_src:    'https: self inline',
+      report_uri:   '/content_security_policy/forward_report'
+    }
+  else
+    config.csp = {
+      enforce:      true,
+      default_src:  'self',
+      script_src:   'self eval',
+      style_src:    'self inline',
+      report_uri:   '/content_security_policy/forward_report'
+    }
+  end
 end
