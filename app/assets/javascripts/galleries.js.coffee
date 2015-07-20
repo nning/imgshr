@@ -1,3 +1,6 @@
+triggerChange = ->
+  $(document).trigger('page:change')
+  
 $(document).on 'page:change', ->
   $('.best_in_place').best_in_place()
   $('.modal[aria-hidden!=""]').modal('show')
@@ -28,3 +31,8 @@ $(document).on 'page:change', ->
     navSelector: 'nav.pagination'
     nextSelector: 'nav.pagination a[rel=next]'
     itemSelector: '#pictures .row'
+    loading:
+      msgText: ''
+      finishedMsg: 'That\'s all.'
+      img: ''
+      finished: triggerChange
