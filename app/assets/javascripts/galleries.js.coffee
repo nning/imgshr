@@ -1,8 +1,9 @@
-triggerChange = ->
-  $(document).trigger('page:change')
+$(document).on 'content:update', ->
+  $('.best_in_place').best_in_place()
   
 $(document).on 'page:change', ->
-  $('.best_in_place').best_in_place()
+  $(document).trigger('content:update')
+
   $('.modal[aria-hidden!=""]').modal('show')
 
   $('img').unveil()
@@ -27,12 +28,7 @@ $(document).on 'page:change', ->
         gallery:
           ratings_enabled: e.target.checked
 
-  $('#pictures').infinitescroll
-    navSelector: 'nav.pagination'
-    nextSelector: 'nav.pagination a[rel=next]'
-    itemSelector: '#pictures .row'
-    loading:
-      msgText: ''
-      finishedMsg: 'That\'s all.'
-      img: ''
-      finished: triggerChange
+  $('#pictures').infinitePages
+    debug: true
+    success: ->
+      $(document).trigger('content:update')

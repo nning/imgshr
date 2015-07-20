@@ -1,0 +1,3 @@
+= link_to_previous_page(@pictures, '← Previous', class: 'btn btn-default')
+- unless @pictures.last_page?
+  = link_to_next_page(@pictures, 'Next →', class: 'btn btn-default')

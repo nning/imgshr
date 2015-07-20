@@ -1,3 +1,5 @@
 <% @picture_groups.each do |group| %>
-  $('#pictures').append('<div class="row"><%= j render group %></div>');
+  $('#picture_grid').append('<div class="row"><%= j render group %></div>');
 <% end %>
+
+$('#pictures .pagination').html('<%= j render 'pagination_links' %>');
