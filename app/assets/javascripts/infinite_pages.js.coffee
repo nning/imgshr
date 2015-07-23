@@ -1,3 +1,5 @@
 $(document).on 'content:update', ->
   $('#pictures').infinitePages
-    debug: true
+    loading: ->
+      $(this).text('Loading... →')
+      $(this).attr('disabled', 'disabled')
