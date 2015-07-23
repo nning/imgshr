@@ -1,12 +1,4 @@
-$(document).on 'page:change', ->
-  $(document).trigger('content:update')
-
-  $('.modal[aria-hidden!=""]').modal('show')
-
-  $('img').unveil()
-  $('body').on 'shown.bs.modal', ->
-    $('img').unveil()
-
+$(document).on 'content:update', ->
   box = $('#read_only')
   box.change (e) ->
     $.ajax
@@ -24,6 +16,3 @@ $(document).on 'page:change', ->
       data:
         gallery:
           ratings_enabled: e.target.checked
-
-  $('#pictures').infinitePages
-    debug: true

@@ -21,4 +21,11 @@
 //= require moment
 //= require_tree .
 
-$('.dropdown-toggle').dropdown();
+$(document).ready(function() {
+	$('.dropdown-toggle').dropdown();
+	$('.modal[aria-hidden!=""]').modal('show');
+});
+
+$(document).on('page:change', function() {
+  $(document).trigger('content:update');
+});
