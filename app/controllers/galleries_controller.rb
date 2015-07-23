@@ -116,7 +116,16 @@ class GalleriesController < ApplicationController
   end
 
   def set_picture_groups
-    @pictures = gallery.pictures.grid.page(params[:page])
+    @pictures = gallery.pictures.grid
+
+    if params[:id] && !params[:page]
+      @picture = @pictures.find(params[:id])
+      offset = Picture.grid.where('created_at > ?', @picture.created_at).count
+      page = offset / Picture.default_per_page + 1
+      redirect_to gallery_path(gallery, id: params[:id], page: page)
+    end
+
+    @pictures = @pictures.page(params[:page])
     @picture_groups = @pictures.in_groups_of(4, false)
   end
 end
