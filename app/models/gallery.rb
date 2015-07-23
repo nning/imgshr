@@ -9,6 +9,10 @@ class Gallery < ActiveRecord::Base
     end
   end
 
+  def increase_visits!
+    update_column(:visits, visits + 1)
+  end
+
   def last_update
     pictures.order('created_at desc').limit(1).first.updated_at
   rescue NoMethodError

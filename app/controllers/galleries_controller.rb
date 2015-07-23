@@ -110,7 +110,7 @@ class GalleriesController < ApplicationController
     return if session[:do_not_count]
 
     unless session["counted_#{gallery.slug}"]
-      gallery.update_column(:visits, gallery.visits + 1)
+      gallery.increase_visits!
       session["counted_#{gallery.slug}"] = true
     end
   end
