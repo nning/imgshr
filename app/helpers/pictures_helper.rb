@@ -21,10 +21,6 @@ module PicturesHelper
     render 'pictures/nav', picture: picture
   end
 
-  def picture_aria_hidden(picture)
-    picture.id == params[:id].to_i ? {} : {hidden: true}
-  end
-
   def rating_for(picture)
     render 'pictures/rating', picture: picture if picture.gallery.ratings_enabled
   end

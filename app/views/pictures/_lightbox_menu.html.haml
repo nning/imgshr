@@ -7,10 +7,6 @@
         = icon :download
         Download
     %li
-      = link_to gallery_picture_path(picture.gallery, picture), data: {no_turbolink: true} do
-        = icon :share
-        Share
-    %li
       = link_to picture_path(picture.image_fingerprint_short) do
         = icon :share
         Share without gallery

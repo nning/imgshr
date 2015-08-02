@@ -23,7 +23,6 @@
 
 $(document).ready(function() {
 	$('.dropdown-toggle').dropdown();
-	$('.modal[aria-hidden!=""]').modal('show');
 });
 
 $(document).on('page:change', function() {
