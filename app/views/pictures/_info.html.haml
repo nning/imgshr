@@ -40,3 +40,10 @@
         %tr
           %td  Average rating
           %td= picture.average_rating
+      - unless picture.dimensions.nil?
+        %tr
+          %td  Original width
+          %td= picture.width
+        %tr
+          %td  Original height
+          %td= picture.height

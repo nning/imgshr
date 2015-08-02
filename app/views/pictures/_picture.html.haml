@@ -1,5 +1,10 @@
 = cache [picture.gallery, picture, params[:action]] do
   .picture.col-md-3
     = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-      = image_tag nil, data: {src: picture.image.url(:thumb)}, title: picture, alt: picture
+      = image_tag nil,
+        data: {src: picture.image.url(:thumb)},
+        title: picture,
+        alt: picture,
+        width: picture.width(:thumb),
+        height: picture.height(:thumb)
     = render partial: 'pictures/lightbox', locals: {picture: picture}

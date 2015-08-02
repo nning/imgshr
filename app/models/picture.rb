@@ -3,6 +3,8 @@ class Picture < ActiveRecord::Base
 
   has_many :ratings
 
+  serialize :dimensions
+
   has_attached_file :image,
     styles: {medium: '550x550>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
@@ -11,6 +13,7 @@ class Picture < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_image_post_process :set_exif_attributes!
+  before_save :set_height_and_width!
 
   scope :grid, -> { order('created_at desc') }
 
@@ -18,6 +21,10 @@ class Picture < ActiveRecord::Base
 
   def average_rating
     (ratings.sum(:score) / ratings.count.to_f).round(2)
+  end
+
+  def height(size = :original)
+    dimensions[size][:height]
   end
 
   def image_fingerprint_short
@@ -38,6 +45,10 @@ class Picture < ActiveRecord::Base
 
   def to_s
     title.blank? ? 'Untitled picture' : title
+  end
+
+  def width(size = :original)
+    dimensions[size][:width]
   end
 
   private
@@ -76,6 +87,27 @@ class Picture < ActiveRecord::Base
       self.flash         = exif.flash
 
       exif
+    end
+  end
+
+  def set_height_and_width!
+    self.dimensions = {}
+
+    hash = image.queued_for_write
+
+    if hash.empty?
+      hash = {}
+      %i[original medium thumb].each do |size|
+        hash[size] = image.path(size)
+      end
+    end
+    
+    hash.each do |size, file|
+      geometry = Paperclip::Geometry.from_file(file)
+      self.dimensions[size] = {
+        width:  geometry.width.to_i,
+        height: geometry.height.to_i
+      }
     end
   end
 end

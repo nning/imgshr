@@ -10,4 +10,16 @@ namespace :pictures do
       picture.save!
     end
   end
+
+  desc 'Refresh missing dimensions'
+  task :refresh_dimensions do
+    require_relative '../../config/environment'
+
+    ActiveRecord::Base.logger = Logger.new($stderr)
+
+    Picture.where(dimensions: nil).find_each do |picture|
+      picture.send(:set_height_and_width!)
+      picture.save!
+    end
+  end
 end

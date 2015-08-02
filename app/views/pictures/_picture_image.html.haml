@@ -1,5 +1,10 @@
 .image
   = link_to picture.image.url do
-    = image_tag nil, data: {src: picture.image.url(:medium)}, title: picture
+    = image_tag nil,
+      data: {src: picture.image.url(:medium)},
+      title: picture,
+      alt: picture,
+      width: picture.width(:medium),
+      height: picture.height(:medium)
     %noscript
       = image_tag picture.image.url(:medium), title: picture
