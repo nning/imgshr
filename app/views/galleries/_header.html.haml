@@ -20,11 +20,10 @@
       .pull-right
         = render 'galleries/menu', gallery: @gallery
 
-        - unless timeline?
-          %p.pull-right
-            Last update was
-            = succeed '.' do
-              = timestamp_ago @gallery.last_update
+        %p.pull-right
+          Last update was
+          = succeed '.' do
+            = timestamp_ago @gallery.last_update
 
 = render 'galleries/upload'
 = render 'galleries/info'

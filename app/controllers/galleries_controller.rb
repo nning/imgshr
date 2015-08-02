@@ -65,28 +65,7 @@ class GalleriesController < ApplicationController
   end
 
   def timeline
-    session["#{gallery.slug}_action"] = 'timeline'
-    increase_visits
-
-    @pictures = gallery.pictures
-      .sort_by { |p| p.photographed_at ? p.photographed_at : p.created_at }
-      .reverse
-
-    @picture_groups ||= {}
-    @picture_times  ||= {}
-
-    @time = Time.now
-
-    @pictures.each do |picture|
-      group = time_ago_in_words(picture.photographed_or_created_at)
-
-      @picture_groups[group] ||= picture.photographed_or_created_at
-
-      time = @picture_groups[group]
-
-      @picture_times[time] ||= []
-      @picture_times[time] << picture
-    end
+    redirect_to action: :show, status: :moved_permanently
   end
 
   def update

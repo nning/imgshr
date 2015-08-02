@@ -18,7 +18,7 @@ module PicturesHelper
   end
 
   def nav_for(picture)
-    render 'pictures/nav', picture: picture unless timeline?
+    render 'pictures/nav', picture: picture
   end
 
   def picture_aria_hidden(picture)

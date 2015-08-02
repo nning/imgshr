@@ -7,11 +7,3 @@
     = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
       = icon :info_sign
       Info
-    - if timeline?
-      = link_to gallery_path(gallery), class: 'btn' do
-        = icon :th
-        Grid
-    - else
-      = link_to gallery_timeline_path(gallery), class: 'btn' do
-        = icon :time
-        Timeline
