@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802212324) do
+ActiveRecord::Schema.define(version: 20150802213607) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150802212324) do
     t.integer  "flash"
     t.text     "dimensions"
     t.datetime "order_date"
+    t.integer  "ratings_count"
   end
 
   add_index "pictures", ["image_fingerprint"], name: "index_pictures_on_image_fingerprint"
