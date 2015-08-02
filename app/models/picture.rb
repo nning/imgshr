@@ -14,8 +14,9 @@ class Picture < ActiveRecord::Base
 
   after_image_post_process :set_exif_attributes!
   before_save :set_height_and_width!
+  before_create :set_order_date!
 
-  scope :grid, -> { order('created_at desc') }
+  scope :grid, -> { order('order_date desc') }
 
   paginates_per 16
 
@@ -109,5 +110,17 @@ class Picture < ActiveRecord::Base
         height: geometry.height.to_i
       }
     end
+  end
+
+  def set_order_date!
+    # order_date should be set to created_at but that's not available in
+    # before_create. Time.now should be close enough.
+    self.order_date = Time.now
+
+    unless self.photographed_at.nil?
+      self.order_date = self.photographed_at
+    end
+
+    true
   end
 end
