@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802213607) do
+ActiveRecord::Schema.define(version: 20150803185302) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150802213607) do
     t.datetime "updated_at"
     t.boolean  "read_only",       default: false
     t.boolean  "ratings_enabled", default: true,  null: false
+    t.boolean  "endless_page",    default: true,  null: false
   end
 
   add_index "galleries", ["slug"], name: "index_galleries_on_slug", unique: true

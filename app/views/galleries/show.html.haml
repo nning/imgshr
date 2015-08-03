@@ -1,6 +1,6 @@
 = render partial: 'header'
 
-#pictures
+#pictures{data: {endless: @gallery.endless_page}}
   #picture_grid
     = cache [@gallery, :show, :page, params[:page]] do
       - @picture_groups.each do |group|

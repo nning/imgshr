@@ -1,4 +1,13 @@
 $(document).on 'content:update', ->
+  box = $('#endless_page')
+  box.change (e) ->
+    $.ajax
+      type: 'put',
+      url: box.data('uri'),
+      data:
+        gallery:
+          endless_page: e.target.checked
+
   box = $('#read_only')
   box.change (e) ->
     $.ajax
@@ -16,3 +25,4 @@ $(document).on 'content:update', ->
       data:
         gallery:
           ratings_enabled: e.target.checked
+

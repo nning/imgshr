@@ -33,6 +33,10 @@
               %td Ratings
               %td
                 = check_box_tag :ratings_enabled, nil, @gallery.ratings_enabled, data: {uri: gallery_path(@gallery)}
+            %tr
+              %td Endless page
+              %td
+                = check_box_tag :endless_page, nil, @gallery.endless_page, data: {uri: gallery_path(@gallery)}
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
           = icon :remove
