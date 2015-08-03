@@ -4,6 +4,11 @@
       = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
         = icon :upload
         Upload
-    = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
-      = icon :info_sign
-      Info
+    - if @boss_token
+      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
+        = icon :cog
+        Settings
+    - else
+      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
+        = icon :info_sign
+        Info
