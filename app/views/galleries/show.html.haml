@@ -2,7 +2,7 @@
 
 #pictures{data: {endless: @gallery.endless_page}}
   #picture_grid
-    = cache [@gallery, :show, :page, params[:page]] do
+    = cache [@gallery, :show, :page, params[:page], @boss_token] do
       - @picture_groups.each do |group|
         .row= render group
 
