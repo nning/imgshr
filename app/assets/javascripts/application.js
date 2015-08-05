@@ -13,12 +13,13 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery.infinite-pages
+//= require jquery-cookie
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require best_in_place
 //= require best_in_place.purr
-//= require moment
+//= require momentjs
 //= require_tree .
 
 $(document).on('page:change', function() {

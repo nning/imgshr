@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bundler', '>= 1.8.4'
+
 gem 'autoprefixer-rails'
 gem 'best_in_place', github: 'luckie/best_in_place', branch: 'multi-select'
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -12,7 +14,6 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'kaminari'
 gem 'local_time'
-gem 'momentjs-rails'
 gem 'paperclip'
 gem 'rack-protection'
 gem 'rails', '~> 4.2.0'
@@ -26,3 +27,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'uuidtools'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-cookie'
+  gem 'rails-assets-momentjs'
+end

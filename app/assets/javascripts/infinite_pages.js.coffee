@@ -1,18 +1,33 @@
-sel = '#pictures[data-endless=""]'
+inf =
+  selMain: '#pictures[data-endless=""]'
+  selButton: '#endless-toggle'
+  selButtonText: '#endless-toggle .text'
+  slug: $('#gallery').data('slug')
+  cookie: 'endless_' + this.slug
+
+  pause: ->
+    $(this.selMain).infinitePages('pause')
+    $(this.selButtonText).text('Not endless')
+
+  resume: ->
+    $(this.selMain).infinitePages('resume')
+    $(this.selButtonText).text('Endless')
 
 $(document).on 'content:update', ->
-  $(sel).infinitePages
+  $(inf.selMain).infinitePages
     loading: ->
       $(this).text('Loading... →')
       $(this).attr('disabled', 'disabled')
 
-$('#endless-toggle').click (e) ->
+  if $.cookie(inf.cookie) == 'false'
+    inf.pause()
+
+$(inf.selButton).click (e) ->
   e.preventDefault()
 
-  target = $('.text')
-  if target.text() == 'Endless'
-    $(sel).infinitePages('pause')
-    $('.text', this).text('Not endless')
+  if $(inf.selButtonText).text() == 'Endless'
+    inf.pause()
+    $.cookie(inf.cookie, false)
   else
-    $(sel).infinitePages('resume')
-    $('.text').text('Endless')
+    inf.resume()
+    $.cookie(inf.cookie, true)

@@ -1,9 +1,10 @@
-= render partial: 'header'
+#gallery{data: {slug: @gallery.slug}}
+  = render partial: 'header'
 
-#pictures{data: {endless: @gallery.endless_page}}
-  #picture_grid
-    = cache [@gallery, :show, :page, params[:page], @boss_token] do
-      - @picture_groups.each do |group|
-        .row= render group
+  #pictures{data: {endless: @gallery.endless_page}}
+    #picture_grid
+      = cache [@gallery, :show, :page, params[:page], @boss_token] do
+        - @picture_groups.each do |group|
+          .row= render group
 
-  = render 'pagination'
+    = render 'pagination'
