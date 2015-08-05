@@ -12,3 +12,7 @@
       = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
         = icon :info_sign
         Info
+    - if gallery.endless_page
+      = link_to '#', class: 'btn', id: 'endless-toggle' do
+        = icon :fast_forward, class: 'endless-toggle'
+        %span.text Endless
