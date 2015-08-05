@@ -21,10 +21,6 @@
 //= require moment
 //= require_tree .
 
-$(document).ready(function() {
-	$('.dropdown-toggle').dropdown();
-});
-
 $(document).on('page:change', function() {
   $(document).trigger('content:update');
 });

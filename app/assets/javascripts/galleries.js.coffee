@@ -25,4 +25,3 @@ $(document).on 'content:update', ->
       data:
         gallery:
           ratings_enabled: e.target.checked
-
