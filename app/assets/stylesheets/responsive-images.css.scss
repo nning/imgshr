@@ -2,3 +2,28 @@
 	max-width: 100%;
 	height: auto;
 }
+
+// Hard-coded bootstrap @screen-sm-min variable.
+@media screen and (max-width: 768px) {
+	.picture .modal .modal-dialog {
+		margin: 0;
+		border-radius: 0;
+		height: 100%;
+
+		.modal-body {
+			padding: 0;
+		}
+
+		.pager {
+			padding: 0 15px;
+		}
+
+		.close {
+			font-size: 225%;
+		}
+	}
+
+	.pictures-show .col-md-6 {
+		padding: 0;
+	}
+}
