@@ -4,7 +4,7 @@ cache [@gallery, :feed] do
     feed.updated @gallery.last_update
 
     @feed_pictures.each do |picture|
-      url = absolute_url(gallery_picture_path(@gallery, picture))
+      url = absolute_url(picture_path(picture.image_fingerprint_short))
       feed.entry(picture, url: url) do |entry|
         entry.title(picture)
         entry.url(url)
