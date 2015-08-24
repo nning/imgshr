@@ -142,8 +142,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails_config (0.99.0)
-      config (>= 1.0.0.beta1)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -193,6 +191,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   bundler (>= 1.8.4)
   coffee-rails (~> 4.1.0)
+  config
   exifr
   haml
   jbuilder (~> 2.0)
@@ -206,7 +205,6 @@ DEPENDENCIES
   rails (~> 4.2.0)
   rails-assets-jquery-cookie!
   rails-assets-momentjs!
-  rails_config
   responders (~> 2.0)
   sdoc (~> 0.4.0)
   secure_headers
