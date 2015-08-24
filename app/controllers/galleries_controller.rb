@@ -5,8 +5,8 @@ class GalleriesController < ApplicationController
 
   unless Rails.env.development?
     http_basic_authenticate_with \
-      name: Settings.authentication.username,
-      password: Settings.authentication.password,
+      name: ::Settings.authentication.username,
+      password: ::Settings.authentication.password,
       only: [:index, :destroy]
   end
 
