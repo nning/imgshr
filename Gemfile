@@ -25,7 +25,7 @@ gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 2.7.2'
 gem 'uuidtools'
 
 source 'https://rails-assets.org' do
