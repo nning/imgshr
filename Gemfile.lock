@@ -181,6 +181,9 @@ GEM
       json (>= 1.8.0)
     user_agent_parser (2.2.0)
     uuidtools (2.1.5)
+    yaml_db (0.3.0)
+      rails (>= 3.0, < 4.3)
+      rake (>= 0.8.7)
 
 PLATFORMS
   ruby
@@ -214,6 +217,7 @@ DEPENDENCIES
   turbolinks
   uglifier (~> 2.7.2)
   uuidtools
+  yaml_db
 
 BUNDLED WITH
    1.10.6

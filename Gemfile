@@ -27,6 +27,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '~> 2.7.2'
 gem 'uuidtools'
+gem 'yaml_db'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-cookie'
