@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 
   delete '/-:token/:id' => 'boss_tokens#destroy_picture', as: :gallery_picture_delete
 
-  get    '/!:slug/:id' => 'galleries#show',  as: :gallery_picture
-  patch  '/!:slug/:id' => 'pictures#update'
+  # get    '/!:slug/:id' => 'galleries#show',  as: :gallery_picture
+  patch  '/!:slug/:id' => 'pictures#update', as: :gallery_picture
   post   '/!:slug'     => 'pictures#create'
   put    '/!:slug/:id' => 'pictures#update'
+
+  get    '/!:slug/tags/:tags' => 'galleries#show', as: :gallery_tags
 
   get    '/!:slug/:id/rating' => 'ratings#show',  as: :picture_rating
   post   '/!:slug/:id/rating' => 'ratings#create'

@@ -10,6 +10,8 @@ class Picture < ActiveRecord::Base
     url: '/system/:hash.:extension',
     hash_secret: Rails.application.secrets[:secret_key_base]
 
+  acts_as_taggable
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_image_post_process :set_exif_attributes!

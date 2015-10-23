@@ -47,3 +47,9 @@
         %tr
           %td  Original height
           %td= picture.height
+      %tr
+        %td  Tags
+        - if writable?
+          %td= best_in_place picture, :tag_list, path: [picture.gallery, picture]
+        - else
+          %td= picture.tag_list
