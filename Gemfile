@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bundler', '>= 1.8.4'
 
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'autoprefixer-rails'
 gem 'best_in_place', github: 'luckie/best_in_place', branch: 'multi-select'
 gem 'bootstrap-sass', '~> 3.2.0'
