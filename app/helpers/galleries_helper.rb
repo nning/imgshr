@@ -1,5 +1,5 @@
 module GalleriesHelper
   def writable?
-    !(@gallery.read_only && !@boss_token)
+    @gallery && !(@gallery.read_only && !@boss_token)
   end
 end
