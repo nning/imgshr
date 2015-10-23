@@ -96,7 +96,7 @@ class GalleriesController < ApplicationController
 
   def set_picture_groups
     @pictures = gallery.pictures.grid
-    @pictures = @pictures.tagged_with(params[:tags], any: true) if params[:tags]
+    @pictures = @pictures.tagged_with(params[:tags]) if params[:tags]
     @pictures = @pictures.page(params[:page])
     @picture_groups = @pictures.in_groups_of(4, false)
   end
