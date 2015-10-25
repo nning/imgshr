@@ -1,16 +1,19 @@
+- pid = @pictures.previous_id(picture)
+- nid = @pictures.next_id(picture)
+
 %nav
   %ul.pager{data: {id: picture.id}}
-    - if picture.previous_id
+    - if pid
       %li.previous
-        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{picture.previous_id}"} do
+        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{pid}"} do
           = icon :chevron_left
     - else
       %li.previous.disabled
         = icon :chevron_left
 
-    - if picture.next_id
+    - if nid
       %li.next
-        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{picture.next_id}"} do
+        = link_to '#', data: {toggle: 'modal', target: "#lightbox#{nid}"} do
           = icon :chevron_right
     - else
       %li.next.disabled

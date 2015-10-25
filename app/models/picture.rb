@@ -38,16 +38,8 @@ class Picture < ActiveRecord::Base
     @image_fingerprint_short ||= image_fingerprint[0..7]
   end
 
-  def next_id
-    @next_id ||= gallery.next_picture_id(id)
-  end
-
   def photographed_or_created_at
     photographed_at || created_at
-  end
-
-  def previous_id
-    @previous_id ||= gallery.previous_picture_id(id)
   end
 
   def to_s
@@ -71,6 +63,23 @@ class Picture < ActiveRecord::Base
     pictures = pictures.until(params[:until]) unless params[:until].blank?
 
     pictures
+  end
+
+  def self.neighbor_id(picture, d)
+    ids = pluck(:id)
+    i   = ids.index(picture.id) + d
+
+    return nil if i < 0 || i > ids.size
+
+    ids[i]
+  end
+
+  def self.next_id(picture)
+    self.neighbor_id(picture, 1)
+  end
+
+  def self.previous_id(picture)
+    self.neighbor_id(picture, -1)
   end
 
   private
