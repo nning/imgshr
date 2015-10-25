@@ -50,6 +50,7 @@ class GalleriesController < ApplicationController
       format.html do
         session["#{gallery.slug}_action"] = 'show'
         set_picture_groups
+        @tags = @pictures.tag_counts
         increase_visits
       end
 
