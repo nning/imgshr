@@ -19,12 +19,12 @@
             .col-xs-12.col-sm-3
               = label_tag :since
             .col-xs-12.col-sm-9
-              = date_field_tag :since, params[:since], class: 'form-control', placeholder: 'YYYY-MM-DD'
+              = date_field_tag :since, params[:since], class: 'form-control', placeholder: 'YYYY-MM-DD', data: { provide: 'datepicker' }
           .row.form-group
             .col-xs-12.col-sm-3
               = label_tag :until
             .col-xs-12.col-sm-9
-              = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD'
+              = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD', data: { provide: 'datepicker' }
 
         .modal-footer
           %button.btn.btn-success{type: :submit}
