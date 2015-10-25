@@ -94,27 +94,17 @@ class GalleriesController < ApplicationController
     end
   end
 
-  def set_picture_groups
-    pictures = gallery.pictures
-
-    # Tags
-    pictures = pictures.tagged_with(params[:tags]) if params[:tags]
-
-    # Since date
-    pictures = pictures.since(Date.parse(params[:since])) if params[:since]
-
-    # Until date
-    pictures = pictures.until(Date.parse(params[:until])) if params[:until]
-
-    # Sort by order_date
-    pictures = pictures.grid
-
-    # Pagination
-    @pictures = pictures.page(params[:page])
-
-    # Group
-    @picture_groups = @pictures.in_groups_of(4, false)
+  def set_pictures
+    @pictures ||= gallery.pictures
+      .filtered(params)
+      .by_order_date
+      .page(params[:page])
   rescue ArgumentError
     raise ActiveRecord::RecordNotFound
+  end
+
+  def set_picture_groups
+    @pictures       ||= set_pictures
+    @picture_groups ||= @pictures.in_groups_of(4, false)
   end
 end

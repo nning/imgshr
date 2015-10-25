@@ -18,10 +18,11 @@ class Picture < ActiveRecord::Base
   before_save :set_height_and_width!
   before_create :set_order_date!
 
-  scope :grid, -> { order('order_date desc') }
+  scope :by_order_date, -> { order('order_date desc') }
+  scope :grid, -> { by_order_date }
 
-  scope :since, ->(date) { where('order_date >  ?', date) }
-  scope :until, ->(date) { where('order_date <= ?', date) }
+  scope :since, ->(date) { where('order_date >  ?', Date.parse(date)) }
+  scope :until, ->(date) { where('order_date <= ?', Date.parse(date)) }
 
   paginates_per 16
 
@@ -55,6 +56,21 @@ class Picture < ActiveRecord::Base
 
   def width(size = :original)
     dimensions[size][:width]
+  end
+
+  def self.filtered(params)
+    pictures = self
+
+    # Tags
+    pictures = pictures.tagged_with(params[:tags]) if params[:tags]
+
+    # Since date
+    pictures = pictures.since(params[:since]) if params[:since]
+
+    # Until date
+    pictures = pictures.until(params[:until]) if params[:until]
+
+    pictures
   end
 
   private
