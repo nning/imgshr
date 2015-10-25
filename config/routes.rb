@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post   '/!:slug'     => 'pictures#create'
   put    '/!:slug/:id' => 'pictures#update'
 
-  get    '/!:slug/tags/:tags' => 'galleries#show', as: :gallery_tags
+  get    '/!:slug(/tags/:tags)(/time/:since(/:until))' => 'galleries#show', as: :gallery_filter
 
   get    '/!:slug/:id/rating' => 'ratings#show',  as: :picture_rating
   post   '/!:slug/:id/rating' => 'ratings#create'

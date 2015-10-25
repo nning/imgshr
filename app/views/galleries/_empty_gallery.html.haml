@@ -1,0 +1,12 @@
+.empty-gallery-hint
+  %p
+    - if any_filters?
+      No matching pictures found.
+    - else
+      There are no pictures, yet.
+
+  - if writable?
+    %p
+      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+        = icon :upload
+        Upload pictures now!

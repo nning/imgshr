@@ -20,6 +20,9 @@ class Picture < ActiveRecord::Base
 
   scope :grid, -> { order('order_date desc') }
 
+  scope :since, ->(date) { where('order_date >  ?', date) }
+  scope :until, ->(date) { where('order_date <= ?', date) }
+
   paginates_per 16
 
   def average_rating

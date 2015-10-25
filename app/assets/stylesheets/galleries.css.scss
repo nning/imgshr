@@ -15,3 +15,15 @@
 .glyphicon-fast-forward.endless-toggle {
   transform: rotate(90deg)
 }
+
+.empty-gallery-hint {
+  p {
+    text-align: center;
+	margin: 0;
+
+	&:first-child {
+	  font-size: 115%;
+      color: #888;
+	}
+  }
+}

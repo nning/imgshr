@@ -1,10 +1,13 @@
 #gallery{data: {slug: @gallery.slug}}
   = render partial: 'header'
 
-  #pictures{data: {endless: @gallery.endless_page}}
-    #picture_grid
-      = cache [@gallery, :show, :page, params[:page], @boss_token, params[:tags]] do
-        - @picture_groups.each do |group|
-          .row= render group
+  - if @pictures.empty?
+    = render 'empty_gallery'
+  - else
+    #pictures{data: {endless: @gallery.endless_page}}
+      #picture_grid
+        = cache [@gallery, :show, :page, params[:page], @boss_token, params[:tags], params[:since], params[:until]] do
+          - @picture_groups.each do |group|
+            .row= render group
 
-    = render 'pagination'
+      = render 'pagination'
