@@ -14,17 +14,17 @@
             .col-xs-12.col-sm-3
               = label_tag :tags
             .col-xs-12.col-sm-9
-              = text_field_tag :tags, params[:tags], class: 'form-control'
+              = text_field_tag :tags, params[:tags], class: 'form-control', placeholder: 'Comma-separated list'
           .row.form-group
             .col-xs-12.col-sm-3
               = label_tag :since
             .col-xs-12.col-sm-9
-              = text_field_tag :since, params[:since], class: 'form-control'
+              = date_field_tag :since, params[:since], class: 'form-control', placeholder: 'YYYY-MM-DD'
           .row.form-group
             .col-xs-12.col-sm-3
               = label_tag :until
             .col-xs-12.col-sm-9
-              = text_field_tag :until, params[:until], class: 'form-control'
+              = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD'
 
         .modal-footer
           %button.btn.btn-success{type: :submit}
