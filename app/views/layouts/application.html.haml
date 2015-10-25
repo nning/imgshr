@@ -12,6 +12,10 @@
   = yield :auto_discovery
 
 %body
+  -if Rails.env.development?
+    .debug_params
+      %pre= params
+
   .container
     %header.page-header
       %ul.nav.nav-pills.pull-right

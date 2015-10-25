@@ -1,0 +1,24 @@
+.debug_params {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  height: 15px;
+  width: 15px;
+
+  overflow: hidden;
+  z-index: 65534;
+
+  pre {
+    margin: 0;
+  }
+
+  &:hover {
+    height: auto;
+    width: 100%;
+
+	pre {
+      margin: 5px;
+	}
+  }
+}
