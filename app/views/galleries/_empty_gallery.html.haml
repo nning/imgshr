@@ -5,8 +5,8 @@
     - else
       There are no pictures, yet.
 
-  - if writable?
-    %p
-      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
-        = icon :upload
-        Upload pictures now!
+      - if writable?
+        %p
+          = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+            = icon :upload
+            Upload pictures now!
