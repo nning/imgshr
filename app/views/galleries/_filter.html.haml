@@ -25,13 +25,13 @@
               = label_tag :until
             .col-xs-12.col-sm-9
               = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD'
-          .row
-            .col-xs-12.col-sm-3
-              = label_tag :used_tags
-            .col-xs-12.col-sm-9.tag-cloud
-              = cache [@gallery, :show, :tags] do
-                - tag_cloud(@gallery.pictures.tag_counts, %w[tc1 tc2 tc3 tc4]) do |tag, css_class|
-                  = link_to tag.name, gallery_filter_path(@gallery, tags: tag.name), class: css_class
+          -# .row
+          -#   .col-xs-12.col-sm-3
+          -#     = label_tag :used_tags
+          -#   .col-xs-12.col-sm-9.tag-cloud
+          -#     = cache [@gallery, :show, :tags] do
+          -#       - tag_cloud(@gallery.pictures.tag_counts, %w[tc1 tc2 tc3 tc4]) do |tag, css_class|
+          -#         = link_to tag.name, gallery_filter_path(@gallery, tags: tag.name), class: css_class
 
         .modal-footer
           %button.btn.btn-success{type: :submit}
