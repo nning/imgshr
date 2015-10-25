@@ -62,13 +62,13 @@ class Picture < ActiveRecord::Base
     pictures = self
 
     # Tags
-    pictures = pictures.tagged_with(params[:tags]) if params[:tags]
+    pictures = pictures.tagged_with(params[:tags]) unless params[:tags].blank?
 
     # Since date
-    pictures = pictures.since(params[:since]) if params[:since]
+    pictures = pictures.since(params[:since]) unless params[:since].blank?
 
     # Until date
-    pictures = pictures.until(params[:until]) if params[:until]
+    pictures = pictures.until(params[:until]) unless params[:until].blank?
 
     pictures
   end

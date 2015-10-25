@@ -1,0 +1,35 @@
+.modal#filter{tabindex: -1, role: 'dialog', aria: {hidden: true, labelledby: 'label_filter'}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}
+          %span{aria: {hidden: true}}
+            &times;
+          %span.sr-only Close
+        %h4.modal-title#label_filter Filter pictures
+
+      = form_tag(gallery_filter_path(@gallery), method: :get) do
+        .modal-body
+          .row.form-group
+            .col-xs-12.col-sm-3
+              = label_tag :tags
+            .col-xs-12.col-sm-9
+              = text_field_tag :tags, params[:tags], class: 'form-control'
+          .row.form-group
+            .col-xs-12.col-sm-3
+              = label_tag :since
+            .col-xs-12.col-sm-9
+              = text_field_tag :since, params[:since], class: 'form-control'
+          .row.form-group
+            .col-xs-12.col-sm-3
+              = label_tag :until
+            .col-xs-12.col-sm-9
+              = text_field_tag :until, params[:until], class: 'form-control'
+
+        .modal-footer
+          %button.btn.btn-success{type: :submit}
+            = icon :ok
+            Apply
+          %button.btn.btn-default{data: {dismiss: 'modal'}}
+            = icon :remove
+            Close

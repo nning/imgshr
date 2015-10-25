@@ -1,5 +1,5 @@
 = cache [picture.gallery, picture, params[:action], @boss_token] do
-  .picture.col-md-3
+  .picture.col-xs-6.col-md-3
     = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
       = image_tag nil,
         data: {src: picture.image.url(:thumb)},

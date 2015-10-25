@@ -4,6 +4,9 @@
       = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
         = icon :upload
         Upload
+    = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#filter'} do
+      = icon :filter
+      Filter
     - if @boss_token
       = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
         = icon :cog
@@ -16,3 +19,7 @@
       = link_to '#', class: 'btn', id: 'endless-toggle' do
         = icon :fast_forward, class: 'endless-toggle'
         %span.text Endless
+
+= render 'galleries/upload'
+= render 'galleries/filter'
+= render 'galleries/info'

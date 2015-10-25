@@ -4,7 +4,7 @@
   - if @pictures.empty?
     = render 'empty_gallery'
   - else
-    #pictures{data: {endless: @gallery.endless_page}}
+    #pictures.col-xs-12{data: {endless: @gallery.endless_page}}
       #picture_grid
         = cache [@gallery, :show, @boss_token, params.hash] do
           - @picture_groups.each do |group|

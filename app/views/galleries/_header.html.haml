@@ -7,16 +7,16 @@
 
 = render 'galleries/boss_token'
 
-.content-header
+.content-header.col-xs-12
   .row
-    .col-md-8
+    .col-xs-12.col-md-6
       .text-center
         - if writable?
           %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
         - else
           %h2= @gallery
 
-    .col-md-4
+    .col-xs-12.col-md-6
       .pull-right
         = render 'galleries/menu', gallery: @gallery
 
@@ -24,6 +24,3 @@
           Last update was
           = succeed '.' do
             = timestamp_ago @gallery.last_update
-
-= render 'galleries/upload'
-= render 'galleries/info'
