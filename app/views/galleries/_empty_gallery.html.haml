@@ -2,6 +2,12 @@
   %p
     - if any_filters?
       No matching pictures found.
+
+      %p
+        = link_to gallery_path(@gallery), class: 'btn' do
+          = icon :asterisk
+          Show all pictures!
+      
     - else
       There are no pictures, yet.
 
