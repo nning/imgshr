@@ -20,8 +20,6 @@
 //= require best_in_place
 //= require best_in_place.purr
 //= require momentjs
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.eu.js
 //= require_tree .
 
 $(document).on('page:change', function() {
