@@ -59,7 +59,7 @@ class Picture < ActiveRecord::Base
   end
 
   def self.filtered(params)
-    pictures = self
+    pictures = all
 
     # Tags
     pictures = pictures.tagged_with(params[:tags]) unless params[:tags].blank?
