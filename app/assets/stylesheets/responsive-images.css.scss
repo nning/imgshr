@@ -5,21 +5,25 @@
 
 // Hard-coded bootstrap @screen-sm-min variable.
 @media screen and (max-width: 768px) {
-	.picture .modal .modal-dialog {
+	.modal .modal-dialog {
 		margin: 0;
-		border-radius: 0;
-		height: 100%;
 
+		.close {
+			font-size: 225%;
+		}
+
+		.modal-content {
+			border-radius: 0;
+		}
+	}
+
+	.picture .modal .modal-dialog {
 		.modal-body {
 			padding: 0;
 		}
 
 		.pager {
 			padding: 0 15px;
-		}
-
-		.close {
-			font-size: 225%;
 		}
 	}
 
