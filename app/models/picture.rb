@@ -14,7 +14,7 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  after_image_post_process :set_exif_attributes!
+  after_image_post_process :set_exif_attributes
   before_save :set_height_and_width!
   before_create :set_order_date!
 
@@ -75,7 +75,17 @@ class Picture < ActiveRecord::Base
 
   private
 
-  def set_exif_attributes!
+  def exif_camera_string(exif)
+    camera = exif.model
+
+    if !(exif.make.blank? || camera.starts_with?(exif.make))
+      camera = [exif.make, camera].join(' ')
+    end
+
+    camera
+  end
+
+  def set_exif_attributes
     exif = nil
 
     path = begin
@@ -89,27 +99,23 @@ class Picture < ActiveRecord::Base
     rescue EXIFR::MalformedJPEG
     end
 
-    if exif && exif.exif?
-      camera = exif.model
+    set_exif_values(exif) if exif && exif.exif?
+  end
 
-      if !(exif.make.blank? || camera.starts_with?(exif.make))
-        camera = [exif.make, camera].join(' ')
-      end
+  def set_exif_values(exif)
+    self.camera = exif_camera_string(exif)
+    self.photographed_at = exif.date_time_digitized
 
-      self.camera = camera
-      self.photographed_at = exif.date_time_digitized
-
-      unless exif.focal_length.nil?
-        self.focal_length  = exif.focal_length.to_f.round(3)
-      end
-
-      self.aperture      = exif.aperture_value || exif.f_number
-      self.shutter_speed = exif.shutter_speed_value || exif.exposure_time
-      self.iso_speed     = exif.iso_speed_ratings
-      self.flash         = exif.flash
-
-      exif
+    unless exif.focal_length.nil?
+      self.focal_length  = exif.focal_length.to_f.round(3)
     end
+
+    self.aperture      = exif.aperture_value || exif.f_number
+    self.shutter_speed = exif.shutter_speed_value || exif.exposure_time
+    self.iso_speed     = exif.iso_speed_ratings
+    self.flash         = exif.flash
+
+    exif
   end
 
   def set_height_and_width!

@@ -18,7 +18,7 @@ namespace :pictures do
     ActiveRecord::Base.logger = Logger.new($stderr)
 
     Picture.find_each do |picture|
-      picture.send(:set_exif_attributes!)
+      picture.send(:set_exif_attributes)
       picture.save!
     end
   end
