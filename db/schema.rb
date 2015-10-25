@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023091613) do
+ActiveRecord::Schema.define(version: 20151025132351) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20151023091613) do
     t.integer  "ratings_count"
   end
 
+  add_index "pictures", ["gallery_id"], name: "index_pictures_on_gallery_id"
   add_index "pictures", ["image_fingerprint"], name: "index_pictures_on_image_fingerprint"
   add_index "pictures", ["order_date"], name: "index_pictures_on_order_date"
 
