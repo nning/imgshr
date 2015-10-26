@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'kaminari'
 gem 'local_time'
+gem 'mysql2'
 gem 'paperclip'
 gem 'rack-protection'
 gem 'rails', '~> 4.2.0'
@@ -26,7 +27,6 @@ gem 'secure_headers'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'spring', group: :development
-gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '~> 2.7.2'
