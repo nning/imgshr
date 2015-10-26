@@ -4,32 +4,32 @@
   %br
   .table-responsive
     %table.table.table-condensed.table-hover.table-bordered
-      - unless picture.camera.nil?
+      - if picture.camera?
         %tr
           %td  Camera
           %td= picture.camera
-      - unless picture.focal_length.nil?
+      - if picture.focal_length?
         %tr
           %td  Focal length
           %td
             = picture.focal_length
             mm
-      - unless picture.aperture.nil?
+      - if picture.aperture?
         %tr
           %td  Aperture
           %td
             = 'f/' + picture.aperture.to_s
-      - unless picture.shutter_speed.nil?
+      - if picture.shutter_speed?
         %tr
           %td  Shutter speed
           %td
             = picture.shutter_speed
             s
-      - unless picture.iso_speed.nil?
+      - if picture.iso_speed?
         %tr
           %td  ISO speed
           %td= picture.iso_speed
-      - unless picture.flash.nil?
+      - if picture.flash?
         %tr
           %td  Flash
           %td= exif_flash(picture)
@@ -40,7 +40,7 @@
         %tr
           %td  Average rating
           %td= picture.average_rating
-      - unless picture.dimensions.nil?
+      - if picture.dimensions?
         %tr
           %td  Original width
           %td= picture.width

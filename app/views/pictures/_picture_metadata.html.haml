@@ -1,4 +1,4 @@
-- unless picture.photographed_at.nil?
+- if picture.photographed_at?
   Photographed
   = succeed ',' do
     = timestamp_ago picture.photographed_at
