@@ -10,7 +10,9 @@ class Picture < ActiveRecord::Base
     url: '/system/:hash.:extension',
     hash_secret: Rails.application.secrets[:secret_key_base]
 
-  process_in_background :image, processing_image_url: '/images/missing/:style.png'
+  if !::Settings.foreground_processing
+    process_in_background :image, processing_image_url: '/images/missing/:style.png'
+  end
 
   acts_as_taggable
 

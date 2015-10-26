@@ -1,3 +1,5 @@
 authentication:
   username: admin
   password: password
+
+# foreground_processing: true
