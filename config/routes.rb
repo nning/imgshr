@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
+  unless Rails.env.development?
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      username == ::Settings.authentication.username &&
+        password == ::Settings.authentication.password
+    end
+  end
+
+  mount Sidekiq::Web => '/sidekiq'
+
   root to: 'galleries#new'
 
   get    '!:slug' => 'galleries#filter', as: :gallery

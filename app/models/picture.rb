@@ -10,13 +10,15 @@ class Picture < ActiveRecord::Base
     url: '/system/:hash.:extension',
     hash_secret: Rails.application.secrets[:secret_key_base]
 
+  process_in_background :image, processing_image_url: '/images/missing/:style.png'
+
   acts_as_taggable
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   after_image_post_process :set_exif_attributes
-  before_save :set_height_and_width!
-  before_create :set_order_date!
+  after_image_post_process :set_height_and_width!
+  after_image_post_process :set_order_date!
 
   scope :by_order_date, -> { order('order_date desc') }
   scope :grid, -> { by_order_date }
@@ -31,7 +33,7 @@ class Picture < ActiveRecord::Base
   end
 
   def height(size = :original)
-    dimensions[size][:height]
+    dimensions[size][:height] rescue nil
   end
 
   def image_fingerprint_short
@@ -47,7 +49,7 @@ class Picture < ActiveRecord::Base
   end
 
   def width(size = :original)
-    dimensions[size][:width]
+    dimensions[size][:width] rescue nil
   end
 
   def self.filtered(params)
@@ -153,7 +155,7 @@ class Picture < ActiveRecord::Base
     # before_create. Time.now should be close enough.
     self.order_date = Time.now
 
-    unless self.photographed_at.nil?
+    if self.photographed_at?
       self.order_date = self.photographed_at
     end
 

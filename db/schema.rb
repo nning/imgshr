@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025132351) do
+ActiveRecord::Schema.define(version: 20151026183625) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20151025132351) do
     t.text     "dimensions"
     t.datetime "order_date"
     t.integer  "ratings_count"
+    t.boolean  "image_processing"
   end
 
   add_index "pictures", ["gallery_id"], name: "index_pictures_on_gallery_id"

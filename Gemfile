@@ -8,6 +8,7 @@ gem 'best_in_place', github: 'luckie/best_in_place', branch: 'multi-select'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'config'
+gem 'delayed_paperclip'
 gem 'exifr'
 gem 'haml'
 gem 'jbuilder', '~> 2.0'
@@ -22,6 +23,8 @@ gem 'rails', '~> 4.2.0'
 gem 'responders', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'secure_headers'
+gem 'sidekiq'
+gem 'sinatra', require: nil
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby

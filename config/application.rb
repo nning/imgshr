@@ -27,5 +27,7 @@ module Imgshr
     # Opt-in for not suppressing errors within `after_rollback`/`after_commit`
     # callbacks. (Use until Rails 5.)
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
