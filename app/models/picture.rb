@@ -16,9 +16,11 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  after_image_post_process :set_exif_attributes
   after_image_post_process :set_height_and_width!
-  after_image_post_process :set_order_date!
+  after_image_post_process -> do
+    set_exif_attributes
+    set_order_date!
+  end
 
   scope :by_order_date, -> { order('order_date desc') }
   scope :grid, -> { by_order_date }
