@@ -7,17 +7,17 @@
   if Rails.env.production?
     config.csp = {
       enforce:      true,
-      default_src:  'https: self',
-      script_src:   'https: self eval',
-      style_src:    'https: self inline',
+      default_src:  "https: 'self'",
+      script_src:   "https: 'self' 'unsafe-eval'",
+      style_src:    "https: 'self' 'unsafe-inline'",
       report_uri:   '/content_security_policy/forward_report'
     }
   else
     config.csp = {
       enforce:      true,
-      default_src:  'self',
-      script_src:   'self eval',
-      style_src:    'self inline',
+      default_src:  "'self'",
+      script_src:   "'self' 'unsafe-eval'",
+      style_src:    "'self' 'unsafe-inline'",
       report_uri:   '/content_security_policy/forward_report'
     }
   end
