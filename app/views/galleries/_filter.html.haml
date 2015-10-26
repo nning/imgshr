@@ -8,7 +8,7 @@
           %span.sr-only Close
         %h4.modal-title#label_filter Filter pictures
 
-      = form_tag(gallery_filter_path(@gallery), method: :get) do
+      = form_tag gallery_filter_path(@gallery), method: :get do
         .modal-body
           .row.form-group
             .col-xs-12.col-sm-3
@@ -37,6 +37,9 @@
           %button.btn.btn-success{type: :submit}
             = icon :ok
             Apply
+          = link_to gallery_path(@gallery), class: 'btn btn-warning' do
+            = icon :ban_circle
+            Reset
           %button.btn.btn-default{data: {dismiss: 'modal'}}
             = icon :remove
             Close

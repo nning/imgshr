@@ -17,7 +17,13 @@
             %td= @gallery.visits
           %tr
             %td Picture count
-            %td= @gallery.pictures.count
+            - if no_filters?
+              %td= @pictures.count
+            - else
+              %td
+                = @pictures.count
+                = surround '(of ', ')' do
+                  = @gallery.pictures.count
           %tr
             %td Created
             %td= timestamp_ago @gallery.created_at

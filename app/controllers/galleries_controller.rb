@@ -31,21 +31,7 @@ class GalleriesController < ApplicationController
     redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
   end
 
-  def index
-    @galleries = Gallery.includes(:boss_token).order('updated_at desc').all
-    session[:do_not_count] = true
-
-    respond_to do |format|
-      format.html do
-      end
-
-      format.atom do
-        render layout: false
-      end
-    end
-  end
-
-  def show
+  def filter
     respond_to do |format|
       format.html do
         session["#{gallery.slug}_action"] = 'show'
@@ -59,6 +45,20 @@ class GalleriesController < ApplicationController
 
       format.atom do
         @feed_pictures = gallery.pictures.order('created_at desc').limit(15)
+        render layout: false
+      end
+    end
+  end
+
+  def index
+    @galleries = Gallery.includes(:boss_token).order('updated_at desc').all
+    session[:do_not_count] = true
+
+    respond_to do |format|
+      format.html do
+      end
+
+      format.atom do
         render layout: false
       end
     end
