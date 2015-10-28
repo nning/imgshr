@@ -1,22 +1,23 @@
 = content_for :auto_discovery do
   = auto_discovery_link_tag :atom, galleries_url(format: :atom)
 
-%h2 Galleries
+.col-xs-12
+  %h2 Galleries
 
-.table-responsive
-  %table.table.table-striped
-    %tr
-      %th #
-      %th Slug
-      %th Name
-      %th Number of images
-      %th Read only?
-      %th Visits
-      %th Boss page
-      %th Created at
-      %th
-    - @galleries.each do |gallery|
-      = render 'gallery', gallery: gallery
+  .table-responsive
+    %table.table.table-striped
+      %tr
+        %th #
+        %th Slug
+        %th Name
+        %th Number of images
+        %th Read only?
+        %th Visits
+        %th Boss page
+        %th Created at
+        %th
+      - @galleries.each do |gallery|
+        = render 'gallery', gallery: gallery
 
 = content_for :footer do
   = render 'shared/deploy_info'
