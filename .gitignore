@@ -17,3 +17,24 @@
 
 # Ignore image upload folder.
 /public/system
+
+# rbenv configuration
+/.rbenv-vars
+/.ruby-version
+
+# Utility shell scripts
+/*.sh
+
+# Database config and env specific settings
+/config/database.yml
+/config/settings/*.yml
+
+# Database dump
+/db/data.yml
+
+# Assets in public folder
+/public/assets/
+/public/google*.html
+
+# Deployment bundle
+/vendor/bundle/
