@@ -7,7 +7,7 @@
   %td= gallery.visits
   %td
     - if gallery.boss_token
-      = link_to gallery.boss_token.slug, gallery_delete_path(gallery.boss_token, redir: true)
+      = link_to gallery.boss_token.slug, gallery_delete_path(gallery.boss_token, redir: true, data: { no_turbolink: true })
   %td= timestamp_ago gallery.created_at
   %td
     = link_to gallery, method: :delete, data: {confirm: "Really delete #{gallery}?"} do

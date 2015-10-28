@@ -31,7 +31,7 @@ class GalleriesController < ApplicationController
     redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
   end
 
-  def filter
+  def show
     respond_to do |format|
       format.html do
         session["#{gallery.slug}_action"] = 'show'
@@ -65,7 +65,7 @@ class GalleriesController < ApplicationController
   end
 
   def timeline
-    redirect_to action: :show, status: :moved_permanently
+    redirect_to action: :filer, status: :moved_permanently
   end
 
   def update
