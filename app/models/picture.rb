@@ -73,7 +73,12 @@ class Picture < ActiveRecord::Base
 
   def self.neighbor_id(picture, d)
     ids = pluck(:id)
-    i   = ids.index(picture.id) + d
+
+    begin
+      i = ids.index(picture.id) + d
+    rescue NoMethodError
+      return nil
+    end
 
     return nil if i < 0 || i > ids.size
 
