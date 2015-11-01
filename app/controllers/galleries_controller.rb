@@ -65,7 +65,7 @@ class GalleriesController < ApplicationController
   end
 
   def timeline
-    redirect_to action: :filer, status: :moved_permanently
+    redirect_to action: :show, status: :moved_permanently
   end
 
   def update
