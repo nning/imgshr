@@ -47,6 +47,10 @@ class GalleriesController < ApplicationController
         @feed_pictures = gallery.pictures.order('created_at desc').limit(15)
         render layout: false
       end
+
+      format.svg do
+        render text: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
+      end
     end
   end
 
