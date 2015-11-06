@@ -4,7 +4,7 @@ class BossToken < ActiveRecord::Base
 
   after_initialize do
     if new_record?
-      self.slug ||= Base64.encode64(UUIDTools::UUID.random_create)[0..7]
+      self.slug ||= RandomString.generate
     end
   end
 

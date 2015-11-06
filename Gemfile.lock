@@ -205,6 +205,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.11)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -221,7 +222,6 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     user_agent_parser (2.3.0)
-    uuidtools (2.1.5)
     yaml_db (0.3.0)
       rails (>= 3.0, < 4.3)
       rake (>= 0.8.7)
@@ -259,10 +259,10 @@ DEPENDENCIES
   sidekiq
   sinatra
   spring
+  sqlite3
   therubyracer
   turbolinks
   uglifier (~> 2.7.2)
-  uuidtools
   yaml_db
 
 BUNDLED WITH

@@ -28,10 +28,10 @@ gem 'secure_headers'
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'spring', group: :development
+gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '~> 2.7.2'
-gem 'uuidtools'
 gem 'yaml_db'
 
 source 'https://rails-assets.org' do
