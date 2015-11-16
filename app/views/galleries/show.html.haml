@@ -8,6 +8,13 @@
       #picture_grid
         = cache [@gallery, :show, @boss_token, params.hash] do
           - @picture_groups.each do |group|
-            .row= render group
+            - group.each_with_index do |picture, i|
+              = render picture
+              - if i.odd?
+                .row.visible-xs
+              - if (i + 1) % 3 == 0
+                .row.visible-sm
+              - if (i + 1) % 4 == 0
+                .row.visible-md.visible-lg
 
       = render 'pagination'
