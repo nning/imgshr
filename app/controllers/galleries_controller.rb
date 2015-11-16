@@ -35,12 +35,12 @@ class GalleriesController < ApplicationController
     respond_to do |format|
       format.html do
         session["#{gallery.slug}_action"] = 'show'
-        set_picture_groups
+        set_pictures
         increase_visits
       end
 
       format.js do
-        set_picture_groups
+        set_pictures
       end
 
       format.atom do
@@ -59,8 +59,7 @@ class GalleriesController < ApplicationController
     session[:do_not_count] = true
 
     respond_to do |format|
-      format.html do
-      end
+      format.html
 
       format.atom do
         render layout: false
@@ -105,10 +104,5 @@ class GalleriesController < ApplicationController
       .page(params[:page])
   rescue ArgumentError
     raise ActiveRecord::RecordNotFound
-  end
-
-  def set_picture_groups
-    @pictures       ||= set_pictures
-    @picture_groups ||= @pictures.in_groups_of(4, false)
   end
 end

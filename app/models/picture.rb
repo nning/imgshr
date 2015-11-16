@@ -30,7 +30,7 @@ class Picture < ActiveRecord::Base
   scope :since, ->(date) { where('order_date >  ?', Date.parse(date)) }
   scope :until, ->(date) { where('order_date <= ?', Date.parse(date)) }
 
-  paginates_per 16
+  paginates_per 12
 
   def average_rating
     (ratings.sum(:score) / ratings.size.to_f).round(2)

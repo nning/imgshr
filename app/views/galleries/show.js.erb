@@ -1,6 +1,11 @@
-<% @picture_groups.each do |group| %>
-  $('#picture_grid').append('<div class="row"><%= j render group %></div>');
+var grid = $('#picture_grid');
+
+<% @pictures.each_with_index do |picture, i| %>
+  grid.append('<%= j render picture %>');
+  grid.append('<%= picture_grid_break(i) %>');
 <% end %>
+
+grid.append('<div class="row"></div>');
 
 $('#pictures .pagination').html('<%= j render 'pagination_links' %>');
 
