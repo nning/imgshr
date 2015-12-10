@@ -21,6 +21,7 @@ gem 'mysql2'
 gem 'paperclip'
 gem 'rack-protection'
 gem 'rails', '~> 4.2.0'
+gem 'redis-browser'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'sdoc', '~> 0.4.0', group: :doc

@@ -2,13 +2,12 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
 
   unless Rails.env.development?
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      username == ::Settings.authentication.username &&
-        password == ::Settings.authentication.password
-    end
+    BasicAuth.authenticate Sidekiq::Web
+    BasicAuth.authenticate RedisBrowser::Web
   end
 
   mount Sidekiq::Web => '/sidekiq'
+  mount RedisBrowser::Web => '/redis'
 
   root to: 'galleries#new'
 
