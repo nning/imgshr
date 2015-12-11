@@ -1,3 +1,5 @@
 :queues:
   - paperclip
   - default
+
+:pidfile: tmp/pids/sidekiq.pid
