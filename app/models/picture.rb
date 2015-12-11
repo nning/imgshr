@@ -1,7 +1,7 @@
 class Picture < ActiveRecord::Base
   belongs_to :gallery, touch: true
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
 
   serialize :dimensions
 
