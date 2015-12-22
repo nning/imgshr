@@ -30,6 +30,9 @@ class Picture < ActiveRecord::Base
   scope :since, ->(date) { where('order_date >  ?', Date.parse(date)) }
   scope :until, ->(date) { where('order_date <= ?', Date.parse(date)) }
 
+  scope :min_rating, ->(score) { joins(:ratings).where('ratings.score >= ?', score) }
+  scope :max_rating, ->(score) { joins(:ratings).where('ratings.score <= ?', score) }
+
   paginates_per 12
 
   def average_rating
@@ -59,6 +62,8 @@ class Picture < ActiveRecord::Base
   def self.filtered(params)
     pictures = all
 
+    p params
+
     # Tags
     pictures = pictures.tagged_with(params[:tags]) unless params[:tags].blank?
 
@@ -67,6 +72,12 @@ class Picture < ActiveRecord::Base
 
     # Until date
     pictures = pictures.until(params[:until]) unless params[:until].blank?
+
+    # Minimum rating
+    pictures = pictures.min_rating(params[:min_rating]) unless params[:min_rating].blank?
+
+    # Maximum rating
+    pictures = pictures.max_rating(params[:max_rating]) unless params[:max_rating].blank?
 
     pictures
   end
