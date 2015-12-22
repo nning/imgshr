@@ -34,6 +34,7 @@ class GalleriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        expires_in 3.hours
         session["#{gallery.slug}_action"] = 'show'
         set_pictures
         increase_visits
@@ -49,6 +50,7 @@ class GalleriesController < ApplicationController
       end
 
       format.svg do
+        expires_in 7.days
         render text: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
       end
     end
