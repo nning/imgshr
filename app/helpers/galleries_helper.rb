@@ -1,13 +1,16 @@
 module GalleriesHelper
   def any_filters?
-    params[:tags] || params[:since] || params[:until]
+    params[:tags] || params[:since] || params[:until] || params[:min_rating] ||
+      params[:max_rating]
   end
 
   def filter_params
     {
       tags: params[:tags],
       since: params[:since],
-      until: params[:until]
+      until: params[:until],
+      min_rating: params[:min_rating],
+      max_rating: params[:max_rating]
     }
   end
 
