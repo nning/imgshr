@@ -162,6 +162,7 @@ GEM
     rails-assets-jquery-cookie (1.4.1)
       rails-assets-jquery (>= 1.2)
     rails-assets-momentjs (2.10.6)
+    rails-assets-seiyria-bootstrap-slider (5.3.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -275,6 +276,7 @@ DEPENDENCIES
   rails (~> 4.2.0)
   rails-assets-jquery-cookie!
   rails-assets-momentjs!
+  rails-assets-seiyria-bootstrap-slider!
   redis-browser
   responders (~> 2.0)
   rqrcode

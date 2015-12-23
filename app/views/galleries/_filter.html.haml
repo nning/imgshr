@@ -25,6 +25,12 @@
               = label_tag :until
             .col-xs-12.col-sm-9
               = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD'
+          .row.form-group
+            .col-xs-12.col-sm-3
+              = label_tag :rating
+            .col-xs-12.col-sm-9
+              = text_field_tag :rating, params[:rating], class: 'form-control slider', data: rating_slider_attributes
+
           -# .row
           -#   .col-xs-12.col-sm-3
           -#     = label_tag :used_tags

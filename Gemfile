@@ -38,4 +38,5 @@ gem 'yaml_db'
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-cookie'
   gem 'rails-assets-momentjs'
+  gem 'rails-assets-seiyria-bootstrap-slider'
 end

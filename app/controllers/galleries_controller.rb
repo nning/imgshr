@@ -36,6 +36,7 @@ class GalleriesController < ApplicationController
       format.html do
         expires_in 3.hours
         session["#{gallery.slug}_action"] = 'show'
+        split_rating_param
         set_pictures
         increase_visits
       end
@@ -106,5 +107,15 @@ class GalleriesController < ApplicationController
       .page(params[:page])
   rescue ArgumentError
     raise ActiveRecord::RecordNotFound
+  end
+
+  def split_rating_param
+    return if params[:rating].blank?
+
+    x = params[:rating].split(',').map(&:to_i)
+
+    if x != [1, 5]
+      params[:min_rating], params[:max_rating] = x
+    end
   end
 end

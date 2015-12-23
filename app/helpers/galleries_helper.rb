@@ -36,6 +36,16 @@ module GalleriesHelper
     html.html_safe
   end
 
+  def rating_slider_attributes
+    h = { slider_min: 1, slider_max: 5, slider_value: [1, 5] }
+    
+    unless params[:rating].blank?
+      h.merge!(slider_value: '[%s]' % params[:rating])
+    end
+
+    h
+  end
+
   def writable?
     @gallery && !(@gallery.read_only && !@boss_token)
   end
