@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
 
   before_filter :enforce_read_only, only: [:create, :update]
 
-  skip_boss_token :show
+  skip_boss_token :show, :temp_link
 
   def create
     upload_params.each do |image|
@@ -37,13 +37,18 @@ class PicturesController < ApplicationController
   end
 
   def show
-    fp = show_params[:fingerprint]
+    @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+  end
 
-    if fp.size == 8
-      @picture = Picture.where('image_fingerprint like ?', "#{fp}%").first!
-    else
-      @picture = Picture.find_by_image_fingerprint!(fp)
-    end
+  def temp_link
+    fp = TempLink
+      .find_by_slug!(params[:slug])
+      .picture
+      .image_fingerprint
+
+    @picture = Picture.first_by_fingerprint!(fp)
+
+    render :show
   end
 
   def update

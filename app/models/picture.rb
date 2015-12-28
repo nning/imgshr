@@ -2,6 +2,7 @@ class Picture < ActiveRecord::Base
   belongs_to :gallery, touch: true
 
   has_many :ratings, dependent: :destroy
+  has_many :temp_links, dependent: :destroy
 
   serialize :dimensions
 
@@ -78,6 +79,14 @@ class Picture < ActiveRecord::Base
     pictures = pictures.max_rating(params[:max_rating]) unless params[:max_rating].blank?
 
     pictures
+  end
+
+  def self.first_by_fingerprint!(fp)
+    if fp.size == 8
+      where('image_fingerprint like ?', "#{fp}%").first!
+    else
+      find_by_image_fingerprint!(fp)
+    end
   end
 
   def self.neighbor_id(picture, d)
