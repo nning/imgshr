@@ -1,3 +1,4 @@
-= link_to_previous_page(@pictures, '← Previous', class: 'btn btn-default', params: filter_params)
 - unless @pictures.last_page?
-  = link_to_next_page(@pictures, 'Next →', class: 'btn btn-default', params: filter_params)
+  = link_to_next_page(@pictures, '← Older', class: 'btn btn-default', params: filter_params)
+
+= link_to_previous_page(@pictures, 'Newer →', class: 'btn btn-default', params: filter_params)
