@@ -1,6 +1,6 @@
 class GalleriesController < ApplicationController
   include ActionView::Helpers::DateHelper 
-  include BossTokenAble
+  include BossTokenAble::Controller
   include SetGallery
 
   unless Rails.env.development?

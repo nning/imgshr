@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  include BossTokenAble
+  include BossTokenAble::Controller
   include SetGallery
   include SetPicture
 
