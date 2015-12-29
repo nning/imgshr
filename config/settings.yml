@@ -5,3 +5,6 @@ authentication:
 # foreground_processing: true
 
 # token_length: 8
+
+# temp_links:
+#   invalidate_after: 86400
