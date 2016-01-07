@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'secure_headers'
 gem 'sidekiq', '~> 3.5.3'
 gem 'sinatra', require: nil
+gem 'skylight'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer', platforms: :ruby
