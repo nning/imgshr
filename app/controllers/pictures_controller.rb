@@ -9,6 +9,12 @@ class PicturesController < ApplicationController
 
   skip_boss_token :show, :temp_link
 
+  protect_from_forgery except: :api_create
+
+  def api_create
+    create
+  end
+
   def create
     upload_params.each do |image|
       @picture = gallery.pictures.build

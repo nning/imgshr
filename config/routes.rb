@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   patch  '!:slug/:id' => 'pictures#update', as: :gallery_picture
   post   '!:slug'     => 'pictures#create'
+  post   'api/!:slug' => 'pictures#api_create'
   put    '!:slug/:id' => 'pictures#update'
 
   get    '!:slug(/tags/:tags)(/time/:since(/:until))(/stars/:min_rating(/:max_rating))' => 'galleries#show',
