@@ -1,0 +1,14 @@
+= content_for :auto_discovery do
+  = auto_discovery_link_tag :atom, file_releases_url(format: :atom)
+
+.col-xs-12
+  %h2 Releases
+
+  .table-responsive
+    %table.table.table-striped
+      %tr
+        %th Filename
+        %th Version
+        %th Date
+      - @file_releases.each do |file_release|
+        = render 'file_release', file_release: file_release

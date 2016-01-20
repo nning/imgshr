@@ -46,4 +46,6 @@ Rails.application.routes.draw do
     to: 'content_security_policy#scribe'
 
   resources :galleries, only: [:create, :index]
+
+  resources :file_releases, only: [:create, :index], path: :releases
 end
