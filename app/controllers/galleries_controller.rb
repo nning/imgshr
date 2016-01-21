@@ -34,7 +34,7 @@ class GalleriesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        expires_in 3.hours
+        # expires_in 3.hours
         session["#{gallery.slug}_action"] = 'show'
         split_rating_param
         set_pictures
