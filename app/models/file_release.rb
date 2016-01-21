@@ -4,4 +4,8 @@ class FileRelease < ActiveRecord::Base
 
   # validates_attachment_content_type :file, content_type: /\Aapplication\/java-archive/
   do_not_validate_attachment_file_type :file
+
+  def to_s
+    file.original_filename
+  end
 end

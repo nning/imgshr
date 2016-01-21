@@ -4,7 +4,7 @@ class FileReleasesController < ApplicationController
   protect_from_forgery except: :create
 
   def index
-    @file_releases = FileRelease.order('created_at desc').all
+    @file_releases = FileRelease.order('created_at desc').first(15)
   end
 
   def create
