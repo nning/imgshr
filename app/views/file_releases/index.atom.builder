@@ -1,4 +1,4 @@
-cache [:file_releases, @file_releases, :feed] do
+cache [@file_releases.first, :feed] do
   atom_feed language: 'en-US' do |feed|
     feed.title 'IMGSHR Releases'
     feed.updated @file_releases.first.updated_at
