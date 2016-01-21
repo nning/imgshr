@@ -5,10 +5,17 @@ cache [@gallery, :feed] do
 
     @feed_pictures.each do |picture|
       url = absolute_url(picture_path(picture.image_fingerprint_short))
+
       feed.entry(picture, url: url) do |entry|
         entry.title(picture)
         entry.url(url)
         entry.updated(picture.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ")) 
+
+        entry.link \
+          href: absolute_url(picture.image.url(:original)),
+          rel: 'enclosure',
+          type: picture.image.content_type
+
         entry.content \
           render(partial: 'feed_item_content_picture',
                  locals: { picture: picture },
