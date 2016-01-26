@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120072616) do
+ActiveRecord::Schema.define(version: 20160126224559) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       limit: 255, null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160120072616) do
     t.string   "version",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "branch",            limit: 255
   end
 
   create_table "galleries", force: :cascade do |t|

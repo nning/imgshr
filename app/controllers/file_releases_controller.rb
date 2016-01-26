@@ -8,7 +8,7 @@ class FileReleasesController < ApplicationController
   end
 
   def create
-    FileRelease.create!(file: params[:file], version: params[:version])
+    FileRelease.create!(create_params)
     head :ok
   end
 
@@ -21,5 +21,9 @@ class FileReleasesController < ApplicationController
 
   def check_token
     head :forbidden unless authorized?
+  end
+
+  def create_params
+    params.permit(:branch, :file, :version)
   end
 end
