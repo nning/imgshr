@@ -16,7 +16,7 @@ inf =
 $(document).on 'content:update', ->
   $(inf.selMain).infinitePages
     loading: ->
-      $(this).text('Loading... →')
+      $(this).text('← Loading...')
       $(this).attr('disabled', 'disabled')
 
   if $.cookie(inf.cookie) == 'false'
