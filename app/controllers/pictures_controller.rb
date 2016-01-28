@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
 
   before_filter :enforce_read_only, only: [:create, :update]
 
-  skip_boss_token :show, :temp_link
+  skip_boss_token :show
 
   protect_from_forgery except: :api_create
 
@@ -44,17 +44,6 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
-  end
-
-  def temp_link
-    fp = TempLink
-      .find_by_slug!(params[:slug])
-      .picture
-      .image_fingerprint
-
-    @picture = Picture.first_by_fingerprint!(fp)
-
-    render :show
   end
 
   def update

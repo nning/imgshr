@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126224559) do
+ActiveRecord::Schema.define(version: 20160128211538) do
 
   create_table "boss_tokens", force: :cascade do |t|
     t.string  "slug",       limit: 255, null: false
@@ -103,14 +103,15 @@ ActiveRecord::Schema.define(version: 20160126224559) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "temp_links", force: :cascade do |t|
-    t.integer  "picture_id", limit: 4
-    t.string   "slug",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "linkable_id",   limit: 4
+    t.string   "slug",          limit: 255, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "linkable_type", limit: 255
   end
 
-  add_index "temp_links", ["picture_id"], name: "index_temp_links_on_picture_id", using: :btree
+  add_index "temp_links", ["linkable_id"], name: "index_temp_links_on_linkable_id", using: :btree
 
   add_foreign_key "ratings", "pictures"
-  add_foreign_key "temp_links", "pictures"
+  add_foreign_key "temp_links", "pictures", column: "linkable_id"
 end

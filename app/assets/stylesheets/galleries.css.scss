@@ -50,3 +50,9 @@
   width: 12rem;
   height: 12rem;
 }
+
+#temp_links.modal .modal-body {
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 70vh
+}

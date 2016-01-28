@@ -3,6 +3,7 @@ class Gallery < ActiveRecord::Base
   include SlugAble
 
   has_many :pictures, dependent: :destroy
+  has_many :temp_links, as: :linkable, dependent: :destroy
 
   def increase_visits!
     update_column(:visits, visits + 1)

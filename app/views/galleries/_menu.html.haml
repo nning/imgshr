@@ -14,11 +14,21 @@
       - else
         = icon :info_sign
         Info
+    - if @boss_token
+      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#temp_links'} do
+        = icon :time
+        Temporary Links
     - if gallery.endless_page
       = link_to '#', class: 'btn', id: 'endless-toggle' do
         = icon :fast_forward, class: 'endless-toggle'
         %span.text Endless
 
-= render 'galleries/upload'
+- if writable?
+  = render 'galleries/upload'
+
 = render 'galleries/filter'
+
 = render 'galleries/info'
+
+- if @boss_token
+  = render 'galleries/temp_links'

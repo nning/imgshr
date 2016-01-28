@@ -1,0 +1,25 @@
+.modal#temp_links{tabindex: -1, role: 'dialog', aria: {hidden: true, labelledby: 'label_temp_links'}}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}
+          %span{aria: {hidden: true}}
+            &times;
+          %span.sr-only Close
+        %h4.modal-title#label_temp_links Temporary Links
+
+      .modal-body
+        .table-responsive
+          %table.table.table-striped
+            %tr
+              %th Link
+              %th Invalidation
+            - @gallery.temp_links.each do |temp_link|
+              %tr
+                %td= link_to temp_link, temp_link_path(temp_link)
+                %td= timestamp_ago temp_link.invalidated_at
+
+      .modal-footer
+        %button.btn.btn-default{data: {dismiss: 'modal'}}
+          = icon :remove
+          Close

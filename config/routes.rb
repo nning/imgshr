@@ -41,8 +41,8 @@ Rails.application.routes.draw do
 
   get    '+:fingerprint' => 'pictures#show', as: :picture
 
-  get    '=:slug' => 'pictures#temp_link', as: :temp_link
-  post   '!:slug/:id/temp_link' => 'temp_link#create', as: :temp_link_create
+  get    '=:slug' => 'temp_links#show', as: :temp_link
+  post   '!:slug/:id/temp_link' => 'temp_links#create', as: :temp_link_create
 
   post   'content_security_policy/forward_report',
     to: 'content_security_policy#scribe'

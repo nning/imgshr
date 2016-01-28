@@ -26,6 +26,6 @@ module PicturesHelper
   end
 
   def temp_link?
-    params[:action] == 'temp_link'
+    params[:controller] == 'temp_links' && params[:action] == 'show'
   end
 end
