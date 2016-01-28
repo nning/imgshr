@@ -14,6 +14,10 @@ class Gallery < ActiveRecord::Base
     updated_at
   end
 
+  def new_slug!
+    update_attributes(slug: RandomString.generate)
+  end
+
   def to_s
     name.blank? ? slug : name
   end

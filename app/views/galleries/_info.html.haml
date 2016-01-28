@@ -11,7 +11,12 @@
         %table.table.table-bordered
           %tr
             %td Slug
-            %td= link_to @gallery.slug, @gallery
+            %td
+              = link_to @gallery.slug, @gallery
+              - if @boss_token
+                = link_to 'Regenerate!', gallery_new_slug_path(@gallery), method: :post,
+                  data: { confirm: 'Really generate new slug? The gallery link has to be shared, again.' },
+                  class: 'btn btn-danger btn-xs pull-right'
           %tr
             %td Visits
             %td= @gallery.visits

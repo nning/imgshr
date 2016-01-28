@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get    '!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
 
+  post   '!:slug/new_slug' => 'galleries#new_slug', as: :gallery_new_slug
+
   get    '-:token' => 'boss_tokens#show', as: :gallery_delete
   delete '-:token' => 'boss_tokens#destroy'
 

@@ -12,7 +12,7 @@ class GalleriesController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :enforce_read_only, only: :update
+  before_filter :enforce_read_only, only: [:new_slug, :update]
 
   before_action :gallery, except: [:create, :index, :new]
 
@@ -29,6 +29,16 @@ class GalleriesController < ApplicationController
   def destroy
     gallery.destroy!
     redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
+  end
+
+  def new_slug
+    gallery.new_slug!
+
+    params[:slug] = gallery.slug
+    boss_token_session gallery
+
+    redirect_to gallery_path(gallery),
+      flash: { info: 'Regenerated gallery slug: ' + gallery.slug + '.' }
   end
 
   def show
