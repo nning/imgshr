@@ -12,7 +12,7 @@
           .alert.alert-info Please choose files for upload...
           = f.file_field :image, multiple: true
         .modal-footer
-          %button.btn.btn-success{type: 'submit', name: 'commit'}
+          %button.btn.btn-success.disabled{type: 'submit', name: 'commit'}
             = icon :upload
             Upload!
           %button.btn.btn-default{data: {dismiss: 'modal'}}
