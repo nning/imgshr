@@ -3,7 +3,7 @@ class AddOrderDateToPictures < ActiveRecord::Migration
     add_column :pictures, :order_date, :timestamp
     add_index :pictures, :order_date
 
-    Rake::Task['pictures:refresh_order_date'].invoke
+    Rake::Task['pictures:refresh:order_date'].invoke
   end
 
   def down

@@ -1,5 +1,5 @@
 class RefreshPicturesDimensions < ActiveRecord::Migration
   def up
-    Rake::Task['pictures:refresh_dimensions'].invoke
+    Rake::Task['pictures:refresh:dimensions'].invoke
   end
 end
