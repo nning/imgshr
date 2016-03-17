@@ -9,7 +9,8 @@ class Picture < ActiveRecord::Base
   has_attached_file :image,
     styles: {medium: '550x550>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
-    hash_secret: Rails.application.secrets[:secret_key_base]
+    hash_secret: Rails.application.secrets[:secret_key_base],
+    processors: [:thumbnail, :paperclip_optimizer]
 
   if !::Settings.foreground_processing
     process_in_background :image, processing_image_url: '/images/missing/:style.png'
