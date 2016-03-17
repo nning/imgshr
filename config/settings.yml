@@ -2,7 +2,7 @@ authentication:
   username: admin
   password: password
 
-foreground_processing: true
+# foreground_processing: true
 
 # token_length: 8
 
