@@ -179,12 +179,14 @@ class Picture < ActiveRecord::Base
   end
 
   def set_order_date!
-    # order_date should be set to created_at but that's not available in
-    # before_create. Time.now should be close enough.
-    self.order_date = Time.now
-
     if self.photographed_at?
       self.order_date = self.photographed_at
+    elsif self.created_at?
+      self.order_date = self.created_at
+    else
+      # order_date should be set to created_at but that's not available in
+      # before_create. Time.now should be close enough.
+      self.order_date = Time.now
     end
 
     true
