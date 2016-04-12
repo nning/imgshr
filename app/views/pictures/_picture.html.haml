@@ -1,5 +1,3 @@
 = cache [picture.gallery, picture, params[:action], @boss_token] do
-  .picture.col-xs-6.col-sm-4.col-md-3
-    = link_to '#', class: 'thumbnail', data: {toggle: 'modal', target: "#lightbox#{picture.id}"} do
-      = render 'pictures/image', picture: picture
-    = render partial: 'pictures/lightbox', locals: {picture: picture}
+  = link_to picture_path(picture.image_fingerprint_short), class: 'thumbnail' do
+    = render 'pictures/image', picture: picture

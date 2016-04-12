@@ -5,11 +5,6 @@
     = render 'empty_gallery'
   - else
     #pictures.col-xs-12{data: {endless: @gallery.endless_page}}
-      #picture_grid
-        = cache [@gallery, :show, @boss_token, params.hash] do
-          - @pictures.each_with_index do |picture, i|
-            = render picture
-            = picture_grid_break(i)
-          .row
+      = render partial: 'pictures/picture', collection: @pictures
 
       = render 'pagination'
