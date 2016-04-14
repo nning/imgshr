@@ -5,6 +5,7 @@
     = render 'empty_gallery'
   - else
     #pictures.col-xs-12{data: {endless: @gallery.endless_page}}
-      = render partial: 'pictures/picture', collection: @pictures
+      #picture_grid
+        = render partial: 'pictures/picture', collection: @pictures
 
       = render 'pagination'

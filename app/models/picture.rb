@@ -53,6 +53,10 @@ class Picture < ActiveRecord::Base
     photographed_at || created_at
   end
 
+  def to_param
+    image_fingerprint[0..7]
+  end
+
   def to_s
     title.blank? ? 'Untitled picture' : title
   end

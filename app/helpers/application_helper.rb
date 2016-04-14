@@ -10,6 +10,10 @@ module ApplicationHelper
     end
   end
 
+  def controller_class
+    params[:controller] + '-' + params[:action]
+  end
+
   # Convert flash message type to bootstrap class.
   def flash_class(type)
     ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s
@@ -19,5 +23,9 @@ module ApplicationHelper
   def icon(name, options = {})
     name = name.to_s.gsub(/_/, '-')
     content_tag :span, nil, class: "glyphicon glyphicon-#{name} #{options[:class]}", id: options[:id]
+  end
+
+  def gallery_referer?(picture)
+    URI(request.referer).path == url_for(picture.gallery)
   end
 end

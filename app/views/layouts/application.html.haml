@@ -11,7 +11,7 @@
 
   = yield :auto_discovery
 
-%body
+%body{class: controller_class}
   -if Rails.env.development?
     .debug_params
       %pre= params

@@ -1,9 +1,16 @@
-.pictures-show .metadata {
-	margin-top: 1em;
-}
+.pictures-show {
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-#pictures .thumbnail {
-  border: 0;
-  padding: 0;
-  margin-bottom: 10px;
+    h2 {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  .metadata {
+    margin-top: 1em;
+  }
 }

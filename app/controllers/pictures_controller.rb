@@ -44,6 +44,7 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    @gallery = @picture.gallery
   end
 
   def temp_link

@@ -1,5 +1,5 @@
 inf =
-  selMain: '#pictures[data-endless=""]'
+  selMain: '#pictures[data-endless]'
   selButton: '#endless-toggle'
   selButtonText: '#endless-toggle .text'
   slug: $('#gallery').data('slug')

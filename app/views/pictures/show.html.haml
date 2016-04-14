@@ -2,16 +2,20 @@
   = "\"#@picture\""
   on IMGSHR
 
-.content-header
-  .row
-    .text-center
-      %h2= @picture
+.content-header.col-xs-12
+  = link_to @picture.gallery, class: 'back', title: @picture.gallery, data: { toggle: 'tooltip', placement: 'right' } do
+    - if gallery_referer?(@picture)
+      = icon :circle_arrow_left
+    - else
+      = icon :th_large
+  %h2
+    - if writable?
+      = best_in_place @picture, :title, path: [@picture.gallery, @picture], nil: "<small>Set a title by clicking here!</small>"
+    - else
+      = @picture
+  = render 'pictures/lightbox_menu', picture: @picture
 
-.row.pictures-show
-  .col-md-3
-  .col-md-6
-    .text-center
-      = render 'picture_image', picture: @picture
-      .metadata
-        = render 'picture_metadata', picture: @picture
-  .col-md-3
+.text-center
+  = render 'picture_image', picture: @picture
+  .metadata
+    = render 'picture_metadata', picture: @picture
