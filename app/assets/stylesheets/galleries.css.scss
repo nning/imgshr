@@ -64,7 +64,7 @@
 #picture_grid {
   display: flex;
   flex-wrap: wrap;
-  // justify-content: center;
+  justify-content: center;
 
   img {
     height: 200px;
@@ -73,6 +73,10 @@
   }
 
   @media (max-width: 768px) {
+    & > a {
+      width: 100%;
+    }
+
     img {
       width: 100%;
       height: auto;

@@ -1,3 +1,10 @@
+.pictures-show {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 // Hard-coded bootstrap @screen-sm-min variable.
 @media (max-width: 768px) {
 	.modal .modal-dialog {

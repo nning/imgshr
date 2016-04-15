@@ -6,10 +6,38 @@
 
     h2 {
       flex-grow: 1;
-      text-align: center;
+
+      .best_in_place {
+        input {
+          max-width: 450px;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      right: 0;
+      left: initial;
     }
   }
 
+  .picture {
+    @media (max-width: 768px) {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .metadata {
+    margin-top: 1em;
+
+    table tr td:first-child {
+      max-width: 100px;
+    }
+  }
+}
+
+.pictures-temp_link {
   .metadata {
     margin-top: 1em;
   }

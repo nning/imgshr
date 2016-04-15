@@ -54,7 +54,7 @@ class Picture < ActiveRecord::Base
   end
 
   def to_param
-    image_fingerprint[0..7]
+    image_fingerprint_short
   end
 
   def to_s
