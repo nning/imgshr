@@ -25,10 +25,11 @@ Rails.application.routes.draw do
   delete '-:token/:id' => 'boss_tokens#destroy_picture',
     as: :gallery_picture_delete
 
-  patch  '!:slug/:id' => 'pictures#update', as: :gallery_picture
-  post   '!:slug'     => 'pictures#create'
-  post   'api/!:slug' => 'pictures#api_create'
-  put    '!:slug/:id' => 'pictures#update'
+  get    '!:slug/:fingerprint' => 'pictures#gallery_show', as: :gallery_picture
+  patch  '!:slug/:id'          => 'pictures#update'
+  post   '!:slug'              => 'pictures#create'
+  post   'api/!:slug'          => 'pictures#api_create'
+  put    '!:slug/:id'          => 'pictures#update'
 
   get    '!:slug(/tags/:tags)(/time/:since(/:until))(/stars/:min_rating(/:max_rating))' => 'galleries#show',
     as: :gallery_filter

@@ -42,9 +42,15 @@ class PicturesController < ApplicationController
       type: picture.image.content_type
   end
 
-  def show
+  def gallery_show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
     @gallery = @picture.gallery
+
+    render :show
+  end
+
+  def show
+    @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
   end
 
   def temp_link
