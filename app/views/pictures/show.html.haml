@@ -22,6 +22,8 @@
   .row.text-center
     .col-xs-12
       = render 'picture_image', picture: @picture
+      = rating_for @picture
+      -# = nav_for @picture
 
   .row
     .col-sm-2.col-md-3

@@ -20,6 +20,13 @@ class Picture < ActiveRecord::Base
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  # TODO Message currently not shown
+  validates :image_fingerprint,
+    uniqueness: {
+      scope: :gallery_id,
+      message: 'Picture already exists in gallery!'
+    }
+
   after_image_post_process :set_height_and_width!
   after_image_post_process -> do
     set_exif_attributes
@@ -53,6 +60,8 @@ class Picture < ActiveRecord::Base
     photographed_at || created_at
   end
 
+  # TODO Referal of pictures by fingerprint assumes they are unique. Actually,
+  #      we also need a slug, here.
   def to_param
     image_fingerprint_short
   end
