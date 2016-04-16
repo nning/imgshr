@@ -43,7 +43,7 @@ class PicturesController < ApplicationController
   end
 
   def gallery_show
-    @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    @picture = Picture.first_by_fingerprint!(gallery_show_params[:fingerprint])
     @gallery = @picture.gallery
 
     render :show
@@ -70,6 +70,10 @@ class PicturesController < ApplicationController
   end
 
   private
+  
+  def gallery_show_params
+    params.permit(:slug, :fingerprint)
+  end
   
   def show_params
     params.permit(:fingerprint)

@@ -13,7 +13,7 @@
     %h2
       = best_in_place @picture, :title, path: [@picture.gallery, @picture], nil: '<small>Set a title by clicking here!</small>'
 
-    = render 'pictures/lightbox_menu', picture: @picture
+    = render 'pictures/menu', picture: @picture
 
   - else
     %h2= @picture
