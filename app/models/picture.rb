@@ -64,6 +64,9 @@ class Picture < ActiveRecord::Base
   def self.filtered(params)
     pictures = all
 
+    # Untagged
+    pictures = pictures.tagged_with(ActsAsTaggableOn::Tag.all.map(&:to_s), exclude: true) unless params[:untagged].blank?
+
     # Tags
     pictures = pictures.tagged_with(params[:tags]) unless params[:tags].blank?
 
