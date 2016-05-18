@@ -43,8 +43,8 @@ class PicturesController < ApplicationController
   end
 
   def gallery_show
-    @picture = Picture.first_by_fingerprint!(gallery_show_params[:fingerprint])
-    @gallery = @picture.gallery
+    @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
+    @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
 
     render :show
   end
