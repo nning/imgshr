@@ -18,24 +18,6 @@ module GalleriesHelper
     !any_filters?
   end
 
-  def picture_grid_break(i)
-    html = ''
-
-    if i.odd?
-      html << content_tag(:div, nil, class: 'row visible-xs')
-    end
-
-    if (i + 1) % 3 == 0
-      html << content_tag(:div, nil, class: 'row visible-sm')
-    end
-
-    if (i + 1) % 4 == 0
-      html << content_tag(:div, nil, class: 'row visible-md visible-lg')
-    end
-
-    html.html_safe
-  end
-
   def rating_slider_attributes
     h = { slider_min: 1, slider_max: 5, slider_value: [1, 5] }
     
