@@ -26,7 +26,9 @@ $(document).on 'content:update', ->
         gallery:
           ratings_enabled: e.target.checked
 
-  $('.slider').slider()
+  slider = $('.slider').first()
+  if !slider.prev().hasClass('slider')
+    slider.slider()
 
   $('#new_picture input[type="file"]').change (e) ->
     $('#new_picture button[type="submit"]').removeClass('disabled')
