@@ -17,6 +17,15 @@
     .dropdown-menu {
       right: 0;
       left: initial;
+
+      @media (max-width: 768px) {
+        font-size: 1.25em;
+
+        li a {
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
     }
   }
 
@@ -33,6 +42,25 @@
 
     table tr td:first-child {
       max-width: 100px;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 1.125em;
+      }
+
+      [data-toggle="tooltip"] {
+        font-size: 1.25em;
+      }
+
+      [data-toggle="collapse"] {
+        display: block;
+        margin-top: 1em;
+
+        .glyphicon {
+          font-size: 2em;
+        }
+      }
     }
   }
 }
