@@ -2,7 +2,9 @@
   font-family: 'Lora';
   font-style: normal;
   font-weight: 400;
-  src: local('Lora'), local('Lora-Regular'), url(font-path('lora.woff')) format('woff');
+  src: local('Lora'), local('Lora-Regular'),
+    url(font-path('lora.woff2')) format('woff2'),
+    url(font-path('lora.woff')) format('woff');
 }
 
 .imgshr-brand {
