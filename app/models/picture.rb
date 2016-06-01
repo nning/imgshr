@@ -7,7 +7,7 @@ class Picture < ActiveRecord::Base
   serialize :dimensions
 
   has_attached_file :image,
-    styles: {medium: '550x550>', thumb: '200x200>'},
+    styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
     hash_secret: Rails.application.secrets[:secret_key_base],
     processors: [:thumbnail, :paperclip_optimizer]
