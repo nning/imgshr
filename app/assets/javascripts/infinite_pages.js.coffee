@@ -3,7 +3,6 @@ inf =
   selButton: '#endless-toggle'
   selButtonText: '#endless-toggle .text'
   slug: $('#gallery').data('slug')
-  cookie: 'endless_' + this.slug
 
   pause: ->
     $(this.selMain).infinitePages('pause')
@@ -14,6 +13,8 @@ inf =
     $(this.selButtonText).text('Endless')
 
 $(document).on 'content:update', ->
+  inf.cookie = 'endless_' + inf.slug
+
   $(inf.selMain).infinitePages
     loading: ->
       $(this).text('← Loading...')
