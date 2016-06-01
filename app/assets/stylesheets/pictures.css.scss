@@ -44,6 +44,10 @@
       max-width: 100px;
     }
 
+    .table-responsive {
+      margin-top: 1em;
+    }
+
     @media (max-width: 769px) { // @screen-md-max
       table {
         font-size: 1.125em;
@@ -52,21 +56,6 @@
       [data-toggle="tooltip"] {
         font-size: 1.25em;
       }
-
-      [data-toggle="collapse"] {
-        display: block;
-        margin-top: 1em;
-
-        .glyphicon {
-          font-size: 2em;
-        }
-      }
     }
-  }
-}
-
-.pictures-temp_link {
-  .metadata {
-    margin-top: 1em;
   }
 }
