@@ -7,8 +7,8 @@ class BossTokensController < ApplicationController
   end
 
   def destroy_picture
-    @boss_token.gallery.pictures.find(params[:id]).destroy!
-    redirect_to gallery_path(@boss_token.gallery), flash: {info: 'Picture deleted!'}
+    @boss_token.gallery.pictures.first_by_fingerprint!(params[:id]).destroy!
+    redirect_to gallery_path(@boss_token.gallery), flash: { info: 'Picture deleted!' }
   end
 
   def show
