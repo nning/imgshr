@@ -22,7 +22,7 @@
   .row.text-center
     .col-xs-12
       = render 'picture_image', picture: @picture
-      = rating_for @picture
+      = rating_for @picture unless temp_link?
       -# = nav_for @picture
 
   .row

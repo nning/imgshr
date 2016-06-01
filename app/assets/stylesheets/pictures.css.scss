@@ -1,4 +1,4 @@
-.pictures-show, .pictures-gallery_show {
+.pictures-show, .pictures-gallery_show, .pictures-temp_link {
   .content-header {
     display: flex;
     justify-content: space-between;
@@ -18,7 +18,7 @@
       right: 0;
       left: initial;
 
-      @media (max-width: 768px) {
+      @media (max-width: 769px) { // @screen-sm-max
         font-size: 1.25em;
 
         li a {
@@ -30,7 +30,7 @@
   }
 
   .picture {
-    @media (max-width: 768px) {
+    @media (max-width: 993px) { // @screen-md-max
       .image img {
         width: 100%;
       }
@@ -44,7 +44,7 @@
       max-width: 100px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 769px) { // @screen-md-max
       table {
         font-size: 1.125em;
       }
