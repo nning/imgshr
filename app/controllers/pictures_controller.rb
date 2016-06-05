@@ -3,6 +3,8 @@ class PicturesController < ApplicationController
   include SetGallery
   include SetPicture
 
+  include ApplicationHelper
+
   respond_to :html, :json
 
   before_filter :enforce_read_only, only: [:api_create, :create, :update]
@@ -46,11 +48,14 @@ class PicturesController < ApplicationController
     @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
     @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
 
+    set_back
+
     render :show
   end
 
   def show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    set_back
   end
 
   def temp_link
@@ -75,6 +80,11 @@ class PicturesController < ApplicationController
     params.permit(:slug, :fingerprint)
   end
   
+  def set_back
+    @back = :back
+    @back = @picture.gallery unless gallery_referer?(@picture)
+  end
+
   def show_params
     params.permit(:fingerprint)
   end

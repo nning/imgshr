@@ -4,11 +4,7 @@
 
 .content-header.col-xs-12
   - if writable?
-    = link_to @picture.gallery, class: 'back', title: @picture.gallery, data: { toggle: 'tooltip', placement: 'right' } do
-      - if gallery_referer?(@picture)
-        = icon :circle_arrow_left
-      - else
-        = icon :th_large
+    = render 'back', picture: @picture
 
     %h2
       = best_in_place @picture, :title, path: [@picture.gallery, @picture], nil: '<small>Set a title by clicking here!</small>'
