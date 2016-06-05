@@ -29,11 +29,7 @@ class PicturesController < ApplicationController
       end
     end
     
-    if session["#{gallery.slug}_action"] == 'timeline'
-      redirect_to gallery_timeline_path(gallery)
-    else
-      redirect_to gallery
-    end
+    redirect_to gallery
   end
 
   def download
