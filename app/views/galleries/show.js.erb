@@ -1,9 +1,11 @@
 var grid = $('#picture_grid');
 
-<% @pictures.each_with_index do |picture, i| %>
+<% @pictures.each do |picture| %>
   grid.append('<%= j render picture %>');
 <% end %>
 
 $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
+
+history.replaceState({}, undefined, '?page=<%= params[:page] %>')
 
 $(document).trigger('content:update');
