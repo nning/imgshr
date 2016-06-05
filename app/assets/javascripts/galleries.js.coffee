@@ -33,6 +33,7 @@ $(document).on 'content:update', ->
   $('#new_picture input[type="file"]').change (e) ->
     $('#new_picture button[type="submit"]').removeClass('disabled')
 
+  $('#toggle-fifty-percent').off('click')
   $('#toggle-fifty-percent').click (e) ->
     $('#picture_grid').toggleClass('fifty-percent')
 
