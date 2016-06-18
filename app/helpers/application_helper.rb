@@ -20,6 +20,7 @@ module ApplicationHelper
   end
 
   def gallery_referer?(picture)
+    return false unless request.referer
     URI(request.referer).path == url_for(picture.gallery)
   end
 
