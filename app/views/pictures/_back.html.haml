@@ -1,4 +1,4 @@
-= link_to :back, class: 'back', title: picture.gallery, data: { toggle: 'tooltip', placement: 'right' } do
+= link_to gallery_back_path(picture), class: 'back', title: picture.gallery, data: { toggle: 'tooltip', placement: 'right' } do
   - if gallery_referer?(picture)
     = icon :circle_arrow_left
   - else

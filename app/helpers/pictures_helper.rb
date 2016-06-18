@@ -10,4 +10,8 @@ module PicturesHelper
   def temp_link?
     params[:action] == 'temp_link'
   end
+
+  def gallery_back_path(picture)
+    gallery_referer?(picture) ? :back : gallery_path(picture.gallery)
+  end
 end
