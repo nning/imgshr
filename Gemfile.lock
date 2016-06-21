@@ -99,7 +99,9 @@ GEM
     fspath (2.1.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    haml (4.0.7)
+    hamlit (2.5.0)
+      temple (~> 0.7.6)
+      thor
       tilt
     hitimes (1.2.4)
     i18n (0.7.0)
@@ -283,7 +285,7 @@ DEPENDENCIES
   config
   delayed_paperclip
   exifr
-  haml
+  hamlit
   image_optim_pack
   jbuilder (~> 2.0)
   jquery-infinite-pages
