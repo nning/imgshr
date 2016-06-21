@@ -34,7 +34,7 @@ gem 'sinatra', require: nil
 gem 'skylight'
 gem 'spring', group: :development
 gem 'sqlite3'
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '~> 2.7.2'
 gem 'yaml_db'
