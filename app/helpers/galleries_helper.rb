@@ -14,6 +14,11 @@ module GalleriesHelper
     }
   end
 
+  def gallery_back_path(gallery, params)
+    return gallery_path(gallery) unless gallery_referer?(gallery)
+    merge_query(URI(request.referer), params).to_s
+  end
+
   def no_filters?
     !any_filters?
   end

@@ -19,9 +19,23 @@ module ApplicationHelper
     ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s
   end
 
+  def gallery_referer?(gallery)
+    return false unless request.referer
+    URI(request.referer).path == url_for(gallery)
+  end
+
   # Helper for glyphicon span tags.
   def icon(name, options = {})
     name = name.to_s.gsub(/_/, '-')
     content_tag :span, nil, class: "glyphicon glyphicon-#{name} #{options[:class]}", id: options[:id]
+  end
+
+  def merge_query(uri, query)
+    q = Rack::Utils.parse_nested_query(uri.query)
+    q = HashWithIndifferentAccess.new(q)
+    q.merge!(query)
+
+    uri.query = Rack::Utils.build_nested_query(q)
+    uri
   end
 end
