@@ -1,2 +1,2 @@
 $(document).on 'content:update', ->
-	$('.dropdown-toggle').dropdown()
+	$('.dropdown-toggle').off().dropdown()

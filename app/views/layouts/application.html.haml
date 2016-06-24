@@ -6,7 +6,7 @@
   %meta{charset: 'utf-8'}
   %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-  = stylesheet_link_tag 'application', media: :all, data_turbolinks_track: true
+  = stylesheet_link_tag 'application', media: :all, data: {turbolinks_track: true, turbolinks_eval: false}
   = csrf_meta_tag
 
   = yield :auto_discovery
