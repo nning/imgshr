@@ -6,6 +6,4 @@ var grid = $('#picture_grid');
 
 $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
-history.replaceState({}, undefined, '?page=<%= params[:page] %>')
-
 $(document).trigger('content:update');

@@ -3,10 +3,6 @@ module PicturesHelper
     EXIF::FLASH_MAP[picture.flash]
   end
 
-  def gallery_back_path(picture)
-    gallery_referer?(picture) ? :back : gallery_path(picture.gallery)
-  end
-
   def hide_gallery?
     temp_link? || params[:action] == 'show'
   end

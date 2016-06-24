@@ -19,11 +19,6 @@ module ApplicationHelper
     ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s
   end
 
-  def gallery_referer?(picture)
-    return false unless request.referer
-    URI(request.referer).path == url_for(picture.gallery)
-  end
-
   # Helper for glyphicon span tags.
   def icon(name, options = {})
     name = name.to_s.gsub(/_/, '-')

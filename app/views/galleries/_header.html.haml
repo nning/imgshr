@@ -21,6 +21,10 @@
         = render 'galleries/menu', gallery: @gallery
 
         %p.pull-right
+          - if params[:page]
+            = succeed '; ' do
+              = link_to 'Back to first page', gallery_path(@gallery)
+
           Last update was
           = succeed '.' do
             = timestamp_ago @gallery.last_update
