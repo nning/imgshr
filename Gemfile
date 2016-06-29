@@ -29,14 +29,14 @@ gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'secure_headers'
-gem 'sidekiq', '~> 3.5.3'
+gem 'sidekiq', '~> 4.1.2'
 gem 'sinatra', require: nil
 gem 'skylight'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'mini_racer', platforms: :ruby
 gem 'turbolinks'
-gem 'uglifier', '~> 2.7.2'
+gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
 
 source 'https://rails-assets.org' do
