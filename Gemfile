@@ -19,7 +19,7 @@ gem 'jquery-turbolinks'
 gem 'kaminari'
 gem 'local_time'
 gem 'mysql2'
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.7'
 gem 'paperclip-optimizer'
 gem 'quiet_assets'
 gem 'rack-protection'
@@ -31,13 +31,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'secure_headers'
 gem 'sidekiq', '~> 4.1.2'
 gem 'sinatra', require: nil
-gem 'skylight'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'mini_racer', platforms: :ruby
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
+
+group :production do
+  gem 'skylight'
+end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '~> 2.2.4'
