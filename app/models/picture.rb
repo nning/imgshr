@@ -45,7 +45,7 @@ class Picture < ActiveRecord::Base
   paginates_per 12
 
   def average_rating
-    (ratings.sum(:score) / ratings.size.to_f).round(2)
+    (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
 
   def height(size = :original)

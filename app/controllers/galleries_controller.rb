@@ -12,7 +12,7 @@ class GalleriesController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :enforce_read_only, only: [:new_slug, :update]
+  before_action :enforce_read_only, only: [:new_slug, :update]
 
   before_action :gallery, except: [:create, :index, :new]
 

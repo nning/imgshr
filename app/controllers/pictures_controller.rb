@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :enforce_read_only, only: [:api_create, :create, :update]
+  before_action :enforce_read_only, only: [:api_create, :create, :update]
 
   skip_boss_token :show, :temp_link
 
