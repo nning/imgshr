@@ -3,11 +3,9 @@ Rails.application.routes.draw do
 
   unless Rails.env.development?
     BasicAuth.authenticate Sidekiq::Web
-    BasicAuth.authenticate RedisBrowser::Web
   end
 
   mount Sidekiq::Web => '/sidekiq'
-  mount RedisBrowser::Web => '/redis'
 
   root to: 'galleries#new'
 

@@ -1,6 +1,6 @@
-= image_tag nil,
+= image_tag '',
   data: { src: picture.image.url(:medium) },
   title: picture,
   alt: picture
 %noscript
-  = image_tag picture.image.url(:medium), title: picture
+  = image_tag picture.image.url(:medium), title: picture, alt: picture
