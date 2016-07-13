@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require './lib/about'
-
 module Imgshr
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -23,6 +21,9 @@ module Imgshr
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
+
+    # Auto-loading in production
+    config.enable_dependency_loading = true
 
     # Opt-in for not suppressing errors within `after_rollback`/`after_commit`
     # callbacks. (Use until Rails 5.)
