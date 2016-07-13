@@ -1,4 +1,4 @@
-class TempLink < ActiveRecord::Base
+class TempLink < ApplicationRecord
   include SlugAble
 
   # TIMEOUT = Settings.dig(:temp_links, :invalidate_after) || 24.hours

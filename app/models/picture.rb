@@ -1,4 +1,4 @@
-class Picture < ActiveRecord::Base
+class Picture < ApplicationRecord
   belongs_to :gallery, touch: true
 
   has_many :ratings, dependent: :destroy
