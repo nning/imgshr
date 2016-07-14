@@ -16,6 +16,6 @@
         Share temporarily
     - if @boss_token
       %li
-        = link_to gallery_picture_delete_path(@boss_token, picture), method: :delete, data: {confirm: 'Really delete?'} do
+        = link_to gallery_picture_delete_path(@boss_token, picture), method: :delete, data: { confirm: 'Really delete?' } do
           = icon :trash
           Delete

@@ -15,7 +15,6 @@ gem 'image_optim_pack'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
-gem 'jquery-turbolinks'
 gem 'kaminari'
 gem 'local_time'
 gem 'mysql2'
@@ -31,7 +30,7 @@ gem 'sinatra', require: nil, github: 'sinatra/sinatra'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'mini_racer', platforms: :ruby
-gem 'turbolinks', '~> 2.5.3'
+gem 'turbolinks', '~> 5.0'
 gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
 

@@ -9,6 +9,8 @@
   = stylesheet_link_tag 'application', media: :all, data: {turbolinks_track: true, turbolinks_eval: false}
   = csrf_meta_tag
 
+  = javascript_include_tag 'application', data_turbolinks_track: true
+
   = yield :auto_discovery
 
 %body{class: controller_class}
@@ -36,5 +38,3 @@
       = yield
 
     = render partial: 'shared/footer'
-
-  = javascript_include_tag 'application', data_turbolinks_track: true
