@@ -145,6 +145,9 @@ GEM
     mini_racer (0.1.4)
       libv8 (~> 5.0, < 5.1.11)
     minitest (5.9.0)
+    minitest-spec-rails (5.4.0)
+      minitest (~> 5.0)
+      rails (>= 4.1)
     multi_json (1.12.1)
     mustermann (0.4.0)
       tool (~> 0.2)
@@ -268,6 +271,7 @@ DEPENDENCIES
   kaminari
   local_time
   mini_racer
+  minitest-spec-rails
   mysql2
   paperclip (~> 5.0.0)
   paperclip-optimizer

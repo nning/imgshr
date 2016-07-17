@@ -62,7 +62,7 @@ class GalleriesController < ApplicationController
 
       format.svg do
         expires_in 7.days
-        render text: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
+        render body: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
       end
     end
   end

@@ -34,6 +34,10 @@ gem 'turbolinks', '~> 5.0'
 gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
 
+group :test do
+  gem 'minitest-spec-rails'
+end
+
 group :production do
   gem 'skylight'
 end
