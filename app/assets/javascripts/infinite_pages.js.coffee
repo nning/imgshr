@@ -23,12 +23,13 @@ $(document).on 'content:update', ->
   if $.cookie(inf.cookie) == 'false'
     inf.pause()
 
-$(inf.selButton).click (e) ->
-  e.preventDefault()
+  $(inf.selButton).off('click')
+  $(inf.selButton).click (e) ->
+    e.preventDefault()
 
-  if $(inf.selButtonText).text() == 'Endless'
-    inf.pause()
-    $.cookie(inf.cookie, false)
-  else
-    inf.resume()
-    $.cookie(inf.cookie, true)
+    if $(inf.selButtonText).text() == 'Endless'
+      inf.pause()
+      $.cookie(inf.cookie, false)
+    else
+      inf.resume()
+      $.cookie(inf.cookie, true)
