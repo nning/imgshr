@@ -33,10 +33,8 @@ class PicturesController < ApplicationController
   end
 
   def download
-    send_data \
-      File.read(picture.image.path),
+    send_file picture.image.path, \
       filename: picture.image.original_filename,
-      disposition: 'attachment',
       type: picture.image.content_type
   end
 
