@@ -35,6 +35,9 @@ gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
 
 group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'capybara_minitest_spec'
   gem 'minitest-spec-rails'
 end
 

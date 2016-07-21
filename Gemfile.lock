@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/sinatra/sinatra.git
-  revision: a5da6fa82c46436f59ae482d07c1752ab908c852
+  revision: 03c03d7e169954185b008253f8bf2f9068198ca3
   specs:
     sinatra (2.0.0.pre.alpha)
       mustermann (~> 0.4)
@@ -65,13 +65,27 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    arel (7.0.0)
+    addressable (2.4.0)
+    arel (7.1.0)
     autoprefixer-rails (6.3.7)
       execjs
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
+    capybara (2.7.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
+      json
+    capybara_minitest_spec (1.0.5)
+      capybara (>= 2)
+      minitest (>= 4)
     chunky_png (1.3.6)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -114,7 +128,7 @@ GEM
       image_optim (~> 0.19)
     image_size (1.4.2)
     in_threads (1.3.1)
-    jbuilder (2.5.0)
+    jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-infinite-pages (0.2.0)
@@ -203,7 +217,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
-    redis (3.3.0)
+    redis (3.3.1)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rqrcode (0.10.1)
@@ -222,7 +236,7 @@ GEM
     skylight (0.10.5)
       activesupport (>= 3.0.0)
     spring (1.7.2)
-    sprockets (3.6.3)
+    sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.1.1)
@@ -246,6 +260,8 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
     yaml_db (0.4.0)
       rails (>= 3.0, < 5.1)
       rake (>= 0.8.7)
@@ -259,6 +275,9 @@ DEPENDENCIES
   best_in_place!
   bootstrap-sass (~> 3.3.0)
   bundler (>= 1.8.4)
+  capybara
+  capybara-webkit
+  capybara_minitest_spec
   coffee-rails (~> 4.2.0)
   config
   delayed_paperclip

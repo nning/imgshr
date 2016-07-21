@@ -13,6 +13,19 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
     # response.must_be :success?
   end
 
+  describe 'capybara', js: true do
+    subject { Gallery.create! }
+
+    it 'uploads' do
+      visit(gallery_path(subject))
+      click_link('Upload')
+      attach_file('picture_image', Rails.root.join('public', 'images', 'emsi.png'))
+      click_button('Upload!')
+      page.must_have_content('Picture count 1')
+      subject.pictures.count.must_equal(1)
+    end
+  end
+
   private
 
   def slug_redirected_to
