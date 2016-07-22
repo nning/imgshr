@@ -1,4 +1,4 @@
-class AddOrderDateToPictures < ActiveRecord::Migration
+class AddOrderDateToPictures < ActiveRecord::Migration[4.2]
   def up
     add_column :pictures, :order_date, :timestamp
     add_index :pictures, :order_date

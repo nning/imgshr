@@ -1,4 +1,4 @@
-class AddCameraConfigToPictures < ActiveRecord::Migration
+class AddCameraConfigToPictures < ActiveRecord::Migration[4.2]
   def change
     change_table :pictures do |t|
       t.string  :focal_length

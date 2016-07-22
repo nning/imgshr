@@ -1,4 +1,4 @@
-class AddCameraToPictures < ActiveRecord::Migration
+class AddCameraToPictures < ActiveRecord::Migration[4.2]
   def up
     add_column :pictures, :camera, :string
     update!

@@ -1,4 +1,4 @@
-class AddIndexOnPicturesGalleryId < ActiveRecord::Migration
+class AddIndexOnPicturesGalleryId < ActiveRecord::Migration[4.2]
   def up
     add_index :pictures, :gallery_id
   end
