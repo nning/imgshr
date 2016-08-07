@@ -1,40 +1,41 @@
 !!! 5
 
-%head
-  %title= content_for?(:title) ? yield(:title) : 'IMGSHR'
-  
-  %meta{charset: 'utf-8'}
-  %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+%html
+  %head
+    %title= content_for?(:title) ? yield(:title) : 'IMGSHR'
+    
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-  = stylesheet_link_tag 'application', media: :all, data: {turbolinks_track: true, turbolinks_eval: false}
-  = csrf_meta_tag
+    = stylesheet_link_tag 'application', media: :all, data: {turbolinks_track: true, turbolinks_eval: false}
+    = csrf_meta_tag
 
-  = javascript_include_tag 'application', data_turbolinks_track: true
+    = javascript_include_tag 'application', data_turbolinks_track: true
 
-  = yield :auto_discovery
+    = yield :auto_discovery
 
-%body{class: controller_class}
-  -if Rails.env.development?
-    .debug_params
-      %pre= params
+  %body{class: controller_class}
+    - if Rails.env.development?
+      .debug_params
+        %pre= params
 
-  .container
-    %header.page-header
-      %ul.nav.nav-pills.pull-right
-        %li
-          = link_to root_path, data: { no_turbolink: true } do
-            = icon :home
-            %span.sr-only Home
-        %li
-          = link_to galleries_path, data: { no_turbolink: true } do
-            = icon :list
-            %span.sr-only Index
-      %h1.text-muted= brand
+    .container
+      %header.page-header
+        %ul.nav.nav-pills.pull-right
+          %li
+            = link_to root_path, data: { no_turbolink: true } do
+              = icon :home
+              %span.sr-only Home
+          %li
+            = link_to galleries_path, data: { no_turbolink: true } do
+              = icon :list
+              %span.sr-only Index
+        %h1.text-muted= brand
 
-    .row.flash-messages
-      = render partial: 'shared/flash_messages'
+      .row.flash-messages
+        = render partial: 'shared/flash_messages'
 
-    .row
-      = yield
+      .row
+        = yield
 
-    = render partial: 'shared/footer'
+      = render partial: 'shared/footer'
