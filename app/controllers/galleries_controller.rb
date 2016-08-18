@@ -111,9 +111,12 @@ class GalleriesController < ApplicationController
   end
 
   def set_pictures
+    order = :by_order_date
+    order = :by_creation_date if params[:by_creation_date].present?
+
     @pictures ||= gallery.pictures
       .filtered(params)
-      .by_order_date
+      .send(order)
       .page(params[:page])
   rescue ArgumentError
     raise ActiveRecord::RecordNotFound
