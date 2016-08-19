@@ -50,7 +50,17 @@
                 = check_box_tag :endless_page, nil, @gallery.endless_page, data: {uri: gallery_path(@gallery)}
           %tr
             %td QR Code
-            %td= image_tag gallery_path(@gallery, format: :svg), class: 'qr-code'
+            %td
+              = image_tag '',
+                data: { src: gallery_path(@gallery, format: :svg) },
+                class: 'qr-code',
+                title: 'QR',
+                alt: 'QR'
+              %noscript
+                = image_tag gallery_path(@gallery, format: :svg),
+                  class: 'qr-code',
+                  title: 'QR',
+                  alt: 'QR'
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
           = icon :remove
