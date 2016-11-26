@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/luckie/best_in_place.git
+  remote: https://github.com/luckie/best_in_place.git
   revision: d3b639ec1887df9d2aa342a6a7df2ad1110bc9a2
   branch: multi-select
   specs:
@@ -8,15 +8,15 @@ GIT
       rails (>= 3.1)
 
 GIT
-  remote: git://github.com/mbleigh/acts-as-taggable-on.git
+  remote: https://github.com/mbleigh/acts-as-taggable-on.git
   revision: 8e64c3d4a81cfbb8af621228eae36a65c1f94501
   specs:
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
 
 GIT
-  remote: git://github.com/sinatra/sinatra.git
-  revision: af6dad2a6c31e31617712b15f455b2a3d3eb1c06
+  remote: https://github.com/sinatra/sinatra.git
+  revision: 63e81bc539b36778c6bd50a303750ab52ee2b2fb
   specs:
     rack-protection (2.0.0.beta2)
       rack
@@ -312,4 +312,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
