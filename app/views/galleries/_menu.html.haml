@@ -21,6 +21,10 @@
     = link_to '#', id: 'toggle-fifty-percent', class: 'btn visible-xs' do
       = icon :zoom_out
       50%
+    - if @boss_token
+      = link_to '#', id: 'toggle-select', class: 'btn' do
+        = icon :check
+        Select
 
 = render 'galleries/upload'
 = render 'galleries/filter'

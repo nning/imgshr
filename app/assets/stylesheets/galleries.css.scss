@@ -70,8 +70,21 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  & > a {
+  > a {
+    position: relative;
     margin: 0 10px 10px 0;
+
+    &.selected {
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: #337ab7;
+        opacity: .5;
+      }
+    }
   }
 
   img {
