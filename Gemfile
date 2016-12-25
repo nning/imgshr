@@ -24,7 +24,6 @@ gem 'rack-protection', github: 'sinatra/sinatra'
 gem 'rails', '~> 5.0.0'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'secure_headers'
 gem 'sidekiq', '~> 4.2.3'
 gem 'sinatra', require: nil, github: 'sinatra'
