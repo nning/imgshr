@@ -11,16 +11,13 @@ addons:
 language: ruby
 
 rvm:
-  - 2.3
+  - 2.3.1
 
 services:
   - mysql
 
 notifications:
   email: false
-
-before_install:
-  - gem update bundler
 
 before_script:
   - cp config/database.yml.sample config/database.yml
