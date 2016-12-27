@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def admin?
-    BasicAuth.admin?(request)
+    BasicAuth.logged_in?(request)
   end
 end
