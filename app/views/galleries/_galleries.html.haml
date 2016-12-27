@@ -11,6 +11,8 @@
         %th Visits
         %th Boss page
         %th Created at
-        %th
+        - if admin?
+          %th
+
       - @galleries.each do |gallery|
         = render 'gallery', gallery: gallery
