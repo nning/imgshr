@@ -1,4 +1,5 @@
-#gallery{data: {slug: @gallery.slug}}
+- boss_token = writable? ? @boss_token : nil
+#gallery{data: {slug: @gallery.slug, boss_token: boss_token}}
   = render 'header'
 
   - if @pictures.empty?
@@ -9,3 +10,8 @@
         = render partial: 'pictures/picture', collection: @pictures
 
       = render 'pagination'
+
+      #multi-select-controls.hidden
+        = link_to '#', id: 'multi-select-delete', class: 'btn btn-default' do
+          = icon :trash
+          Delete

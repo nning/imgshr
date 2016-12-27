@@ -17,6 +17,10 @@ class BossTokensController < ApplicationController
     }
   end
 
+  def destroy_multiple_pictures
+    render json: { status: :ok }
+  end
+
   def show
     respond_to do |format|
       format.html do

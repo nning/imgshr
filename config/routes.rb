@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   delete '-:token/:id' => 'boss_tokens#destroy_picture',
     as: :gallery_picture_delete
+  delete '-:token/pictures/multi-delete' => 'boss_tokens#destroy_multiple_pictures',
+    as: :gallery_multiple_pictures_delete
 
   get    '!:slug/:fingerprint' => 'pictures#gallery_show', as: :gallery_picture
   patch  '!:slug/:id'          => 'pictures#update'
