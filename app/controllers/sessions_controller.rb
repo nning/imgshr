@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    session['github_uid']   = request.env['omniauth.auth'].uid
     session['github_login'] = request.env['omniauth.auth'].info.nickname
 
     redirect_to root_url, flash: {
@@ -12,8 +13,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session.delete('github_uid')
     session.delete('github_login')
-    redirect_to root_url, flash: { notice: 'Signed out successfully!' }
+
+    redirect_to root_url, flash: {
+      notice: 'Signed out successfully!'
+    }
   end
 
   def failure

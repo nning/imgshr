@@ -43,7 +43,7 @@ module ApplicationHelper
   end
 
   def logged_in?
-    !!login_name
+    login_name && session['github_uid']
   end
 
   def login_name

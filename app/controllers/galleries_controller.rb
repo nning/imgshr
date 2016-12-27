@@ -18,10 +18,23 @@ class GalleriesController < ApplicationController
 
   protect_from_forgery except: :show
 
+  def new
+    if session['github_uid']
+      @galleries = Gallery.joins(:boss_token).where(boss_tokens: {
+        github_uid: session['github_uid'].to_i
+      })
+    end
+  end
+
   def create
     gallery = Gallery.create!
 
     boss_token_session gallery
+
+    if session['github_uid']
+      gallery.boss_token.update_attributes! \
+        github_uid: session['github_uid'].to_i
+    end
 
     redirect_to gallery
   end

@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712170640) do
+ActiveRecord::Schema.define(version: 20161227185219) do
 
   create_table "boss_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "slug",       null: false
     t.integer "gallery_id"
+    t.integer "github_uid"
     t.index ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true, using: :btree
     t.index ["slug"], name: "index_boss_tokens_on_slug", unique: true, using: :btree
   end

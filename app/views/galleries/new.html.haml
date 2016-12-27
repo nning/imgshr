@@ -1,9 +1,18 @@
-.col-xs-12
-  .jumbotron.jumbotron-color.text-center
-    %h1 Welcome!
-    %p
-      This is a simple image gallery sharing website.
-    %p
-      = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
-        = icon :plus_sign
-        Create gallery!
+- if logged_in?
+  .col-xs-12
+    = link_to galleries_path, method: :post, class: 'pull-right btn btn-default' do
+      = icon :plus_sign
+      Create gallery!
+
+  = render 'galleries'
+
+- else
+  .col-xs-12
+    .jumbotron.jumbotron-color.text-center
+      %h1 Welcome!
+      %p
+        This is a simple image gallery sharing website.
+      %p
+        = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
+          = icon :plus_sign
+          Create gallery!
