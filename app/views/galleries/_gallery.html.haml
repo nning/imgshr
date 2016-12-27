@@ -1,6 +1,6 @@
 %tr
   %td= gallery.id
-  %td= link_to gallery.slug, gallery, data: {no_turbolink: true}
+  %td= link_to gallery.slug, gallery
   %td= best_in_place gallery, :name
   %td= gallery.pictures.count
   %td= icon :ok if gallery.read_only

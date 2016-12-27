@@ -7,7 +7,7 @@
     %meta{charset: 'utf-8'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-    = stylesheet_link_tag 'application', media: :all, data: {turbolinks_track: true, turbolinks_eval: false}
+    = stylesheet_link_tag 'application', media: :all, data: { turbolinks_track: true, turbolinks_eval: false }
     = csrf_meta_tag
 
     = javascript_include_tag 'application', data_turbolinks_track: true
@@ -21,15 +21,7 @@
 
     .container
       %header.page-header
-        %ul.nav.nav-pills.pull-right
-          %li
-            = link_to root_path, data: { no_turbolink: true } do
-              = icon :home
-              %span.sr-only Home
-          %li
-            = link_to galleries_path, data: { no_turbolink: true } do
-              = icon :list
-              %span.sr-only Index
+        = render 'shared/menu'
         %h1.text-muted= brand
 
       .row.flash-messages

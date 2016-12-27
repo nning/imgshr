@@ -1,0 +1,21 @@
+%ul.nav.nav-pills.pull-right
+  %li
+    = link_to root_path do
+      = icon :home
+      %span.sr-only Home
+  %li
+    = link_to galleries_path do
+      = icon :list
+      %span.sr-only Index
+  %li
+    - if logged_in?
+      = link_to logout_path, data: { toggle: 'tooltip' }, title: 'Logged in as ' + login_name do
+        = icon :off
+        %span.sr-only
+          Logged in as
+          = login_name
+    - else
+      = link_to login_path, data: { turbolinks: false, toggle: 'tooltip' }, title: 'Login with GitHub' do
+        = icon :user
+        %span.sr-only
+          Login with GitHub
