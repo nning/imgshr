@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'items/index'
-
   require 'sidekiq/web'
 
   unless Rails.env.development?

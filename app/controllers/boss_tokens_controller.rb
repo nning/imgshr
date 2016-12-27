@@ -3,12 +3,18 @@ class BossTokensController < ApplicationController
 
   def destroy
     @boss_token.destroy!
-    redirect_to root_path, flash: {info: 'Gallery deleted!'}
+    redirect_to root_path, flash: { info: 'Gallery deleted!' }
   end
 
   def destroy_picture
-    @boss_token.gallery.pictures.first_by_fingerprint!(params[:id]).destroy!
-    redirect_to gallery_path(@boss_token.gallery), flash: { info: 'Picture deleted!' }
+    @boss_token.gallery
+      .pictures
+      .first_by_fingerprint!(params[:id])
+      .destroy!
+
+    redirect_to gallery_path(@boss_token.gallery), flash: {
+      info: 'Picture deleted!'
+    }
   end
 
   def show
@@ -20,7 +26,13 @@ class BossTokensController < ApplicationController
 
         session["boss_page_visited_#{@boss_token.slug}"] = 1
 
-        redirect_to gallery_path(boss_token.gallery) if params[:redir]
+        if session['github_uid'] && !@boss_token.github_uid && !admin?
+          @boss_token.update_attributes!(github_uid: session['github_uid'])
+        end
+
+        if params[:redir]
+          redirect_to gallery_path(boss_token.gallery)
+        end
       end
 
       format.svg do

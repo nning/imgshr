@@ -4,6 +4,10 @@ module ApplicationHelper
     (URI(request.url) + relative_url).to_s
   end
 
+  def admin?
+    BasicAuth.logged_in?(request)
+  end
+
   def brand
     content_tag :div, class: 'imgshr-brand' do
       icon(:picture, class: 'imgshr-icon') + 'IMGSHR'
