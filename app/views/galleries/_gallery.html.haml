@@ -9,6 +9,7 @@
       = link_to gallery.boss_token, gallery_delete_path(gallery.boss_token, redir: true)
   %td= timestamp_ago gallery.created_at
   - if admin?
+    %td= icon :ok if gallery.boss_token.github_uid
     %td
       = link_to gallery, method: :delete, data: { confirm: "Really delete #{gallery}?" } do
         = icon :trash
