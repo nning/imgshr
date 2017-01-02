@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   post   '!:slug/:id/temp_link' => 'temp_links#create', as: :temp_link_create
 
   get    '~:slug' => 'galleries#device_link', as: :device_link
-  post   '!:slug/:id/device_link' => 'device_link#create', as: :device_link_create
 
   post   'content_security_policy/forward_report',
     to: 'content_security_policy#scribe'

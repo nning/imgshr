@@ -11,14 +11,15 @@ class GalleriesControllerTest < ActionController::TestCase
 
   describe :gallery do
     subject { Gallery.create! }
+    let :slug { subject.slug }
 
     it :show do
-      get :show, params: { slug: subject.slug }
+      get :show, params: { slug: slug }
       response.must_be :success?
     end
 
-    it :new_slug do
-      post :new_slug, params: { slug: subject.slug }
+    it :regenerate_slug do
+      post :regenerate_slug, params: { slug: slug }
       response.must_be :redirect?
     end
   end
