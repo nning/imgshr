@@ -3,6 +3,7 @@ class Gallery < ApplicationRecord
   include SlugAble
 
   has_many :pictures, dependent: :destroy
+  has_many :device_links, dependent: :destroy
 
   def increase_visits!
     update_column(:visits, visits + 1)
@@ -14,8 +15,8 @@ class Gallery < ApplicationRecord
     updated_at
   end
 
-  def new_slug!
-    update_attributes(slug: RandomString.generate)
+  def regenerate_slug!
+    update_attributes!(slug: RandomString.generate)
   end
 
   def to_s

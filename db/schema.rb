@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227185219) do
+ActiveRecord::Schema.define(version: 20170102194912) do
 
   create_table "boss_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string  "slug",       null: false
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 20161227185219) do
     t.integer "github_uid"
     t.index ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true, using: :btree
     t.index ["slug"], name: "index_boss_tokens_on_slug", unique: true, using: :btree
+  end
+
+  create_table "device_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "gallery_id"
+    t.string   "slug",                       null: false
+    t.boolean  "disabled",   default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["gallery_id"], name: "index_device_links_on_gallery_id", using: :btree
+    t.index ["slug"], name: "index_device_links_on_slug", unique: true, using: :btree
   end
 
   create_table "file_releases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -33,14 +43,15 @@ ActiveRecord::Schema.define(version: 20161227185219) do
   end
 
   create_table "galleries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "slug",                            null: false
+    t.string   "slug",                              null: false
     t.string   "name"
-    t.integer  "visits",          default: 0,     null: false
+    t.integer  "visits",            default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "read_only",       default: false
-    t.boolean  "ratings_enabled", default: true,  null: false
-    t.boolean  "endless_page",    default: true,  null: false
+    t.boolean  "read_only",         default: false
+    t.boolean  "ratings_enabled",   default: true,  null: false
+    t.boolean  "endless_page",      default: true,  null: false
+    t.boolean  "device_links_only", default: false
     t.index ["slug"], name: "index_galleries_on_slug", unique: true, using: :btree
   end
 
@@ -109,8 +120,10 @@ ActiveRecord::Schema.define(version: 20161227185219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["picture_id"], name: "index_temp_links_on_picture_id", using: :btree
+    t.index ["slug"], name: "index_temp_links_on_slug", unique: true, using: :btree
   end
 
+  add_foreign_key "device_links", "galleries"
   add_foreign_key "ratings", "pictures"
   add_foreign_key "temp_links", "pictures"
 end

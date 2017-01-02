@@ -37,7 +37,7 @@ class BossTokensController < ApplicationController
 
       format.svg do
         expires_in 7.days
-        render text: RQRCode::QRCode.new(gallery_delete_url(@boss_token)).as_svg
+        render body: RQRCode::QRCode.new(gallery_delete_url(@boss_token)).as_svg
       end
     end
   end

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   get    '!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
 
-  post   '!:slug/new_slug' => 'galleries#new_slug', as: :gallery_new_slug
+  post   '!:slug/regenerate_slug' => 'galleries#regenerate_slug', as: :gallery_regenerate_slug
+  post   '!:slug/create_device_link' => 'galleries#create_device_link', as: :gallery_create_device_link
 
   get    '-:token' => 'boss_tokens#show', as: :gallery_delete
   delete '-:token' => 'boss_tokens#destroy'
@@ -42,6 +43,9 @@ Rails.application.routes.draw do
 
   get    '=:slug' => 'pictures#temp_link', as: :temp_link
   post   '!:slug/:id/temp_link' => 'temp_link#create', as: :temp_link_create
+
+  get    '~:slug' => 'galleries#device_link', as: :device_link
+  post   '!:slug/:id/device_link' => 'device_link#create', as: :device_link_create
 
   post   'content_security_policy/forward_report',
     to: 'content_security_policy#scribe'

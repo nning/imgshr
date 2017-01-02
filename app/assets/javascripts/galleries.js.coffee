@@ -26,6 +26,16 @@ $(document).on 'content:update', ->
         gallery:
           ratings_enabled: e.target.checked
 
+  box = $('#device_links_only')
+  box.change (e) ->
+    $.ajax
+      type: 'put',
+      url: box.data('uri'),
+      data:
+        gallery:
+          device_links_only: e.target.checked
+
+
   slider = $('.slider').first()
   if !slider.prev().hasClass('slider')
     slider.slider()
