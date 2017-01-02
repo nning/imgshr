@@ -17,11 +17,11 @@
 .picture
   .row.text-center
     .col-xs-12
-      = render 'picture_image', picture: @picture
+      = render 'pictures/picture_image', picture: @picture
       = rating_for @picture unless hide_gallery?
 
   .row
     .col-sm-2.col-md-3
     .metadata.col-xs-12.col-sm-8.col-md-6
-      = render 'picture_metadata', picture: @picture
+      = render 'pictures/picture_metadata', picture: @picture
     .col-sm-2.col-md-3
