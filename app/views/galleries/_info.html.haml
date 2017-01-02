@@ -7,6 +7,7 @@
             &times;
           %span.sr-only Close
         %h4.modal-title#label_info Gallery info
+
       .modal-body
         %table.table.table-bordered
           %tr
@@ -14,12 +15,16 @@
             %td
               = link_to @gallery.slug, @gallery
               - if @boss_token
-                = link_to 'Regenerate!', gallery_new_slug_path(@gallery), method: :post,
+                = link_to 'Regenerate!',
+                  gallery_regenerate_slug_path(@gallery),
+                  method: :post,
                   data: { confirm: 'Really generate new slug? The gallery link has to be shared, again.' },
                   class: 'btn btn-danger btn-xs pull-right'
+
           %tr
             %td Visits
             %td= @gallery.visits
+
           %tr
             %td Picture count
             - if no_filters?
@@ -29,29 +34,77 @@
                 = @pictures.count
                 = surround '(of ', ')' do
                   = @gallery.pictures.count
+
           %tr
             %td Created
             %td= timestamp_ago @gallery.created_at
+
           - if @boss_token
             %tr
               %td Boss link
               %td= link_to @boss_token, gallery_delete_path(@boss_token)
+
             %tr
               %td Read only
               %td
-                = check_box_tag :read_only, nil, @gallery.read_only, data: {uri: gallery_path(@gallery)}
+                = check_box_tag :read_only, nil,
+                  @gallery.read_only,
+                  data: { uri: gallery_path(@gallery) }
+
             %tr
               %td Ratings
               %td
-                = check_box_tag :ratings_enabled, nil, @gallery.ratings_enabled, data: {uri: gallery_path(@gallery)}
+                = check_box_tag :ratings_enabled, nil,
+                  @gallery.ratings_enabled,
+                  data: { uri: gallery_path(@gallery) }
+
             %tr
               %td Endless page
               %td
-                = check_box_tag :endless_page, nil, @gallery.endless_page, data: {uri: gallery_path(@gallery)}
+                = check_box_tag :endless_page, nil,
+                  @gallery.endless_page,
+                  data: { uri: gallery_path(@gallery) }
+
+            %tr
+              %td Authorized devices only
+              %td
+                %p
+                  = check_box_tag :device_links_only, nil,
+                    @gallery.device_links_only,
+                    data: { uri: gallery_path(@gallery) }
+
+                  = link_to 'Create device link!',
+                    gallery_create_device_link_path(@gallery),
+                    method: :post,
+                    class: 'btn btn-default btn-xs pull-right',
+                    remote: true
+
+                %p
+                  %strong Warning:
+                  Make sure, you saved your boss token!
+
+                %p
+                  - count = @gallery.device_links.enabled.count
+                  = count
+                  enabled device
+                  = count == 1 ? 'link' : 'links'
+                  left.
+
           %tr
             %td QR Code
-            %td= image_tag gallery_path(@gallery, format: :svg), class: 'qr-code'
+            %td
+              = image_tag '',
+                data: { src: gallery_path(@gallery, format: :svg) },
+                class: 'qr-code',
+                title: 'QR',
+                alt: 'QR'
+              %noscript
+                = image_tag gallery_path(@gallery, format: :svg),
+                  class: 'qr-code',
+                  title: 'QR',
+                  alt: 'QR'
+
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}
-          = icon :remove
-          Close
+          = icon :ok
+          OK

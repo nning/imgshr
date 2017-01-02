@@ -1,17 +1,27 @@
 - content_for :title do
-  = "\"#@picture\""
+  = "\"#{@picture}\""
   on IMGSHR
 
-.content-header
-  .row
-    .text-center
-      %h2= @picture
+.content-header.col-xs-12
+  - if writable?
+    = render 'back', picture: @picture
 
-.row.pictures-show
-  .col-md-3
-  .col-md-6
-    .text-center
+    %h2
+      = best_in_place @picture, :title, path: [@picture.gallery, @picture], nil: '<small>Set a title by clicking here!</small>'
+
+    = render 'pictures/menu', picture: @picture
+
+  - else
+    %h2= @picture
+
+.picture
+  .row.text-center
+    .col-xs-12
       = render 'pictures/picture_image', picture: @picture
-      .metadata
-        = render 'pictures/picture_metadata', picture: @picture
-  .col-md-3
+      = rating_for @picture unless hide_gallery?
+
+  .row
+    .col-sm-2.col-md-3
+    .metadata.col-xs-12.col-sm-8.col-md-6
+      = render 'pictures/picture_metadata', picture: @picture
+    .col-sm-2.col-md-3

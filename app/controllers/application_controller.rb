@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  ensure_security_headers
+
+  protected
+
+  def admin?
+    BasicAuth.logged_in?(request)
+  end
 end

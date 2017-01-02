@@ -3,11 +3,9 @@ Rails.application.routes.draw do
 
   unless Rails.env.development?
     BasicAuth.authenticate Sidekiq::Web
-    BasicAuth.authenticate RedisBrowser::Web
   end
 
   mount Sidekiq::Web => '/sidekiq'
-  mount RedisBrowser::Web => '/redis'
 
   root to: 'galleries#new'
 
@@ -17,7 +15,8 @@ Rails.application.routes.draw do
 
   get    '!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
 
-  post   '!:slug/new_slug' => 'galleries#new_slug', as: :gallery_new_slug
+  post   '!:slug/regenerate_slug' => 'galleries#regenerate_slug', as: :gallery_regenerate_slug
+  post   '!:slug/create_device_link' => 'galleries#create_device_link', as: :gallery_create_device_link
 
   get    '-:token' => 'boss_tokens#show', as: :gallery_delete
   delete '-:token' => 'boss_tokens#destroy'
@@ -25,10 +24,11 @@ Rails.application.routes.draw do
   delete '-:token/:id' => 'boss_tokens#destroy_picture',
     as: :gallery_picture_delete
 
-  patch  '!:slug/:id' => 'pictures#update', as: :gallery_picture
-  post   '!:slug'     => 'pictures#create'
-  post   'api/!:slug' => 'pictures#api_create'
-  put    '!:slug/:id' => 'pictures#update'
+  get    '!:slug/:fingerprint' => 'pictures#gallery_show', as: :gallery_picture
+  patch  '!:slug/:id'          => 'pictures#update'
+  post   '!:slug'              => 'pictures#create'
+  post   'api/!:slug'          => 'pictures#api_create'
+  put    '!:slug/:id'          => 'pictures#update'
 
   get    '!:slug(/tags/:tags)(/time/:since(/:until))(/stars/:min_rating(/:max_rating))' => 'galleries#show',
     as: :gallery_filter
@@ -44,10 +44,17 @@ Rails.application.routes.draw do
   get    '=:slug' => 'temp_links#show', as: :temp_link
   post   '!:slug/:id/temp_link' => 'temp_links#create', as: :temp_link_create
 
+  get    '~:slug' => 'galleries#device_link', as: :device_link
+
   post   'content_security_policy/forward_report',
     to: 'content_security_policy#scribe'
 
   resources :galleries, only: [:create, :index]
 
   resources :file_releases, only: [:create, :index], path: :releases
+
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'login' => 'sessions#new', as: :login
+  get 'logout' => 'sessions#destroy', as: :logout
+  get 'auth/failure' => 'sessions#failure'
 end

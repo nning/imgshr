@@ -1,0 +1,7 @@
+console.log('<%= @link %>');
+
+$('#info').modal('hide');
+
+var c = $('#modal_container');
+c.html('<%= j render 'device_link' %>');
+c.find('.modal').modal('show');

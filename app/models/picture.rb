@@ -1,4 +1,4 @@
-class Picture < ActiveRecord::Base
+class Picture < ApplicationRecord
   belongs_to :gallery, touch: true
 
   has_many :ratings, dependent: :destroy
@@ -7,9 +7,10 @@ class Picture < ActiveRecord::Base
   serialize :dimensions
 
   has_attached_file :image,
-    styles: {medium: '550x550>', thumb: '200x200>'},
+    styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
-    hash_secret: Rails.application.secrets[:secret_key_base]
+    hash_secret: Rails.application.secrets[:secret_key_base],
+    processors: [:thumbnail, :paperclip_optimizer]
 
   if !::Settings.foreground_processing
     process_in_background :image, processing_image_url: '/images/missing/:style.png'
@@ -18,6 +19,13 @@ class Picture < ActiveRecord::Base
   acts_as_taggable
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  # TODO Message currently not shown
+  validates :image_fingerprint,
+    uniqueness: {
+      scope: :gallery_id,
+      message: 'Picture already exists in gallery!'
+    }
 
   after_image_post_process :set_height_and_width!
   after_image_post_process -> do
@@ -28,6 +36,8 @@ class Picture < ActiveRecord::Base
   scope :by_order_date, -> { order('order_date desc') }
   scope :grid, -> { by_order_date }
 
+  scope :by_creation_date, -> { order('created_at desc') }
+
   scope :since, ->(date) { where('order_date >  ?', Date.parse(date)) }
   scope :until, ->(date) { where('order_date <= ?', Date.parse(date)) }
 
@@ -37,7 +47,7 @@ class Picture < ActiveRecord::Base
   paginates_per 12
 
   def average_rating
-    (ratings.sum(:score) / ratings.size.to_f).round(2)
+    (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
 
   def height(size = :original)
@@ -52,6 +62,12 @@ class Picture < ActiveRecord::Base
     photographed_at || created_at
   end
 
+  # TODO Referal of pictures by fingerprint assumes they are unique. Actually,
+  #      we also need a slug, here.
+  def to_param
+    image_fingerprint_short
+  end
+
   def to_s
     title.blank? ? 'Untitled picture' : title
   end
@@ -62,6 +78,9 @@ class Picture < ActiveRecord::Base
 
   def self.filtered(params)
     pictures = all
+
+    # Untagged
+    pictures = pictures.tagged_with(ActsAsTaggableOn::Tag.all.map(&:to_s), exclude: true) unless params[:untagged].blank?
 
     # Tags
     pictures = pictures.tagged_with(params[:tags]) unless params[:tags].blank?
@@ -178,12 +197,14 @@ class Picture < ActiveRecord::Base
   end
 
   def set_order_date!
-    # order_date should be set to created_at but that's not available in
-    # before_create. Time.now should be close enough.
-    self.order_date = Time.now
-
     if self.photographed_at?
       self.order_date = self.photographed_at
+    elsif self.created_at?
+      self.order_date = self.created_at
+    else
+      # order_date should be set to created_at but that's not available in
+      # before_create. Time.now should be close enough.
+      self.order_date = Time.now
     end
 
     true

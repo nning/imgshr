@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery.infinite-pages
 //= require jquery-cookie
 //= require jquery_ujs
@@ -23,6 +22,6 @@
 //= require seiyria-bootstrap-slider
 //= require_tree .
 
-$(document).on('page:change', function() {
+$(document).on('turbolinks:load', function() {
   $(document).trigger('content:update');
 });

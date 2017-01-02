@@ -1,4 +1,4 @@
-class CreateFileRelease < ActiveRecord::Migration
+class CreateFileRelease < ActiveRecord::Migration[4.2]
   def change
     create_table :file_releases do |t|
       t.attachment :file

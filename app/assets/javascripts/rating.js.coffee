@@ -1,5 +1,5 @@
 $(document).on 'content:update', ->
-  $('.rating').raty
+  $('.rating:empty').raty
     path: '/images'
     score: ->
       $(this).attr('data-score')

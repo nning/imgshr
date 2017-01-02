@@ -27,7 +27,8 @@
 
 # Database config and env specific settings
 /config/database.yml
-/config/settings/*.yml
+/config/settings/development.yml
+/config/settings/production.yml
 
 # Database dump
 /db/data.yml

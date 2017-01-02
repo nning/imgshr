@@ -9,4 +9,10 @@ module BasicAuth
       authenticated?(username, password)
     end
   end
+
+  def self.logged_in?(request)
+    Rails.env.development? ||
+      request.authorization.present? &&
+      request.authorization.split(' ').first == 'Basic'
+  end
 end

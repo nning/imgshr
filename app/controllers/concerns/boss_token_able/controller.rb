@@ -1,7 +1,7 @@
 module BossTokenAble::Controller
   def self.included(base)
     base.class_eval do
-      before_action :boss_token, only: [:show]
+      before_action :boss_token, only: [:gallery_show, :show]
       base.extend BossTokenAble::Controller
     end
   end

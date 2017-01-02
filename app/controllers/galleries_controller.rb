@@ -1,6 +1,7 @@
 class GalleriesController < ApplicationController
   include ActionView::Helpers::DateHelper 
   include BossTokenAble::Controller
+  include DeviceLinksOnly::Controller
   include SetGallery
 
   unless Rails.env.development?
@@ -12,16 +13,29 @@ class GalleriesController < ApplicationController
 
   respond_to :html, :json
 
-  before_filter :enforce_read_only, only: [:new_slug, :update]
+  before_action :enforce_read_only, only: [:regenerate_slug, :create_device_link, :update]
 
-  before_action :gallery, except: [:create, :index, :new]
+  before_action :gallery, except: [:create, :index, :new, :device_link]
 
   protect_from_forgery except: :show
+
+  def new
+    if session['github_uid']
+      @galleries = Gallery.joins(:boss_token).where(boss_tokens: {
+        github_uid: session['github_uid'].to_i
+      })
+    end
+  end
 
   def create
     gallery = Gallery.create!
 
-    boss_token_session gallery
+    boss_token_session(gallery)
+
+    if session['github_uid']
+      gallery.boss_token.update_attributes! \
+        github_uid: session['github_uid'].to_i
+    end
 
     redirect_to gallery
   end
@@ -31,11 +45,30 @@ class GalleriesController < ApplicationController
     redirect_to galleries_path, flash: { info: 'Gallery deleted.' }
   end
 
-  def new_slug
-    gallery.new_slug!
+  def device_link
+    link = DeviceLink.where(slug: params[:slug], disabled: false).first!
+    @gallery = link.gallery
+
+    if authorized?
+      message = 'Already authorized; device link still valid!'
+    else
+      session['device_token_' + @gallery.slug] = true
+      link.disable!
+      message = 'Saved device authorization. Make sure, you do not lose your session cookie!'
+    end
+
+    redirect_to gallery_path(@gallery), flash: { info: message }
+  end
+
+  def create_device_link
+    @link = gallery.device_links.create!
+  end
+
+  def regenerate_slug
+    gallery.regenerate_slug!
 
     params[:slug] = gallery.slug
-    boss_token_session gallery
+    boss_token_session(gallery)
 
     redirect_to gallery_path(gallery),
       flash: { info: 'Regenerated gallery slug: ' + gallery.slug + '.' }
@@ -61,7 +94,7 @@ class GalleriesController < ApplicationController
 
       format.svg do
         expires_in 7.days
-        render text: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
+        render body: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
       end
     end
   end
@@ -85,14 +118,15 @@ class GalleriesController < ApplicationController
 
   def update
     gallery.update_attributes!(gallery_params)
-    render nothing: true
+    head :ok
   end
 
   private
 
   def gallery_params
     if boss_token
-      params.require(:gallery).permit(:name, :endless_page, :ratings_enabled, :read_only)
+      params.require(:gallery).permit(:name, :endless_page, :ratings_enabled,
+        :read_only, :device_links_only)
     elsif !gallery.read_only
       params.require(:gallery).permit(:name)
     else
@@ -110,9 +144,12 @@ class GalleriesController < ApplicationController
   end
 
   def set_pictures
+    order = :by_order_date
+    order = :by_creation_date if params[:by_creation_date].present?
+
     @pictures ||= gallery.pictures
       .filtered(params)
-      .by_order_date
+      .send(order)
       .page(params[:page])
   rescue ArgumentError
     raise ActiveRecord::RecordNotFound

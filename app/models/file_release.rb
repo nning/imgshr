@@ -1,4 +1,4 @@
-class FileRelease < ActiveRecord::Base
+class FileRelease < ApplicationRecord
   has_attached_file :file,
     url: '/system/:class/:id/:filename'
 

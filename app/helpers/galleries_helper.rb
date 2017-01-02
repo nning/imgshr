@@ -14,26 +14,13 @@ module GalleriesHelper
     }
   end
 
-  def no_filters?
-    !any_filters?
+  def gallery_back_path(gallery, params)
+    return gallery_path(gallery) unless gallery_referer?(gallery)
+    merge_query(URI(request.referer), params).to_s
   end
 
-  def picture_grid_break(i)
-    html = ''
-
-    if i.odd?
-      html << content_tag(:div, nil, class: 'row visible-xs')
-    end
-
-    if (i + 1) % 3 == 0
-      html << content_tag(:div, nil, class: 'row visible-sm')
-    end
-
-    if (i + 1) % 4 == 0
-      html << content_tag(:div, nil, class: 'row visible-md visible-lg')
-    end
-
-    html.html_safe
+  def no_filters?
+    !any_filters?
   end
 
   def rating_slider_attributes

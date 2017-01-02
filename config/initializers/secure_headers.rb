@@ -6,7 +6,6 @@
 
   if Rails.env.production?
     config.csp = {
-      enforce:      true,
       default_src:  %w[https: 'self'],
       script_src:   %w[https: 'self' 'unsafe-eval'],
       style_src:    %w[https: 'self' 'unsafe-inline'],
@@ -14,7 +13,6 @@
     }
   else
     config.csp = {
-      enforce:      true,
       default_src:  %w['self'],
       script_src:   %w['self' 'unsafe-eval'],
       style_src:    %w['self' 'unsafe-inline'],

@@ -1,0 +1,31 @@
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    packages:
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
+
+language: ruby
+
+rvm:
+  - 2.3.1
+
+services:
+  - mysql
+
+notifications:
+  email: false
+
+before_install:
+  - bundle config github.https true
+
+before_script:
+  - cp config/database.yml.sample config/database.yml
+  - mysql -u root -h 127.0.0.1 -e 'create database imgshr_test;'
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rake

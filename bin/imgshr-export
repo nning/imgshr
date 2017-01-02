@@ -24,10 +24,14 @@ if gallery
   end
 
   gallery.pictures.find_each do |picture|
-    FileUtils.cp \
-      picture.image.path,
-      File.join(target, picture.image.original_filename),
-      verbose: true
+    begin
+      FileUtils.cp \
+        picture.image.path,
+        File.join(target, picture.image.original_filename),
+        verbose: true
+    rescue Errno::ENOENT
+      $stderr.puts 'Missing: %s (id %s)' % [picture.image.path, picture.id]
+    end
   end
 else
   $stderr.puts "Gallery #{slug} not found!"

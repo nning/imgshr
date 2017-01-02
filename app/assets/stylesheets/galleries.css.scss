@@ -1,3 +1,7 @@
+.jumbotron-color {
+  background: transparent linear-gradient(70deg, #fee 10%, #deb 90%) repeat scroll 0% 0%;
+}
+
 .purr {
   position: fixed;
   top: 30px;
@@ -19,15 +23,16 @@
 .empty-gallery-hint {
   p {
     text-align: center;
-	margin: 0;
+    margin: 0;
 
-	&:first-child {
-	  font-size: 115%;
-      color: #888;
-	}
+    &:first-child {
+      font-size: 115%;
+        color: #888;
+    }
   }
 }
 
+/*
 .tag-cloud {
   .tc1 {
     font-size: 80%;
@@ -45,6 +50,7 @@
     font-size: 140%;
   }
 }
+*/
 
 .qr-code {
   width: 12rem;
@@ -55,4 +61,53 @@
   overflow: auto;
   overflow-x: hidden;
   max-height: 70vh
+}
+
+// Picture grid
+
+#pictures {
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+#picture_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  & > a {
+    margin: 0 10px 10px 0;
+  }
+
+  img {
+    max-height: 200px;
+    width: auto;
+  }
+
+  @media (max-width: 768px) {
+    & > a {
+      width: 100%;
+      margin: 0;
+    }
+
+    &.fifty-percent > a {
+      width: calc(50% - 5px);
+
+      &:nth-child(odd) {
+        margin-right: 5px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      margin: 0 0 5px 0;
+    }
+  }
+}
+
+#device_links_only {
+  // margin-bottom: .5em;
 }

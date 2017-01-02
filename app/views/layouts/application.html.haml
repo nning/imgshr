@@ -1,40 +1,35 @@
 !!! 5
 
-%head
-  %title= content_for?(:title) ? yield(:title) : 'IMGSHR'
-  
-  %meta{charset: 'utf-8'}
-  %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+%html
+  %head
+    %title= content_for?(:title) ? yield(:title) : 'IMGSHR'
+    
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-  = stylesheet_link_tag 'application', media: :all, data_turbolinks_track: true
-  = csrf_meta_tag
+    = stylesheet_link_tag 'application', media: :all, data: { turbolinks_track: true, turbolinks_eval: false }
+    = csrf_meta_tag
 
-  = yield :auto_discovery
+    = javascript_include_tag 'application', data_turbolinks_track: true
 
-%body
-  -if Rails.env.development?
-    .debug_params
-      %pre= params
+    = yield :auto_discovery
 
-  .container
-    %header.page-header
-      %ul.nav.nav-pills.pull-right
-        %li
-          = link_to root_path, data: { no_turbolink: true } do
-            = icon :home
-            %span.sr-only Home
-        %li
-          = link_to galleries_path, data: { no_turbolink: true } do
-            = icon :list
-            %span.sr-only Index
-      %h1.text-muted= brand
+  %body{class: controller_class}
+    - if Rails.env.development?
+      .debug_params
+        %pre= params
 
-    .row.flash-messages
-      = render partial: 'shared/flash_messages'
+    .container
+      %header.page-header
+        = render 'shared/menu'
+        %h1.text-muted= brand
 
-    .row
-      = yield
+      .row.flash-messages
+        = render partial: 'shared/flash_messages'
 
-    = render partial: 'shared/footer'
+      .row
+        = yield
 
-  = javascript_include_tag 'application', data_turbolinks_track: true
+      = render partial: 'shared/footer'
+
+    #modal_container

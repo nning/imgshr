@@ -1,12 +1,9 @@
 var grid = $('#picture_grid');
 
-<% @pictures.each_with_index do |picture, i| %>
+<% @pictures.each do |picture| %>
   grid.append('<%= j render picture %>');
-  grid.append('<%= picture_grid_break(i) %>');
 <% end %>
 
-grid.append('<div class="row"></div>');
-
-$('#pictures .pagination').html('<%= j render 'pagination_links' %>');
+$('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
 $(document).trigger('content:update');

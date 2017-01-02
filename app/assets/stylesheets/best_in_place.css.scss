@@ -1,0 +1,27 @@
+.best_in_place {
+  width: 100%;
+  
+  form, input {
+    padding: 0;
+    width: 100%;
+  }
+
+  input {
+    border: none;
+  }
+}
+
+.content-header {
+  h2 {
+    text-align: center;
+    margin: 0 .25em;
+  }
+
+  .best_in_place {
+    input {
+      background-color: #efefef;
+      border-radius: 5px;
+      text-align: center;
+    }
+  }
+}

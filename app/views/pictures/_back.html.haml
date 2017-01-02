@@ -1,0 +1,5 @@
+= link_to gallery_back_path(picture.gallery, page: params[:back_to_page]), class: 'back', title: picture.gallery, data: { toggle: 'tooltip', placement: 'right' } do
+  - if params[:back_to_page]
+    = icon :circle_arrow_left
+  - else
+    = icon :th_large

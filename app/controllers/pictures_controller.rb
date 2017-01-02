@@ -3,9 +3,11 @@ class PicturesController < ApplicationController
   include SetGallery
   include SetPicture
 
+  include ApplicationHelper
+
   respond_to :html, :json
 
-  before_filter :enforce_read_only, only: [:create, :update]
+  before_action :enforce_read_only, only: [:api_create, :create, :update]
 
   skip_boss_token :show
 
@@ -27,19 +29,20 @@ class PicturesController < ApplicationController
       end
     end
     
-    if session["#{gallery.slug}_action"] == 'timeline'
-      redirect_to gallery_timeline_path(gallery)
-    else
-      redirect_to gallery
-    end
+    redirect_to gallery
   end
 
   def download
-    send_data \
-      File.read(picture.image.path),
+    send_file picture.image.path, \
       filename: picture.image.original_filename,
-      disposition: 'attachment',
       type: picture.image.content_type
+  end
+
+  def gallery_show
+    @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
+    @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
+
+    render :show
   end
 
   def show
@@ -53,6 +56,10 @@ class PicturesController < ApplicationController
 
   private
   
+  def gallery_show_params
+    params.permit(:slug, :fingerprint)
+  end
+ 
   def show_params
     params.permit(:fingerprint)
   end

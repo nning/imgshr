@@ -1,4 +1,4 @@
-class BossToken < ActiveRecord::Base
+class BossToken < ApplicationRecord
   include SlugAble
 
   belongs_to :gallery, dependent: :destroy

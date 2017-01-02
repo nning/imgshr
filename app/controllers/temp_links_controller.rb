@@ -1,7 +1,7 @@
 class TempLinksController < ApplicationController
   def create
     gallery = Gallery.find_by_slug!(params[:slug])
-    picture = gallery.pictures.find(params[:id])
+    picture = gallery.pictures.first_by_fingerprint!(params[:id])
 
     temp_link = picture.temp_links.create!
 

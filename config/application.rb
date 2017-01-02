@@ -22,12 +22,11 @@ module Imgshr
 
     config.autoload_paths << Rails.root.join('lib')
 
-    config.middleware.use Rack::Protection
-
-    # Opt-in for not suppressing errors within `after_rollback`/`after_commit`
-    # callbacks. (Use until Rails 5.)
-    config.active_record.raise_in_transactional_callbacks = true
+    # Auto-loading in production
+    config.enable_dependency_loading = true
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.assets.image_optim = false
   end
 end
