@@ -30,7 +30,8 @@ gem 'sidekiq', '~> 4.2.3'
 gem 'sinatra', require: nil, github: 'sinatra'
 gem 'spring', group: :development
 gem 'sqlite3'
-gem 'mini_racer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
+gem 'therubyracer'
 gem 'turbolinks', '~> 5.0'
 gem 'uglifier', '~> 3.0.0'
 gem 'yaml_db'
