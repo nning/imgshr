@@ -28,7 +28,7 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
 
   describe 'device links' do
     subject { Gallery.create! }
-    let :slug { subject.slug }
+    let(:slug) { subject.slug }
 
     it :device_links_only do
       subject.update_attributes!(device_links_only: true)

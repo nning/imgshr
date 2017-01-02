@@ -11,7 +11,7 @@ class GalleriesControllerTest < ActionController::TestCase
 
   describe :gallery do
     subject { Gallery.create! }
-    let :slug { subject.slug }
+    let(:slug) { subject.slug }
 
     it :show do
       get :show, params: { slug: slug }
