@@ -19,7 +19,13 @@ if gallery
     Dir[pattern].each do |file|
       picture = gallery.pictures.build
       picture.image = File.open(file)
-      picture.save!
+
+      begin
+        picture.save!
+        puts file
+      rescue StandardError => e
+        puts file + ': ' + e.message
+      end
     end
   end
 else
