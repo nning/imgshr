@@ -27,13 +27,13 @@ gem 'rack-protection', github: 'sinatra/sinatra'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'secure_headers'
-gem 'sidekiq', '~> 4.2.3'
+gem 'sidekiq', '~> 5.0.0'
 gem 'sinatra', require: nil, github: 'sinatra'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer'
 gem 'turbolinks', '~> 5.0'
-gem 'uglifier', '~> 3.1.0'
+gem 'uglifier', '~> 3.2.0'
 gem 'yaml_db'
 
 group :test do
