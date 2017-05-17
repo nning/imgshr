@@ -9,14 +9,14 @@ GIT
 
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 9073520a2a3120b7b91bf7598a4577f0d007ef6e
+  revision: 64ed839a8a6021c719fbff9c6bdf74a4fcd65f18
   specs:
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
 
 GIT
   remote: https://github.com/sinatra/sinatra.git
-  revision: f716739811a0591ed1cc68f55fe92720f841fc19
+  revision: ec08e37bf8b4d1bbb6f28cc3eaf37eea172dc08f
   specs:
     rack-protection (2.0.0)
       rack
@@ -70,7 +70,7 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
-    autoprefixer-rails (7.0.1)
+    autoprefixer-rails (7.1.0)
       execjs
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -211,7 +211,7 @@ GEM
     progress (3.3.1)
     public_suffix (2.0.5)
     puma (3.8.2)
-    rack (2.0.2)
+    rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.1)
