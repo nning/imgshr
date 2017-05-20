@@ -146,7 +146,7 @@ class GalleriesController < ApplicationController
 
   def set_pictures
     order = :by_order_date
-    order = :by_creation_date if params[:by_creation_date].present?
+    order = :by_created_at if params[:sort_by] == 'created_at'
 
     @pictures ||= gallery.pictures
       .filtered(params)

@@ -27,6 +27,11 @@
               = date_field_tag :until, params[:until], class: 'form-control', placeholder: 'YYYY-MM-DD'
           .row.form-group
             .col-xs-12.col-sm-3
+              = label_tag :sort_by
+            .col-xs-12.col-sm-9
+              = select_tag :sort_by, options_for_select([:order_date, :created_at], params[:sort_by]), class: 'form-control'
+          .row.form-group
+            .col-xs-12.col-sm-3
               = label_tag :rating
             .col-xs-12.col-sm-9
               = text_field_tag :rating, params[:rating], class: 'form-control slider', data: rating_slider_attributes
