@@ -15,25 +15,26 @@ slug, target = ARGV
 
 gallery = Gallery.find_by_slug(slug) || Gallery.find_by_name(slug)
 
-if gallery
-  if target.nil?
-    FileUtils.mkdir(slug)
-    target = slug
-  else
-    FileUtils.mkdir(target)
-  end
-
-  gallery.pictures.find_each do |picture|
-    begin
-      FileUtils.cp \
-        picture.image.path,
-        File.join(target, picture.image.original_filename),
-        verbose: true
-    rescue Errno::ENOENT
-      $stderr.puts 'Missing: %s (id %s)' % [picture.image.path, picture.id]
-    end
-  end
-else
+unless gallery
   $stderr.puts "Gallery #{slug} not found!"
   exit 1
+end
+
+
+target ||= slug
+FileUtils.mkdir_p(target)
+
+gallery.pictures.find_each do |picture|
+  path = File.join(target, picture.image.original_filename)
+  next if File.exist?(path)
+
+  begin
+    FileUtils.cp(picture.image.path, path, verbose: true)
+  rescue Errno::ENOENT
+    $stderr.puts 'Missing: %s (id %s)' % [picture.image.path, picture.id]
+  end
+end
+
+File.open(File.join(target, 'metadata.json'), 'w') do |file|
+  file.puts(JSON.pretty_generate(JSON.parse(gallery.to_json(include: :pictures))))
 end
