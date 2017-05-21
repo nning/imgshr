@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get    '!:slug' => 'galleries#show', as: :gallery
   put    '!:slug' => 'galleries#update'
   delete '!:slug' => 'galleries#destroy'
+  get    'api/!:slug' => 'galleries#show', defaults: { format: :json }
 
   get    '!:slug/timeline' => 'galleries#timeline', as: :gallery_timeline
 

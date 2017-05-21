@@ -97,6 +97,10 @@ class GalleriesController < ApplicationController
         expires_in 7.days
         render body: RQRCode::QRCode.new(gallery_url(gallery)).as_svg
       end
+
+      format.json do
+        render json: gallery, except: [:id, :slug]
+      end
     end
   end
 
