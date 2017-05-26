@@ -1,5 +1,6 @@
 = content_for :auto_discovery do
-  = auto_discovery_link_tag :atom, galleries_url(format: :atom)
+  = auto_discovery_link_tag :atom, galleries_url(format: :atom), title: 'Galleries (ATOM)'
+  = auto_discovery_link_tag :atom, picture_feed_url(format: :atom), title: 'Pictures (ATOM)'
 
 = render 'galleries'
 
