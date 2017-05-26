@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     to: 'content_security_policy#scribe'
 
   resources :galleries, only: [:create, :index]
+  get 'galleries/pictures' => 'pictures#index', as: :picture_feed, defaults: { format: :atom }
 
   resources :file_releases, only: [:create, :index], path: :releases
 

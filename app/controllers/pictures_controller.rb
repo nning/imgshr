@@ -5,6 +5,13 @@ class PicturesController < ApplicationController
 
   include ApplicationHelper
 
+  unless Rails.env.development?
+    http_basic_authenticate_with \
+      name: ::Settings.authentication.username,
+      password: ::Settings.authentication.password,
+      only: [:index]
+  end
+
   respond_to :html, :json
 
   before_action :enforce_read_only, only: [:api_create, :create, :update]
@@ -52,6 +59,10 @@ class PicturesController < ApplicationController
   def update
     picture.update_attributes!(update_params)
     respond_with picture
+  end
+
+  def index
+    @pictures = Picture.order('created_at desc').limit(50)
   end
 
   private

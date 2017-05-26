@@ -2,5 +2,6 @@
 %p
   = link_to absolute_url(picture.gallery) do
     This picture is part of the
-    = picture.gallery
+    = surround '"' do
+      = picture.gallery
     gallery on IMGSHR.
