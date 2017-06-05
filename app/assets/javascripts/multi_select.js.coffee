@@ -23,7 +23,8 @@ reset_selection = (images) ->
 $(document).on 'content:update', ->
   toggle = $('#toggle-select')
 
-  click_handler = ->
+  toggle.off('click')
+  toggle.on 'click', ->
     link = $(@)
     images = $('#picture_grid a')
 
@@ -45,7 +46,3 @@ $(document).on 'content:update', ->
     $('#selection_menu').toggleClass('hidden')
 
     false
-
-  toggle.off('click', click_handler)
-  toggle.on('click', click_handler)
-  
