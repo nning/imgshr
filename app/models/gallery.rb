@@ -10,13 +10,9 @@ class Gallery < ApplicationRecord
   end
 
   def last_update
-    pictures.order('created_at desc').limit(1).first.updated_at
-  rescue NoMethodError
-    updated_at
-  end
-
-  def regenerate_slug!
-    update_attributes!(slug: RandomString.generate)
+    v   = pictures.order('updated_at desc').limit(1).pluck(:updated_at).first
+    v ||= updated_at
+    v
   end
 
   def to_s

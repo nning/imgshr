@@ -21,9 +21,11 @@ class GalleriesController < ApplicationController
 
   def new
     if session['github_uid']
-      @galleries = Gallery.joins(:boss_token).where(boss_tokens: {
-        github_uid: session['github_uid'].to_i
-      })
+      @galleries = Gallery.joins(:boss_token)
+        .where(boss_tokens: {
+          github_uid: session['github_uid'].to_i
+        })
+        .order('updated_at desc')
     end
   end
 
