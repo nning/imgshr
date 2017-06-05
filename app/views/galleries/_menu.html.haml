@@ -1,28 +1,24 @@
 .btn-toolbar
   .btn-group
     - if writable?
-      = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+      = link_to '#', class: 'btn btn-default', data: { toggle: 'modal', target: '#upload' } do
         = icon :upload
-        Upload
-    = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#filter'} do
+    = link_to '#', class: 'btn btn-default', data: { toggle: 'modal', target: '#filter' } do
       = icon :filter
-      Filter
-    = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#info'} do
+    = link_to '#', class: 'btn btn-default', data: { toggle: 'modal', target: '#info' } do
       - if @boss_token
         = icon :cog
-        Settings
       - else
         = icon :info_sign
-        Info
     - if gallery.endless_page
-      = link_to '#', class: 'btn', id: 'endless-toggle' do
+      = link_to '#', class: 'btn btn-default', id: 'endless-toggle' do
         = icon :fast_forward, class: 'endless-toggle'
         %span.text Endless
-    = link_to '#', id: 'toggle-fifty-percent', class: 'btn visible-xs' do
+    = link_to '#', id: 'toggle-fifty-percent', class: 'btn btn-default visible-xs' do
       = icon :zoom_out
       50%
     - if @boss_token
-      = link_to '#', id: 'toggle-select', class: 'btn' do
+      = link_to '#', id: 'toggle-select', class: 'btn btn-default' do
         = icon :check
         Select
 

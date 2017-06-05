@@ -9,22 +9,31 @@
 
 .content-header.col-xs-12
   .row
-    .col-xs-12.col-md-6
+    .col-xs-12.col-md-6.headline
       .text-center
         - if writable?
           %h2= best_in_place @gallery, :name, nil: "#{@gallery.slug} <small>(Click here to edit!)</small>"
         - else
           %h2= @gallery
 
-    .col-xs-12.col-md-6
-      .pull-right
-        = render 'galleries/menu', gallery: @gallery
+    .col-xs-12.col-md-6.gallery-menu
+      .row
+        .col-xs-12.gallery-menu-col
+          .pull-right
+            = render 'galleries/menu', gallery: @gallery
 
-        %p.pull-right
-          - if params[:page] && params[:page].to_i > 1
-            = succeed '; ' do
-              = link_to 'Back to first page', gallery_path(@gallery, filter_params.merge(page: 1))
+        .col-xs-12.gallery-menu-col
+          .pull-right
+            = render 'galleries/selection_menu', gallery: @gallery
 
-          Last update was
-          = succeed '.' do
-            = timestamp_ago @gallery.last_update
+        - if params[:page] && params[:page].to_i > 1
+          .col-xs-12.gallery-menu-col
+            .pull-right
+              = succeed '; ' do
+                = link_to 'Back to first page', gallery_path(@gallery, filter_params.merge(page: 1))
+
+        .col-xs-12.gallery-menu-col
+          .pull-right
+            Last update was
+            = succeed '.' do
+              = timestamp_ago @gallery.last_update

@@ -18,22 +18,31 @@ class BossTokensController < ApplicationController
   end
 
   def destroy_multiple_pictures
-    all_pictures = @boss_token.gallery.pictures
+    gallery = @boss_token.gallery
+    all_pictures = gallery.pictures
     pictures = all_pictures
+
+    q = 'image_fingerprint like ?'
+    flash = {}
+
     fingerprints = params[:pictures]
 
-    flash = { error: 'An error occured!' }
-
     if fingerprints && fingerprints.size > 0
+      pictures = pictures.where(q, fingerprints.shift + '%')
+
       fingerprints.each do |fp|
-        pictures = pictures.or(all_pictures.where('image_fingerprint like ?', fp + '%'))
+        pictures = pictures.or(all_pictures.where(q, fp + '%'))
       end
 
       deleted_pictures = pictures.destroy_all
-      flash = { notice: 'Successfully deleted %s images' % deleted_pictures.count }
+      flash = {
+        flash: {
+          notice: 'Successfully deleted %s images' % deleted_pictures.count
+        }
+      }
     end
 
-    redirect_to @boss_token.gallery, flash: flash
+    redirect_to gallery, flash
   end
 
   def show

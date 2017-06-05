@@ -8,4 +8,10 @@
       font-size: 20px;
     }
   }
+
+  @media (max-width: 993px) { // @screen-md-max
+    .headline {
+      margin-bottom: 1em;
+    }
+  }
 }

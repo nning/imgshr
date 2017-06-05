@@ -1,12 +1,19 @@
-select = (image) ->
+toggle_selection = (image) ->
   image.toggleClass('selected')
 
-  input = $('<input/>',
-    name: 'pictures[]',
-    value: image.data('fingerprint'),
-    type: 'hidden')
+  form = $('#multi-select-delete')
+  fingerprint = image.data('fingerprint')
+  
+  input = form.find('input[value="' + fingerprint + '"]')
+  if input.length
+    input.remove()
+  else
+    input = $('<input/>',
+      name: 'pictures[]',
+      value: fingerprint,
+      type: 'hidden')
 
-  $('#multi-select-delete').append(input)
+    form.append(input)
 
 reset_selection = (images) ->
   images.removeClass('selected')
@@ -16,8 +23,7 @@ reset_selection = (images) ->
 $(document).on 'content:update', ->
   toggle = $('#toggle-select')
 
-  toggle.off('click')
-  toggle.on 'click', ->
+  click_handler = ->
     link = $(@)
     images = $('#picture_grid a')
 
@@ -28,14 +34,18 @@ $(document).on 'content:update', ->
       reset_selection(images)
 
     else
-      link.contents().last().replaceWith(' Stop selection')
+      link.contents().last().replaceWith(' Stop Select')
 
       images.on 'click', (e) ->
         e.preventDefault()
-        select($(@))
+        toggle_selection($(@))
 
     link.toggleClass('selecting')
 
-    $('#multi-select-controls').toggleClass('hidden')
+    $('#selection_menu').toggleClass('hidden')
 
     false
+
+  toggle.off('click', click_handler)
+  toggle.on('click', click_handler)
+  

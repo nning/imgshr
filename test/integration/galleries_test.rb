@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
-  it 'creation' do
+  IMAGES = Dir[Rails.root.join('public', 'images', '*.png')]
+
+  it :creation do
     post galleries_url
     response.must_be :redirect?
     slug = slug_redirected_to
@@ -13,13 +15,13 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
     # response.must_be :success?
   end
 
-  describe 'capybara', js: true do
+  describe :capybara, js: true do
     subject { Gallery.create! }
 
-    it 'uploads' do
+    it :uploads do
       visit(gallery_path(subject))
       click_link('Upload')
-      attach_file('picture_image', Rails.root.join('public', 'images', 'emsi.png'))
+      attach_file('picture_image', IMAGES.first)
       click_button('Upload!')
       page.must_have_content('Picture count 1')
       subject.pictures.count.must_equal(1)
