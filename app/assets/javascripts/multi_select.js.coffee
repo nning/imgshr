@@ -1,42 +1,41 @@
+select = (image) ->
+  image.toggleClass('selected')
+
+  input = $('<input/>',
+    name: 'pictures[]',
+    value: image.data('fingerprint'),
+    type: 'hidden')
+
+  $('#multi-select-delete').append(input)
+
+reset_selection = (images) ->
+  images.removeClass('selected')
+  $('#multi-select-delete').find('[name="pictures[]"]').remove()
+
+
 $(document).on 'content:update', ->
-  $('#toggle-select').off('click')
-  $('#toggle-select').on 'click', ->
+  toggle = $('#toggle-select')
+
+  toggle.off('click')
+  toggle.on 'click', ->
     link = $(@)
     images = $('#picture_grid a')
 
     images.off('click')
 
-    if !link.hasClass('selecting')
+    if link.hasClass('selecting')
+      link.contents().last().replaceWith(' Select')
+      reset_selection(images)
+
+    else
       link.contents().last().replaceWith(' Stop selection')
+
       images.on 'click', (e) ->
         e.preventDefault()
-        $(@).toggleClass('selected')
-    else
-      link.contents().last().replaceWith(' Select')
-      images.removeClass('selected')
+        select($(@))
 
     link.toggleClass('selecting')
 
     $('#multi-select-controls').toggleClass('hidden')
-
-    false
-
-  $('#multi-select-delete').off('click')
-  $('#multi-select-delete').on 'click', ->
-    slug = $('#gallery').data('boss-token')
-    fingerprints = $('#picture_grid .selected').map (_, image) ->
-      $(image).data('fingerprint')
-
-    fingerprints = fingerprints.toArray()
-
-    console.log fingerprints
-
-    $.ajax
-      url: '/-' + slug + '/pictures/multi-delete',
-      type: 'DELETE',
-      data:
-        pictures: fingerprints
-      success: ->
-        console.log @
 
     false

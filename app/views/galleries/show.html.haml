@@ -10,8 +10,4 @@
         = render partial: 'pictures/picture', collection: @pictures
 
       = render 'pagination'
-
-      #multi-select-controls.hidden
-        = link_to '#', id: 'multi-select-delete', class: 'btn btn-default' do
-          = icon :trash
-          Delete
+      = render 'multi_select_controls'
