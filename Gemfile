@@ -36,6 +36,7 @@ gem 'sqlite3'
 gem 'therubyracer'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '~> 3.2'
+gem 'webpacker'
 gem 'yaml_db'
 
 group :development do

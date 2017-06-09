@@ -39,3 +39,5 @@
 
 # Deployment bundle
 /vendor/bundle/
+/public/packs
+/node_modules
