@@ -40,4 +40,5 @@
 # Deployment bundle
 /vendor/bundle/
 /public/packs
+/public/packs-test
 /node_modules
