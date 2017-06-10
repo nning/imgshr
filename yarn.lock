@@ -3688,6 +3688,10 @@ react@^15.5.4:
     object-assign "^4.1.0"
     prop-types "^15.5.7"
 
+react_ujs@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react_ujs/-/react_ujs-2.2.0.tgz#4fa02358e0e9d4ed3fdbd2f12b2311922efc7e7d"
+
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
