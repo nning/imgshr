@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102194912) do
+ActiveRecord::Schema.define(version: 20170611164422) do
 
   create_table "boss_tokens", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "slug", null: false
+    t.string "slug", null: false, collation: "utf8_bin"
     t.integer "gallery_id"
     t.integer "github_uid"
     t.index ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170102194912) do
 
   create_table "device_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "gallery_id"
-    t.string "slug", null: false
+    t.string "slug", null: false, collation: "utf8_bin"
     t.boolean "disabled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170102194912) do
   end
 
   create_table "galleries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "slug", null: false
+    t.string "slug", null: false, collation: "utf8_bin"
     t.string "name"
     t.integer "visits", default: 0, null: false
     t.datetime "created_at"
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 20170102194912) do
 
   create_table "temp_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "picture_id"
-    t.string "slug", null: false
+    t.string "slug", null: false, collation: "utf8_bin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["picture_id"], name: "index_temp_links_on_picture_id"
