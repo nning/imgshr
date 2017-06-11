@@ -28,6 +28,15 @@ Features
 * Lazy image loading.
 * Responsive design.
 
+Development
+-----------
+
+    nvm use
+	npm install -g yarn
+	yarn
+	bundle
+	foreman start
+
 License
 -------
 
