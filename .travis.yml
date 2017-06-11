@@ -23,7 +23,7 @@ before_install:
   - bundle config github.https true
 
 before_script:
-  - cp config/database.yml.sample config/database.yml
+  - cp config/database.yml.mysql config/database.yml
   - mysql -u root -h 127.0.0.1 -e 'create database imgshr_test;'
 
 script:
