@@ -5,13 +5,13 @@ require 'fileutils'
 require_relative '../config/environment'
 
 def usage
-  $stderr.puts "#{File.basename($0)} <gallery> [target]"
+  $stderr.puts "#{File.basename($0)} <gallery> [target] [tags]"
   exit 1
 end
 
-usage unless (1..2).include?(ARGV.size)
+usage unless (1..3).include?(ARGV.size)
 
-slug, target = ARGV
+slug, target, tags = ARGV
 
 gallery = Gallery.find_by_slug(slug) || Gallery.find_by_name(slug)
 
@@ -24,7 +24,10 @@ end
 target ||= slug
 FileUtils.mkdir_p(target)
 
-gallery.pictures.find_each do |picture|
+pictures = gallery.pictures
+pictures = pictures.tagged_with(tags.split(',')) if tags
+
+pictures.find_each do |picture|
   path = File.join(target, picture.image.original_filename)
   next if File.exist?(path)
 
