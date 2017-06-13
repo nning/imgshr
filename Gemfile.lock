@@ -114,6 +114,8 @@ GEM
     exifr (1.2.5)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
+    foreman (0.84.0)
+      thor (~> 0.19.1)
     fspath (3.1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -307,13 +309,14 @@ DEPENDENCIES
   capybara
   capybara-webkit
   capybara_minitest_spec
-  coffee-rails (~> 4.2.0)
+  coffee-rails (~> 4.2)
   config
   delayed_paperclip
   exifr
+  foreman
   hamlit
   image_optim_pack
-  jbuilder (~> 2.0)
+  jbuilder (~> 2.5)
   jquery-infinite-pages
   jquery-rails
   kaminari
@@ -340,8 +343,8 @@ DEPENDENCIES
   spring
   sqlite3
   therubyracer
-  turbolinks (~> 5.0)
-  uglifier (~> 3.2.0)
+  turbolinks (~> 5)
+  uglifier (~> 3.2)
   yaml_db
 
 BUNDLED WITH

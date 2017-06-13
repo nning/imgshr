@@ -7,13 +7,13 @@ gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
 gem 'best_in_place', github: 'luckie/best_in_place', branch: 'multi-select'
 gem 'bootstrap-sass', '~> 3.3.0'
-gem 'coffee-rails', '~> 4.2.0'
+gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'delayed_paperclip'
 gem 'exifr'
 gem 'hamlit'
 gem 'image_optim_pack'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder', '~> 2.5'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -34,19 +34,23 @@ gem 'sinatra', require: nil, github: 'sinatra'
 gem 'spring', group: :development
 gem 'sqlite3'
 gem 'therubyracer'
-gem 'turbolinks', '~> 5.0'
-gem 'uglifier', '~> 3.2.0'
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '~> 3.2'
 gem 'yaml_db'
+
+group :development do
+  gem 'foreman'
+end
+
+group :production do
+  gem 'skylight'
+end
 
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'capybara_minitest_spec'
   gem 'minitest-spec-rails'
-end
-
-group :production do
-  gem 'skylight'
 end
 
 source 'https://rails-assets.org' do
