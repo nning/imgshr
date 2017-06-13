@@ -49,3 +49,6 @@
         %td= best_in_place picture, :tag_list, path: [picture.gallery, picture]
       - else
         %td= picture.tag_list
+    %tr
+      %td  Inception Labels
+      %td= picture.label_list

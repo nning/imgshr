@@ -12,6 +12,6 @@ class TempLink < ApplicationRecord
 
   def schedule_invalidation
     # TODO This does currently not work with `Settings.foreground_processing`.
-    InvalidateTempLinks.set(wait: TIMEOUT).perform_later(self)
+    InvalidateTempLinkJob.set(wait: TIMEOUT).perform_later(self)
   end
 end
