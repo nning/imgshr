@@ -15,4 +15,4 @@ label_image:
   bin: lib/label_image/label_image
   graph: lib/label_image/inception_v3_2016_08_28_frozen.pb
   labels: lib/label_image/imagenet_slim_labels.txt
-  threshold: 0
+  threshold: 0.09

@@ -23,7 +23,7 @@ module LabelImage
       @image_path = image_path
     end
 
-    def run
+    def run!
       command = "#{BIN} --graph=\"#{GRAPH}\" --labels=\"#{LABELS}\" --image=\"#{@image_path}\""
 
       _, stderr, status = Open3.capture3(command)
@@ -36,7 +36,7 @@ module LabelImage
 
     def parse_output(output)
       matches = output.split("\n").map do |line|
-        m = line.match(/\]\ (.*)\ \([0-9]*\):\ ([0-9\.]*)$/)
+        m = line.match(/\]\ (.*)\ \([0-9]*\):\ ([0-9\.e-]*)$/)
         [m[1].downcase, m[2].to_f]
       end
 

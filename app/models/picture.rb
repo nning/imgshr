@@ -81,10 +81,16 @@ class Picture < ApplicationRecord
 
   def label_image!
     process = LabelImage::Process.new(self.image.path(:medium))
-    process.run
+    raw_label_list = process.run!
 
+    self.raw_label_list = raw_label_list.to_json
     self.label_list = process.labels_above_threshold
+
     save!
+  end
+
+  def raw_label_list_hash
+    JSON.parse(raw_label_list)
   end
 
   def self.filtered(params)
