@@ -33,8 +33,10 @@ class Picture < ApplicationRecord
     set_order_date!
   end
 
-  # TODO after_image_post_process without delay
-  after_create :enqueue_label_job
+  if !::Settings.foreground_processing
+    # TODO after_image_post_process without delay
+    after_create :enqueue_label_job
+  end
 
   scope :by_order_date, -> { order('order_date desc') }
   scope :by_created_at, -> { order('created_at desc') }
