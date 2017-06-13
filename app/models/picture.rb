@@ -33,7 +33,7 @@ class Picture < ApplicationRecord
     set_order_date!
   end
 
-  if !::Settings.foreground_processing
+  if !::Settings.foreground_processing && LabelImage.is_enabled?
     # TODO after_image_post_process without delay
     after_create :enqueue_label_job
   end
@@ -214,6 +214,6 @@ class Picture < ApplicationRecord
   end
 
   def enqueue_label_job
-    LabelImageJob.set(wait: 30.seconds).perform_later(self)
+    LabelImageJob.set(wait: 25.seconds).perform_later(self)
   end
 end

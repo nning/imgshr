@@ -1,11 +1,11 @@
-# require Rails.root.join('lib/label_image')
+require Rails.root.join('lib/label_image')
 
 class LabelImageTest < ActiveSupport::TestCase
   label_image_available = true
 
   begin
     PROCESS = LabelImage::Process.new('public/images/emsi.png')
-  rescue LabelImage::DependencyMissing
+  rescue LabelImage::DependencyMissing, LabelImage::FeatureDisabled
     label_image_available = false
   end
 

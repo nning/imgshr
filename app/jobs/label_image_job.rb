@@ -2,14 +2,11 @@ class LabelImageJob < ApplicationJob
   queue_as :label_image
 
   def perform(picture)
-    result = LabelImage::Process.new(picture.image.path(:medium)).run
+    process = LabelImage::Process.new(picture.image.path(:medium))
 
-    labels = []
-    result.each do |label, score|
-      labels.push(label) if score >= 0.25
-    end
+    process.run
 
-    picture.label_list = labels
+    picture.label_list = process.labels_above_threshold
     picture.save!
   end
 end
