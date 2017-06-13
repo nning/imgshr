@@ -39,3 +39,6 @@
 
 # Deployment bundle
 /vendor/bundle/
+
+# Tensorflow image labelling data
+/lib/label_image/*

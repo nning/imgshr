@@ -16,7 +16,7 @@ class Picture < ApplicationRecord
     process_in_background :image, processing_image_url: '/images/missing/:style.png'
   end
 
-  acts_as_taggable
+  acts_as_taggable_on :tags, :labels
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
@@ -31,6 +31,11 @@ class Picture < ApplicationRecord
   after_image_post_process -> do
     set_exif_attributes
     set_order_date!
+  end
+
+  if !::Settings.foreground_processing
+    # TODO after_image_post_process without delay
+    after_create :enqueue_label_job
   end
 
   scope :by_order_date, -> { order('order_date desc') }
@@ -206,5 +211,9 @@ class Picture < ApplicationRecord
     end
 
     true
+  end
+
+  def enqueue_label_job
+    LabelImageJob.set(wait: 30.seconds).perform_later(self)
   end
 end

@@ -1,4 +1,4 @@
-class InvalidateTempLinks < ApplicationJob
+class InvalidateTempLinkJob < ApplicationJob
   queue_as :temp_link_invalidation
 
   def perform(temp_link)
