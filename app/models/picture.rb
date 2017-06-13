@@ -79,6 +79,14 @@ class Picture < ApplicationRecord
     dimensions[size][:width] rescue nil
   end
 
+  def label_image!
+    process = LabelImage::Process.new(self.image.path(:medium))
+    process.run
+
+    self.label_list = process.labels_above_threshold
+    save!
+  end
+
   def self.filtered(params)
     pictures = all
 
@@ -189,7 +197,7 @@ class Picture < ApplicationRecord
         hash[size] = image.path(size)
       end
     end
-    
+
     hash.each do |size, file|
       geometry = Paperclip::Geometry.from_file(file)
       self.dimensions[size] = {
