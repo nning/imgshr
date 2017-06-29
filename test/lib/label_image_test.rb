@@ -11,7 +11,7 @@ class LabelImageTest < ActiveSupport::TestCase
 
   if label_image_available
     describe 'parse' do
-      subject { PROCESS.run }
+      subject { PROCESS.run! }
 
       it 'should return hash' do
         subject.is_a? Hash

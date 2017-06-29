@@ -1,10 +1,10 @@
 require 'open3'
 
 module LabelImage
-  CONFIG   = Settings.try(:label_image)
-  BIN      = CONFIG.try(:bin)
-  GRAPH    = CONFIG.try(:graph)
-  LABELS   = CONFIG.try(:labels)
+  CONFIG    = Settings.try(:label_image)
+  BIN       = CONFIG.try(:bin)
+  GRAPH     = CONFIG.try(:graph)
+  LABELS    = CONFIG.try(:labels)
   THRESHOLD = CONFIG.try(:threshold) || 0.25
 
   class DependencyMissing < StandardError
