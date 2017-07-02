@@ -30,6 +30,8 @@ class GalleriesController < ApplicationController
   end
 
   def create
+    raise if Settings.disable_gallery_creation
+
     gallery = Gallery.create!
 
     boss_token_session(gallery)
