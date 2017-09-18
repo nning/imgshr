@@ -31,6 +31,7 @@ Features
 * Filter by tags, date, rating
 * Automatic labelling using self-hosted Convolutional Neural Network
   (Inception v3 model)
+* GitHub login for taking track of galleries and gallery administration
 
 License
 -------

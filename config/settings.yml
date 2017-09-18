@@ -2,6 +2,7 @@ authentication:
   admin:
     username: admin
     password: password
+    # github_login: nning
 
 # foreground_processing: true
 
