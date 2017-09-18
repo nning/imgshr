@@ -1,5 +1,8 @@
 .table-responsive
   %table.table.table-condensed.table-hover.table-bordered
+    %tr
+      %td  Original Filename
+      %td= picture.image.original_filename
     - if picture.camera?
       %tr
         %td  Camera

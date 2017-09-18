@@ -72,6 +72,7 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (7.1.4)
       execjs
+    bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -295,6 +296,11 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     useragent (0.16.8)
+    web-console (3.5.1)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      bindex (>= 0.4.0)
+      railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -352,6 +358,7 @@ DEPENDENCIES
   therubyracer
   turbolinks (~> 5)
   uglifier (~> 3.2)
+  web-console
   yaml_db
 
 BUNDLED WITH
