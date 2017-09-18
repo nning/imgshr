@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
 
   unless Rails.env.development?
-    BasicAuth.authenticate Sidekiq::Web
+    Authentication::Basic.authenticate Sidekiq::Web
   end
 
   mount Sidekiq::Web => '/sidekiq'

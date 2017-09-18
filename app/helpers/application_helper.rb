@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def admin?
-    BasicAuth.logged_in?(request)
+    Authentication.admin?(request, session)
   end
 
   def brand

@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-  include Authentication
+  include AuthenticationConcern
   include ActionView::Helpers::DateHelper
   include BossTokenAble::Controller
   include DeviceLinksOnly::Controller

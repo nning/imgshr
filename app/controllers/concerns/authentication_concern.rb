@@ -1,7 +1,7 @@
-module Authentication
+module AuthenticationConcern
   def self.included(base)
     base.class_eval do
-      base.extend Authentication
+      base.extend AuthenticationConcern
     end
   end
 
@@ -21,8 +21,6 @@ module Authentication
   end
 
   def enforce_github_login
-    if session['github_login'] != Settings.authentication.admin.github_login
-      head :forbidden
-    end
+    head :forbidden unless Authentication::Github.admin?(session)
   end
 end

@@ -1,4 +1,4 @@
-module BasicAuth
+module Authentication::Basic
   def self.authenticated?(username, password)
     auth_config = ::Settings.authentication.admin
 
@@ -15,8 +15,7 @@ module BasicAuth
   end
 
   def self.logged_in?(request)
-    Rails.env.development? ||
-      request.authorization.present? &&
+    request.authorization.present? &&
       request.authorization.split(' ').first == 'Basic'
   end
 end
