@@ -1,14 +1,18 @@
 class GalleriesController < ApplicationController
-  include ActionView::Helpers::DateHelper 
+  include ActionView::Helpers::DateHelper
   include BossTokenAble::Controller
   include DeviceLinksOnly::Controller
   include SetGallery
 
   unless Rails.env.development?
+    AUTH_CONFIG = ::Settings.authentication.admin
+    protected_actions =  [:index, :destroy]
+    protected_actions << :create if Settings.disable_gallery_creation
+
     http_basic_authenticate_with \
-      name: ::Settings.authentication.username,
-      password: ::Settings.authentication.password,
-      only: [:index, :destroy]
+      name: AUTH_CONFIG.username,
+      password: AUTH_CONFIG.password,
+      only: protected_actions
   end
 
   respond_to :html, :json
@@ -30,8 +34,6 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    raise if Settings.disable_gallery_creation
-
     gallery = Gallery.create!
 
     boss_token_session(gallery)

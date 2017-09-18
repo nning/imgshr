@@ -1,6 +1,7 @@
 authentication:
-  username: admin
-  password: password
+  admin:
+    username: admin
+    password: password
 
 # foreground_processing: true
 
@@ -11,6 +12,7 @@ authentication:
 
 # file_release_token: ooH3yathu9Eey2vi
 
+# label_image: false
 label_image:
   bin: lib/label_image/label_image
   graph: lib/label_image/inception_v3_2016_08_28_frozen.pb
