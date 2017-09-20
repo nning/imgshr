@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/luckie/best_in_place.git
+  remote: git://github.com/luckie/best_in_place.git
   revision: d3b639ec1887df9d2aa342a6a7df2ad1110bc9a2
   branch: multi-select
   specs:
@@ -8,14 +8,14 @@ GIT
       rails (>= 3.1)
 
 GIT
-  remote: https://github.com/mbleigh/acts-as-taggable-on.git
+  remote: git://github.com/mbleigh/acts-as-taggable-on.git
   revision: 4d9a10c25e106bd2467662baea58510a17809ca2
   specs:
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
 
 GIT
-  remote: https://github.com/sinatra/sinatra.git
+  remote: git://github.com/sinatra/sinatra.git
   revision: 89cbd96866355729bb347a76ce601b98c3ff579b
   specs:
     rack-protection (2.0.0)
@@ -262,8 +262,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    secure_headers (3.7.1)
-      useragent
+    secure_headers (4.0.0)
+      useragent (>= 0.15.0)
     sidekiq (5.0.4)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
