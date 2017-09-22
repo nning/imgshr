@@ -3,10 +3,11 @@
     = link_to root_path do
       = icon :home
       %span.sr-only Home
-  %li
-    = link_to galleries_path do
-      = icon :list
-      %span.sr-only Index
+  - if show_list_button?
+    %li
+      = link_to galleries_path do
+        = icon :list
+        %span.sr-only Index
   %li
     - if logged_in?
       = link_to logout_path, data: { toggle: 'tooltip' }, title: 'Logged in as ' + login_name do

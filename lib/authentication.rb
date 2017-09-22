@@ -4,4 +4,10 @@ module Authentication
       Authentication::Basic.logged_in?(request) ||
       Authentication::Github.admin?(session)
   end
+
+  def self.basic?
+    !Settings.authentication.admin.github_login
+  rescue
+    true
+  end
 end
