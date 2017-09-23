@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611164422) do
+ActiveRecord::Schema.define(version: 20170613194529) do
 
   create_table "boss_tokens", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "slug", null: false, collation: "utf8_bin"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170611164422) do
     t.timestamp "order_date"
     t.integer "ratings_count"
     t.boolean "image_processing"
+    t.text "raw_label_list"
     t.index ["gallery_id"], name: "index_pictures_on_gallery_id"
     t.index ["image_fingerprint"], name: "index_pictures_on_image_fingerprint"
     t.index ["order_date"], name: "index_pictures_on_order_date"

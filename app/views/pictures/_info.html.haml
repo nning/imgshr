@@ -1,5 +1,8 @@
 .table-responsive
   %table.table.table-condensed.table-hover.table-bordered
+    %tr
+      %td  Original Filename
+      %td= picture.image.original_filename
     - if picture.camera?
       %tr
         %td  Camera
@@ -49,3 +52,7 @@
         %td= best_in_place picture, :tag_list, path: [picture.gallery, picture]
       - else
         %td= picture.tag_list
+    - if LabelImage.is_enabled?
+      %tr
+        %td  Auto Labels
+        %td= picture.label_list

@@ -12,7 +12,8 @@
       %h1 Welcome!
       %p
         This is a simple image gallery sharing website.
-      %p
-        = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
-          = icon :plus_sign
-          Create gallery!
+      - unless Settings.disable_gallery_creation
+        %p
+          = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
+            = icon :plus_sign
+            Create gallery!

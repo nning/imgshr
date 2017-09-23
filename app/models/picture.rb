@@ -16,7 +16,7 @@ class Picture < ApplicationRecord
     process_in_background :image, processing_image_url: '/images/missing/:style.png'
   end
 
-  acts_as_taggable
+  acts_as_taggable_on :tags, :labels
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
@@ -31,6 +31,11 @@ class Picture < ApplicationRecord
   after_image_post_process -> do
     set_exif_attributes
     set_order_date!
+  end
+
+  if !::Settings.foreground_processing && LabelImage.is_enabled?
+    # TODO after_image_post_process without delay
+    after_create :enqueue_label_job
   end
 
   scope :by_order_date, -> { order('order_date desc') }
@@ -72,6 +77,20 @@ class Picture < ApplicationRecord
 
   def width(size = :original)
     dimensions[size][:width] rescue nil
+  end
+
+  def label_image!
+    process = LabelImage::Process.new(self.image.path(:medium))
+    raw_label_list = process.run!
+
+    self.raw_label_list = raw_label_list.to_json
+    self.label_list = process.labels_above_threshold
+
+    save!
+  end
+
+  def raw_label_list_hash
+    JSON.parse(raw_label_list)
   end
 
   def self.filtered(params)
@@ -184,7 +203,7 @@ class Picture < ApplicationRecord
         hash[size] = image.path(size)
       end
     end
-    
+
     hash.each do |size, file|
       geometry = Paperclip::Geometry.from_file(file)
       self.dimensions[size] = {
@@ -206,5 +225,9 @@ class Picture < ApplicationRecord
     end
 
     true
+  end
+
+  def enqueue_label_job
+    LabelImageJob.set(wait: 25.seconds).perform_later(self)
   end
 end

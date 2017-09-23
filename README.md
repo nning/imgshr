@@ -16,17 +16,22 @@ You can test this at https://imgshr.space!
 Features
 --------
 
-* Galleries are shared via secret token in URL. Like in
-  [https://imgshr.space/!Njg4NThi](https://imgshr.space/!Njg4NThi).
+* Galleries are shared via secret token in URL
+  (e.g. [https://imgshr.space/!Njg4NThi](https://imgshr.space/!Njg4NThi))
 * Galleries are editable by everyone or -- when they are configured to be
-  read-only -- with a boss token (URL).
+  read-only -- only with a boss token (URL)
 * Pictures can be shared with token URLs to prevent giving away a gallery's
-  token.
-* EXIF data is read and shown.
-* Pictures can be rated.
-* Infinite scrolling on gallery page.
-* Lazy image loading.
-* Responsive design.
+  token
+* EXIF data is read and shown
+* Pictures can be rated
+* Infinite scrolling on gallery page
+* Lazy image loading
+* Responsive design
+* Tagging of images
+* Filter by tags, date, rating
+* Automatic labelling using self-hosted Convolutional Neural Network
+  (Inception v3 model)
+* GitHub login for taking track of galleries and gallery administration
 
 Development
 -----------

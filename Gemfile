@@ -42,6 +42,7 @@ gem 'yaml_db'
 
 group :development do
   gem 'foreman'
+  gem 'web-console'
 end
 
 group :production do

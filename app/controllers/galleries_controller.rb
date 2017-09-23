@@ -1,14 +1,15 @@
 class GalleriesController < ApplicationController
-  include ActionView::Helpers::DateHelper 
+  include AuthenticationConcern
+  include ActionView::Helpers::DateHelper
   include BossTokenAble::Controller
   include DeviceLinksOnly::Controller
   include SetGallery
 
   unless Rails.env.development?
-    http_basic_authenticate_with \
-      name: ::Settings.authentication.username,
-      password: ::Settings.authentication.password,
-      only: [:index, :destroy]
+    protected_actions =  [:index, :destroy]
+    protected_actions << :create if Settings.disable_gallery_creation
+
+    authenticate!(protected_actions)
   end
 
   respond_to :html, :json

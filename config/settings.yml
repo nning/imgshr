@@ -1,6 +1,8 @@
 authentication:
-  username: admin
-  password: password
+  admin:
+    username: admin
+    password: password
+    # github_login: nning
 
 # foreground_processing: true
 
@@ -10,3 +12,11 @@ authentication:
 #   invalidate_after: 86400
 
 # file_release_token: ooH3yathu9Eey2vi
+
+# label_image:
+#   bin: lib/label_image/label_image
+#   graph: lib/label_image/inception_v3_2016_08_28_frozen.pb
+#   labels: lib/label_image/imagenet_slim_labels.txt
+#   threshold: 0.09
+
+# disable_gallery_creation: true

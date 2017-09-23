@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def admin?
-    BasicAuth.logged_in?(request)
+    Authentication.admin?(request, session)
   end
 
   def brand
@@ -52,5 +52,10 @@ module ApplicationHelper
 
   def login_name
     session['github_login']
+  end
+
+  def show_list_button?
+    return true if Authentication.basic?
+    Authentication::Github.admin?(session)
   end
 end
