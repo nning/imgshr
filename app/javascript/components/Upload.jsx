@@ -1,5 +1,7 @@
 import React from 'react'
 
+import axios from 'axios'
+
 import UploadList from './UploadList.jsx'
 
 export default class Upload extends React.Component {
@@ -7,16 +9,64 @@ export default class Upload extends React.Component {
     super(props)
 
     this.handleFiles = this.handleFiles.bind(this)
+    this.upload = this.upload.bind(this)
 
     this.state = {
-      selectedFiles: []
+      selectedFiles: [],
+      uploading: false,
     }
   }
 
   handleFiles(event) {
-    this.setState({
-      selectedFiles: Array.from(event.target.files)
+    const files = Array.from(event.target.files)
+
+    let filesWithStatus = []
+    files.forEach((file) => {
+      filesWithStatus.push({
+        obj: file,
+        progress: 0,
+        error: null
+      })
     })
+
+    this.setState({
+      selectedFiles: filesWithStatus
+    })
+  }
+
+  upload(event) {
+    const files = this.state.selectedFiles
+
+    this.setState({uploading: true})
+
+    files.forEach((file, i) => {
+      const data = new FormData()
+      data.append('picture[image][]', file.obj)
+
+      const config = {
+        onUploadProgress: (e) => {
+          file.progress = Math.round((e.loaded * 100) / e.total)
+          this.forceUpdate()
+        }
+      }
+
+      axios.post('', data, config)
+        .then(() => {
+          if (i === files.length - 1 && window) {
+            window.location.reload()
+          }
+        })
+    })
+  }
+
+  uploadButtonClasses() {
+    let classes = 'btn btn-success'
+
+    if (!this.state.selectedFiles.length || this.state.uploading) {
+      classes += ' disabled'
+    }
+
+    return classes
   }
 
   render() {
@@ -30,11 +80,11 @@ export default class Upload extends React.Component {
           <input type="file" multiple onChange={this.handleFiles}>
           </input>
 
-          <UploadList selectedFiles={this.state.selectedFiles}/>
+          <UploadList files={this.state.selectedFiles}/>
         </div>
 
         <div className="modal-footer">
-          <button className="btn btn-success disabled" type="submit" name="commit">
+          <button className={this.uploadButtonClasses()} type="submit" name="commit" onClick={this.upload}>
             <span className="glyphicon glyphicon-upload"></span>
             &nbsp;Upload!
           </button>
