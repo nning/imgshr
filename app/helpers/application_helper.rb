@@ -55,7 +55,7 @@ module ApplicationHelper
   end
 
   def show_list_button?
-    return true if Authentication.basic?
+    return true if Authentication.basic? || Rails.env.development?
     Authentication::Github.admin?(session)
   end
 end
