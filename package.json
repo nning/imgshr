@@ -35,6 +35,7 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.4.5"
   }
 }
