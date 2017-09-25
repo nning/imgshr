@@ -106,6 +106,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
     connection_pool (2.2.1)
+    crass (1.0.2)
     deep_merge (1.1.1)
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
@@ -165,7 +166,8 @@ GEM
     kaminari-core (1.0.1)
     libv8 (3.16.14.19)
     local_time (2.0.0)
-    loofah (2.0.3)
+    loofah (2.1.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0.rc1)
       mini_mime (>= 0.1.1)
@@ -234,7 +236,7 @@ GEM
     rails-assets-jquery-cookie (1.4.1)
       rails-assets-jquery (>= 1.2)
     rails-assets-momentjs (2.18.1)
-    rails-assets-seiyria-bootstrap-slider (9.8.1)
+    rails-assets-seiyria-bootstrap-slider (9.9.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -362,4 +364,4 @@ DEPENDENCIES
   yaml_db
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
