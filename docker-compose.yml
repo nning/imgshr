@@ -1,0 +1,41 @@
+version: '3.2'
+services:
+  mariadb:
+    image: mariadb:10.2.8
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWD}'
+    volumes:
+      - type: volume
+        source: db
+        target: /var/lib/mysql
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - type: volume
+        source: redis
+        target: /data
+
+  imgshr: &rails
+    build: .
+    depends_on:
+      - mariadb
+      - redis
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports: 
+      - '3000:3000'
+    environment:
+      DATABASE_URL: mysql2://root:$MYSQL_ROOT_PASSWD@$MYSQL_HOST:3306/imgshr?encoding=utf8&pool=5&timeout=5000
+      REDIS_PROVIDER: REDIS_URL
+      REDIS_URL: redis://redis:6379
+
+  sidekiq:
+    <<: *rails
+    command: bundle exec sidekiq
+    ports: []
+
+volumes:
+  db:
+  redis:
