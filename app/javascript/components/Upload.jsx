@@ -11,15 +11,15 @@ export default class Upload extends React.Component {
     this.handleFiles = this.handleFiles.bind(this)
     this.upload = this.upload.bind(this)
 
+    this.url = '/api/!' + this.props.slug
+
     this.state = {
       selectedFiles: [],
       uploading: false,
     }
   }
 
-  handleFiles(event) {
-    const files = Array.from(event.target.files)
-
+  filesWithStatus(files) {
     let filesWithStatus = []
     files.forEach((file) => {
       filesWithStatus.push({
@@ -29,34 +29,48 @@ export default class Upload extends React.Component {
       })
     })
 
+    return filesWithStatus
+  }
+
+  handleFiles(event) {
+    const files = Array.from(event.target.files)
+
     this.setState({
-      selectedFiles: filesWithStatus
+      selectedFiles: this.filesWithStatus(files)
     })
+  }
+
+  getRequestConfig(file) {
+    return {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      onUploadProgress: (e) => {
+        file.progress = Math.round((e.loaded * 100) / e.total)
+        this.forceUpdate()
+      }
+    }
   }
 
   upload(event) {
     const files = this.state.selectedFiles
+    const promises = []
 
     this.setState({uploading: true})
 
-    files.forEach((file, i) => {
+    files.forEach((file) => {
       const data = new FormData()
+      const config = this.getRequestConfig(file)
+
       data.append('picture[image][]', file.obj)
 
-      const config = {
-        onUploadProgress: (e) => {
-          file.progress = Math.round((e.loaded * 100) / e.total)
-          this.forceUpdate()
-        }
-      }
-
-      axios.post('', data, config)
-        .then(() => {
-          if (i === files.length - 1 && window) {
-            window.location.reload()
-          }
-        })
+      promises.push(axios.post(this.url, data, config))
     })
+
+    Promise.all(promises)
+      .then(() => {
+        window.location.reload()
+      })
   }
 
   uploadButtonClasses() {
