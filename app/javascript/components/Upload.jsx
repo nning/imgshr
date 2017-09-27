@@ -1,6 +1,7 @@
 import React from 'react'
 
-import axios from 'axios'
+import Axios from 'axios'
+import PromiseQueue from 'promise-queue'
 
 import UploadList from './UploadList.jsx'
 
@@ -55,6 +56,7 @@ export default class Upload extends React.Component {
   upload(event) {
     const files = this.state.selectedFiles
     const promises = []
+    const queue = new PromiseQueue(2, Infinity)
 
     this.setState({uploading: true})
 
@@ -64,7 +66,9 @@ export default class Upload extends React.Component {
 
       data.append('picture[image][]', file.obj)
 
-      promises.push(axios.post(this.url, data, config))
+      promises.push(queue.add(() => {
+        return Axios.post(this.url, data, config)
+      }))
     })
 
     Promise.all(promises)
