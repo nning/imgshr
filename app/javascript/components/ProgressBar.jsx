@@ -4,6 +4,10 @@ import fileSize from '../utils/filesize'
 
 export default class ProgressBar extends React.Component {
   render() {
+    if (this.props.current == 0 && this.props.hide) {
+      return null
+    }
+
     return (
       <div className="progress">
         <div className="progress-bar progress-bar-striped active"

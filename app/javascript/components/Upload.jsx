@@ -114,7 +114,7 @@ export default class Upload extends React.Component {
 
           <UploadList files={this.state.selectedFiles}/>
 
-          <ProgressBar min="0" max="100" current={this.state.totalProgress}/>
+          <ProgressBar min="0" max="100" current={this.state.totalProgress} hide="true"/>
         </div>
 
         <div className="modal-footer">

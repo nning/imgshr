@@ -33,7 +33,6 @@ gem 'secure_headers'
 gem 'sidekiq', '~> 5.0.0'
 gem 'sinatra', require: nil, github: 'sinatra'
 gem 'spring', group: :development
-gem 'sqlite3'
 gem 'therubyracer'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '~> 3.2'
@@ -41,8 +40,11 @@ gem 'webpacker'
 gem 'yaml_db'
 
 group :development do
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'foreman'
   gem 'web-console'
+  gem 'sqlite3'
 end
 
 group :production do
