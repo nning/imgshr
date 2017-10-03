@@ -18,7 +18,7 @@ export default class UploadList extends React.Component {
         </table>
       )
     } else {
-      return <span/>
+      return <div className="upload__list"/>
     }
   }
 }

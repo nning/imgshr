@@ -3,6 +3,7 @@ import React from 'react'
 import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
 
+import ProgressBar from './ProgressBar.jsx'
 import UploadList from './UploadList.jsx'
 
 export default class Upload extends React.Component {
@@ -17,6 +18,7 @@ export default class Upload extends React.Component {
     this.state = {
       selectedFiles: [],
       uploading: false,
+      totalProgress: 0
     }
   }
 
@@ -41,6 +43,14 @@ export default class Upload extends React.Component {
     })
   }
 
+  totalProgress() {
+    const files = this.state.selectedFiles
+    const progress = files.map((file) => file.progress)
+                          .reduce((a, b) => a + b, 0)
+
+    return parseInt((progress / (files.length * 100)) * 100)
+  }
+
   getRequestConfig(file) {
     return {
       headers: {
@@ -48,7 +58,11 @@ export default class Upload extends React.Component {
       },
       onUploadProgress: (e) => {
         file.progress = Math.round((e.loaded * 100) / e.total)
-        this.forceUpdate()
+        // this.forceUpdate()
+
+        this.setState({
+          totalProgress: this.totalProgress()
+        })
       }
     }
   }
@@ -95,20 +109,21 @@ export default class Upload extends React.Component {
             Please choose files for upload...
           </div>
 
-          <input type="file" multiple onChange={this.handleFiles}>
-          </input>
+          <input type="file" multiple onChange={this.handleFiles}/>
 
           <UploadList files={this.state.selectedFiles}/>
+
+          <ProgressBar min="0" max="100" current={this.state.totalProgress}/>
         </div>
 
         <div className="modal-footer">
           <button className={this.uploadButtonClasses()} type="submit" name="commit" onClick={this.upload}>
-            <span className="glyphicon glyphicon-upload"></span>
+            <span className="glyphicon glyphicon-upload"/>
             &nbsp;Upload!
           </button>
 
           <button className="btn btn-default" data-dismiss="modal">
-            <span className="glyphicon glyphicon-remove"></span>
+            <span className="glyphicon glyphicon-remove"/>
             &nbsp;Close
           </button>
         </div>
