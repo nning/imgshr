@@ -13,7 +13,7 @@ export default class Upload extends React.Component {
     this.handleFiles = this.handleFiles.bind(this)
     this.upload = this.upload.bind(this)
 
-    this.url = '/api/!' + this.props.slug
+    this.url = ''
 
     this.state = {
       selectedFiles: [],
@@ -78,6 +78,7 @@ export default class Upload extends React.Component {
       const data = new FormData()
       const config = this.getRequestConfig(file)
 
+      data.append(this.props.csrf.param, this.props.csrf.token)
       data.append('picture[image][]', file.obj)
 
       promises.push(queue.add(() => {

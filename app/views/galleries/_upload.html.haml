@@ -8,4 +8,4 @@
           %span.sr-only Close
         %h4.modal-title#label_upload Upload pictures
 
-      = react_component :Upload, { slug: @gallery.slug }
+      = react_component :Upload, { csrf: csrf }
