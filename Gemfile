@@ -25,6 +25,7 @@ gem 'paperclip-optimizer'
 gem 'paperclip', '~> 5.1.0'
 # gem 'pg'
 gem 'puma', '~> 3.7'
+gem 'react-rails'
 gem 'rack-protection', github: 'sinatra/sinatra'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
@@ -32,15 +33,18 @@ gem 'secure_headers'
 gem 'sidekiq', '~> 5.0.0'
 gem 'sinatra', require: nil, github: 'sinatra'
 gem 'spring', group: :development
-gem 'sqlite3'
 gem 'therubyracer'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '~> 3.2'
+gem 'webpacker'
 gem 'yaml_db'
 
 group :development do
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'foreman'
   gem 'web-console'
+  gem 'sqlite3'
 end
 
 group :production do

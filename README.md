@@ -33,6 +33,15 @@ Features
   (Inception v3 model)
 * GitHub login for taking track of galleries and gallery administration
 
+Development
+-----------
+
+    nvm use
+	npm install -g yarn
+	yarn
+	bundle
+	foreman start
+
 License
 -------
 

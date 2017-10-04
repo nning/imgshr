@@ -35,8 +35,8 @@ class PicturesController < ApplicationController
         return
       end
     end
-    
-    redirect_to gallery
+
+    redirect_to gallery unless request.xhr?
   end
 
   def download
@@ -66,11 +66,11 @@ class PicturesController < ApplicationController
   end
 
   private
-  
+
   def gallery_show_params
     params.permit(:slug, :fingerprint)
   end
- 
+
   def show_params
     params.permit(:fingerprint)
   end

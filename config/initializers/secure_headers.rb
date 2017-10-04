@@ -13,8 +13,8 @@
     }
   else
     config.csp = {
-      default_src:  %w['self'],
-      script_src:   %w['self' 'unsafe-eval'],
+      default_src:  %w['self' 0.0.0.0:3001 localhost:3001],
+      script_src:   %w['self' 0.0.0.0:3001 localhost:3001 'unsafe-eval'],
       style_src:    %w['self' 'unsafe-inline'],
       report_uri:   %w[/content_security_policy/forward_report]
     }

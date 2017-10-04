@@ -7,14 +7,6 @@
             &times;
           %span.sr-only Close
         %h4.modal-title#label_upload Upload pictures
-      = form_for Picture.new, url: @gallery, html: {multipart: true} do |f|
-        .modal-body
-          .alert.alert-info Please choose files for upload...
-          = f.file_field :image, multiple: true
-        .modal-footer
-          %button.btn.btn-success.disabled{type: 'submit', name: 'commit'}
-            = icon :upload
-            Upload!
-          %button.btn.btn-default{data: {dismiss: 'modal'}}
-            = icon :remove
-            Close
+
+      -# = react_component :Upload, { csrf: csrf }, prerender: true
+      = react_component :Upload, { csrf: csrf }
