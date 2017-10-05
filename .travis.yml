@@ -29,5 +29,6 @@ before_script:
   - mysql -u root -h 127.0.0.1 -e 'create database imgshr_test;'
 
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate
-  - bundle exec rake
+  - RAILS_ENV=test bundle exec rails db:migrate
+  - RAILS_ENV=test bundle exec ./bin/webpack
+  - bundle exec rails test
