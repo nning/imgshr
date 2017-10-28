@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
 gem 'bundler', '>= 1.8.4'
 gem 'rails', '~> 5.1.0'
 
@@ -26,13 +28,12 @@ gem 'paperclip', '~> 5.1.0'
 # gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'react-rails'
-gem 'rack-protection', github: 'sinatra/sinatra'
+gem 'rack-protection'
 gem 'responders', '~> 2.0'
 gem 'rqrcode'
 gem 'secure_headers'
 gem 'sidekiq', '~> 5.0.0'
-gem 'sinatra', require: nil, github: 'sinatra'
-gem 'spring', group: :development
+gem 'sinatra'
 gem 'therubyracer'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '~> 3.2'
@@ -44,6 +45,7 @@ group :development do
   # gem 'binding_of_caller'
   gem 'foreman'
   gem 'web-console'
+  gem 'spring'
   gem 'sqlite3'
 end
 

@@ -14,18 +14,6 @@ GIT
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
 
-GIT
-  remote: https://github.com/sinatra/sinatra.git
-  revision: f12f816ad8541ed5387d890fee5b1fcabf5e7b1b
-  specs:
-    rack-protection (2.0.0)
-      rack
-    sinatra (2.0.0)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.0)
-      tilt (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -252,6 +240,8 @@ GEM
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
     rack-proxy (0.6.2)
       rack
     rack-test (0.7.0)
@@ -313,6 +303,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.4, < 5)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
     skylight (1.4.3)
       activesupport (>= 3.0.0)
     spring (2.0.2)
@@ -389,7 +384,7 @@ DEPENDENCIES
   paperclip (~> 5.1.0)
   paperclip-optimizer
   puma (~> 3.7)
-  rack-protection!
+  rack-protection
   rails (~> 5.1.0)
   rails-assets-jquery (~> 2.2.4)!
   rails-assets-jquery-cookie!
@@ -400,7 +395,7 @@ DEPENDENCIES
   rqrcode
   secure_headers
   sidekiq (~> 5.0.0)
-  sinatra!
+  sinatra
   skylight
   spring
   sqlite3
