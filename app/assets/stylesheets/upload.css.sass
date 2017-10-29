@@ -8,3 +8,14 @@
   &__file
     td:not(:last-child)
       margin-right: 1em
+
+    &__actions
+      display: none
+
+    &:hover
+      .upload__file
+        &__actions
+          display: initial
+
+        &__progress
+          display: none

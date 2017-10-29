@@ -13,9 +13,10 @@
       report_uri:   %w[/content_security_policy/forward_report]
     }
   else
+    # config.csp = SecureHeaders::OPT_OUT
     config.csp = {
-      default_src:  %w['self' 0.0.0.0:3001 localhost:3001],
-      script_src:   %w['self' 0.0.0.0:3001 localhost:3001 'unsafe-eval'],
+      default_src:  %w['self' 0.0.0.0:3001 localhost:3001 localhost:3035],
+      script_src:   %w['self' 0.0.0.0:3001 localhost:3001 localhost:3035 'unsafe-eval'],
       style_src:    %w['self' 'unsafe-inline'],
       report_uri:   %w[/content_security_policy/forward_report]
     }

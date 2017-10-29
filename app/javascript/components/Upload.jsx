@@ -3,6 +3,7 @@ import React from 'react'
 import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
 
+import Icon from './Icon.jsx'
 import ProgressBar from './ProgressBar.jsx'
 import UploadList from './UploadList.jsx'
 
@@ -22,13 +23,24 @@ export default class Upload extends React.Component {
     }
   }
 
+  removeFile(i) {
+    let files = this.state.selectedFiles
+      .filter((_, k) => k !== i)
+      .map((file) => file.obj)
+
+    this.setState({
+      selectedFiles: this.filesWithStatus(files)
+    })
+  }
+
   filesWithStatus(files) {
     let filesWithStatus = []
-    files.forEach((file) => {
+    files.forEach((file, i) => {
       filesWithStatus.push({
         obj: file,
         progress: 0,
-        error: null
+        error: null,
+        remove: () => this.removeFile(i)
       })
     })
 
@@ -45,8 +57,9 @@ export default class Upload extends React.Component {
 
   totalProgress() {
     const files = this.state.selectedFiles
-    const progress = files.map((file) => file.progress)
-                          .reduce((a, b) => a + b, 0)
+    const progress = files
+      .map((file) => file.progress)
+      .reduce((a, b) => a + b, 0)
 
     return parseInt((progress / (files.length * 100)) * 100)
   }
@@ -119,12 +132,12 @@ export default class Upload extends React.Component {
 
         <div className="modal-footer">
           <button className={this.uploadButtonClasses()} type="submit" name="commit" onClick={this.upload}>
-            <span className="glyphicon glyphicon-upload"/>
+            <Icon name="upload"/>
             &nbsp;Upload!
           </button>
 
           <button className="btn btn-default" data-dismiss="modal">
-            <span className="glyphicon glyphicon-remove"/>
+            <Icon name="remove"/>
             &nbsp;Close
           </button>
         </div>
