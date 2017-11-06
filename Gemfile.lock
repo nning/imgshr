@@ -142,7 +142,7 @@ GEM
     fspath (3.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    hamlit (2.8.4)
+    hamlit (2.8.5)
       temple (>= 0.8.0)
       thor
       tilt
