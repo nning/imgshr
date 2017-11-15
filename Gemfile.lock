@@ -99,7 +99,7 @@ GEM
       deep_merge (~> 1.1.1)
       dry-validation (>= 0.10.4)
     connection_pool (2.2.1)
-    crass (1.0.2)
+    crass (1.0.3)
     deep_merge (1.1.1)
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
@@ -278,7 +278,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react-rails (2.4.1)
+    react-rails (2.4.2)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
