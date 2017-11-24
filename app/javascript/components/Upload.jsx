@@ -24,7 +24,7 @@ export default class Upload extends React.Component {
   }
 
   removeFile(i) {
-    let files = this.state.selectedFiles
+    const files = this.state.selectedFiles
       .filter((_, k) => k !== i)
       .map((file) => file.obj)
 
@@ -35,6 +35,7 @@ export default class Upload extends React.Component {
 
   filesWithStatus(files) {
     let filesWithStatus = []
+
     files.forEach((file, i) => {
       filesWithStatus.push({
         obj: file,

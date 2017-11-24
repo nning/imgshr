@@ -5,3 +5,4 @@ const componentRequireContext = require.context('components', true)
 ReactRailsUJS.useContext(componentRequireContext)
 
 import '../components/Upload.jsx'
+import '../components/ScrollToTop.jsx'
