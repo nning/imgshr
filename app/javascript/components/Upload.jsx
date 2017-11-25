@@ -24,12 +24,14 @@ export default class Upload extends React.Component {
   }
 
   removeFile(i) {
-    const files = this.state.selectedFiles
-      .filter((_, k) => k !== i)
-      .map((file) => file.obj)
+    this.setState((prev) => {
+      const files = prev.selectedFiles
+        .filter((_, k) => k !== i)
+        .map((file) => file.obj)
 
-    this.setState({
-      selectedFiles: this.filesWithStatus(files)
+      return {
+        selectedFiles: this.filesWithStatus(files)
+      }
     })
   }
 
@@ -56,8 +58,8 @@ export default class Upload extends React.Component {
     })
   }
 
-  totalProgress() {
-    const files = this.state.selectedFiles
+  totalProgress(state) {
+    const files = state.selectedFiles
     const progress = files
       .map((file) => file.progress)
       .reduce((a, b) => a + b, 0)
@@ -74,8 +76,10 @@ export default class Upload extends React.Component {
         file.progress = Math.round((e.loaded * 100) / e.total)
         // this.forceUpdate()
 
-        this.setState({
-          totalProgress: this.totalProgress()
+        this.setState((prev) => {
+          return {
+            totalProgress: this.totalProgress(prev)
+          }
         })
       }
     }

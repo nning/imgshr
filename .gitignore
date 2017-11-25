@@ -46,3 +46,6 @@
 
 # Tensorflow image labelling data
 /lib/label_image/*
+
+# IntelliJ config
+/.idea
