@@ -189,7 +189,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    libv8 (3.16.14.19)
     local_time (2.0.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
@@ -288,7 +287,6 @@ GEM
       railties (>= 3.2)
       tilt
     redis (4.0.1)
-    ref (2.0.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -324,9 +322,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
     temple (0.8.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -404,7 +399,6 @@ DEPENDENCIES
   skylight
   spring
   sqlite3
-  therubyracer
   turbolinks (~> 5)
   uglifier (~> 3.2)
   web-console
