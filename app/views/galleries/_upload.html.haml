@@ -8,4 +8,5 @@
           %span.sr-only Close
         %h4.modal-title#label_upload Upload pictures
 
-      = react_component :Upload, { csrf: csrf }
+      = cache :upload_form do
+        = react_component :Upload, {}, prerender: true

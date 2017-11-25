@@ -18,13 +18,6 @@ module ApplicationHelper
     params[:controller] + '-' + params[:action]
   end
 
-  def csrf
-    {
-      param: request_forgery_protection_token,
-      token: form_authenticity_token
-    }
-  end
-
   # Convert flash message type to bootstrap class.
   def flash_class(type)
     ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s

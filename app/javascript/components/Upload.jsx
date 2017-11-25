@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
@@ -85,6 +86,17 @@ export default class Upload extends React.Component {
     }
   }
 
+  getCsrfParams() {
+    const html = ReactDOM.findDOMNode(this).closest('html')
+
+    const param = html.querySelector('meta[name="csrf-param"]')
+      .getAttribute('content')
+    const token = html.querySelector('meta[name="csrf-token"]')
+      .getAttribute('content')
+
+    return [param, token];
+  }
+
   upload(event) {
     const files = this.state.selectedFiles
     const promises = []
@@ -96,7 +108,7 @@ export default class Upload extends React.Component {
       const data = new FormData()
       const config = this.getRequestConfig(file)
 
-      data.append(this.props.csrf.param, this.props.csrf.token)
+      data.append(...this.getCsrfParams())
       data.append('picture[image][]', file.obj)
 
       promises.push(queue.add(() => {
