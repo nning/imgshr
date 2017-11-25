@@ -133,11 +133,14 @@ export default class Upload extends React.Component {
 
           <UploadList files={this.state.selectedFiles}/>
 
-          <ProgressBar min="0" max="100" current={this.state.totalProgress} hide="true"/>
+          <ProgressBar min="0" max="100" current={this.state.totalProgress}
+            hide="true"/>
         </div>
 
         <div className="modal-footer">
-          <button className={this.uploadButtonClasses()} type="submit" disabled={this.isButtonDisabled()} name="commit" onClick={this.upload}>
+          <button className={this.uploadButtonClasses()} type="submit"
+              disabled={this.isButtonDisabled()} name="commit"
+              onClick={this.upload}>
             <Icon name="upload"/>
             &nbsp;Upload!
           </button>
