@@ -11,6 +11,7 @@ export default class Upload extends React.Component {
   constructor(props) {
     super(props)
 
+    this.isButtonDisabled = this.isButtonDisabled.bind(this)
     this.handleFiles = this.handleFiles.bind(this)
     this.upload = this.upload.bind(this)
 
@@ -58,8 +59,7 @@ export default class Upload extends React.Component {
     })
   }
 
-  totalProgress(state) {
-    const files = state.selectedFiles
+  totalProgress(files) {
     const progress = files
       .map((file) => file.progress)
       .reduce((a, b) => a + b, 0)
@@ -78,7 +78,7 @@ export default class Upload extends React.Component {
 
         this.setState((prev) => {
           return {
-            totalProgress: this.totalProgress(prev)
+            totalProgress: this.totalProgress(prev.selectedFiles)
           }
         })
       }
@@ -110,12 +110,13 @@ export default class Upload extends React.Component {
       })
   }
 
+  isButtonDisabled() {
+    return !this.state.selectedFiles.length || this.state.uploading
+  }
+
   uploadButtonClasses() {
     let classes = 'btn btn-success'
-
-    if (!this.state.selectedFiles.length || this.state.uploading) {
-      classes += ' disabled'
-    }
+    if (this.isButtonDisabled()) classes += ' disabled'
 
     return classes
   }
@@ -136,7 +137,7 @@ export default class Upload extends React.Component {
         </div>
 
         <div className="modal-footer">
-          <button className={this.uploadButtonClasses()} type="submit" name="commit" onClick={this.upload}>
+          <button className={this.uploadButtonClasses()} type="submit" disabled={this.isButtonDisabled()} name="commit" onClick={this.upload}>
             <Icon name="upload"/>
             &nbsp;Upload!
           </button>
