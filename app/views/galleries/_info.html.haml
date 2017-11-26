@@ -36,6 +36,10 @@
                   = @gallery.pictures.count
 
           %tr
+            %td Number of Pages
+            %td= @pictures.total_pages
+
+          %tr
             %td Created
             %td= timestamp_ago @gallery.created_at
 
