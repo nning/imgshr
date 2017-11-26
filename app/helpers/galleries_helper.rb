@@ -15,8 +15,9 @@ module GalleriesHelper
   end
 
   def gallery_back_path(gallery, params)
-    return gallery_path(gallery) unless gallery_referer?(gallery)
-    merge_query(URI(request.referer), params).to_s
+    referer = request.referer
+    referer = gallery_path(gallery) unless gallery_referer?(gallery)
+    merge_query(URI(referer), params).to_s
   end
 
   def no_filters?
@@ -25,7 +26,7 @@ module GalleriesHelper
 
   def rating_slider_attributes
     h = { slider_min: 1, slider_max: 5, slider_value: [1, 5] }
-    
+
     unless params[:rating].blank?
       h.merge!(slider_value: '[%s]' % params[:rating])
     end
