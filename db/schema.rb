@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613194529) do
+ActiveRecord::Schema.define(version: 2017_06_13_194529) do
 
-  create_table "boss_tokens", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "boss_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "slug", null: false, collation: "utf8_bin"
     t.integer "gallery_id"
     t.integer "github_uid"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["slug"], name: "index_boss_tokens_on_slug", unique: true
   end
 
-  create_table "device_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "device_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gallery_id"
     t.string "slug", null: false, collation: "utf8_bin"
     t.boolean "disabled", default: false, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["slug"], name: "index_device_links_on_slug", unique: true
   end
 
-  create_table "file_releases", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "file_releases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file_file_name"
     t.string "file_content_type"
     t.integer "file_file_size"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.string "branch"
   end
 
-  create_table "galleries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "galleries", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "slug", null: false, collation: "utf8_bin"
     t.string "name"
     t.integer "visits", default: 0, null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["slug"], name: "index_galleries_on_slug", unique: true
   end
 
-  create_table "pictures", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gallery_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "camera"
-    t.float "focal_length", limit: 24
-    t.float "aperture", limit: 24
+    t.float "focal_length"
+    t.float "aperture"
     t.string "shutter_speed"
     t.integer "iso_speed"
     t.integer "flash"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["order_date"], name: "index_pictures_on_order_date"
   end
 
-  create_table "ratings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ratings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "picture_id"
     t.integer "score", null: false
     t.datetime "created_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["picture_id"], name: "index_ratings_on_picture_id"
   end
 
-  create_table "taggings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "taggings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(version: 20170613194529) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tags", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", collation: "utf8_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "temp_links", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "temp_links", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "picture_id"
     t.string "slug", null: false, collation: "utf8_bin"
     t.datetime "created_at", null: false

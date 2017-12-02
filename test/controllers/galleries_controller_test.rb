@@ -29,7 +29,7 @@ class GalleriesControllerTest < ActionController::TestCase
           .encode_credentials(AUTH.username, AUTH.password)
 
       get :index
-      response.must_be :success?
+      response.must_be :successful?
     end
   end
 
@@ -39,7 +39,7 @@ class GalleriesControllerTest < ActionController::TestCase
 
     it :show do
       get :show, params: { slug: slug }
-      response.must_be :success?
+      response.must_be :successful?
     end
 
     it :regenerate_slug do
@@ -49,7 +49,7 @@ class GalleriesControllerTest < ActionController::TestCase
 
     it 'should update name if not read-only' do
       put :update, params: { slug: slug, gallery: { name: 'foo' } }
-      response.must_be :success?
+      response.must_be :successful?
     end
 
     it 'should not update name if read-only' do
@@ -70,7 +70,7 @@ class GalleriesControllerTest < ActionController::TestCase
         }
       }
 
-      response.must_be :success?
+      response.must_be :successful?
 
       subject.reload
       subject.endless_page.must_equal true
@@ -92,7 +92,7 @@ class GalleriesControllerTest < ActionController::TestCase
         }
       }
 
-      response.must_be :success?
+      response.must_be :successful?
 
       subject.reload
       subject.endless_page.must_equal false

@@ -9,7 +9,7 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
     slug = slug_redirected_to
 
     get gallery_url(slug)
-    response.must_be :success?
+    response.must_be :successful?
 
     # post gallery_picture_url(slug)
     # response.must_be :success?
@@ -42,7 +42,7 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
       response.status.must_equal 404
 
       post gallery_create_device_link_url(slug), xhr: true
-      response.must_be :success?
+      response.must_be :successful?
 
       get device_link_path(subject.device_links.first.slug)
       response.must_be :redirect?

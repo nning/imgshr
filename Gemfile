@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bundler', '>= 1.8.4'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0.beta2'
 
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
@@ -43,7 +43,7 @@ gem 'yaml_db'
 group :development do
   # gem 'better_errors'
   # gem 'binding_of_caller'
-  gem 'bullet'
+  # gem 'bullet'
   gem 'foreman'
   gem 'web-console'
   gem 'spring'
