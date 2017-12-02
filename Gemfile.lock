@@ -264,7 +264,7 @@ GEM
     rails-assets-jquery (2.2.4)
     rails-assets-jquery-cookie (1.4.1)
       rails-assets-jquery (>= 1.2)
-    rails-assets-momentjs (2.19.2)
+    rails-assets-momentjs (2.19.3)
     rails-assets-seiyria-bootstrap-slider (10.0.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
