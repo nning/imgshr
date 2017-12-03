@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_06_13_194529) do
+ActiveRecord::Schema.define(version: 2017_12_03_061736) do
 
   create_table "boss_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "slug", null: false, collation: "utf8_bin"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 2017_06_13_194529) do
     t.boolean "endless_page", default: true, null: false
     t.boolean "device_links_only", default: false
     t.index ["slug"], name: "index_galleries_on_slug", unique: true
+  end
+
+  create_table "milestones", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "gallery_id"
+    t.datetime "time", null: false
+    t.string "description", null: false
+    t.boolean "show_on_pictures", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_milestones_on_gallery_id"
   end
 
   create_table "pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -125,6 +135,7 @@ ActiveRecord::Schema.define(version: 2017_06_13_194529) do
   end
 
   add_foreign_key "device_links", "galleries"
+  add_foreign_key "milestones", "galleries"
   add_foreign_key "ratings", "pictures"
   add_foreign_key "temp_links", "pictures"
 end

@@ -8,5 +8,5 @@
           %span.sr-only Close
         %h4.modal-title#label_upload Upload pictures
 
-      = cache :upload_form do
+      = cache :upload_component do
         = react_component :Upload, {}, prerender: true
