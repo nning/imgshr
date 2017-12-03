@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   post   '!:slug/regenerate_slug' => 'galleries#regenerate_slug', as: :gallery_regenerate_slug
   post   '!:slug/create_device_link' => 'galleries#create_device_link', as: :gallery_create_device_link
 
+  get    '!:slug/milestones' => 'milestones#index', as: :milestones
+  post   '!:slug/milestones' => 'milestones#create', as: :milestone
+  delete '!:slug/milestones' => 'milestones#destroy'
+
   get    '-:token' => 'boss_tokens#show', as: :gallery_delete
   delete '-:token' => 'boss_tokens#destroy'
 

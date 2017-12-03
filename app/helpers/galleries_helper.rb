@@ -14,7 +14,7 @@ module GalleriesHelper
     }
   end
 
-  def gallery_back_path(gallery, params)
+  def gallery_back_path(gallery, params = {})
     referer = request.referer
     referer = gallery_path(gallery) unless gallery_referer?(gallery)
     merge_query(URI(referer), params).to_s
