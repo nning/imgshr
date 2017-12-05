@@ -13,4 +13,12 @@ module TimestampHelper
   def timestamp_ago(time, tooltip: true)
     timestamp(time, klass: :timestamp_ago, tooltip: tooltip)
   end
+
+  def relative_distance_of_time_in_words(from, to)
+    in_future = from > to
+    suffix = in_future ? ' later' : ' before'
+
+    distance_of_time_in_words(from, to, true, only: [:years, :months]) + suffix
+  end
+
 end

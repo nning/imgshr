@@ -9,4 +9,13 @@
   = succeed '.' do
     = timestamp_ago picture.created_at
 
+- if @milestones && @milestones.any?
+  %br
+  - @milestones.each do |milestone|
+    .text-center
+      %em
+        = succeed(': ') do
+          = milestone.description
+      = relative_distance_of_time_in_words(milestone.time, picture.order_date)
+
 = render 'pictures/info', picture: picture

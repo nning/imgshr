@@ -107,6 +107,9 @@ GEM
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
       paperclip (>= 3.3)
+    dotiw (4.0.0)
+      actionpack (>= 4)
+      i18n
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
     dry-container (0.6.0)
@@ -367,6 +370,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   config
   delayed_paperclip
+  dotiw
   exifr
   foreman
   hamlit

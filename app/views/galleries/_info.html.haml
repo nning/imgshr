@@ -104,8 +104,9 @@
                 %ul.list-unstyled
                   - @gallery.milestones.each do |milestone|
                     %li
-                      = milestone.description
-                      at
+                      %em
+                        = succeed(': ') do
+                          = milestone.description
                       = timestamp_ago(milestone.time)
 
           %tr

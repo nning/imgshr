@@ -48,12 +48,14 @@ class PicturesController < ApplicationController
   def gallery_show
     @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
     @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
+    @milestones = @gallery.milestones.show_on_pictures
 
     render :show
   end
 
   def show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    @milestones = picture.gallery.milestones.show_on_pictures
   end
 
   def update
