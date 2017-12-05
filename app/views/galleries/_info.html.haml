@@ -94,6 +94,21 @@
                   = count == 1 ? 'link' : 'links'
                   left.
 
+            %tr
+              %td Milestones
+              %td
+                = link_to 'Manage milestones',
+                  milestones_path(@gallery),
+                  class: 'btn btn-default btn-xs pull-right'
+
+                %ul.list-unstyled
+                  - @gallery.milestones.each do |milestone|
+                    %li
+                      %em
+                        = succeed(': ') do
+                          = milestone.description
+                      = timestamp_ago(milestone.time)
+
           %tr
             %td QR Code
             %td
@@ -107,6 +122,7 @@
                   class: 'qr-code',
                   title: 'QR',
                   alt: 'QR'
+
 
       .modal-footer
         %button.btn.btn-default{data: {dismiss: 'modal'}}

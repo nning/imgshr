@@ -1,0 +1,26 @@
+.col-xs-12
+  .row
+    .content-header.col-xs-12
+      = link_to gallery_back_path(@gallery), class: 'back', title: @gallery, data: { toggle: 'tooltip', placement: 'right' } do
+        = icon :circle_arrow_left
+
+      %h2
+        Milestones for
+        = @gallery
+
+  .row
+    .col-xs-12
+      = render 'form', milestone: Milestone.new
+
+  - if @gallery.milestones.any?
+    %br
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-striped
+            %tr
+              %th Time
+              %th Description
+              %th Show on pictures
+              %th
+            = render @gallery.milestones.by_time

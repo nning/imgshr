@@ -1,5 +1,33 @@
 .content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   margin-bottom: 3em;
+
+  h2 {
+    flex-grow: 1;
+
+    .best_in_place {
+      input {
+        max-width: 450px;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    right: 0;
+    left: initial;
+
+    @media (max-width: 769px) { // @screen-sm-max
+      font-size: 1.25em;
+
+      li a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    }
+  }
 
   @media (max-width: 769px) { // @screen-sm-max
     margin-bottom: 1em;

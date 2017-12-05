@@ -1,0 +1,17 @@
+= form_for milestone, html: { class: 'form-inline' } do |f|
+  .form-column
+    .form-group
+      = f.label :time, 'Time'
+      = f.date_field :time, class: 'form-control', placeholder: 'YYYY-MM-DD'
+
+  .form-column
+    .form-group
+      = f.label :description, 'Description'
+      = f.text_field :description, class: 'form-control'
+
+    .form-group
+      = f.label :show_on_pictures, 'Show on pictures'
+      = f.check_box :show_on_pictures, class: 'form-control'
+
+  .form-column
+    = f.submit class: 'btn btn-default'

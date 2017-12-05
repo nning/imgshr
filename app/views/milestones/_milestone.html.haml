@@ -1,0 +1,7 @@
+%tr
+  %td= timestamp(milestone.time)
+  %td= milestone.description
+  %td= icon :ok if milestone.show_on_pictures
+  %td
+    = link_to milestone_path(@gallery, id: milestone.id), method: :delete, data: { confirm: 'Really delete milestone?' } do
+      = icon :trash

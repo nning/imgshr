@@ -4,6 +4,7 @@ class Gallery < ApplicationRecord
 
   has_many :pictures, dependent: :destroy
   has_many :device_links, dependent: :destroy
+  has_many :milestones, dependent: :destroy
 
   def increase_visits!
     update_column(:visits, visits + 1)

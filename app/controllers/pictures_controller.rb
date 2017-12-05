@@ -31,7 +31,7 @@ class PicturesController < ApplicationController
       begin
         @picture.update_attributes!({ image: image })
       rescue ActiveRecord::RecordInvalid
-        redirect_to gallery, flash: {error: "Unsupported file format: #{image.content_type}!"}
+        redirect_to gallery, flash: { error: "Unsupported file format: #{image.content_type}!" }
         return
       end
     end
@@ -48,12 +48,14 @@ class PicturesController < ApplicationController
   def gallery_show
     @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
     @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
+    @milestones = @gallery.milestones.show_on_pictures
 
     render :show
   end
 
   def show
     @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    @milestones = picture.gallery.milestones.show_on_pictures
   end
 
   def update
