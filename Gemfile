@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'bundler', '>= 1.8.4'
 gem 'rails', '~> 5.2.0.beta2'
 
-gem 'acts-as-taggable-on', '~> 5'
+gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'autoprefixer-rails'
 gem 'best_in_place', '~> 3.1'
 gem 'bootstrap-sass', '~> 3.3.0'

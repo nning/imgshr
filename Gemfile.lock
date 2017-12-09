@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/nning/acts-as-taggable-on.git
+  revision: 1886edf686f5fe03fd473b56ad0abb485a0039d2
+  branch: rails-5.2-process_dirty_object
+  specs:
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -42,8 +50,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (5.0.0)
-      activerecord (>= 4.2.8)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
@@ -348,7 +354,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 5)
+  acts-as-taggable-on!
   autoprefixer-rails
   best_in_place (~> 3.1)
   bootstrap-sass (~> 3.3.0)
