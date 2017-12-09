@@ -49,7 +49,7 @@
     %tr
       %td  Tags
       - if writable?
-        %td= best_in_place picture, :tag_list, path: [picture.gallery, picture]
+        %td= best_in_place picture, :tag_list, url: [picture.gallery, picture], place_holder: '–'
       - else
         %td= picture.tag_list
     - if LabelImage.is_enabled?

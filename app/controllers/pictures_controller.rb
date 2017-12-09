@@ -59,6 +59,7 @@ class PicturesController < ApplicationController
   end
 
   def update
+    p update_params
     picture.update_attributes!(update_params)
     respond_with picture
   end

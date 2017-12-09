@@ -7,7 +7,7 @@
     = render 'back', picture: @picture
 
     %h2
-      = best_in_place @picture, :title, path: [@picture.gallery, @picture], nil: '<small>Set a title by clicking here!</small>'
+      = best_in_place @picture, :title, url: [@picture.gallery, @picture], place_holder: '<small>Set a title by clicking here!</small>'
 
     = render 'pictures/menu', picture: @picture
 
