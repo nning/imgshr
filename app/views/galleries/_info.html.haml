@@ -51,31 +51,35 @@
             %tr
               %td Read only
               %td
-                = check_box_tag :read_only, nil,
-                  @gallery.read_only,
-                  data: { uri: gallery_path(@gallery) }
+                = react_component :AsyncCheckbox,
+                  { name: 'gallery[read_only]',
+                    checked: @gallery.read_only,
+                    uri: gallery_path(@gallery) }
 
             %tr
               %td Ratings
               %td
-                = check_box_tag :ratings_enabled, nil,
-                  @gallery.ratings_enabled,
-                  data: { uri: gallery_path(@gallery) }
+                = react_component :AsyncCheckbox,
+                  { name: 'gallery[ratings_enabled]',
+                    checked: @gallery.ratings_enabled,
+                    uri: gallery_path(@gallery) }
 
             %tr
               %td Endless page
               %td
-                = check_box_tag :endless_page, nil,
-                  @gallery.endless_page,
-                  data: { uri: gallery_path(@gallery) }
+                = react_component :AsyncCheckbox,
+                  { name: 'gallery[endless_page]',
+                    checked: @gallery.endless_page,
+                    uri: gallery_path(@gallery) }
 
             %tr
               %td Authorized devices only
               %td
                 %p
-                  = check_box_tag :device_links_only, nil,
-                    @gallery.device_links_only,
-                    data: { uri: gallery_path(@gallery) }
+                  = react_component :AsyncCheckbox,
+                    { name: 'gallery[device_links_only]',
+                      checked: @gallery.device_links_only,
+                      uri: gallery_path(@gallery) }
 
                   = link_to 'Create device link!',
                     gallery_create_device_link_path(@gallery),

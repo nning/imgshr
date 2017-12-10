@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
@@ -7,6 +6,8 @@ import PromiseQueue from 'promise-queue'
 import Icon from './Icon.jsx'
 import ProgressBar from './ProgressBar.jsx'
 import UploadList from './UploadList.jsx'
+
+import csrf from '../utils/csrf'
 
 export default class Upload extends React.Component {
   constructor(props) {
@@ -86,17 +87,6 @@ export default class Upload extends React.Component {
     }
   }
 
-  getCsrfParams() {
-    const html = ReactDOM.findDOMNode(this).closest('html')
-
-    const param = html.querySelector('meta[name="csrf-param"]')
-      .getAttribute('content')
-    const token = html.querySelector('meta[name="csrf-token"]')
-      .getAttribute('content')
-
-    return [param, token];
-  }
-
   upload(event) {
     const files = this.state.selectedFiles
     const promises = []
@@ -105,11 +95,10 @@ export default class Upload extends React.Component {
     this.setState({uploading: true})
 
     files.forEach((file) => {
-      const data = new FormData()
-      const config = this.getRequestConfig(file)
-
-      data.append(...this.getCsrfParams())
+      const data = csrf.getFormData(this);
       data.append('picture[image][]', file.obj)
+
+      const config = this.getRequestConfig(file)
 
       promises.push(queue.add(() => {
         return Axios.post(this.url, data, config)
@@ -141,7 +130,8 @@ export default class Upload extends React.Component {
             Please choose files for upload...
           </div>
 
-          <input type="file" multiple onChange={this.handleFiles}/>
+          <input type="file" multiple onChange={this.handleFiles}
+            autoComplete="off"/>
 
           <UploadList files={this.state.selectedFiles}/>
 

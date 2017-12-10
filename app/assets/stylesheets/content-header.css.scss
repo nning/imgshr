@@ -29,6 +29,10 @@
     }
   }
 
+  > .row {
+    width: 100%;
+  }
+
   @media (max-width: 769px) { // @screen-sm-max
     margin-bottom: 1em;
 
