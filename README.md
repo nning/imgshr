@@ -2,7 +2,7 @@ IMGSHR
 ======
 
 [![Dependency Status](https://img.shields.io/gemnasium/nning/imgshr.svg)](https://gemnasium.com/nning/imgshr)
-[![Code Climate](https://img.shields.io/codeclimate/github/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
 [![Build Status](https://img.shields.io/travis/nning/imgshr/master.svg)](https://travis-ci.org/nning/imgshr)
 
 Simple image gallery sharing application. Galleries are creatable by everyone
