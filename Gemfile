@@ -59,6 +59,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'capybara_minitest_spec'
+  gem 'coveralls', require: false
   gem 'minitest-spec-rails'
 end
 
