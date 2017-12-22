@@ -4,6 +4,7 @@
     "autoprefixer": "^7.1.1",
     "axios": "^0.17.0",
     "babel-preset-react": "^6.24.1",
+    "js-nacl": "^1.2.2",
     "promise-queue": "^2.2.3",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
