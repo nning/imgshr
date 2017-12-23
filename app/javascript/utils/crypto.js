@@ -48,7 +48,9 @@ function fetchAndDecryptImages() {
 
     Axios.get(src, {responseType: 'arraybuffer'})
       .then((response) => {
-        decrypt(response.data)
+        decrypt(response.data, (decrypted) => {
+          img.src = 'data:image/jpeg;base64,' + btoa(decrypted)
+        })
       })
   })
 }
@@ -61,39 +63,29 @@ export function encrypt(file, callback) {
     naclFactory.instantiate((nacl) => {
       const [n, k] = getSecrets(nacl)
 
-      const encrypted = nacl.crypto_secretbox(reader.result, n, k)
-      console.log('encrypt', encrypted)
+      const encoded = nacl.encode_utf8(reader.result);
+      const encrypted = nacl.crypto_secretbox(encoded, n, k)
 
       if (typeof callback === 'function') callback(encrypted)
     })
   }
 }
 
-export function decrypt(data) {
+export function decrypt(data, callback) {
   naclFactory.instantiate((nacl) => {
     const [n, k] = getSecrets(nacl)
 
     const a = new Uint8Array(data)
     const decrypted = nacl.crypto_secretbox_open(a, n, k)
-    console.log('decrypt', decrypted)
+    const decoded = nacl.decode_utf8(decrypted)
 
-    return decrypted
+    if (typeof callback === 'function') callback(decoded)
   })
 }
 
 export function init() {
   naclFactory.instantiate((nacl) => {
     const [n, k] = getSecrets(nacl)
-
-    // const s = 'hello world'
-    //
-    // const m = nacl.encode_utf8(s)
-    // const c = nacl.crypto_secretbox(m, n, k)
-    //
-    // const d = nacl.crypto_secretbox_open(c, n, k)
-    // const m1 = nacl.decode_utf8(d)
-    //
-    // console.log(m1, s === m1);
 
     ReactDOM.render(<QRCode content={serializeSecrets(n, k)}/>,
     document.getElementById('client_encrypted_key'))

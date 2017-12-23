@@ -10,6 +10,7 @@
       default_src:  %w[https: 'self'],
       script_src:   %w[https: 'self' 'unsafe-eval'],
       style_src:    %w[https: 'self' 'unsafe-inline'],
+      img_src:      %w[https: 'self' data:],
       report_uri:   %w[/content_security_policy/forward_report]
     }
   else
@@ -18,6 +19,7 @@
       default_src:  %w['self' 0.0.0.0:3001 localhost:3001 localhost:3035],
       script_src:   %w['self' 0.0.0.0:3001 localhost:3001 localhost:3035 'unsafe-eval'],
       style_src:    %w['self' 'unsafe-inline'],
+      img_src:      %w['self' data:],
       report_uri:   %w[/content_security_policy/forward_report]
     }
   end
