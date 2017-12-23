@@ -19,7 +19,7 @@ class Picture < ApplicationRecord
   acts_as_taggable_on :tags, :labels
 
   validates_attachment_content_type :image,
-    content_type: /\A(image\/.*|text\/plain)\Z/
+    content_type: /\A(image\/.*|application\/octet-stream)\Z/
 
   # TODO Message currently not shown
   validates :image_fingerprint,
@@ -93,7 +93,7 @@ class Picture < ApplicationRecord
   def raw_label_list_hash
     JSON.parse(raw_label_list)
   end
-  
+
   def plain?
     !gallery.client_encrypted
   end

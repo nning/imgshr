@@ -3,6 +3,7 @@ import naclFactory from 'js-nacl'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import Axios from 'axios'
 import QRCode from '../components/QRCode.jsx'
 
 function serializeSecrets(n, k) {
@@ -44,7 +45,11 @@ function getSecrets(nacl) {
 function fetchAndDecryptImages() {
   $('img[data-encrypted-src]').each((_, img) => {
     const src = img.getAttribute('data-encrypted-src')
-    console.log(src)
+
+    Axios.get(src, {responseType: 'arraybuffer'})
+      .then((response) => {
+        decrypt(response.data)
+      })
   })
 }
 
@@ -56,13 +61,24 @@ export function encrypt(file, callback) {
     naclFactory.instantiate((nacl) => {
       const [n, k] = getSecrets(nacl)
 
-      let encrypted = nacl.crypto_secretbox(reader.result, n, k)
-      callback(encrypted)
+      const encrypted = nacl.crypto_secretbox(reader.result, n, k)
+      console.log('encrypt', encrypted)
+
+      if (typeof callback === 'function') callback(encrypted)
     })
   }
 }
 
-export function decrypt() {
+export function decrypt(data) {
+  naclFactory.instantiate((nacl) => {
+    const [n, k] = getSecrets(nacl)
+
+    const a = new Uint8Array(data)
+    const decrypted = nacl.crypto_secretbox_open(a, n, k)
+    console.log('decrypt', decrypted)
+
+    return decrypted
+  })
 }
 
 export function init() {
