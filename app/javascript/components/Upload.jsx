@@ -76,7 +76,6 @@ export default class Upload extends React.Component {
       },
       onUploadProgress: (e) => {
         file.progress = Math.round((e.loaded * 100) / e.total)
-        // this.forceUpdate()
 
         this.setState((prev) => {
           return {
@@ -87,28 +86,47 @@ export default class Upload extends React.Component {
     }
   }
 
-  upload(event) {
-    const files = this.state.selectedFiles
+  appendAndUpload(config, uploadFile) {
     const promises = []
     const queue = new PromiseQueue(2, Infinity)
 
-    this.setState({uploading: true})
+    const data = csrf.getFormData(this)
+    data.append('picture[image][]', uploadFile)
 
-    files.forEach((file) => {
-      const data = csrf.getFormData(this);
-      data.append('picture[image][]', file.obj)
-
-      const config = this.getRequestConfig(file)
-
-      promises.push(queue.add(() => {
-        return Axios.post(this.url, data, config)
-      }))
-    })
+    promises.push(queue.add(() => {
+      return Axios.post(this.url, data, config)
+    }))
 
     Promise.all(promises)
       .then(() => {
         window.location.reload()
       })
+  }
+
+  upload(event) {
+    const files = this.state.selectedFiles
+
+    this.setState({uploading: true})
+
+    files.forEach((file) => {
+      const config = this.getRequestConfig(file)
+
+      if (typeof imgshrCrypto === 'undefined') {
+        this.appendAndUpload(config, file.obj)
+        return
+      }
+
+      file.progress = 'encrypting...'
+      imgshrCrypto.encrypt(file.obj, (encrypted) => {
+        const encryptedFile = new File(
+          [new Blob(encrypted)],
+          file.obj.name + '.asc',
+          {type: 'application/octet-stream'}
+        )
+
+        this.appendAndUpload(config, encryptedFile)
+      })
+    })
   }
 
   isButtonDisabled() {

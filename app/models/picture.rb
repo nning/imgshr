@@ -18,7 +18,8 @@ class Picture < ApplicationRecord
 
   acts_as_taggable_on :tags, :labels
 
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :image,
+    content_type: /\A(image\/.*|text\/plain)\Z/
 
   # TODO Message currently not shown
   validates :image_fingerprint,
@@ -27,7 +28,7 @@ class Picture < ApplicationRecord
       message: 'Picture already exists in gallery!'
     }
 
-  after_image_post_process :set_height_and_width!
+  after_image_post_process :set_height_and_width!, if: :plain?
   after_image_post_process -> do
     set_exif_attributes
     set_order_date!
@@ -91,6 +92,10 @@ class Picture < ApplicationRecord
 
   def raw_label_list_hash
     JSON.parse(raw_label_list)
+  end
+  
+  def plain?
+    !gallery.client_encrypted
   end
 
   def self.filtered(params)
@@ -193,6 +198,8 @@ class Picture < ApplicationRecord
   end
 
   def set_height_and_width!
+    return if gallery.client_encrypted
+
     self.dimensions = {}
 
     hash = image.queued_for_write
