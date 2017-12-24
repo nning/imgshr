@@ -1,10 +1,20 @@
 .pictures-show, .pictures-gallery_show, .pictures-temp_link {
   .picture {
+    @media (min-width: 994px) { // @screen-l-min
+      .image img {
+        max-width: 850px;
+      }
+    }
+
     @media (max-width: 993px) { // @screen-md-max
       .image img {
         width: 100%;
       }
     }
+  }
+
+  .rating {
+    margin-top: 1em;
   }
 
   .metadata {

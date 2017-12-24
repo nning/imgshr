@@ -9,7 +9,7 @@ import {decode_utf8} from './encoding'
 let sodium;
 
 function getKey() {
-  const slug = document.getElementById('gallery').getAttribute('slug')
+  const slug = document.getElementById('gallery').getAttribute('data-slug')
   const item = slug + '_client_encrypted_key'
 
   let k = new Uint8Array(sodium.crypto_secretbox_KEYBYTES)
@@ -80,8 +80,13 @@ export function decrypt(data, callback) {
 export function init(_sodium) {
   sodium = _sodium
 
-  ReactDOM.render(<QRCode content={JSON.stringify(getKey())}/>,
-  document.getElementById('client_encrypted_key'))
+  const qrContainer = document.getElementById('client_encrypted_key')
+  if (qrContainer) {
+    const key = JSON.stringify(getKey())
+    const component = <QRCode content={key}/>
+
+    ReactDOM.render(component, qrContainer)
+  }
 
   fetchAndDecryptImages()
 }
