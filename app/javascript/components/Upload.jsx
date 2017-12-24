@@ -86,25 +86,21 @@ export default class Upload extends React.Component {
     }
   }
 
-  appendAndUpload(config, uploadFile) {
-    const promises = []
-    const queue = new PromiseQueue(2, Infinity)
-
+  getUploadFunction(config, uploadFile) {
     const data = csrf.getFormData(this)
     data.append('picture[image][]', uploadFile)
 
-    promises.push(queue.add(() => {
+    return () => {
       return Axios.post(this.url, data, config)
-    }))
-
-    Promise.all(promises)
-      .then(() => {
-        window.location.reload()
-      })
+    }
   }
 
   upload(event) {
     const files = this.state.selectedFiles
+    const promises = []
+    const queue = new PromiseQueue(2, Infinity)
+
+    const appendQueue = f => promises.push(queue.add(f))
 
     this.setState({uploading: true})
 
@@ -112,21 +108,29 @@ export default class Upload extends React.Component {
       const config = this.getRequestConfig(file)
 
       if (typeof imgshrCrypto === 'undefined') {
-        this.appendAndUpload(config, file.obj)
+        appendQueue(this.getUploadFunction(config, file.obj))
         return
       }
 
       file.progress = 'encrypting...'
-      imgshrCrypto.encrypt(file.obj, (encrypted) => {
-        const encryptedFile = new File(
-          [encrypted],
-          file.obj.name + '.bin',
-          {type: 'application/octet-stream'}
-        )
+      appendQueue(() => {
+        return new Promise((resolve) => {
+          imgshrCrypto.encrypt(file.obj, (encrypted) => {
+            const encryptedFile = new File(
+              [encrypted],
+              file.obj.name + '.bin',
+              {type: 'application/octet-stream'}
+            )
 
-        this.appendAndUpload(config, encryptedFile)
+            this.getUploadFunction(config, encryptedFile)()
+              .then(() => resolve())
+          })
+        })
       })
     })
+
+    Promise.all(promises)
+      .then(() => window.location.reload())
   }
 
   isButtonDisabled() {

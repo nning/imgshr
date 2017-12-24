@@ -28,7 +28,7 @@ function getKey() {
 }
 
 function fetchAndDecryptImages() {
-  $('img[data-encrypted-src]').each((_, img) => {
+  document.querySelectorAll('img[data-encrypted-src][src=""]').forEach((img) => {
     const src = img.getAttribute('data-encrypted-src')
 
     Axios.get(src, {responseType: 'arraybuffer'})
@@ -78,9 +78,7 @@ export function decrypt(data, callback) {
 export function init() {
   const qrContainer = document.getElementById('client_encrypted_key')
   if (qrContainer) {
-    const key = JSON.stringify(getKey())
-    const component = <QRCode content={key}/>
-
+    const component = <QRCode content={getKey()}/>
     ReactDOM.render(component, qrContainer)
   }
 
