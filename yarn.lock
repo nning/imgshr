@@ -3018,15 +3018,15 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-libsodium-wrappers@^0.7.2:
+libsodium-sumo@0.7.2:
   version "0.7.2"
-  resolved "https://registry.yarnpkg.com/libsodium-wrappers/-/libsodium-wrappers-0.7.2.tgz#d10c60f1698fee4c95c80921697b8e0490f996b0"
-  dependencies:
-    libsodium "0.7.2"
+  resolved "https://registry.yarnpkg.com/libsodium-sumo/-/libsodium-sumo-0.7.2.tgz#7aee8642cad53dabfac8ed19c42ebacb985a21ba"
 
-libsodium@0.7.2:
+libsodium-wrappers-sumo@^0.7.2:
   version "0.7.2"
-  resolved "https://registry.yarnpkg.com/libsodium/-/libsodium-0.7.2.tgz#aae809057f637b5c43eb08fa0445f987735df854"
+  resolved "https://registry.yarnpkg.com/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.2.tgz#a1ffe7e30f7132444a27d9232e618a94fa77a0c7"
+  dependencies:
+    libsodium-sumo "0.7.2"
 
 load-json-file@^1.0.0:
   version "1.1.0"

@@ -6,8 +6,6 @@ import QRCode from '../components/QRCode.jsx'
 
 import {decode_utf8} from './encoding'
 
-let sodium;
-
 function getKey() {
   const slug = document.getElementById('gallery').getAttribute('data-slug')
   const item = slug + '_client_encrypted_key'
@@ -77,9 +75,7 @@ export function decrypt(data, callback) {
   if (typeof callback === 'function') callback(decoded)
 }
 
-export function init(_sodium) {
-  sodium = _sodium
-
+export function init() {
   const qrContainer = document.getElementById('client_encrypted_key')
   if (qrContainer) {
     const key = JSON.stringify(getKey())
