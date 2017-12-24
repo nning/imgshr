@@ -2893,10 +2893,6 @@ js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.0.tgz#9e566fee624751a1d720c966cd6226d29d4025aa"
 
-js-nacl@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/js-nacl/-/js-nacl-1.2.2.tgz#c4633dbfa67dc62f6b73033e5118e564e5abb987"
-
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -3021,6 +3017,16 @@ lcid@^1.0.0:
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"
   dependencies:
     invert-kv "^1.0.0"
+
+libsodium-wrappers@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/libsodium-wrappers/-/libsodium-wrappers-0.7.2.tgz#d10c60f1698fee4c95c80921697b8e0490f996b0"
+  dependencies:
+    libsodium "0.7.2"
+
+libsodium@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/libsodium/-/libsodium-0.7.2.tgz#aae809057f637b5c43eb08fa0445f987735df854"
 
 load-json-file@^1.0.0:
   version "1.1.0"

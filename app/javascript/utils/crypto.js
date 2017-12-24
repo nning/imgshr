@@ -1,22 +1,22 @@
-import naclFactory from 'js-nacl'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Axios from 'axios'
 import QRCode from '../components/QRCode.jsx'
 
-const NONCE_LENGTH = 24
+import {decode_utf8} from './encoding'
 
-function getKey(nacl) {
+let sodium;
+
+function getKey() {
   const slug = document.getElementById('gallery').getAttribute('slug')
   const item = slug + '_client_encrypted_key'
 
-  let k = new Uint32Array(32)
+  let k = new Uint8Array(sodium.crypto_secretbox_KEYBYTES)
   let stored = localStorage.getItem(item)
 
   if (!stored) {
-    window.crypto.getRandomValues(k);
+    k = sodium.crypto_secretbox_keygen()
     localStorage.setItem(item, JSON.stringify(k))
   } else {
     const storedKey = JSON.parse(stored)
@@ -47,45 +47,41 @@ export function encrypt(file, callback) {
   reader.readAsBinaryString(file)
 
   reader.onload = () => {
-    naclFactory.instantiate((nacl) => {
-      const k = getKey(nacl)
-      const n = nacl.crypto_secretbox_random_nonce()
+    const k = getKey()
+    const n = sodium.randombytes_buf(sodium.crypto_secretbox_NONCEBYTES)
 
-      const encoded = nacl.encode_utf8(reader.result);
-      const encrypted = nacl.crypto_secretbox(encoded, n, k)
+    const encrypted = sodium.crypto_secretbox_easy(reader.result, n, k)
 
-      const nonceAndEncrypted = new Uint8Array(n.length + encrypted.length)
-      nonceAndEncrypted.set(n, 0)
-      nonceAndEncrypted.set(encrypted, NONCE_LENGTH)
+    const nonceAndEncrypted = new Uint8Array(n.length + encrypted.length)
+    nonceAndEncrypted.set(n, 0)
+    nonceAndEncrypted.set(encrypted, sodium.crypto_secretbox_NONCEBYTES)
 
-      if (typeof callback === 'function') callback(nonceAndEncrypted)
-    })
+    if (typeof callback === 'function') callback(nonceAndEncrypted)
   }
 }
 
 export function decrypt(data, callback) {
-  naclFactory.instantiate((nacl) => {
-    const k = getKey(nacl)
+  const NONCE_LENGTH = sodium.crypto_secretbox_NONCEBYTES
+  const k = getKey()
 
-    const m0 = new Uint8Array(data)
-    const m1 = new Uint8Array(m0.length - NONCE_LENGTH)
-    m1.set(m0.slice(NONCE_LENGTH), 0)
+  const m0 = new Uint8Array(data)
+  const m1 = new Uint8Array(m0.length - NONCE_LENGTH)
+  m1.set(m0.slice(NONCE_LENGTH), 0)
 
-    const n = new Uint8Array(NONCE_LENGTH)
-    n.set(m0.slice(0, NONCE_LENGTH), 0)
+  const n = new Uint8Array(NONCE_LENGTH)
+  n.set(m0.slice(0, NONCE_LENGTH), 0)
 
-    const decrypted = nacl.crypto_secretbox_open(m1, n, k)
-    const decoded = nacl.decode_utf8(decrypted)
+  const decrypted = sodium.crypto_secretbox_open_easy(m1, n, k)
+  const decoded = decode_utf8(decrypted)
 
-    if (typeof callback === 'function') callback(decoded)
-  })
+  if (typeof callback === 'function') callback(decoded)
 }
 
-export function init() {
-  naclFactory.instantiate((nacl) => {
-    ReactDOM.render(<QRCode content={JSON.stringify(getKey(nacl))}/>,
-    document.getElementById('client_encrypted_key'))
-  });
+export function init(_sodium) {
+  sodium = _sodium
+
+  ReactDOM.render(<QRCode content={JSON.stringify(getKey())}/>,
+  document.getElementById('client_encrypted_key'))
 
   fetchAndDecryptImages()
 }
