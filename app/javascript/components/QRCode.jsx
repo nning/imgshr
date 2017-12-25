@@ -4,8 +4,7 @@ import qrcode from 'qrcode'
 
 export default class QRCode extends React.Component {
   componentDidMount() {
-    const content = JSON.stringify(this.props.content)
-    qrcode.toCanvas(this.canvas, content, (err) => {
+    qrcode.toCanvas(this.canvas, this.props.content, (err) => {
       if (err) console.error(err)
     })
   }

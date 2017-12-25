@@ -112,9 +112,10 @@ export default class Upload extends React.Component {
         return
       }
 
-      file.progress = 'encrypting...'
       appendQueue(() => {
         return new Promise((resolve) => {
+          file.progress = 'encrypting...'
+
           imgshrCrypto.encrypt(file.obj, (encrypted) => {
             const encryptedFile = new File(
               [encrypted],

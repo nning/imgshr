@@ -77,8 +77,10 @@ export function decrypt(data, callback) {
 
 export function init() {
   const qrContainer = document.getElementById('client_encrypted_key')
+  const key = sodium.to_base64(getKey())
+
   if (qrContainer) {
-    const component = <QRCode content={getKey()}/>
+    const component = <QRCode content={key}/>
     ReactDOM.render(component, qrContainer)
   }
 
