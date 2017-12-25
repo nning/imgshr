@@ -113,6 +113,21 @@
                           = milestone.description
                       = timestamp_ago(milestone.time)
 
+          - if @gallery.pictures.empty?
+            %tr
+              %td Client Encrypted
+              %td
+                = react_component :AsyncCheckbox,
+                  { name: 'gallery[client_encrypted]',
+                    checked: @gallery.client_encrypted,
+                    uri: gallery_path(@gallery),
+                    reload: true }
+
+          - if @gallery.client_encrypted
+            %tr
+              %td Client Encrypted Key
+              %td#client_encrypted_key
+
           %tr
             %td QR Code
             %td

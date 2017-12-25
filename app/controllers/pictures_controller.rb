@@ -31,7 +31,7 @@ class PicturesController < ApplicationController
       begin
         @picture.update_attributes!({ image: image })
       rescue ActiveRecord::RecordInvalid
-        redirect_to gallery, flash: { error: "Unsupported file format: #{image.content_type}!" }
+        redirect_to gallery, flash: { error: @picture.errors.full_messages.join(', ') }
         return
       end
     end

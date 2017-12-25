@@ -18,6 +18,9 @@ export default class AsyncCheckbox extends React.Component {
     data.append(this.props.name, e.target.checked)
 
     Axios.put(this.props.uri, data)
+      .then(() => {
+        if (this.props.reload) window.location.reload()
+      })
   }
 
   render() {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_12_03_061736) do
+ActiveRecord::Schema.define(version: 2017_12_22_205817) do
 
   create_table "boss_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "slug", null: false, collation: "utf8_bin"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2017_12_03_061736) do
     t.boolean "ratings_enabled", default: true, null: false
     t.boolean "endless_page", default: true, null: false
     t.boolean "device_links_only", default: false
+    t.boolean "client_encrypted", default: false
     t.index ["slug"], name: "index_galleries_on_slug", unique: true
   end
 

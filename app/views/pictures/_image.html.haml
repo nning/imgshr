@@ -1,6 +1,13 @@
-= image_tag '',
-  data: { src: picture.image.url(:medium) },
-  title: picture,
-  alt: picture
+- if picture.plain?
+  = image_tag '',
+    data: { src: picture.image.url(:medium) },
+    title: picture,
+    alt: picture
+- else
+  = image_tag '',
+    data: { 'encrypted-src': picture.image.url },
+    title: picture,
+    alt: picture
+
 %noscript
   = image_tag picture.image.url(:medium), title: picture, alt: picture

@@ -1,0 +1,2 @@
+- if @gallery.client_encrypted && @gallery.pictures.empty?
+  = render partial: 'shared/flash_message', locals: {type: 'warning', partial: 'galleries/client_encrypted_message'}
