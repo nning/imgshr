@@ -95,7 +95,7 @@ class Picture < ApplicationRecord
   end
 
   def plain?
-    !gallery.client_encrypted
+    gallery && !gallery.client_encrypted
   end
 
   def self.filtered(params)
