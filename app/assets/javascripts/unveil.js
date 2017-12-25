@@ -2,10 +2,10 @@ function unveil() {
   $('img').unveil()
 }
 
-$(document).on('content:update', () => {
+$(document).on('content:update', function() {
   unveil()
 
-  $('body').on('shown.bs.modal', () => {
+  $('body').on('shown.bs.modal', function() {
     unveil()
   })
 })
