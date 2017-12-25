@@ -34,6 +34,10 @@ Features
 * Automatic labelling using self-hosted Convolutional Neural Network
   (Inception v3 model)
 * GitHub login for taking track of galleries and gallery administration
+* Device token authentication for galleries
+* Symmetric client-side encrypted galleries with sharable secret based on
+  libsodium (XSalsa20 for encryption, Poly1305 for authentication)
+)
 
 Development
 -----------
