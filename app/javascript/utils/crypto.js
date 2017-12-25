@@ -91,4 +91,5 @@ export function init() {
   }
 
   fetchAndDecryptImages()
+  $(document).on('content:update', fetchAndDecryptImages)
 }
