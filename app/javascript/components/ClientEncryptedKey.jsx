@@ -8,6 +8,8 @@ export default class ClientEncryptedKey extends React.Component {
 
     this.selectAllAndCopy = this.selectAllAndCopy.bind(this)
 
+    this.url = '#' + this.props.content
+
     this.state = {
       copiedStyle: {
         opacity: 0
@@ -35,8 +37,8 @@ export default class ClientEncryptedKey extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <a href={'#' + this.props.content}>
-            <QRCode content={this.props.content}/>
+          <a href={this.url}>
+            <QRCode content={this.url}/>
           </a>
         </div>
 

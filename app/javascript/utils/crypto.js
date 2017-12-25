@@ -14,10 +14,16 @@ function getKey() {
   let stored = localStorage.getItem(item)
 
   if (!stored) {
-    k = sodium.crypto_secretbox_keygen()
-    localStorage.setItem(item, JSON.stringify(k))
+    const hash = window.location.hash.slice(1)
+    if (hash === '') {
+      k = sodium.crypto_secretbox_keygen()
+    } else {
+      k = sodium.from_base64(hash)
+    }
+
+    localStorage.setItem(item, sodium.to_base64(k))
   } else {
-    const storedKey = JSON.parse(stored)
+    const storedKey = sodium.from_base64(stored)
 
     for (let i in storedKey) {
       if (storedKey.hasOwnProperty(i)) k[i] = storedKey[i]
