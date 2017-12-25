@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Axios from 'axios'
-import QRCode from '../components/QRCode.jsx'
+import ClientEncryptedKey from '../components/ClientEncryptedKey.jsx'
 
 import {decode_utf8} from './encoding'
 
@@ -76,12 +76,12 @@ export function decrypt(data, callback) {
 }
 
 export function init() {
-  const qrContainer = document.getElementById('client_encrypted_key')
+  const keyContainer = document.getElementById('client_encrypted_key')
   const key = sodium.to_base64(getKey())
 
-  if (qrContainer) {
-    const component = <QRCode content={key}/>
-    ReactDOM.render(component, qrContainer)
+  if (keyContainer) {
+    const component = <ClientEncryptedKey content={key}/>
+    ReactDOM.render(component, keyContainer)
   }
 
   fetchAndDecryptImages()
