@@ -125,11 +125,14 @@
 
           - if @gallery.client_encrypted
             %tr
-              %td Client Encryption Key
+              %td
+                Gallery URL
+                %br
+                %strong (with client encryption key)
               %td#client_encryption_key
           - else
             %tr
-              %td QR Code
+              %td Gallery URL
               %td= react_component :QRCode, { content: gallery_url(@gallery) }
 
 

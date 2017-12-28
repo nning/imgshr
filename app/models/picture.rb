@@ -21,12 +21,13 @@ class Picture < ApplicationRecord
   validates_attachment_content_type :image,
     content_type: /\A(image\/.*|application\/octet-stream)\Z/
 
-  # TODO Message currently not shown
   validates :image_fingerprint,
     uniqueness: {
       scope: :gallery_id,
       message: 'Picture already exists in gallery!'
     }
+
+  before_create :set_order_date!
 
   after_image_post_process :set_height_and_width!, if: :plain?
   after_image_post_process -> do
