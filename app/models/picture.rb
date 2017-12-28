@@ -19,7 +19,12 @@ class Picture < ApplicationRecord
   acts_as_taggable_on :tags, :labels
 
   validates_attachment_content_type :image,
-    content_type: /\A(image\/.*|application\/octet-stream)\Z/
+    content_type: /\Aimage\/.*\Z/,
+    if: :plain?
+
+  validates_attachment_content_type :image,
+    content_type: /\Aapplication\/octet-stream\Z/,
+    unless: :plain?
 
   validates :image_fingerprint,
     uniqueness: {
