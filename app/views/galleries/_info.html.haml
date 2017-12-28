@@ -115,7 +115,7 @@
 
           - if @gallery.pictures.empty?
             %tr
-              %td Client Encrypted
+              %td Client Encryption
               %td
                 = react_component :AsyncCheckbox,
                   { name: 'gallery[client_encrypted]',
@@ -125,22 +125,12 @@
 
           - if @gallery.client_encrypted
             %tr
-              %td Client Encrypted Key
-              %td#client_encrypted_key
-
-          %tr
-            %td QR Code
-            %td
-              = image_tag '',
-                data: { src: gallery_path(@gallery, format: :svg) },
-                class: 'qr-code',
-                title: 'QR',
-                alt: 'QR'
-              %noscript
-                = image_tag gallery_path(@gallery, format: :svg),
-                  class: 'qr-code',
-                  title: 'QR',
-                  alt: 'QR'
+              %td Client Encryption Key
+              %td#client_encryption_key
+          - else
+            %tr
+              %td QR Code
+              %td= react_component :QRCode, { content: gallery_url(@gallery) }
 
 
       .modal-footer

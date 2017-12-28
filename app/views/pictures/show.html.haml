@@ -1,5 +1,5 @@
 - if @picture.gallery.client_encrypted
-  = javascript_pack_tag 'crypto', async: true
+  = javascript_pack_tag 'client-encryption', async: true
 
 - content_for :title do
   = "\"#{@picture}\""
