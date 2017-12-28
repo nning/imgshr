@@ -3018,15 +3018,15 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-libsodium-sumo@0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/libsodium-sumo/-/libsodium-sumo-0.7.2.tgz#7aee8642cad53dabfac8ed19c42ebacb985a21ba"
+libsodium-sumo@0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/libsodium-sumo/-/libsodium-sumo-0.7.3.tgz#c38d99dc3b2c056870ca8f3ac8f1ecbb150ecbbf"
 
 libsodium-wrappers-sumo@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.2.tgz#a1ffe7e30f7132444a27d9232e618a94fa77a0c7"
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/libsodium-wrappers-sumo/-/libsodium-wrappers-sumo-0.7.3.tgz#eeb4fc93a9802c34558e0f2ec350295ba6246fc8"
   dependencies:
-    libsodium-sumo "0.7.2"
+    libsodium-sumo "0.7.3"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -4381,8 +4381,8 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
 qrcode@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/qrcode/-/qrcode-1.0.0.tgz#d10ca256f835480a528f5b934966e050ae3b1c70"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/qrcode/-/qrcode-1.1.0.tgz#193e6264b4b652a38c285c596fec875aad45e5b2"
   dependencies:
     dijkstrajs "^1.0.1"
     isarray "^2.0.1"

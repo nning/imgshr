@@ -49,3 +49,6 @@
 
 # IntelliJ config
 /.idea
+
+# simplecov/Coveralls
+/coverage
