@@ -3,6 +3,7 @@
   %td= best_in_place gallery, :name
   %td= gallery.pictures.count
   %td= icon :ok if gallery.read_only
+  %td= icon :ok if gallery.client_encrypted
   %td= gallery.visits
   %td
     - if gallery.boss_token
