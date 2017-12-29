@@ -7,5 +7,4 @@ crypto.sodiumReady((resolve, reject, sodium) => {
 })
 
 import '../components/crypto/ClientEncryptionKey.jsx'
-import '../components/crypto/EncryptedImage.jsx'
 import '../components/crypto/LazyEncryptedImage.jsx'

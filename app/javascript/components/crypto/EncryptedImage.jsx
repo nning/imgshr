@@ -1,19 +1,9 @@
 import React from 'react'
 
-import Axios from 'axios'
+import Placeholder from './Placeholder.jsx'
+
 import {decrypt} from '../../utils/crypto'
 
-
-class Placeholder extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div className="title">{this.props.title}</div>
-        <div>{this.props.status}</div>
-      </React.Fragment>
-    )
-  }
-}
 
 export default class EncryptedImage extends React.Component {
   constructor(props) {

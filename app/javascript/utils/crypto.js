@@ -1,5 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import sodium from 'libsodium-wrappers-sumo'
 
 import {decode_utf8} from './encoding'
