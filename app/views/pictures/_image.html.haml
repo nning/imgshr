@@ -4,7 +4,7 @@
     title: picture,
     alt: picture
 - else
-  = react_component :LazyEncryptedImage,
+  = react_component 'crypto/LazyEncryptedImage',
     { src: picture.image.url,
       title: picture.to_s }
 

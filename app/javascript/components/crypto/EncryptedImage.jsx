@@ -2,7 +2,7 @@ import React from 'react'
 
 import Axios from 'axios'
 
-import {decrypt} from '../utils/crypto'
+import {decrypt} from '../../utils/crypto'
 
 class Placeholder extends React.Component {
   render() {

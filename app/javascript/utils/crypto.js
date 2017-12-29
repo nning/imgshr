@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ClientEncryptionKey from '../components/ClientEncryptionKey.jsx'
+import ClientEncryptionKey from '../components/crypto/ClientEncryptionKey.jsx'
 
 import {decode_utf8} from './encoding'
 

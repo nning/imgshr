@@ -1,6 +1,6 @@
 import React from 'react'
 
-import QRCode from '../components/QRCode.jsx'
+import QRCode from '../QRCode.jsx'
 
 export default class ClientEncryptedKey extends React.Component {
   constructor(props) {
