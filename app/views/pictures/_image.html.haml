@@ -4,10 +4,9 @@
     title: picture,
     alt: picture
 - else
-  = image_tag '',
-    data: { 'encrypted-src': picture.image.url },
-    title: picture,
-    alt: picture
+  = react_component :LazyEncryptedImage,
+    { src: picture.image.url,
+      title: picture.to_s }
 
 %noscript
   = image_tag picture.image.url(:medium), title: picture, alt: picture

@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Axios from 'axios'
 import ClientEncryptionKey from '../components/ClientEncryptionKey.jsx'
 
 import {decode_utf8} from './encoding'
@@ -40,22 +39,7 @@ function getKey() {
     localStorage.setItem(item, sodium.to_base64(k))
   }
 
-  resetUrlHash()
-
   return k
-}
-
-function fetchAndDecryptImages() {
-  document.querySelectorAll('img[data-encrypted-src][src=""]').forEach((img) => {
-    const src = img.getAttribute('data-encrypted-src')
-
-    Axios.get(src, {responseType: 'arraybuffer'})
-      .then((response) => {
-        decrypt(response.data, (decrypted) => {
-          img.src = 'data:image/jpeg;base64,' + btoa(decrypted)
-        })
-      })
-  })
 }
 
 export function encrypt(file, callback) {
@@ -97,11 +81,10 @@ export function init() {
   const keyContainer = document.getElementById('client_encryption_key')
   const key = sodium.to_base64(getKey())
 
+  resetUrlHash()
+
   if (keyContainer) {
     const component = <ClientEncryptionKey content={key}/>
     ReactDOM.render(component, keyContainer)
   }
-
-  fetchAndDecryptImages()
-  $(document).on('content:update', fetchAndDecryptImages)
 }

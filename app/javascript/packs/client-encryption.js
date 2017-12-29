@@ -1,9 +1,9 @@
-import * as imgshrCrypto from '../utils/crypto'
+import * as crypto from '../utils/crypto'
 import sodium from 'libsodium-wrappers-sumo'
 
 sodium.ready.then(() => {
   window.sodium = sodium
-  window.imgshrCrypto = imgshrCrypto
+  window.imgshrCrypto = crypto
 
-  imgshrCrypto.init()
+  crypto.init()
 })
