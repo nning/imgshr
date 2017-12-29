@@ -1,7 +1,8 @@
 = javascript_pack_tag 'main'
 
 - if @gallery.client_encrypted
-  = javascript_pack_tag 'client-encryption', async: true
+  -# = javascript_pack_tag 'client-encryption', async: true
+  = javascript_pack_tag 'client-encryption'
 
 - boss_token = writable? ? @boss_token : nil
 #gallery{data: {slug: @gallery.slug, boss_token: boss_token}}

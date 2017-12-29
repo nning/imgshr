@@ -116,7 +116,7 @@ export default class Upload extends React.Component {
         return new Promise((resolve) => {
           file.progress = 'encrypting...'
 
-          imgshrCrypto.encrypt(file.obj, (encrypted) => {
+          imgshrCrypto.encrypt(file.obj).then((encrypted) => {
             const encryptedFile = new File(
               [encrypted],
               file.obj.name + '.bin',

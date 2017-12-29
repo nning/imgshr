@@ -1,12 +1,11 @@
-import ReactRailsUJS from 'react_ujs'
-import Sodium from '../utils/Sodium'
+import * as crypto from '../utils/crypto'
+crypto.resetUrlHash()
 
-const componentRequireContext = require.context('components/crypto', true)
-ReactRailsUJS.useContext(componentRequireContext)
-
-new Sodium().run((sodium, crypto) => {
+crypto.sodiumReady((resolve, reject, sodium) => {
   window.sodium = sodium
   window.imgshrCrypto = crypto
-
-  crypto.resetUrlHash()
 })
+
+import '../components/crypto/ClientEncryptionKey.jsx'
+import '../components/crypto/EncryptedImage.jsx'
+import '../components/crypto/LazyEncryptedImage.jsx'

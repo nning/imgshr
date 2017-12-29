@@ -1,7 +1,7 @@
 import React from 'react'
 
 import QRCode from '../QRCode.jsx'
-import Sodium from '../../utils/Sodium'
+import {getKeyBase64} from '../../utils/crypto'
 
 
 export default class ClientEncryptionKey extends React.Component {
@@ -20,11 +20,9 @@ export default class ClientEncryptionKey extends React.Component {
   }
 
   componentDidMount() {
-    new Sodium().run((sodium, crypto) => {
+    getKeyBase64().then((key) => {
       const url = window.location.href + '#' + key
-
-      const key = crypto.getKeyBase64(sodium)
-  	  this.setState({key: key, url: url})
+      this.setState({key: key, url: url})
     })
   }
 
