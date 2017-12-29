@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import ClientEncryptionKey from '../components/crypto/ClientEncryptionKey.jsx'
-
 import {decode_utf8} from './encoding'
 
-function resetUrlHash() {
+
+export function resetUrlHash() {
   const url = window.location.href
   const i = url.indexOf('#')
 
@@ -14,21 +13,21 @@ function resetUrlHash() {
   window.history.replaceState({}, null, url.slice(0, i))
 }
 
-function getKey() {
+export function getKey(_sodium = sodium) {
   const slug = document.getElementById('gallery').getAttribute('data-slug')
   const item = slug + '_client_encrypted_key'
 
   const stored = localStorage.getItem(item)
   const hash = window.location.hash.slice(1)
 
-  let k = new Uint8Array(sodium.crypto_secretbox_KEYBYTES)
+  let k = new Uint8Array(_sodium.crypto_secretbox_KEYBYTES)
 
   if (hash === '') {
     if (!stored) {
-      k = sodium.crypto_secretbox_keygen()
+      k = _sodium.crypto_secretbox_keygen()
       localStorage.setItem(item, sodium.to_base64(k))
     } else {
-      const storedKey = sodium.from_base64(stored)
+      const storedKey = _sodium.from_base64(stored)
 
       for (let i in storedKey) {
         if (storedKey.hasOwnProperty(i)) k[i] = storedKey[i]
@@ -36,10 +35,14 @@ function getKey() {
     }
   } else {
     k = sodium.from_base64(hash)
-    localStorage.setItem(item, sodium.to_base64(k))
+    localStorage.setItem(item, _sodium.to_base64(k))
   }
 
   return k
+}
+
+export function getKeyBase64(_sodium = sodium) {
+  return _sodium.to_base64(getKey(_sodium))
 }
 
 export function encrypt(file, callback) {
@@ -75,16 +78,4 @@ export function decrypt(data, callback) {
   const decoded = decode_utf8(decrypted)
 
   if (typeof callback === 'function') callback(decoded)
-}
-
-export function init() {
-  const keyContainer = document.getElementById('client_encryption_key')
-  const key = sodium.to_base64(getKey())
-
-  resetUrlHash()
-
-  if (keyContainer) {
-    const component = <ClientEncryptionKey content={key}/>
-    ReactDOM.render(component, keyContainer)
-  }
 }

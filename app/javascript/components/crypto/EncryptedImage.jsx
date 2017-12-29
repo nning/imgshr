@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Axios from 'axios'
+import Sodium from '../../utils/Sodium'
 
-import {decrypt} from '../../utils/crypto'
 
 class Placeholder extends React.Component {
   render() {
@@ -32,6 +32,7 @@ export default class EncryptedImage extends React.Component {
 
   error(status, err) {
     this.setState({status: status, error: err})
+    console.error(err)
   }
 
   fetchAndDecryptImage() {
@@ -41,10 +42,12 @@ export default class EncryptedImage extends React.Component {
 
         response.arrayBuffer()
           .then((body) => {
-            decrypt(body, (decrypted) => {
-              this.setState({
-                src: 'data:image/jpeg;base64,' + btoa(decrypted),
-                status: 'ready'
+            new Sodium().run((sodium, crypto) => {
+              crypto.decrypt(body, (decrypted) => {
+                this.setState({
+                  src: 'data:image/jpeg;base64,' + btoa(decrypted),
+                  status: 'ready'
+                })
               })
             })
           })
