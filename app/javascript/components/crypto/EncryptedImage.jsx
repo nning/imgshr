@@ -8,7 +8,8 @@ class Placeholder extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.status}
+        <div className="status">{this.props.status}</div>
+        <div>{this.props.title}</div>
       </React.Fragment>
     )
   }
@@ -64,7 +65,11 @@ export default class EncryptedImage extends React.Component {
         alt={this.props.title}
         />
     ) : (
-      <Placeholder status={this.state.status} error={this.state.error}/>
+      <Placeholder
+        status={this.state.status}
+        title={this.props.title}
+        error={this.state.error}
+        />
     )
   }
 }
