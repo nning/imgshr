@@ -1,18 +1,17 @@
-.empty-gallery-hint
-  %p
-    - if any_filters?
-      No matching pictures found.
+.empty-gallery-hint.col-xs-12
+  - if any_filters?
+    %p No matching pictures found.
 
+    %p
+      = link_to gallery_path(@gallery), class: 'btn' do
+        = icon :asterisk
+        Show all pictures!
+
+  - else
+    %p There are no pictures, yet.
+
+    - if writable?
       %p
-        = link_to gallery_path(@gallery), class: 'btn' do
-          = icon :asterisk
-          Show all pictures!
-      
-    - else
-      There are no pictures, yet.
-
-      - if writable?
-        %p
-          = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
-            = icon :upload
-            Upload pictures now!
+        = link_to '#', class: 'btn', data: {toggle: 'modal', target: '#upload'} do
+          = icon :upload
+          Upload pictures now!
