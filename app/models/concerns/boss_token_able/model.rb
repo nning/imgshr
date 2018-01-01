@@ -3,9 +3,9 @@ module BossTokenAble::Model
     base.class_eval do
       has_one :boss_token
       base.extend BossTokenAble::Model
-      
+
       after_initialize do
-        self.boss_token ||= BossToken.create! if new_record?
+        self.boss_token ||= BossToken.new if new_record?
       end
     end
   end
