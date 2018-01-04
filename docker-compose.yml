@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   mariadb:
-    image: mariadb:10.2.8
+    image: mariadb:10
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWD}'
     volumes:
@@ -30,11 +30,19 @@ services:
       DATABASE_URL: mysql2://root:$MYSQL_ROOT_PASSWD@$MYSQL_HOST:3306/imgshr?encoding=utf8&pool=5&timeout=5000
       REDIS_PROVIDER: REDIS_URL
       REDIS_URL: redis://redis:6379
+      WEBPACKER_DEV_SERVER_HOST: webpacker
 
   sidekiq:
     <<: *rails
     command: bundle exec sidekiq
     ports: []
+
+  webpacker:
+    <<: *rails
+    command: webpack-dev-server
+    ports: []
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpacker
 
 volumes:
   db:
