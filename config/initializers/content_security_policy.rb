@@ -8,14 +8,14 @@ Rails.application.config.content_security_policy do |p|
     p.font_src    :self, :https, :data
     p.img_src     :self, :https, :data
     p.object_src  :none
-    p.script_src  :self, :https
+    p.script_src  :self, :https, :unsafe_eval
     p.style_src   :self, :https, :unsafe_inline
   else
     p.default_src :self, :http
     p.font_src    :self, :http, :data
     p.img_src     :self, :http, :data
     p.object_src  :none
-    p.script_src  :self, :http
+    p.script_src  :self, :http, :unsafe_eval
     p.style_src   :self, :http, :unsafe_inline
   end
 
