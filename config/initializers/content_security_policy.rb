@@ -6,10 +6,10 @@ Rails.application.config.content_security_policy do |p|
   if Rails.env.production?
     p.default_src :self, :https
     p.font_src    :self, :https, :data
-    p.img_src     :self, :https, :data
+    p.img_src     :self, :https, :data          # data: client encryption
     p.object_src  :none
-    p.script_src  :self, :https, :unsafe_eval
-    p.style_src   :self, :https, :unsafe_inline
+    p.script_src  :self, :https, :unsafe_eval   # unsafe_eval: endless scrolling
+    p.style_src   :self, :https, :unsafe_inline # unsafe_inline: ratings
   else
     p.default_src :self, :http
     p.font_src    :self, :http, :data
