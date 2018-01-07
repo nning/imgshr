@@ -9,6 +9,7 @@ module GalleriesHelper
       tags: params[:tags],
       since: params[:since],
       until: params[:until],
+      sort_by: params[:sort_by],
       min_rating: params[:min_rating],
       max_rating: params[:max_rating]
     }
