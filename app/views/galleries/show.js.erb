@@ -1,9 +1,18 @@
 var grid = $('#picture_grid');
+var pictures = [];
 
 <% @pictures.each do |picture| %>
-  grid.append('<%= j render picture %>');
+  var picture = $('<%= j render picture %>');
+  grid.append(picture);
+  pictures.push(picture);
 <% end %>
 
 $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
 $(document).trigger('content:update');
+
+if (typeof ReactRailsUJS !== 'undefined') {
+  pictures.forEach(function (picture) {
+    ReactRailsUJS.mountComponents(picture);
+  });
+}
