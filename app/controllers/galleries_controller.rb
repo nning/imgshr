@@ -92,7 +92,7 @@ class GalleriesController < ApplicationController
       end
 
       format.atom do
-        @feed_pictures = gallery.pictures.order('created_at desc').limit(15)
+        @feed_pictures = gallery.pictures.order('created_at desc').limit(50)
         render layout: false
       end
 
