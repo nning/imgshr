@@ -7,38 +7,36 @@ gem 'rails', '~> 5.2.0.beta2'
 
 gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'autoprefixer-rails'
-gem 'best_in_place', '~> 3.1'
-gem 'bootsnap'
-gem 'bootstrap-sass', '~> 3.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'best_in_place'
+gem 'bootsnap', require: false
+gem 'bootstrap-sass'
+gem 'coffee-rails'
 gem 'config'
 gem 'delayed_paperclip'
 gem 'dotiw'
 gem 'exifr'
 gem 'hamlit'
 gem 'image_optim_pack'
-gem 'jbuilder', '~> 2.5'
+gem 'jbuilder'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'local_time'
-gem 'mail', '~> 2.7.0.rc1'
+gem 'mail'
 gem 'mysql2'
 gem 'omniauth-github'
 gem 'paperclip-optimizer'
-gem 'paperclip', '~> 5.1.0'
-# gem 'pg'
-gem 'puma', '~> 3.7'
-gem 'react-rails'
+gem 'paperclip'
+gem 'puma'
 gem 'rack-protection'
-gem 'responders', '~> 2.0'
+gem 'react-rails'
+gem 'responders'
 gem 'rqrcode'
 gem 'secure_headers'
-gem 'sidekiq', '~> 5.0.0'
+gem 'sidekiq'
 gem 'sinatra'
-# gem 'therubyracer'
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '~> 3.2'
+gem 'turbolinks'
+gem 'uglifier'
 gem 'webpacker'
 gem 'yaml_db'
 
@@ -46,11 +44,12 @@ group :development do
   # gem 'better_errors'
   # gem 'binding_of_caller'
   # gem 'bullet'
+
   gem 'foreman'
   gem 'listen'
-  gem 'web-console'
+  gem 'spring-watcher-listen'
   gem 'spring'
-  gem 'sqlite3'
+  gem 'web-console'
 end
 
 group :production do
@@ -58,11 +57,12 @@ group :production do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
   gem 'capybara_minitest_spec'
+  gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
+  gem 'selenium-webdriver'
 end
 
 source 'https://rails-assets.org' do
