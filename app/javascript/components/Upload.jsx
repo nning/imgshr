@@ -10,50 +10,16 @@ import UploadList from './UploadList.jsx'
 import csrf from '../utils/csrf'
 
 export default class Upload extends React.Component {
-  constructor(props) {
-    super(props)
+  url = ''
 
-    this.isButtonDisabled = this.isButtonDisabled.bind(this)
-    this.handleFiles = this.handleFiles.bind(this)
-    this.upload = this.upload.bind(this)
-
-    this.url = ''
-
-    this.state = {
-      selectedFiles: [],
-      uploading: false,
-      totalProgress: 0
-    }
+  state = {
+    selectedFiles: [],
+    uploading: false,
+    totalProgress: 0
   }
 
-  removeFile(i) {
-    this.setState((prev) => {
-      const files = prev.selectedFiles
-        .filter((_, k) => k !== i)
-        .map((file) => file.obj)
 
-      return {
-        selectedFiles: this.filesWithStatus(files)
-      }
-    })
-  }
-
-  filesWithStatus(files) {
-    let filesWithStatus = []
-
-    files.forEach((file, i) => {
-      filesWithStatus.push({
-        obj: file,
-        progress: 0,
-        error: null,
-        remove: () => this.removeFile(i)
-      })
-    })
-
-    return filesWithStatus
-  }
-
-  handleFiles(event) {
+  handleFiles = (event) => {
     const files = Array.from(event.target.files)
 
     this.setState({
@@ -61,41 +27,11 @@ export default class Upload extends React.Component {
     })
   }
 
-  totalProgress(files) {
-    const progress = files
-      .map((file) => file.progress)
-      .reduce((a, b) => a + b, 0)
-
-    return parseInt((progress / (files.length * 100)) * 100)
+  isButtonDisabled = () => {
+    return !this.state.selectedFiles.length || this.state.uploading
   }
 
-  getRequestConfig(file) {
-    return {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      onUploadProgress: (e) => {
-        file.progress = Math.round((e.loaded * 100) / e.total)
-
-        this.setState((prev) => {
-          return {
-            totalProgress: this.totalProgress(prev.selectedFiles)
-          }
-        })
-      }
-    }
-  }
-
-  getUploadFunction(config, uploadFile) {
-    const data = csrf.getFormData(this)
-    data.append('picture[image][]', uploadFile)
-
-    return () => {
-      return Axios.post(this.url, data, config)
-    }
-  }
-
-  upload(event) {
+  upload = (event) => {
     const files = this.state.selectedFiles
     const promises = []
     const queue = new PromiseQueue(2, Infinity)
@@ -134,8 +70,66 @@ export default class Upload extends React.Component {
       .then(() => window.location.reload())
   }
 
-  isButtonDisabled() {
-    return !this.state.selectedFiles.length || this.state.uploading
+
+  filesWithStatus(files) {
+    let filesWithStatus = []
+
+    files.forEach((file, i) => {
+      filesWithStatus.push({
+        obj: file,
+        progress: 0,
+        error: null,
+        remove: () => this.removeFile(i)
+      })
+    })
+
+    return filesWithStatus
+  }
+
+  getRequestConfig(file) {
+    return {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      onUploadProgress: (e) => {
+        file.progress = Math.round((e.loaded * 100) / e.total)
+
+        this.setState((prev) => {
+          return {
+            totalProgress: this.totalProgress(prev.selectedFiles)
+          }
+        })
+      }
+    }
+  }
+
+  getUploadFunction(config, uploadFile) {
+    const data = csrf.getFormData(this)
+    data.append('picture[image][]', uploadFile)
+
+    return () => {
+      return Axios.post(this.url, data, config)
+    }
+  }
+
+  removeFile(i) {
+    this.setState((prev) => {
+      const files = prev.selectedFiles
+        .filter((_, k) => k !== i)
+        .map((file) => file.obj)
+
+      return {
+        selectedFiles: this.filesWithStatus(files)
+      }
+    })
+  }
+
+  totalProgress(files) {
+    const progress = files
+    .map((file) => file.progress)
+    .reduce((a, b) => a + b, 0)
+
+    return parseInt((progress / (files.length * 100)) * 100)
   }
 
   uploadButtonClasses() {
@@ -144,6 +138,7 @@ export default class Upload extends React.Component {
 
     return classes
   }
+
 
   render() {
     return (

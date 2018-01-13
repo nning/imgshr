@@ -7,13 +7,7 @@ import csrf from '../utils/csrf'
 
 
 export default class AsyncCheckbox extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange(e) {
+  onChange = (e) => {
     const data = csrf.getFormData(this)
     data.append(this.props.name, e.target.checked)
 

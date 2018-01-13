@@ -5,28 +5,15 @@ import {getKeyBase64} from '../../utils/crypto'
 
 
 export default class ClientEncryptionKey extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.selectAllAndCopy = this.selectAllAndCopy.bind(this)
-
-    this.state = {
-      key: '',
-      url: window.location.href,
-      copiedStyle: {
-        opacity: 0
-      }
+  state = {
+    key: '',
+    url: window.location.href,
+    copiedStyle: {
+      opacity: 0
     }
   }
 
-  componentDidMount() {
-    getKeyBase64().then((key) => {
-      const url = window.location.href + '#' + key
-      this.setState({key: key, url: url})
-    })
-  }
-
-  selectAllAndCopy(e) {
+  selectAllAndCopy = (e) => {
     const input = e.target
 
     input.focus()
@@ -39,6 +26,13 @@ export default class ClientEncryptionKey extends React.Component {
         opacity: 1,
         marginLeft: '1em'
       }
+    })
+  }
+
+  componentDidMount() {
+    getKeyBase64().then((key) => {
+      const url = window.location.href + '#' + key
+      this.setState({key: key, url: url})
     })
   }
 

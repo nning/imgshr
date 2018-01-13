@@ -6,14 +6,10 @@ import {decrypt} from '../../utils/crypto'
 
 
 export default class EncryptedImage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      src: '',
-      status: 'fetching',
-      error: null
-    }
+  state = {
+    src: '',
+    status: 'fetching',
+    error: null
   }
 
   componentDidMount() {
