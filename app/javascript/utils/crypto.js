@@ -3,7 +3,7 @@ import sodium from 'libsodium-wrappers-sumo'
 import {decode_utf8} from './encoding'
 
 
-export function resetUrlHash() {
+function resetUrlHash() {
   const url = window.location.href
   const i = url.indexOf('#')
 
@@ -36,6 +36,8 @@ export function getKey() {
     } else {
       k = sodium.from_base64(hash)
       localStorage.setItem(item, sodium.to_base64(k))
+
+      resetUrlHash()
     }
 
     resolve(k)
