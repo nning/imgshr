@@ -257,7 +257,7 @@ GEM
       paperclip (>= 3.4)
     progress (3.4.0)
     public_suffix (3.0.1)
-    puma (3.11.0)
+    puma (3.11.1)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
