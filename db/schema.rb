@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2017_12_22_205817) do
     t.integer "iso_speed"
     t.integer "flash"
     t.text "dimensions"
-    t.timestamp "order_date"
+    t.datetime "order_date"
     t.integer "ratings_count"
     t.boolean "image_processing"
     t.text "raw_label_list"

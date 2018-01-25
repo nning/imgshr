@@ -52,3 +52,5 @@
 
 # simplecov/Coveralls
 /coverage
+
+/yarn-error.log

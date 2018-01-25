@@ -1,11 +1,11 @@
-import React from 'react'
+import {Component} from 'react'
 
 import fileSize from '../utils/filesize'
 
-import Icon from './Icon.jsx'
-import UploadFileActions from './UploadFileActions.jsx'
+import Icon from './Icon'
+import UploadFileActions from './UploadFileActions'
 
-export default class UploadFile extends React.Component {
+export default class UploadFile extends Component {
   render() {
     let progress = parseInt(this.props.file.progress)
     progress = progress ? `${progress}%` : this.props.file.progress
