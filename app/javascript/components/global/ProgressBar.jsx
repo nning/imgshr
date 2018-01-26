@@ -1,6 +1,6 @@
 import React from 'react'
 
-import fileSize from '../utils/filesize'
+import fileSize from '../../utils/filesize'
 
 export default class ProgressBar extends React.Component {
   render() {

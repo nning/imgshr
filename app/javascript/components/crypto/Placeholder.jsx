@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Icon from '../Icon'
+import Icon from '../global/Icon'
 
 
 const ICON_MAP = {

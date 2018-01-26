@@ -6,7 +6,7 @@ import Icon from './Icon'
 import ProgressBar from './ProgressBar'
 import UploadList from './UploadList'
 
-import csrf from '../utils/csrf'
+import csrf from '../../utils/csrf'
 
 export default class Upload extends React.Component {
   url = ''

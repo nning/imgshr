@@ -1,6 +1,6 @@
 import React from 'react'
 
-import csrf from '../utils/csrf'
+import csrf from '../../utils/csrf'
 
 
 export default class AsyncCheckbox extends React.Component {
