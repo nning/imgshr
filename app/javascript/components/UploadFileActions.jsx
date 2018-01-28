@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Icon from './Icon.jsx'
+import Icon from './Icon'
 
 export default class UploadFileAction extends React.Component {
   render() {

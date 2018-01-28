@@ -3,9 +3,9 @@ import React from 'react'
 import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
 
-import Icon from './Icon.jsx'
-import ProgressBar from './ProgressBar.jsx'
-import UploadList from './UploadList.jsx'
+import Icon from './Icon'
+import ProgressBar from './ProgressBar'
+import UploadList from './UploadList'
 
 import csrf from '../utils/csrf'
 

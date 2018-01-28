@@ -2,8 +2,8 @@ import React from 'react'
 
 import fileSize from '../utils/filesize'
 
-import Icon from './Icon.jsx'
-import UploadFileActions from './UploadFileActions.jsx'
+import Icon from './Icon'
+import UploadFileActions from './UploadFileActions'
 
 export default class UploadFile extends React.Component {
   render() {

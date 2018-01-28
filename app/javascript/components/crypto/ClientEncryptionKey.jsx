@@ -1,6 +1,6 @@
 import React from 'react'
 
-import QRCode from '../QRCode.jsx'
+import QRCode from '../QRCode'
 import {getKeyBase64} from '../../utils/crypto'
 
 

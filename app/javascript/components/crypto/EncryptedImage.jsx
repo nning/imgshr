@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Placeholder from './Placeholder.jsx'
+import Placeholder from './Placeholder'
 
 import {decrypt} from '../../utils/crypto'
 
