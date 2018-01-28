@@ -1,8 +1,8 @@
-import {Component} from 'react'
+import React from 'react'
 
 import Icon from './Icon'
 
-export default class UploadFileAction extends Component {
+export default class UploadFileAction extends React.Component {
   render() {
     return (
       <div className="upload__file__actions">
