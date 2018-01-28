@@ -1,10 +1,11 @@
 import React from 'react'
 
+import Axios from 'axios'
 import PromiseQueue from 'promise-queue'
 
-import Icon from './Icon'
-import ProgressBar from './ProgressBar'
-import UploadList from './UploadList'
+import Icon from './Icon.jsx'
+import ProgressBar from './ProgressBar.jsx'
+import UploadList from './UploadList.jsx'
 
 import csrf from '../utils/csrf'
 
@@ -107,18 +108,7 @@ export default class Upload extends React.Component {
     data.append('picture[image][]', uploadFile)
 
     return () => {
-      return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest()
-        xhr.open('POST', this.url)
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            resolve()
-          } else {
-            reject()
-          }
-        }
-        xhr.send(data)
-      })
+      return Axios.post(this.url, data, config)
     }
   }
 

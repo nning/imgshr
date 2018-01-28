@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Icon from './Icon'
+import Icon from './Icon.jsx'
 import ScrollToTop from 'react-scroll-up'
 
 export default class ScrollToTopButton extends React.Component {

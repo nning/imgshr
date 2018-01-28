@@ -5,5 +5,5 @@ crypto.sodiumReady((resolve, reject, sodium) => {
   window.imgshrCrypto = crypto
 })
 
-import '../components/crypto/ClientEncryptionKey'
-import '../components/crypto/LazyEncryptedImage'
+import '../components/crypto/ClientEncryptionKey.jsx'
+import '../components/crypto/LazyEncryptedImage.jsx'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UploadFile from './UploadFile'
+import UploadFile from './UploadFile.jsx'
 
 export default class UploadList extends React.Component {
   render() {
