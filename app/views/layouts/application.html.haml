@@ -18,6 +18,8 @@
       data_turbolinks_track: true,
       integrity: true
 
+    = render partial: 'shared/icons'
+
     = yield :auto_discovery
 
   %body{class: controller_class}

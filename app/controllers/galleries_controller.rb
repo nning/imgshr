@@ -102,7 +102,10 @@ class GalleriesController < ApplicationController
       end
 
       format.json do
-        render json: gallery, except: [:id, :slug]
+        h = gallery.attributes.merge(icons: Settings.icons.map(&:to_h))
+        h[:name] ||= gallery.to_s
+
+        render json: h, except: %w[id slug]
       end
     end
   end

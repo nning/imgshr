@@ -20,3 +20,23 @@ authentication:
 #   threshold: 0.09
 
 # disable_gallery_creation: true
+
+icons:
+  - sizes: 48x48
+    src: /images/touch/48x48.png
+    type: text/png
+  - sizes: 72x72
+    src: /images/touch/72x72.png
+    type: text/png
+  - sizes: 96x96
+    src: /images/touch/96x96.png
+    type: text/png
+  - sizes: 144x144
+    src: /images/touch/144x144.png
+    type: text/png
+  - sizes: 168x168
+    src: /images/touch/168x168.png
+    type: text/png
+  - sizes: 192x192
+    src: /images/touch/192x192.png
+    type: text/png
