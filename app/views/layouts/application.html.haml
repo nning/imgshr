@@ -7,10 +7,16 @@
     %meta{charset: 'utf-8'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
 
-    = stylesheet_link_tag 'application', media: :all, data: { turbolinks_track: true, turbolinks_eval: false }
+    = stylesheet_link_tag 'application',
+      media: :all,
+      data: { turbolinks_track: true, turbolinks_eval: false },
+      integrity: true
+
     = csrf_meta_tag
 
-    = javascript_include_tag 'application', data_turbolinks_track: true
+    = javascript_include_tag 'application',
+      data_turbolinks_track: true,
+      integrity: true
 
     = yield :auto_discovery
 
