@@ -369,7 +369,7 @@ GEM
     uglifier (4.1.9)
       execjs (>= 0.3.0, < 3)
     useragent (0.16.10)
-    web-console (3.6.0)
+    web-console (3.6.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
