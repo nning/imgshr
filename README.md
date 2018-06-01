@@ -2,7 +2,6 @@ IMGSHR
 ======
 
 [![Build Status](https://img.shields.io/travis/nning/imgshr/master.svg)](https://travis-ci.org/nning/imgshr)
-[![Dependency Status](https://img.shields.io/gemnasium/nning/imgshr.svg)](https://gemnasium.com/nning/imgshr)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
 [![Coverage](https://img.shields.io/coveralls/nning/imgshr/master.svg)](https://coveralls.io/r/nning/imgshr)
 
