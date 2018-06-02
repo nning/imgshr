@@ -56,7 +56,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (8.5.2)
+    autoprefixer-rails (8.6.0)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
