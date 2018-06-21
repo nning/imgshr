@@ -114,7 +114,7 @@ GEM
       activejob (>= 4.2)
       paperclip (>= 3.3)
     docile (1.1.5)
-    dotiw (4.0.0)
+    dotiw (4.0.1)
       actionpack (>= 4)
       i18n
     dry-configurable (0.7.0)
