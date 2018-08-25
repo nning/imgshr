@@ -31,9 +31,14 @@ class ActionDispatch::IntegrationTest
   end
 end
 
-
 def emsi
   f = open(Rails.root.join('public', 'images', 'emsi.png'))
+  f.seek(0)
+  f
+end
+
+def avenger
+  f = open(Rails.root.join('test', 'fixtures', 'avenger.jpg'))
   f.seek(0)
   f
 end

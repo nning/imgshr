@@ -5,7 +5,7 @@ module TimestampHelper
 
     content_tag(:span, attrs) do
       content_tag(:span, class: klass) do
-        time.iso8601
+        time
       end
     end
   end

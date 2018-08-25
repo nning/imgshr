@@ -39,10 +39,11 @@
       %tr
         %td  Average rating
         %td= picture.average_rating
-    - if picture.dimensions?
+    - if picture.width?
       %tr
         %td  Original width
         %td= picture.width
+    - if picture.height?
       %tr
         %td  Original height
         %td= picture.height
