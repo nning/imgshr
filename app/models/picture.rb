@@ -6,6 +6,8 @@ class Picture < ApplicationRecord
 
   serialize :dimensions
 
+  has_one_attached :image_file
+
   has_attached_file :image,
     styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',

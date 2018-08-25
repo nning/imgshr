@@ -1,4 +1,6 @@
 class FileRelease < ApplicationRecord
+  has_one_attached :download
+
   has_attached_file :file,
     url: '/system/:class/:id/:filename'
 
