@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_25_105800) do
+ActiveRecord::Schema.define(version: 2018_08_25_130900) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 2018_08_25_105800) do
   create_table "file_releases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "file_file_name"
     t.string "file_content_type"
-    t.integer "file_file_size"
+    t.bigint "file_file_size"
     t.datetime "file_updated_at"
-    t.string "file_fingerprint", null: false
+    t.string "file_fingerprint"
     t.string "version"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2018_08_25_105800) do
     t.integer "gallery_id", null: false
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
-    t.string "image_fingerprint", null: false
+    t.string "image_fingerprint"
     t.string "title"
     t.datetime "photographed_at"
     t.datetime "created_at"

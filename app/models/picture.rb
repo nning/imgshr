@@ -20,13 +20,29 @@ class Picture < ApplicationRecord
 
   acts_as_taggable_on :tags, :labels
 
-  validates_attachment_content_type :image,
-    content_type: /\Aimage\/.*\Z/,
-    if: :plain?
+  class ImageValidator < ActiveModel::Validator
+    def validate(record)
+      unless record.image_file.attached?
+        record.errors[:base] << 'Image missing'
+        return
+      end
 
-  validates_attachment_content_type :image,
-    content_type: /\Aapplication\/octet-stream\Z/,
-    unless: :plain?
+      if record.plain?
+        if !record.image_file.blob.content_type.starts_with?('image/')
+          record.image_file.purge
+          errors[:base] << 'Wrong image format'
+        end
+      else
+        if record.image_file.blob.content_type != 'application/octet-stream'
+          record.image_file.purge
+          errors[:base] << 'Wrong image format'
+        end
+      end
+    end
+  end
+
+  include ActiveModel::Validations
+  validates_with ImageValidator
 
   validates :image_fingerprint,
     uniqueness: {
@@ -35,6 +51,7 @@ class Picture < ApplicationRecord
     }
 
   before_create :set_order_date!
+  after_create :set_image_fingerprint!
 
   after_image_post_process :set_height_and_width!, if: :plain?
   after_image_post_process -> do
@@ -89,7 +106,10 @@ class Picture < ApplicationRecord
   end
 
   def label_image!
-    process = LabelImage::Process.new(self.image.path(:medium))
+    ds = ActiveStorage::Service::DiskService.new(root: Rails.root.join('storage'))
+    path = ds.send(:path_for, self.image.blob.key)
+
+    process = LabelImage::Process.new(path)
     raw_label_list = process.run!
 
     self.raw_label_list = raw_label_list.to_json
@@ -240,6 +260,11 @@ class Picture < ApplicationRecord
     end
 
     true
+  end
+
+  def set_image_fingerprint!
+    update_attributes! \
+      image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
   end
 
   def enqueue_label_job

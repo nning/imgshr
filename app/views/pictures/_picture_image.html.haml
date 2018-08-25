@@ -2,5 +2,5 @@
   - if temp_link?
     = render 'pictures/image', picture: picture
   - else
-    = link_to picture.image.url do
+    = link_to picture.image_file do
       - render 'pictures/image', picture: picture

@@ -123,7 +123,7 @@ namespace :active_storage do
             FileUtils.mkdir_p(dest_dir)
             next if File.exists?(dest)
 
-            puts "Moving #{source} to #{dest}"
+            puts "#{source} -> #{dest}"
             FileUtils.cp(source, dest)
           end
         end

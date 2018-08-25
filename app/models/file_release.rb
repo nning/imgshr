@@ -8,6 +8,6 @@ class FileRelease < ApplicationRecord
   do_not_validate_attachment_file_type :file
 
   def to_s
-    file.original_filename
+    download.filename.to_s
   end
 end
