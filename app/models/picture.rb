@@ -12,12 +12,7 @@ class Picture < ApplicationRecord
   has_attached_file :image,
     styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
-    hash_secret: Rails.application.secrets[:secret_key_base],
-    processors: [:thumbnail, :paperclip_optimizer]
-
-  if !::Settings.foreground_processing
-    process_in_background :image, processing_image_url: '/images/missing/:style.png'
-  end
+    hash_secret: Rails.application.secrets[:secret_key_base]
 
   acts_as_taggable_on :tags, :labels
 
