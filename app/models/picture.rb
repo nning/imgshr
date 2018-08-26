@@ -75,7 +75,7 @@ class Picture < ApplicationRecord
 
   def label_image!
     ds = ActiveStorage::Service::DiskService.new(root: Rails.root.join('storage'))
-    path = ds.send(:path_for, self.image.blob.key)
+    path = ds.send(:path_for, self.image_file.blob.key)
 
     process = LabelImage::Process.new(path)
     raw_label_list = process.run!
@@ -92,14 +92,6 @@ class Picture < ApplicationRecord
 
   def plain?
     gallery && !gallery.client_encrypted
-  end
-
-  def photographed_at
-    image_file.metadata[:photographed_at]
-  end
-
-  def photographed_at?
-    !!photographed_at
   end
 
   def self.filtered(params)
