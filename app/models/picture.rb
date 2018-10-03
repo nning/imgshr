@@ -1,3 +1,5 @@
+require Rails.root.join('app/validators/picture_image_validator')
+
 class Picture < ApplicationRecord
   include MetadataDelegator
 
@@ -8,7 +10,7 @@ class Picture < ApplicationRecord
 
   has_one_attached :image_file
 
-  # TODO obsolete
+  # TODO Remove after successful migration to ActiveStorage?
   has_attached_file :image,
     styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',

@@ -1,26 +1,35 @@
 namespace :pictures do
-  namespace :refresh do
-    desc 'Refresh missing dimensions'
-    task :dimensions do
-      require_relative '../../config/environment'
+  desc 'Find missing attachments'
+  task :find_missing_attachments do
+    require_relative '../../config/environment'
 
+    if ENV['LOG'].present?
       ActiveRecord::Base.logger = Logger.new($stderr)
-
-      Picture.where(dimensions: nil).find_each do |picture|
-        picture.send(:set_height_and_width!)
-        picture.save!
-      end
     end
 
-    desc 'Refresh all EXIF metadata'
-    task :exif_data do
+    Picture.find_each do |picture|
+      next if picture.image_file.attachment.present?
+      p picture
+    end
+  end
+
+  namespace :refresh do
+    desc 'Refresh all metadata'
+    task :metadata do
       require_relative '../../config/environment'
 
-      ActiveRecord::Base.logger = Logger.new($stderr)
+      if ENV['LOG'].present?
+        ActiveRecord::Base.logger = Logger.new($stderr)
+      end
 
       Picture.find_each do |picture|
-        picture.send(:set_exif_attributes)
-        picture.save!
+        next unless picture.image_file.attachment.present?
+
+        begin
+          picture.image_file.blob.analyze
+        rescue Errno::ENOENT => err
+          p err
+        end
       end
     end
 
@@ -28,7 +37,9 @@ namespace :pictures do
     task :order_date do
       require_relative '../../config/environment'
 
-      ActiveRecord::Base.logger = Logger.new($stderr)
+      if ENV['LOG'].present?
+        ActiveRecord::Base.logger = Logger.new($stderr)
+      end
 
       Picture.find_each do |p|
         if p.photographed_at.nil?

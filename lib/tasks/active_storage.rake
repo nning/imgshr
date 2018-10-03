@@ -64,7 +64,7 @@ namespace :active_storage do
             attachments.each do |attachment|
               new_attachment = name_map[model.to_s][attachment]
 
-              next if ActiveStorage::Blob.where(checksum: checksum(instance.send(attachment))).any?
+              # next if ActiveStorage::Blob.where(checksum: checksum(instance.send(attachment))).any?
 
               active_storage_blob_statement.execute(
                 key(instance, attachment),
@@ -75,13 +75,12 @@ namespace :active_storage do
                 instance.updated_at.to_datetime
               )
 
-              active_storage_attachment_statement.
-                execute(
-                  new_attachment,
-                  model.name,
-                  instance.id,
-                  instance.updated_at.to_datetime
-                )
+              active_storage_attachment_statement.execute(
+                new_attachment,
+                model.name,
+                instance.id,
+                instance.updated_at.to_datetime
+              )
             end
           end
         end
