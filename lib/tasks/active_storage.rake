@@ -1,6 +1,6 @@
 namespace :active_storage do
   def key(instance, attachment)
-    SecureRandom.uuid
+    SecureRandom.base58(24)
   end
 
   def checksum(attachment)
