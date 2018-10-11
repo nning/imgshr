@@ -52,24 +52,29 @@ Clone the source code:
     git clone https://github.com/nning/imgshr.git
     cd imgshr
 
-Make sure, you generate a Rails secret key and paste it into `.env`. You can
-also change other parameters like the MySQL password and the admin login
-credentials in `.env` and `config/settings.yml`.
+Change the MySQL root password and the admin login credentials in `.env` and
+`config/settings.yml`.
 
-    docker-compose -f deploy/docker-compose.yml run web rails secret
+Then generate a Rails secret key and paste it into `.env`:
 
-Now start up all services:
+    ./deploy.sh run web rails secret
 
-    docker-compose -f deploy/docker-compose.yml up
+Now start up all services (in background):
+
+    ./deploy.sh up -d
 
 **The docker volumes `deploy_db`, `deploy_redis`, and `deploy_storage` hold the
 production data; make sure, you do not lose them.**
 
+The log can be followed with:
+
+    ./deploy.sh logs -f
+
 ### Update the code
 
-    docker-compose -f deploy/docker-compose.yml down
+    ./deploy.sh down
     git pull
-    docker-compose -f deploy/docker-compose.yml up --build
+    ./deploy.sh up --build
 
 ## License
 
