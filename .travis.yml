@@ -21,6 +21,7 @@ notifications:
   email: false
 
 before_install:
+  - export TZ="Europe/Berlin"
   - bundle config github.https true
   - nvm install
   - npm install -g yarn
