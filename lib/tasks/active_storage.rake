@@ -17,7 +17,9 @@ namespace :active_storage do
     ActiveRecord::Base.logger = Logger.new($stdout)
 
     config = Rails.configuration.database_configuration
-    adapter = config[Rails.env]['adapter']
+
+    adapter = config[Rails.env]['adapter'] rescue nil
+    adapter = ENV['DATABASE_URL'].match(/(.*):\//)[1] unless adapter
 
     get_blob_id = case adapter
     when 'postgresql'
