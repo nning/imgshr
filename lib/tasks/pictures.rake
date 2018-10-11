@@ -49,5 +49,11 @@ namespace :pictures do
         end
       end
     end
+
+    [:exif_data, :dimensions].each do |name|
+      desc '[OBSOLETE] Stub for old migration'
+      task name do
+      end
+    end
   end
 end
