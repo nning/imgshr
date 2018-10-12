@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>imgshr is currently undergoing maintenance (503)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style type="text/css">
+      body {
+        font-family: Ubuntu, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>imgshr is currently undergoing maintenance</h1>
+  </body>
+</html>
