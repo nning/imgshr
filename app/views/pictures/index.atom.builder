@@ -3,7 +3,7 @@ atom_feed language: 'en-US' do |feed|
   feed.updated @pictures.first.created_at
 
   @pictures.each do |picture|
-    url = absolute_url(picture_path(picture))
+    url = absolute_url_for(picture_path(picture))
     feed.entry(picture, url: url) do |entry|
       entry.title('%s (%s)' % [picture, picture.gallery])
       entry.url(url)
