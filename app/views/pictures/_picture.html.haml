@@ -1,2 +1,2 @@
 = link_to gallery_picture_path(picture.gallery, picture, back_to_page: @pictures.current_page), data: { fingerprint: picture.to_param } do
-  = render 'pictures/image', picture: picture
+  = render 'pictures/image', picture: picture, size: :small

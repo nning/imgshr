@@ -1,15 +1,16 @@
 -# This is currently also used on galleries#show
--# TODO Decide on using special thumbnail format (e.g. x200)
 -# TODO Responsive Images (with lazy loading), remove jquery.unveil
+
+- size ||= :medium
 
 - if picture.plain?
   = image_tag '',
-    data: { src: url_for(picture.image_file.variant(resize: Settings.sizes.small)) },
+    data: { src: url_for(picture.image_file.variant(resize: Settings.sizes.send(size))) },
     title: picture,
     alt: picture
 
   %noscript
-    = image_tag picture.image_file.variant(resize: Settings.sizes.small),
+    = image_tag picture.image_file.variant(resize: Settings.sizes.send(size)),
     title: picture,
     alt: picture
 
