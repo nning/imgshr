@@ -26,7 +26,9 @@ class Picture < ApplicationRecord
       message: 'Picture already exists in gallery!'
     }
 
-  before_create :set_order_date!
+  # before_create :set_order_date!
+  before_save :set_order_date!
+  after_touch :set_order_date!
   after_create :set_image_fingerprint!
 
   if !::Settings.foreground_processing && LabelImage.is_enabled?
@@ -126,6 +128,8 @@ class Picture < ApplicationRecord
   private
 
   def set_order_date!
+    p :set_order_date
+
     if self.photographed_at?
       self.order_date = self.photographed_at
     elsif self.created_at?
