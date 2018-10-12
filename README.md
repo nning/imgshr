@@ -1,5 +1,4 @@
-IMGSHR
-======
+# IMGSHR
 
 [![Build Status](https://img.shields.io/travis/nning/imgshr/master.svg)](https://travis-ci.org/nning/imgshr)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
@@ -14,8 +13,7 @@ make the gallery read-only later on.
 
 You can test this at https://imgshr.space!
 
-Features
---------
+## Features
 
 * Galleries are shared via secret token in URL
   (e.g. [https://imgshr.space/!Njg4NThi](https://imgshr.space/!Njg4NThi))
@@ -36,10 +34,8 @@ Features
 * Device token authentication for galleries
 * Symmetric client-side encrypted galleries with sharable secret based on
   libsodium (XSalsa20 for encryption, Poly1305 for authentication)
-)
 
-Development
------------
+## Development
 
     nvm use
 	npm install -g yarn
@@ -47,8 +43,40 @@ Development
 	bundle
 	foreman start
 
-License
--------
+## Deployment using docker
 
-Copyright © 2014-2016 [henning mueller](https://nning.io/), released
+### Initial setup
+
+Clone the source code:
+
+    git clone https://github.com/nning/imgshr.git
+    cd imgshr
+
+Change the MySQL root password and the admin login credentials in `.env` and
+`config/settings.yml`.
+
+Then generate a Rails secret key and paste it into `.env`:
+
+    ./deploy.sh run web rails secret
+
+Now start up all services (in background):
+
+    ./deploy.sh up -d
+
+**The docker volumes `deploy_db`, `deploy_redis`, and `deploy_storage` hold the
+production data; make sure, you do not lose them.**
+
+The log can be followed with:
+
+    ./deploy.sh logs -f
+
+### Update the code
+
+    ./deploy.sh down
+    git pull
+    ./deploy.sh up --build
+
+## License
+
+Copyright © 2014-2018 [henning mueller](https://nning.io/), released
 under the terms of [GNU AGPL 3.0](http://www.gnu.org/licenses/agpl-3.0.html).
