@@ -4,8 +4,13 @@ class PicturesControllerTest < ActionController::TestCase
   EMSI = open(Rails.root.join('public/images/emsi.png'))
 
   describe :picture do
-    let(:gallery) { Gallery.create!}
-    subject { gallery.pictures.create!(image: EMSI) }
+    let(:gallery) { Gallery.create! }
+    subject do
+      pic = gallery.pictures.build
+      pic.image_file.attach(io: emsi(), filename: 'emsi.png')
+      pic.save!
+      pic
+    end
 
     it 'update title' do
       put :update, params: { slug: gallery , id: subject, picture: { title: 'foo' } }, xhr: true

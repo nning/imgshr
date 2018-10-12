@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_12_22_205817) do
+ActiveRecord::Schema.define(version: 2018_08_26_122644) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "boss_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "slug", null: false, collation: "utf8_bin"
@@ -31,11 +52,6 @@ ActiveRecord::Schema.define(version: 2017_12_22_205817) do
   end
 
   create_table "file_releases", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "file_file_name"
-    t.string "file_content_type"
-    t.integer "file_file_size"
-    t.datetime "file_updated_at"
-    t.string "file_fingerprint", null: false
     t.string "version"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -68,22 +84,10 @@ ActiveRecord::Schema.define(version: 2017_12_22_205817) do
 
   create_table "pictures", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gallery_id", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
-    t.string "image_fingerprint", null: false
+    t.string "image_fingerprint"
     t.string "title"
-    t.datetime "photographed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "camera"
-    t.float "focal_length"
-    t.float "aperture"
-    t.string "shutter_speed"
-    t.integer "iso_speed"
-    t.integer "flash"
-    t.text "dimensions"
     t.timestamp "order_date"
     t.integer "ratings_count"
     t.boolean "image_processing"

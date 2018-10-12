@@ -29,6 +29,7 @@
 /config/database.yml
 /config/settings/development.yml
 /config/settings/production.yml
+/config/secrets.yml
 
 # Database dump
 /db/data.yml
@@ -52,3 +53,6 @@
 
 # simplecov/Coveralls
 /coverage
+
+# ActiveStorage folder
+/storage

@@ -29,7 +29,8 @@ class PicturesController < ApplicationController
       @picture = gallery.pictures.build
 
       begin
-        @picture.update_attributes!({ image: image })
+        @picture.image_file.attach(image)
+        @picture.save!
       rescue ActiveRecord::RecordInvalid
         redirect_to gallery, flash: { error: @picture.errors.full_messages.join(', ') }
         return
@@ -39,15 +40,10 @@ class PicturesController < ApplicationController
     redirect_to gallery unless request.xhr?
   end
 
-  def download
-    send_file picture.image.path, \
-      filename: picture.image.original_filename,
-      type: picture.image.content_type
-  end
-
   def gallery_show
     @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
     @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
+
     @milestones = @gallery.milestones.show_on_pictures
 
     render :show

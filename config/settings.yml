@@ -40,3 +40,6 @@ icons:
   - sizes: 192x192
     src: /images/touch/192x192.png
     type: text/png
+
+sizes:
+  medium: 850x>

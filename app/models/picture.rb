@@ -1,30 +1,24 @@
+require Rails.root.join('app/validators/picture_image_validator')
+
 class Picture < ApplicationRecord
+  include MetadataDelegator
+
   belongs_to :gallery, touch: true
 
   has_many :ratings, dependent: :destroy
   has_many :temp_links, dependent: :destroy
 
-  serialize :dimensions
+  has_one_attached :image_file
 
+  # TODO Remove after successful migration to ActiveStorage?
   has_attached_file :image,
     styles: {medium: '850x850>', thumb: '200x200>'},
     url: '/system/:hash.:extension',
-    hash_secret: Rails.application.secrets[:secret_key_base],
-    processors: [:thumbnail, :paperclip_optimizer]
-
-  if !::Settings.foreground_processing
-    process_in_background :image, processing_image_url: '/images/missing/:style.png'
-  end
+    hash_secret: Rails.application.secrets[:secret_key_base]
 
   acts_as_taggable_on :tags, :labels
 
-  validates_attachment_content_type :image,
-    content_type: /\Aimage\/.*\Z/,
-    if: :plain?
-
-  validates_attachment_content_type :image,
-    content_type: /\Aapplication\/octet-stream\Z/,
-    unless: :plain?
+  validates_with PictureImageValidator
 
   validates :image_fingerprint,
     uniqueness: {
@@ -33,12 +27,7 @@ class Picture < ApplicationRecord
     }
 
   before_create :set_order_date!
-
-  after_image_post_process :set_height_and_width!, if: :plain?
-  after_image_post_process -> do
-    set_exif_attributes
-    set_order_date!
-  end
+  after_create :set_image_fingerprint!
 
   if !::Settings.foreground_processing && LabelImage.is_enabled?
     # TODO after_image_post_process without delay
@@ -56,12 +45,11 @@ class Picture < ApplicationRecord
 
   paginates_per 12
 
+  delegate_to_metadata :photographed_at, :camera, :focal_length, :aperture,
+    :shutter_speed, :iso_speed, :flash, :height, :width
+
   def average_rating
     (ratings.sum(:score) / ratings.count.to_f).round(2)
-  end
-
-  def height(size = :original)
-    dimensions[size][:height] rescue nil
   end
 
   def image_fingerprint_short
@@ -82,12 +70,11 @@ class Picture < ApplicationRecord
     title.blank? ? 'Untitled picture' : title
   end
 
-  def width(size = :original)
-    dimensions[size][:width] rescue nil
-  end
-
   def label_image!
-    process = LabelImage::Process.new(self.image.path(:medium))
+    ds = ActiveStorage::Service::DiskService.new(root: Rails.root.join('storage'))
+    path = ds.send(:path_for, self.image_file.blob.key)
+
+    process = LabelImage::Process.new(path)
     raw_label_list = process.run!
 
     self.raw_label_list = raw_label_list.to_json
@@ -136,95 +123,7 @@ class Picture < ApplicationRecord
     end
   end
 
-  def self.neighbor_id(picture, d)
-    ids = pluck(:id)
-
-    begin
-      i = ids.index(picture.id) + d
-    rescue NoMethodError
-      return nil
-    end
-
-    return nil if i < 0 || i > ids.size
-
-    ids[i]
-  end
-
-  def self.next_id(picture)
-    self.neighbor_id(picture, 1)
-  end
-
-  def self.previous_id(picture)
-    self.neighbor_id(picture, -1)
-  end
-
   private
-
-  def exif_camera_string(exif)
-    camera = exif.model
-
-    if !(exif.make.blank? || camera.starts_with?(exif.make))
-      camera = [exif.make, camera].join(' ')
-    end
-
-    camera
-  end
-
-  def set_exif_attributes
-    exif = nil
-
-    path = begin
-      image.queued_for_write[:original].path
-    rescue NoMethodError
-      image.path
-    end
-
-    begin
-      exif = EXIFR::JPEG.new(path)
-    rescue EXIFR::MalformedJPEG
-    end
-
-    set_exif_values(exif) if exif && exif.exif?
-  end
-
-  def set_exif_values(exif)
-    self.camera = exif_camera_string(exif)
-    self.photographed_at = exif.date_time_digitized
-
-    unless exif.focal_length.nil?
-      self.focal_length  = exif.focal_length.to_f.round(3)
-    end
-
-    self.aperture      = exif.aperture_value || exif.f_number
-    self.shutter_speed = exif.shutter_speed_value || exif.exposure_time
-    self.iso_speed     = exif.iso_speed_ratings
-    self.flash         = exif.flash
-
-    exif
-  end
-
-  def set_height_and_width!
-    return if gallery.client_encrypted
-
-    self.dimensions = {}
-
-    hash = image.queued_for_write
-
-    if hash.empty?
-      hash = {}
-      %i[original medium thumb].each do |size|
-        hash[size] = image.path(size)
-      end
-    end
-
-    hash.each do |size, file|
-      geometry = Paperclip::Geometry.from_file(file)
-      self.dimensions[size] = {
-        width:  geometry.width.to_i,
-        height: geometry.height.to_i
-      }
-    end
-  end
 
   def set_order_date!
     if self.photographed_at?
@@ -238,6 +137,11 @@ class Picture < ApplicationRecord
     end
 
     true
+  end
+
+  def set_image_fingerprint!
+    update_attributes! \
+      image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
   end
 
   def enqueue_label_job

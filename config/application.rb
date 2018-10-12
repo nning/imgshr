@@ -29,7 +29,5 @@ module Imgshr
     config.enable_dependency_loading = true
 
     config.active_job.queue_adapter = :sidekiq
-
-    config.assets.image_optim = false
   end
 end

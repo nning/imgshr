@@ -43,9 +43,6 @@ Rails.application.routes.draw do
   get    '!:slug/:id/rating' => 'ratings#show', as: :picture_rating
   post   '!:slug/:id/rating' => 'ratings#create'
 
-  get    '!:slug/:id/download' => 'pictures#download',
-    as: :gallery_picture_download
-
   get    '+:fingerprint' => 'pictures#show', as: :picture
 
   get    '=:slug' => 'temp_links#show', as: :temp_link

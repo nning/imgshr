@@ -2,7 +2,7 @@
   %table.table.table-condensed.table-hover.table-bordered
     %tr
       %td  Original Filename
-      %td= picture.image.original_filename
+      %td= picture.image_file.filename
     - if picture.camera?
       %tr
         %td  Camera
@@ -39,10 +39,11 @@
       %tr
         %td  Average rating
         %td= picture.average_rating
-    - if picture.dimensions?
+    - if picture.width?
       %tr
         %td  Original width
         %td= picture.width
+    - if picture.height?
       %tr
         %td  Original height
         %td= picture.height

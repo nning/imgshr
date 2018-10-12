@@ -1,5 +1,5 @@
 %tr
-  %td= link_to file_release, file_release.file.url
+  %td= link_to file_release, rails_blob_path(file_release.download, disposition: 'attachment')
   %td= file_release.version
   %td= file_release.branch
   %td= timestamp_ago file_release.created_at
