@@ -128,8 +128,6 @@ class Picture < ApplicationRecord
   private
 
   def set_order_date!
-    p :set_order_date
-
     if self.photographed_at?
       self.order_date = self.photographed_at
     elsif self.created_at?
