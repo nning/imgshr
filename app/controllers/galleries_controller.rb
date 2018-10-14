@@ -103,7 +103,10 @@ class GalleriesController < ApplicationController
 
       format.json do
         h = gallery.attributes.merge(icons: Settings.icons.map(&:to_h))
-        h[:name] ||= gallery.to_s
+        h.merge!(Settings.manifest)
+
+        h[:name] ||= gallery.to_s + ' on IMGSHR'
+        h[:short_name] ||= gallery.to_s
 
         render json: h, except: %w[id slug]
       end

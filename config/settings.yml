@@ -40,6 +40,14 @@ icons:
   - sizes: 192x192
     src: /images/touch/192x192.png
     type: text/png
+  - sizes: 512x512
+    src: /images/touch/512x512.png
+    type: text/png
+
+manifest:
+  display: standalone
+  background_color: '#fff'
+  theme_color: '#349996'
 
 sizes:
   medium: 850x>
