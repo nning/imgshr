@@ -51,7 +51,7 @@ namespace :pictures do
     end
 
     desc 'Refresh order_date attributes lazy'
-    task :order_date do
+    task :order_date_lazy do
       require_relative '../../config/environment'
 
       if ENV['LOG'].present?
@@ -60,7 +60,7 @@ namespace :pictures do
 
       Picture.find_each do |pic|
         if pic.photographed_at?
-          pic.update_column(:order_date, p.photographed_at)
+          pic.update_column(:order_date, pic.photographed_at)
         end
       end
     end
