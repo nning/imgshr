@@ -1,10 +1,10 @@
 -# This is currently also used on galleries#show
 
-- size ||= :medium
-- variant = picture.image_file.variant(resize: Settings.sizes.send(size))
-- mobileVariant = picture.image_file.variant(resize: Settings.sizes.medium)
-
 - if picture.plain?
+  - size ||= :medium
+  - variant = picture.image_file.variant(resize: Settings.sizes.send(size))
+  - mobileVariant = picture.image_file.variant(resize: Settings.sizes.medium)
+
   = react_component :LazyPicture,
     { src: url_for(variant),
       srcMobile: size == :small ? url_for(mobileVariant) : nil,
