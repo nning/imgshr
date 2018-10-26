@@ -156,7 +156,7 @@ GEM
       thor
       tilt
     hashie (3.5.7)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.7.1)
       mini_magick (~> 4.0)
@@ -332,9 +332,9 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
-    skylight (3.0.0)
-      skylight-core (= 3.0.0)
-    skylight-core (3.0.0)
+    skylight (3.1.1)
+      skylight-core (= 3.1.1)
+    skylight-core (3.1.1)
       activesupport (>= 4.2.0)
     spring (2.0.2)
       activesupport (>= 4.2)
