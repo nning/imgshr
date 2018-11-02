@@ -152,7 +152,7 @@ GEM
       thor (~> 0.19.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    hamlit (2.9.0)
+    hamlit (2.9.1)
       temple (>= 0.8.0)
       thor
       tilt
