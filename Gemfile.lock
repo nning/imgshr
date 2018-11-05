@@ -217,7 +217,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mustermann (1.0.3)
-    mysql2 (0.4.10)
+    mysql2 (0.5.2)
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
@@ -413,7 +413,7 @@ DEPENDENCIES
   mail
   mini_magick
   minitest-spec-rails
-  mysql2 (~> 0.4.10)
+  mysql2
   omniauth-github
   paperclip
   puma
