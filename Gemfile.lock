@@ -97,7 +97,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.1)
+    concurrent-ruby (1.1.2)
     config (1.7.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
@@ -244,7 +244,7 @@ GEM
       terrapin (~> 0.6.0)
     public_suffix (3.0.3)
     puma (3.12.0)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-protection (2.0.4)
       rack
     rack-proxy (0.6.5)
@@ -268,7 +268,7 @@ GEM
     rails-assets-jquery-cookie (1.4.1)
       rails-assets-jquery (>= 1.2)
     rails-assets-momentjs (2.22.2)
-    rails-assets-seiyria-bootstrap-slider (10.2.2)
+    rails-assets-seiyria-bootstrap-slider (10.2.3)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -319,7 +319,7 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
-    sidekiq (5.2.2)
+    sidekiq (5.2.3)
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
