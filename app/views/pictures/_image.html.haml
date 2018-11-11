@@ -2,16 +2,16 @@
 
 - if picture.plain?
   - size ||= :medium
-  - variant = picture.image_file.variant(resize: Settings.sizes.send(size), auto_orient: true)
-  - mobileVariant = picture.image_file.variant(resize: Settings.sizes.medium, quality: 60, auto_orient: true)
+  - image = picture.image_file.variant(Settings.sizes.send(size))
+  - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad)
 
   = react_component :LazyPicture,
-    { src: url_for(variant),
-      srcMobile: size == :small ? url_for(mobileVariant) : nil,
+    { src: url_for(image),
+      srcMobile: size == :small ? url_for(mediumBadImage) : nil,
       title: picture.to_s }
 
   %noscript
-    = image_tag variant, title: picture, alt: picture
+    = image_tag image, title: picture, alt: picture
 
 - else
   = react_component 'crypto/LazyEncryptedImage',

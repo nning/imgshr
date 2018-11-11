@@ -50,5 +50,13 @@ manifest:
   theme_color: '#349996'
 
 sizes:
-  medium: 850x>
-  small: x200>
+  medium:
+    resize: 850x>
+    auto_orient: true
+  mediumBad:
+    resize: 850x>
+    auto_orient: true
+    quality: 60
+  small:
+    resize: x200>
+    auto_orient: true
