@@ -26,9 +26,6 @@ class Picture < ApplicationRecord
       message: 'Picture already exists in gallery!'
     }
 
-  # before_create :set_order_date!
-  before_save :set_order_date!
-  after_touch :set_order_date!
   after_create :set_image_fingerprint!
 
   if !::Settings.foreground_processing && LabelImage.is_enabled?
@@ -126,20 +123,6 @@ class Picture < ApplicationRecord
   end
 
   private
-
-  def set_order_date!
-    if self.photographed_at?
-      self.order_date = self.photographed_at
-    elsif self.created_at?
-      self.order_date = self.created_at
-    else
-      # order_date should be set to created_at but that's not available in
-      # before_create. Time.now should be close enough.
-      self.order_date = Time.now
-    end
-
-    true
-  end
 
   def set_image_fingerprint!
     update_attributes! \

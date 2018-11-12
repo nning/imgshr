@@ -3,6 +3,9 @@
     %tr
       %td  Original Filename
       %td= picture.image_file.filename
+    %tr
+      %td  Order Date
+      %td= timestamp_ago picture.order_date
     - if picture.camera?
       %tr
         %td  Camera

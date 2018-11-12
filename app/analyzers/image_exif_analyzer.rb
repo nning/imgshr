@@ -5,20 +5,32 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
 
   def metadata
     read_image do |image|
-      return {} unless image.type == 'JPEG'
+      h = dimensions_metadata
 
-      exif = EXIFR::JPEG.new(image.path)
-      h = dimensions_metadata.merge({
-        camera: exif_camera_string(exif),
-        photographed_at: exif.date_time_digitized,
-        aperture: exif.aperture_value || exif.f_number,
-        shutter_speed: exif.shutter_speed_value || exif.exposure_time,
-        iso_speed: exif.iso_speed_ratings,
-        flash: exif.flash
-      })
+      if image.type == 'JPEG'
+        exif = EXIFR::JPEG.new(image.path)
+        h.merge!({
+          camera: exif_camera_string(exif),
+          photographed_at: exif.date_time_digitized,
+          aperture: exif.aperture_value || exif.f_number,
+          shutter_speed: exif.shutter_speed_value || exif.exposure_time,
+          iso_speed: exif.iso_speed_ratings,
+          flash: exif.flash
+        })
 
-      unless exif.focal_length.nil?
-        h[:focal_length] = exif.focal_length.to_f.round(3)
+        unless exif.focal_length.nil?
+          h[:focal_length] = exif.focal_length.to_f.round(3)
+        end
+      end
+
+      # TODO ActiveStorage misses an after_analyze callback, so this is a
+      # work-around to set order_date on Picture after EXIF data has been
+      # extracted
+      blob.attachments.each do |attachment|
+        pic = attachment.record
+
+        pic.order_date = h[:photographed_at] || Time.now
+        pic.save!
       end
 
       h
