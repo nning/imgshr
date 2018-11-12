@@ -42,11 +42,8 @@ namespace :pictures do
       end
 
       Picture.find_each do |pic|
-        if pic.photographed_at.nil?
-          pic.update_column(:order_date, p.created_at)
-        else
-          pic.update_column(:order_date, p.photographed_at)
-        end
+        pic.order_date = pic.photographed_at || pic.created_at
+        pic.save!
       end
     end
 
@@ -59,9 +56,8 @@ namespace :pictures do
       end
 
       Picture.find_each do |pic|
-        if pic.photographed_at?
-          pic.update_column(:order_date, pic.photographed_at)
-        end
+        next unless pic.photographed_at?
+        pic.update_column(:order_date, pic.photographed_at)
       end
     end
 

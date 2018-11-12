@@ -26,6 +26,7 @@ class Picture < ApplicationRecord
       message: 'Picture already exists in gallery!'
     }
 
+  before_save :set_fallback_order_date
   after_create :set_image_fingerprint!
 
   if !::Settings.foreground_processing && LabelImage.is_enabled?
@@ -123,6 +124,10 @@ class Picture < ApplicationRecord
   end
 
   private
+
+  def set_fallback_order_date
+    self.order_date ||= self.created_at || Time.now
+  end
 
   def set_image_fingerprint!
     update_attributes! \
