@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Icon from '../Icon'
+import Icon from './Icon'
 
 
 const ICON_MAP = {
@@ -14,9 +14,9 @@ export default class Placeholder extends React.Component {
   render() {
     return (
       <div className="placeholder">
-        <Icon name={ICON_MAP[this.props.status]}/>
+        <Icon name={this.props.icon || ICON_MAP[this.props.status]}/>
         <div className="title">{this.props.title}</div>
-        <div>{this.props.status}</div>
+        <div>{this.props.statusText || this.props.status}</div>
       </div>
     )
   }
