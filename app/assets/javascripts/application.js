@@ -14,14 +14,9 @@
 //= require jquery.infinite-pages
 //= require jquery-cookie
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require best_in_place
 //= require best_in_place.purr
 //= require momentjs
 //= require seiyria-bootstrap-slider
 //= require_tree .
-
-$(document).on('turbolinks:load', function() {
-  $(document).trigger('content:update');
-});
