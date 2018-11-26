@@ -25,11 +25,15 @@ export default class UploadFile extends React.Component {
         </td>
 
         <td className="upload__file__status">
-          <div className="upload__file__progress">
-            {progress}
-          </div>
+          {this.props.uploading &&
+            <div className="upload__file__progress">
+              {progress}
+            </div>
+          }
 
-          <UploadFileActions remove={this.props.file.remove}/>
+          {!this.props.uploading &&
+            <UploadFileActions remove={this.props.file.remove}/>
+          }
         </td>
       </tr>
     )

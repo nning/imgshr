@@ -6,7 +6,7 @@ export default class UploadList extends React.Component {
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
-      return <UploadFile key={key} file={file}/>
+      return <UploadFile key={key} file={file} uploading={this.props.uploading}/>
     })
 
     if (this.props.files.length) {

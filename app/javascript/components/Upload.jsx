@@ -151,7 +151,8 @@ export default class Upload extends React.Component {
           <input type="file" multiple onChange={this.handleFiles}
             autoComplete="off"/>
 
-          <UploadList files={this.state.selectedFiles}/>
+          <UploadList files={this.state.selectedFiles}
+            uploading={this.state.uploading}/>
 
           <ProgressBar min="0" max="100" current={this.state.totalProgress}
             hide="true"/>

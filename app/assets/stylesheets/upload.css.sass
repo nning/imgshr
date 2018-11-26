@@ -6,19 +6,32 @@
       margin-bottom: 0
 
   &__file
-    td:not(:last-child)
-      margin-right: 1em
+    td
+      &:first-child,
+      &:last-child
+        width: 3em
+
+      &:last-child
+        text-align: center
+
+      &:nth-child(3)
+        width: 6em
+        text-align: right
+        white-space: nowrap
+
+      &:not(:last-child)
+        margin-right: 1em
 
     &__actions
       display: none
+
+      .glyphicon:hover
+        cursor: pointer
 
     &:hover
       .upload__file
         &__actions
           display: initial
-
-        &__progress
-          display: none
 
 #client_encryption_key
   input
