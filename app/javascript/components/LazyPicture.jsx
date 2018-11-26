@@ -41,22 +41,24 @@ export default class LazyPicture extends React.Component {
     return (
       <LazyLoad height={200} once>
         <React.Fragment>
-          <picture className={this.pictureClass()}>
-            {this.props.srcMobile !== null &&
-              <source
-                srcSet={this.props.srcMobile}
-                media="(max-width: 768px)"
-                />
-            }
+          {!this.state.error &&
+            <picture className={this.pictureClass()}>
+              {this.props.srcMobile !== null &&
+                <source
+                  srcSet={this.props.srcMobile}
+                  media="(max-width: 768px)"
+                  />
+              }
 
-            <img
-              src={this.props.src}
-              title={this.props.title}
-              alt={this.props.title}
-              onLoad={this.onLoad}
-              onError={this.onError}
-              />
-          </picture>
+              <img
+                src={this.props.src}
+                title={this.props.title}
+                alt={this.props.title}
+                onLoad={this.onLoad}
+                onError={this.onError}
+                />
+            </picture>
+          }
 
           {this.isFetching() &&
             <Placeholder
