@@ -20,3 +20,7 @@
 //= require momentjs
 //= require seiyria-bootstrap-slider
 //= require_tree .
+
+$(document).on('ready', function() {
+  $(document).trigger('content:update');
+});
