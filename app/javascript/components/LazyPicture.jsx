@@ -17,7 +17,7 @@ export default class LazyPicture extends React.Component {
 
   onError = (e) => {
     this.setState({error: true})
-    setTimeout(this.afterTimeout, 30000)
+    setTimeout(this.afterTimeout, 15000)
   }
 
   afterTimeout = () => {
