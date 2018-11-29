@@ -56,7 +56,7 @@ class PicturesController < ApplicationController
 
   def update
     picture.update_attributes!(update_params)
-    respond_with picture
+    head :ok
   end
 
   def index
