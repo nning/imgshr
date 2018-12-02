@@ -82,14 +82,6 @@
       margin: 0;
     }
 
-    &.fifty-percent > a {
-      width: calc(50% - 5px);
-
-      &:nth-child(odd) {
-        margin-right: 5px;
-      }
-    }
-
     img {
       width: 100%;
       height: auto;

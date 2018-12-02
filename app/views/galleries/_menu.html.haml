@@ -10,13 +10,6 @@
         = icon :cog
       - else
         = icon :info_sign
-    - if gallery.endless_page
-      = link_to '#', class: 'btn btn-default', id: 'endless-toggle' do
-        = icon :fast_forward, class: 'endless-toggle'
-        %span.text Endless
-    = link_to '#', id: 'toggle-fifty-percent', class: 'btn btn-default visible-xs' do
-      = icon :zoom_out
-      50%
     - if @boss_token
       = link_to '#', id: 'toggle-select', class: 'btn btn-default' do
         = icon :check
