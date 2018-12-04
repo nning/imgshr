@@ -10,7 +10,8 @@ export default class ClientEncryptionKey extends React.Component {
     url: window.location.href,
     copiedStyle: {
       opacity: 0
-    }
+    },
+    qrcode: null
   }
 
   selectAllAndCopy = (e) => {
@@ -29,11 +30,21 @@ export default class ClientEncryptionKey extends React.Component {
     })
   }
 
-  componentDidMount() {
+  getKey = () => {
     getKeyBase64().then((key) => {
       const url = window.location.href + '#' + key
-      this.setState({key: key, url: url})
+
+      this.setState({
+        key: key,
+        url: url,
+        qrcode: <QRCode content={url}/>
+      })
     })
+  }
+
+  constructor() {
+    super()
+    document.addEventListener('sodium:ready', this.getKey)
   }
 
   render() {
@@ -41,7 +52,7 @@ export default class ClientEncryptionKey extends React.Component {
       <React.Fragment>
         <div>
           <a href={this.state.url}>
-            <QRCode content={this.state.url}/>
+            {this.state.qrcode}
           </a>
         </div>
 

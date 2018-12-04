@@ -1,4 +1,4 @@
-import sodium from 'libsodium-wrappers-sumo'
+// import sodium from 'libsodium-wrappers-sumo'
 
 import {decode_utf8} from './encoding'
 
@@ -47,11 +47,7 @@ export function getKey() {
 }
 
 export function getKeyBase64() {
-  return new Promise((resolve) => {
-    getKey().then((k) => {
-      resolve(sodium.to_base64(k))
-    })
-  })
+  return getKey().then(sodium.to_base64)
 }
 
 export function encrypt(file) {

@@ -8,6 +8,7 @@ import ProgressBar from './ProgressBar'
 import UploadList from './UploadList'
 
 import csrf from '../utils/csrf'
+import {encrypt} from '../utils/crypto'
 
 export default class Upload extends React.Component {
   url = ''
@@ -43,7 +44,7 @@ export default class Upload extends React.Component {
     files.forEach((file) => {
       const config = this.getRequestConfig(file)
 
-      if (typeof imgshrCrypto === 'undefined') {
+      if (typeof sodium === 'undefined') {
         appendQueue(this.getUploadFunction(config, file.obj))
         return
       }
@@ -52,7 +53,7 @@ export default class Upload extends React.Component {
         return new Promise((resolve) => {
           file.progress = 'encrypting...'
 
-          imgshrCrypto.encrypt(file.obj).then((encrypted) => {
+          encrypt(file.obj).then((encrypted) => {
             const encryptedFile = new File(
               [encrypted],
               file.obj.name + '.bin',

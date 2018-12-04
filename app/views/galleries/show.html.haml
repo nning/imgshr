@@ -1,7 +1,6 @@
 = javascript_pack_tag 'main'
 
-- if @gallery.client_encrypted
-  = javascript_pack_tag 'client-encryption', async: true
+= render 'shared/sodium', gallery: @gallery
 
 - content_for :manifest do
   %link{rel: 'manifest', href: gallery_path(@gallery, format: :json)}
