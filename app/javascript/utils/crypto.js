@@ -14,7 +14,9 @@ function resetUrlHash() {
 
 export function getKey() {
   return sodiumReady((resolve, reject) => {
-    const slug = document.getElementById('gallery').getAttribute('data-slug')
+    const slug = document
+      .querySelector('meta[itemprop="gallery:slug"]')
+      .getAttribute('content')
     const item = slug + '_client_encrypted_key'
 
     const stored = localStorage.getItem(item)

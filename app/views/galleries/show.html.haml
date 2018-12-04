@@ -3,13 +3,18 @@
 - if @gallery.client_encrypted
   = javascript_pack_tag 'client-encryption', async: true
 
-= content_for :manifest do
+- content_for :manifest do
   %link{rel: 'manifest', href: gallery_path(@gallery, format: :json)}
   %meta{rel: 'apple-mobile-web-app-title', name: @gallery}
 
+- content_for :gallery_meta_tags do
+  %meta{itemprop: 'gallery:slug', content: @gallery.slug}
 
-- boss_token = writable? ? @boss_token : nil
-#gallery{data: {slug: @gallery.slug, boss_token: boss_token}}
+  - if writable?
+    %meta{itemprop: 'gallery:boss_token', content: @boss_token}
+
+
+#gallery
   = render 'header'
 
   - if @pictures.empty?
