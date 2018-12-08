@@ -28,14 +28,11 @@ pictures = gallery.pictures
 pictures = pictures.tagged_with(tags.split(',')) if tags
 
 pictures.find_each do |picture|
-  path = File.join(target, picture.image.original_filename)
-  next if File.exist?(path)
+  new_path = File.join(target, picture.image_file.filename.to_s)
+  next if File.exist?(new_path)
 
-  begin
-    FileUtils.cp(picture.image.path, path, verbose: true)
-  rescue Errno::ENOENT
-    $stderr.puts 'Missing: %s (id %s)' % [picture.image.path, picture.id]
-  end
+  path = ActiveStorage::Blob.service.send(:path_for, picture.image_file.key)
+  FileUtils.cp(path, new_path, verbose: true)
 end
 
 File.open(File.join(target, 'metadata.json'), 'w') do |file|
