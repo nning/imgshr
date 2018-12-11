@@ -2,7 +2,7 @@
   = auto_discovery_link_tag :atom, galleries_url(format: :atom), title: 'Galleries (ATOM)'
   = auto_discovery_link_tag :atom, picture_feed_url(format: :atom), title: 'Pictures (ATOM)'
 
-- if Settings.disable_gallery_creation
+- if Settings.gallery_creation && Settings.gallery_creation.disable
   .col-xs-12
     = link_to galleries_path, method: :post, class: 'pull-right btn btn-default' do
       = icon :plus_sign

@@ -12,7 +12,7 @@
       %h1 Welcome!
       %p
         This is a simple image gallery sharing website.
-      - unless Settings.disable_gallery_creation
+      - unless Settings.gallery_creation && Settings.gallery_creation.disable
         %p
           = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
             = icon :plus_sign

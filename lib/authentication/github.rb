@@ -7,4 +7,13 @@ module Authentication::Github
 
     session['github_login'] == config
   end
+
+  def self.login?(session)
+    config = Settings.authentication.admin.github_login
+
+    return false unless config
+    return false unless session['github_login']
+
+    true
+  end
 end

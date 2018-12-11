@@ -5,12 +5,18 @@ class GalleriesController < ApplicationController
   include DeviceLinksOnly::Controller
   include SetGallery
 
-  unless Rails.env.development?
-    protected_actions =  [:index, :destroy]
-    protected_actions << :create if Settings.disable_gallery_creation
+  # unless Rails.env.development?
+    admin_actions = [:index, :destroy]
+    login_actions = []
 
-    authenticate!(protected_actions)
-  end
+    config = Settings.gallery_creation
+    if config
+      admin_actions << :create if config.disable
+      login_actions << :create if config.github
+    end
+
+    authenticate!(admin_actions, login_actions)
+  # end
 
   respond_to :html, :json
 
