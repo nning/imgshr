@@ -13,7 +13,10 @@
     .col-xs-12.col-md-6.headline
       .text-center
         - if writable?
-          %h2= best_in_place @gallery, :name, place_holder: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+          -# %h2= best_in_place @gallery, :name, place_holder: "#{@gallery.slug} <small>(Click here to edit!)</small>"
+          %h2= react_component :InlineEdit,
+            { value: 'foo',
+              placeholder: "#{@gallery.slug} <small>(Click here to edit!)</small>" }
         - else
           %h2= @gallery
 
