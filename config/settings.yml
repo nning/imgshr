@@ -19,7 +19,9 @@ authentication:
 #   labels: lib/label_image/imagenet_slim_labels.txt
 #   threshold: 0.09
 
-# disable_gallery_creation: true
+gallery_creation:
+  disable: false
+  github: true
 
 # client_encrypted_only: true
 
