@@ -14,7 +14,7 @@
             %td Slug
             %td
               = link_to @gallery.slug, @gallery
-              - if @boss_token
+              - if @boss_token && !@gallery.client_encrypted
                 = link_to 'Regenerate!',
                   gallery_regenerate_slug_path(@gallery),
                   method: :post,
