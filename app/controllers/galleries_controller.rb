@@ -31,7 +31,8 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    gallery = Gallery.create!
+    gallery = Gallery.create! \
+      client_encrypted: Settings.client_encrypted_only
 
     boss_token_session(gallery)
 

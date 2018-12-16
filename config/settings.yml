@@ -21,6 +21,8 @@ authentication:
 
 # disable_gallery_creation: true
 
+# client_encrypted_only: true
+
 icons:
   - sizes: 48x48
     src: /images/touch/48x48.png
