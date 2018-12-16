@@ -6,7 +6,7 @@ import LazyLoad from 'react-lazyload'
 export default class LazyEncryptedImage extends React.Component {
   render() {
     return (
-      <LazyLoad height={200} once>
+      <LazyLoad height={250} once>
         <EncryptedImage {...this.props}/>
       </LazyLoad>
     )
