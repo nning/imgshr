@@ -1,6 +1,6 @@
 // import sodium from 'libsodium-wrappers-sumo'
 
-import {decode_utf8} from './encoding'
+import {decodeUtf8} from './encoding'
 
 
 function resetUrlHash() {
@@ -17,7 +17,7 @@ export function getKey() {
     const slug = document
       .querySelector('meta[itemprop="gallery:slug"]')
       .getAttribute('content')
-    const item = slug + '_client_encrypted_key'
+    const item = `${slug}_client_encrypted_key`
 
     const stored = localStorage.getItem(item)
     const hash = window.location.hash.slice(1)
@@ -25,15 +25,15 @@ export function getKey() {
     let k = new Uint8Array(sodium.crypto_secretbox_KEYBYTES)
 
     if (hash === '') {
-      if (!stored) {
-        k = sodium.crypto_secretbox_keygen()
-        localStorage.setItem(item, sodium.to_base64(k))
-      } else {
+      if (stored) {
         const storedKey = sodium.from_base64(stored)
 
-        for (let i in storedKey) {
+        for (const i in storedKey) {
           if (storedKey.hasOwnProperty(i)) k[i] = storedKey[i]
         }
+      } else {
+        k = sodium.crypto_secretbox_keygen()
+        localStorage.setItem(item, sodium.to_base64(k))
       }
     } else {
       k = sodium.from_base64(hash)
@@ -86,8 +86,8 @@ export function decrypt(data) {
       let decoded = null
       try {
         const decrypted = sodium.crypto_secretbox_open_easy(m1, n, k)
-        decoded = decode_utf8(decrypted)
-      } catch(e) {
+        decoded = decodeUtf8(decrypted)
+      } catch (e) {
         reject(e)
       }
 

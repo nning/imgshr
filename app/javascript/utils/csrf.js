@@ -4,6 +4,7 @@ let cachedParams
 
 export function getParams(node) {
   if (!cachedParams) {
+    // eslint-disable-next-line react/no-find-dom-node
     const html = ReactDOM.findDOMNode(node).closest('html')
 
     const param = html.querySelector('meta[name="csrf-param"]')
@@ -33,4 +34,4 @@ export function getFormData(node) {
   return data
 }
 
-export default { getParams, getFormData }
+export default {getParams, getFormData}

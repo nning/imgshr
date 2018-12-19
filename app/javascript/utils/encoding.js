@@ -20,11 +20,11 @@
 //   return result
 // }
 
-export function decode_utf8(bs) {
-  return decodeURIComponent(escape(decode_latin1(bs)))
+export function decodeUtf8(bs) {
+  return decodeURIComponent(escape(decodeLatin1(bs)))
 }
 
-function decode_latin1(bs) {
+function decodeLatin1(bs) {
   const encoded = []
   for (let i = 0; i < bs.length; i++) {
     encoded.push(String.fromCharCode(bs[i]))
