@@ -29,7 +29,11 @@
   .row.text-center
     .col-xs-12
       = render 'pictures/picture_image', picture: @picture
-      = rating_for @picture unless hide_gallery?
+
+      - if @picture.gallery.ratings_enabled && !hide_gallery?
+        = react_component :Rating,
+          { rating: @picture.average_rating,
+            action: picture_rating_path(@picture.gallery, @picture) }
 
   .row
     .col-sm-2.col-md-3
