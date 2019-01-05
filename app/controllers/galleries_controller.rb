@@ -107,7 +107,7 @@ class GalleriesController < ApplicationController
         h.merge!(Settings.manifest)
 
         h[:name] ||= gallery.to_s + ' on IMGSHR'
-        h[:short_name] ||= gallery.to_s
+        h[:shortName] ||= gallery.to_s
 
         render json: h, except: %w[id slug]
       end
