@@ -15,7 +15,9 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
           aperture: exif.aperture_value || exif.f_number,
           shutter_speed: exif.shutter_speed_value || exif.exposure_time,
           iso_speed: exif.iso_speed_ratings,
-          flash: exif.flash
+          flash: exif.flash,
+          software: exif.software,
+          hdr: exif_hdr(exif.software)
         })
 
         unless exif.focal_length.nil?
@@ -53,5 +55,9 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
     end
 
     camera
+  end
+
+  def exif_hdr(software)
+    software.starts_with?(/hdr/i)
   end
 end
