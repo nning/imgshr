@@ -31,7 +31,7 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
       blob.attachments.each do |attachment|
         pic = attachment.record
 
-        pic.order_date = h[:photographed_at] || Time.now
+        pic.order_date = h[:photographed_at] || pic.created_at || Time.now
         pic.save!
       end
 
