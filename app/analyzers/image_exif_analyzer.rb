@@ -58,6 +58,6 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
   end
 
   def exif_hdr(software)
-    software.starts_with?(/hdr/i)
+    software.present? && software.starts_with?(/hdr/i)
   end
 end

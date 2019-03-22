@@ -50,6 +50,14 @@
       %tr
         %td  Original height
         %td= picture.height
+    - if picture.software?
+      %tr
+        %td  Software
+        %td= picture.software
+    - if picture.hdr.present?
+      %tr
+        %td  HDR
+        %td= picture.hdr
     %tr
       %td  Tags
       - if writable?

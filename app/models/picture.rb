@@ -46,7 +46,7 @@ class Picture < ApplicationRecord
   paginates_per 12
 
   delegate_to_metadata :photographed_at, :camera, :focal_length, :aperture,
-    :shutter_speed, :iso_speed, :flash, :height, :width
+    :shutter_speed, :iso_speed, :flash, :height, :width, :software, :hdr
 
   def average_rating
     (ratings.sum(:score) / ratings.count.to_f).round(2)
