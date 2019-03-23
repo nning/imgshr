@@ -58,4 +58,8 @@ module ApplicationHelper
     return true if Authentication.basic? || Rails.env.development?
     Authentication::Github.admin?(session)
   end
+
+  def show_create_button?
+    Settings.gallery_creation && !Settings.gallery_creation.disable
+  end
 end
