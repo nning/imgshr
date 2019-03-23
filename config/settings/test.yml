@@ -1,1 +1,5 @@
 foreground_processing: true
+
+gallery_creation:
+  disable: false
+  github: false
