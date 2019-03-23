@@ -5,7 +5,7 @@ class GalleriesController < ApplicationController
   include DeviceLinksOnly::Controller
   include SetGallery
 
-  # unless Rails.env.development?
+  unless Rails.env.development?
     admin_actions = [:index, :destroy]
     login_actions = []
 
@@ -16,7 +16,7 @@ class GalleriesController < ApplicationController
     end
 
     authenticate!(admin_actions, login_actions)
-  # end
+  end
 
   respond_to :html, :json
 
