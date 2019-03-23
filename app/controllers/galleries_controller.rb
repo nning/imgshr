@@ -44,7 +44,8 @@ class GalleriesController < ApplicationController
 
     if session['github_uid']
       gallery.boss_token.update_attributes! \
-        github_uid: session['github_uid'].to_i
+        github_uid: session['github_uid'].to_i,
+        github_login: session['github_login']
     end
 
     redirect_to gallery
