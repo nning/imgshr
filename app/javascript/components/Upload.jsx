@@ -10,14 +10,14 @@ import UploadList from './UploadList'
 import csrf from '../utils/csrf'
 import {encrypt} from '../utils/crypto'
 
-export default class Upload extends React.Component {
-  url = ''
-
+export default class Upload extends React.PureComponent {
   state = {
     selectedFiles: [],
     uploading: false,
     totalProgress: 0
   }
+
+  url = ''
 
 
   handleFiles = (event) => {
@@ -56,7 +56,7 @@ export default class Upload extends React.Component {
           encrypt(file.obj).then((encrypted) => {
             const encryptedFile = new File(
               [encrypted],
-              file.obj.name + '.bin',
+              `${file.obj.name}.bin`,
               {type: 'application/octet-stream'}
             )
 
@@ -73,7 +73,7 @@ export default class Upload extends React.Component {
 
 
   filesWithStatus(files) {
-    let filesWithStatus = []
+    const filesWithStatus = []
 
     files.forEach((file, i) => {
       filesWithStatus.push({
@@ -117,7 +117,7 @@ export default class Upload extends React.Component {
     this.setState((prev) => {
       const files = prev.selectedFiles
         .filter((_, k) => k !== i)
-        .map((file) => file.obj)
+        .map(file => file.obj)
 
       return {
         selectedFiles: this.filesWithStatus(files)
@@ -127,8 +127,8 @@ export default class Upload extends React.Component {
 
   totalProgress(files) {
     const progress = files
-    .map((file) => file.progress)
-    .reduce((a, b) => a + b, 0)
+      .map(file => file.progress)
+      .reduce((a, b) => a + b, 0)
 
     return parseInt((progress / (files.length * 100)) * 100)
   }
@@ -149,25 +149,43 @@ export default class Upload extends React.Component {
             Please choose files for upload...
           </div>
 
-          <input type="file" multiple onChange={this.handleFiles}
-            autoComplete="off"/>
+          <input
+            type="file"
+            multiple
+            onChange={this.handleFiles}
+            autoComplete="off"
+          />
 
-          <UploadList files={this.state.selectedFiles}
-            uploading={this.state.uploading}/>
+          <UploadList
+            files={this.state.selectedFiles}
+            uploading={this.state.uploading}
+          />
 
-          <ProgressBar min="0" max="100" current={this.state.totalProgress}
-            hide="true"/>
+          <ProgressBar
+            min="0"
+            max="100"
+            current={this.state.totalProgress}
+            hide="true"
+          />
         </div>
 
         <div className="modal-footer">
-          <button className={this.uploadButtonClasses()} type="submit"
-              disabled={this.isButtonDisabled()} name="commit"
-              onClick={this.upload}>
+          <button
+            className={this.uploadButtonClasses()}
+            type="submit"
+            disabled={this.isButtonDisabled()}
+            name="commit"
+            onClick={this.upload}
+          >
             <Icon name="upload"/>
             &nbsp;Upload!
           </button>
 
-          <button className="btn btn-default" data-dismiss="modal">
+          <button
+            type="button"
+            className="btn btn-default"
+            data-dismiss="modal"
+          >
             <Icon name="remove"/>
             &nbsp;Close
           </button>

@@ -10,10 +10,10 @@ const ICON_MAP = {
   'error:decrypting': 'remove-circle'
 }
 
-export default class Placeholder extends React.Component {
+export default class Placeholder extends React.PureComponent {
   render() {
     return (
-      <div className="placeholder">
+      <div className="placeholder" style={{width: this.props.width}}>
         <Icon name={this.props.icon || ICON_MAP[this.props.status]}/>
         <div className="title">{this.props.title}</div>
         <div>{this.props.statusText || this.props.status}</div>

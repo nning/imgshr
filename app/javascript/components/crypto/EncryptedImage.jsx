@@ -5,7 +5,7 @@ import Placeholder from '../Placeholder'
 import {decrypt} from '../../utils/crypto'
 
 
-export default class EncryptedImage extends React.Component {
+export default class EncryptedImage extends React.PureComponent {
   state = {
     src: '',
     status: 'fetching',
@@ -53,13 +53,13 @@ export default class EncryptedImage extends React.Component {
         src={this.state.src}
         title={this.props.title}
         alt={this.props.title}
-        />
+      />
     ) : (
       <Placeholder
         status={this.state.status}
         title={this.props.title}
         error={this.state.error}
-        />
+      />
     )
   }
 }

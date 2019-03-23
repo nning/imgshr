@@ -3,7 +3,7 @@ import React from 'react'
 import qrcode from 'qrcode'
 
 
-export default class QRCode extends React.Component {
+export default class QRCode extends React.PureComponent {
   componentDidMount() {
     this.updateCanvas()
   }

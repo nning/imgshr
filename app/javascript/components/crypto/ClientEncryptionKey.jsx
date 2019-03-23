@@ -4,7 +4,7 @@ import QRCode from '../QRCode'
 import {getKeyBase64} from '../../utils/crypto'
 
 
-export default class ClientEncryptionKey extends React.Component {
+export default class ClientEncryptionKey extends React.PureComponent {
   state = {
     key: '',
     url: window.location.href,

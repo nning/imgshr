@@ -2,11 +2,17 @@ import React from 'react'
 
 import UploadFile from './UploadFile'
 
-export default class UploadList extends React.Component {
+export default class UploadList extends React.PureComponent {
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
-      return <UploadFile key={key} file={file} uploading={this.props.uploading}/>
+      return (
+        <UploadFile
+          key={key}
+          file={file}
+          uploading={this.props.uploading}
+        />
+      )
     })
 
     if (this.props.files.length) {

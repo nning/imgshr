@@ -1,12 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 import Axios from 'axios'
 
 import csrf from '../utils/csrf'
 
 
-export default class AsyncCheckbox extends React.Component {
+export default class AsyncCheckbox extends React.PureComponent {
   onChange = (e) => {
     const data = csrf.getFormData(this)
     data.append(this.props.name, e.target.checked)

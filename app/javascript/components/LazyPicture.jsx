@@ -5,7 +5,7 @@ import LazyLoad from 'react-lazyload'
 import Placeholder from './Placeholder'
 
 
-export default class LazyPicture extends React.Component {
+export default class LazyPicture extends React.PureComponent {
   state = {
     loaded: false,
     error: false
@@ -33,11 +33,13 @@ export default class LazyPicture extends React.Component {
   }
 
   pictureClass = () => {
-    if (this.state.loaded && !this.state.error) return null;
-    return 'hidden';
+    if (this.state.loaded && !this.state.error) return null
+    return 'hidden'
   }
 
   render() {
+    const width = 250 * (this.props.width || 1) / (this.props.height || 1)
+
     return (
       <LazyLoad height={250} once>
         <React.Fragment>
@@ -47,7 +49,7 @@ export default class LazyPicture extends React.Component {
                 <source
                   srcSet={this.props.srcMobile}
                   media="(max-width: 768px)"
-                  />
+                />
               }
 
               <img
@@ -56,7 +58,7 @@ export default class LazyPicture extends React.Component {
                 alt={this.props.title}
                 onLoad={this.onLoad}
                 onError={this.onError}
-                />
+              />
             </picture>
           }
 
@@ -64,7 +66,8 @@ export default class LazyPicture extends React.Component {
             <Placeholder
               status="fetching"
               title={this.props.title}
-              />
+              width={width}
+            />
           }
 
           {this.isError() &&
@@ -73,7 +76,8 @@ export default class LazyPicture extends React.Component {
               icon="hourglass"
               statusText="Not ready, yet"
               title={this.props.title}
-              />
+              width={width}
+            />
           }
         </React.Fragment>
       </LazyLoad>

@@ -8,7 +8,9 @@
   = react_component :LazyPicture,
     { src: url_for(image),
       srcMobile: size == :small ? url_for(mediumBadImage) : nil,
-      title: picture.to_s }
+      title: picture.to_s,
+      height: picture.height,
+      width: picture.width }
 
   %noscript
     = image_tag image, title: picture, alt: picture
