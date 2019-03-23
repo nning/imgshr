@@ -1,9 +1,10 @@
-- if logged_in?
+- if logged_in? && show_create_button? || admin?
   .col-xs-12
     = link_to galleries_path, method: :post, class: 'pull-right btn btn-default' do
       = icon :plus_sign
       Create gallery!
 
+- if logged_in?
   = render 'galleries'
 
 - else
@@ -12,7 +13,7 @@
       %h1 Welcome!
       %p
         This is a simple image gallery sharing website.
-      - unless Settings.gallery_creation && Settings.gallery_creation.disable
+      - if show_create_button?
         %p
           = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
             = icon :plus_sign
