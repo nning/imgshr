@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_122644) do
+ActiveRecord::Schema.define(version: 2019_03_23_124132) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_122644) do
     t.string "slug", null: false, collation: "utf8_bin"
     t.integer "gallery_id"
     t.integer "github_uid"
+    t.string "github_login"
     t.index ["gallery_id"], name: "index_boss_tokens_on_gallery_id", unique: true
     t.index ["slug"], name: "index_boss_tokens_on_slug", unique: true
   end
@@ -139,7 +140,6 @@ ActiveRecord::Schema.define(version: 2018_08_26_122644) do
     t.index ["slug"], name: "index_temp_links_on_slug", unique: true
   end
 
-  add_foreign_key "device_links", "galleries"
   add_foreign_key "milestones", "galleries"
   add_foreign_key "ratings", "pictures"
   add_foreign_key "temp_links", "pictures"
