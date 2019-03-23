@@ -31,7 +31,9 @@ class PictureTest < ActiveSupport::TestCase
         shutter_speed: Rational(1, 799),
         iso_speed: 200,
         flash: 0,
-        focal_length: 210.0
+        focal_length: 210.0,
+        software: 'Adobe Photoshop CS3 Windows',
+        hdr: false
       })
     end
   end
