@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2019_03_23_124132) do
     t.index ["slug"], name: "index_temp_links_on_slug", unique: true
   end
 
+  add_foreign_key "device_links", "galleries"
   add_foreign_key "milestones", "galleries"
   add_foreign_key "ratings", "pictures"
   add_foreign_key "temp_links", "pictures"

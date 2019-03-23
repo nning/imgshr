@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def logged_in?
-    login_name && session['github_uid']
+    login_name.present? && session['github_uid'].present?
   end
 
   def login_name
@@ -60,6 +60,16 @@ module ApplicationHelper
   end
 
   def show_create_button?
-    Settings.gallery_creation && !Settings.gallery_creation.disable
+    creation_enabled = Settings.gallery_creation &&
+      !Settings.gallery_creation.disable
+
+    github_login = Settings.gallery_creation &&
+      Settings.gallery_creation.github
+
+    if github_login
+      return creation_enabled && logged_in?
+    end
+
+    creation_enabled
   end
 end

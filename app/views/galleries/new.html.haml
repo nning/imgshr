@@ -1,4 +1,4 @@
-- if logged_in? && show_create_button? || admin?
+- if logged_in? && (admin? || show_create_button?)
   .col-xs-12
     = link_to galleries_path, method: :post, class: 'pull-right btn btn-default' do
       = icon :plus_sign
