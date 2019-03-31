@@ -2,7 +2,7 @@ import React from 'react'
 
 import UploadFile from './UploadFile'
 
-export default class UploadList extends React.PureComponent {
+export default class UploadList extends React.Component {
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
