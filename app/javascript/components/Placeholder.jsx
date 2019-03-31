@@ -12,16 +12,27 @@ const ICON_MAP = {
 
 export default class Placeholder extends React.PureComponent {
   render() {
-    let styles = {}
-    if (this.props.width) {
-      styles = {width: this.props.width, minWidth: 'unset'}
+    const {width, height} = this.props
+    const styles = {}
+
+    if (height && width) {
+      styles.width = 250 * (width || 1) / (height || 1)
+      styles.minWidth = 'unset'
+
+      styles.height = `calc((100vw - 10px) * ${height / width}`
     }
 
     return (
       <div className="placeholder" style={styles}>
         <Icon name={this.props.icon || ICON_MAP[this.props.status]}/>
-        <div className="title">{this.props.title}</div>
-        <div>{this.props.statusText || this.props.status}</div>
+
+        <div className="title">
+          {this.props.title}
+        </div>
+
+        <div>
+          {this.props.statusText || this.props.status}
+        </div>
       </div>
     )
   }

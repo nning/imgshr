@@ -1,14 +1,24 @@
 .pictures-show, .pictures-gallery_show, .pictures-temp_link {
   .picture {
-    @media (min-width: 994px) { // @screen-l-min
-      .image img {
-        max-width: 850px;
-      }
-    }
+    .image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    @media (max-width: 993px) { // @screen-md-max
-      .image img {
-        width: 100%;
+      a {
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+
+      img {
+        @media (min-width: 994px) { // @screen-l-min
+          max-width: 850px;
+        }
+
+        @media (max-width: 993px) { // @screen-md-max
+          width: 100%;
+        }
       }
     }
   }

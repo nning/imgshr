@@ -38,8 +38,6 @@ export default class LazyPicture extends React.PureComponent {
   }
 
   render() {
-    const width = 250 * (this.props.width || 1) / (this.props.height || 1)
-
     return (
       <LazyLoad height={250} once>
         <React.Fragment>
@@ -66,7 +64,8 @@ export default class LazyPicture extends React.PureComponent {
             <Placeholder
               status="fetching"
               title={this.props.title}
-              width={width}
+              height={this.props.height}
+              width={this.props.width}
             />
           }
 
@@ -76,7 +75,8 @@ export default class LazyPicture extends React.PureComponent {
               icon="hourglass"
               statusText="Not ready, yet"
               title={this.props.title}
-              width={width}
+              height={this.props.height}
+              width={this.props.width}
             />
           }
         </React.Fragment>
