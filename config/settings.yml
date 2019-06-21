@@ -62,5 +62,5 @@ sizes:
     auto_orient: true
     quality: 60
   small:
-    resize: x250>
+    resize: x325>
     auto_orient: true

@@ -16,7 +16,7 @@ export default class Placeholder extends React.PureComponent {
     const styles = {}
 
     if (height && width) {
-      styles.width = 250 * (width || 1) / (height || 1)
+      styles.width = 325 * (width || 1) / (height || 1)
       styles.minWidth = 'unset'
 
       styles.height = `calc((100vw - 10px) * ${height / width}`

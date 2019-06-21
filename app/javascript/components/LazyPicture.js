@@ -39,7 +39,7 @@ export default class LazyPicture extends React.PureComponent {
 
   render() {
     return (
-      <LazyLoad height={250} once>
+      <LazyLoad height={325} once>
         <React.Fragment>
           {!this.state.error &&
             <picture className={this.pictureClass()}>

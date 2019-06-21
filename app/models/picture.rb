@@ -43,7 +43,7 @@ class Picture < ApplicationRecord
   scope :min_rating, ->(score) { joins(:ratings).where('ratings.score >= ?', score) }
   scope :max_rating, ->(score) { joins(:ratings).where('ratings.score <= ?', score) }
 
-  paginates_per 12
+  paginates_per 16
 
   delegate_to_metadata :photographed_at, :camera, :focal_length, :aperture,
     :shutter_speed, :iso_speed, :flash, :height, :width, :software, :hdr
