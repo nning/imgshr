@@ -1,3 +1,3 @@
-web: bundle exec rails s -p 3000
+web: bundle exec rails s
 webpacker: ./bin/webpack-dev-server
 sidekiq: bundle exec sidekiq
