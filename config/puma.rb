@@ -55,7 +55,7 @@ environment env
 #
 
 if env == 'production'
-  daemonize true
+  # daemonize true
 
   workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
@@ -71,7 +71,7 @@ if env == 'production'
 
   dir = File.expand_path('../..', __FILE__)
 
-  stdout_redirect "#{dir}/log/puma.stdout.log", "#{dir}/log/puma.stderr.log", true
+  # stdout_redirect "#{dir}/log/puma.stdout.log", "#{dir}/log/puma.stderr.log", true
 
   pidfile "#{dir}/tmp/pids/puma.pid"
   state_path "#{dir}/tmp/pids/puma.state"
