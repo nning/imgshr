@@ -16,4 +16,7 @@ if Rails.application.config.active_storage.service == :local
       end
     end
   end
+else
+  prefix = $LOAD_PATH.grep(/activestorage.*controllers/).first
+  load prefix + '/active_storage/representations_controller.rb'
 end

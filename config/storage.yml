@@ -36,4 +36,7 @@ local:
 
 amazon:
   service: S3
+  access_key_id: <%= ENV['AWS_KEY_ID'] %>
+  secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  region: <%= ENV['AWS_REGION'] %>
   bucket: <%= ENV['AWS_BUCKET'] %>
