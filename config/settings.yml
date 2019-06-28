@@ -1,8 +1,6 @@
 authentication:
   admin:
-    username: admin
-    password: password
-    # github_login: nning
+    github_login: <%= ENV['ADMIN_GITHUB_LOGIN'] %>
 
 # foreground_processing: true
 
