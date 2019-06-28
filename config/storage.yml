@@ -33,3 +33,7 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+amazon:
+  service: S3
+  bucket: <%= ENV['AWS_BUCKET'] %>

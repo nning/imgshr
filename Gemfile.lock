@@ -58,6 +58,22 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.6.0)
       execjs
+    aws-eventstream (1.0.3)
+    aws-partitions (1.181.0)
+    aws-sdk-core (3.56.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.22.0)
+      aws-sdk-core (~> 3, >= 3.56.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.43.0)
+      aws-sdk-core (~> 3, >= 3.56.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -166,6 +182,7 @@ GEM
     io-like (0.3.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    jmespath (1.4.0)
     jquery-infinite-pages (0.2.0)
       coffee-script
       jquery-rails
@@ -376,6 +393,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on!
   autoprefixer-rails
+  aws-sdk-s3
   best_in_place
   bootsnap
   bootstrap-sass

@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.0.rc1'
 
 gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'autoprefixer-rails'
+gem 'aws-sdk-s3', require: false
 gem 'best_in_place'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
