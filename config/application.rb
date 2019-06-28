@@ -27,7 +27,5 @@ module Imgshr
 
     # Auto-loading in production
     config.enable_dependency_loading = true
-
-    config.active_job.queue_adapter = :sidekiq
   end
 end

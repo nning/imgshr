@@ -1,6 +1,0 @@
-:queues:
-  - default
-  - temp_link_invalidation
-  - label_image
-
-:pidfile: tmp/pids/sidekiq.pid

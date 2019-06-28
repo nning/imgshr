@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
-
-  unless Rails.env.development?
-    Authentication::Basic.authenticate Sidekiq::Web
-  end
-
-  mount Sidekiq::Web => '/sidekiq'
-
   root to: 'galleries#new'
 
   get    '!:slug' => 'galleries#show', as: :gallery
