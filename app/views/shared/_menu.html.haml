@@ -10,13 +10,13 @@
         %span.sr-only Index
   %li
     - if logged_in?
-      = link_to logout_path, data: { toggle: 'tooltip' }, title: 'Logged in as ' + login_name do
+      = link_to logout_path, data: { toggle: 'tooltip' }, title: 'Logged in as ' + login_name, method: :post do
         = icon :off
         %span.sr-only
           Logged in as
           = login_name
     - else
-      = link_to login_path, data: { turbolinks: false, toggle: 'tooltip' }, title: 'Login with GitHub' do
+      = link_to login_path, data: { turbolinks: false, toggle: 'tooltip' }, title: 'Login with GitHub', method: :post do
         = icon :user
         %span.sr-only
           Login with GitHub

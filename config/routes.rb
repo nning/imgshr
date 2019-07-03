@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   resources :file_releases, only: [:create, :index], path: :releases
 
   get 'auth/:provider/callback' => 'sessions#create'
-  get 'login' => 'sessions#new', as: :login
-  get 'logout' => 'sessions#destroy', as: :logout
+  post 'login' => 'sessions#new', as: :login
+  post 'logout' => 'sessions#destroy', as: :logout
   get 'auth/failure' => 'sessions#failure'
 end
