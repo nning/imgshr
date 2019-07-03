@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get 'galleries/pictures' => 'pictures#index', as: :picture_feed, defaults: { format: :atom }
 
   resources :file_releases, only: [:create, :index], path: :releases
+  resources :updates, only: [:create]
 
   get 'auth/:provider/callback' => 'sessions#create'
   get 'login' => 'sessions#new', as: :login

@@ -36,3 +36,9 @@ script:
   - RAILS_ENV=test bundle exec ./bin/webpack
   - bundle exec rails test
   - yarn lint
+
+deploy:
+  provider: script
+  script: curl -X POST -I https://imgshr.space/updates?token=$UPDATES_TOKEN
+  on:
+    branch: master
