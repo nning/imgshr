@@ -6,10 +6,14 @@ export default class UploadList extends React.Component {
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
+
       return (
         <UploadFile
           key={key}
-          file={file}
+          name={file.obj.name}
+          size={file.obj.size}
+          progress={file.progress}
+          remove={file.remove}
           uploading={this.props.uploading}
         />
       )
@@ -17,7 +21,15 @@ export default class UploadList extends React.Component {
 
     if (this.props.files.length) {
       return (
-        <table className="upload__list table table-striped table-condensed table-hover">
+        <table
+          className="
+            upload__list
+            table
+            table-striped
+            table-condensed
+            table-hover
+          "
+        >
           <tbody>
             {files}
           </tbody>

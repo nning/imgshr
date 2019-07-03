@@ -33,7 +33,7 @@ export default class EncryptedImage extends React.PureComponent {
             decrypt(body)
               .then((decrypted) => {
                 this.setState({
-                  src: 'data:image/jpeg;base64,' + btoa(decrypted),
+                  src: `data:image/jpeg;base64,${btoa(decrypted)}`,
                   status: 'ready'
                 })
               })

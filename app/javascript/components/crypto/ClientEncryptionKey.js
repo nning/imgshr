@@ -5,6 +5,11 @@ import {getKeyBase64} from '../../utils/crypto'
 
 
 export default class ClientEncryptionKey extends React.PureComponent {
+  constructor() {
+    super()
+    document.addEventListener('sodium:ready', this.getKey)
+  }
+
   state = {
     key: '',
     url: window.location.href,
@@ -32,7 +37,7 @@ export default class ClientEncryptionKey extends React.PureComponent {
 
   getKey = () => {
     getKeyBase64().then((key) => {
-      const url = window.location.href + '#' + key
+      const url = `${window.location.href}#${key}`
 
       this.setState({
         key: key,
@@ -42,10 +47,6 @@ export default class ClientEncryptionKey extends React.PureComponent {
     })
   }
 
-  constructor() {
-    super()
-    document.addEventListener('sodium:ready', this.getKey)
-  }
 
   render() {
     return (
@@ -60,8 +61,9 @@ export default class ClientEncryptionKey extends React.PureComponent {
           <input
             value={this.state.key}
             onClick={this.selectAllAndCopy}
-            readOnly/>
-
+            readOnly
+          />
+1
           <span className="copied" style={this.state.copiedStyle}>
             copied!
           </span>

@@ -4,6 +4,11 @@ import qrcode from 'qrcode'
 
 
 export default class QRCode extends React.PureComponent {
+  constructor(props) {
+    super(props)
+    this.canvas = React.createRef()
+  }
+
   componentDidMount() {
     this.updateCanvas()
   }
@@ -19,6 +24,6 @@ export default class QRCode extends React.PureComponent {
   }
 
   render() {
-    return <canvas ref={canvas => this.canvas = canvas}/>
+    return <canvas ref={this.canvas}/>
   }
 }

@@ -76,7 +76,11 @@
     "react/forbid-component-props": 0,
     "react/jsx-no-bind": [2, {"allowArrowFunctions": true}],
     "react/jsx-handler-names": 0,
-    "react/jsx-child-element-spacing": 0
+    "react/jsx-child-element-spacing": 0,
+    "react/jsx-fragments": 0,
+    "react/state-in-constructor": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-curly-newline": 0
   },
   "settings": {
     "react": {

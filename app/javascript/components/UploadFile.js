@@ -5,10 +5,10 @@ import fileSize from '../utils/filesize'
 import Icon from './Icon'
 import UploadFileActions from './UploadFileActions'
 
-export default class UploadFile extends React.Component {
+export default class UploadFile extends React.PureComponent {
   render() {
-    let progress = parseInt(this.props.file.progress)
-    progress = progress ? `${progress}%` : this.props.file.progress
+    let progress = parseInt(this.props.progress)
+    progress = progress ? `${progress}%` : this.props.progress
 
     return (
       <tr className="upload__file">
@@ -17,11 +17,11 @@ export default class UploadFile extends React.Component {
         </td>
 
         <td className="upload__file__name">
-          {this.props.file.obj.name}
+          {this.props.name}
         </td>
 
         <td className="upload__file__size">
-          {fileSize(this.props.file.obj.size)}
+          {fileSize(this.props.size)}
         </td>
 
         <td className="upload__file__status">
@@ -32,7 +32,7 @@ export default class UploadFile extends React.Component {
           }
 
           {!this.props.uploading &&
-            <UploadFileActions remove={this.props.file.remove}/>
+            <UploadFileActions remove={this.props.remove}/>
           }
         </td>
       </tr>
