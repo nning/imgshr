@@ -1,5 +1,5 @@
 .image
-  - if temp_link?
+  - if temp_link? || picture.image_file.video?
     = render 'pictures/image', picture: picture
   - else
     = link_to picture.image_file do

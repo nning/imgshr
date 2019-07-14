@@ -7,9 +7,11 @@ class PictureImageValidator < ActiveModel::Validator
 
     return unless record.plain?
 
-    if !record.image_file.blob.content_type.starts_with?('image/')
+    content_type = record.image_file.blob.content_type
+
+    if !content_type.match(/^(image|video)\//)
       record.image_file.purge
-      errors[:base] << 'Wrong image format'
+      record.errors[:base] << 'Wrong image format'
     end
   end
 end

@@ -1,6 +1,15 @@
 -# This is currently also used on galleries#show
 
-- if picture.plain?
+- if picture.image_file.video?
+  - if defined? size
+    = image_tag picture.image_file.preview(Settings.sizes.send(size)),
+      class: 'video'
+    = icon :play
+  - else
+    = video_tag rails_blob_path(picture.image_file),
+      controls: true
+
+- elsif picture.plain?
   - size ||= :medium
   - image = picture.image_file.variant(Settings.sizes.send(size))
   - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad)
