@@ -69,7 +69,7 @@ group :test do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery', '~> 2.2.4'
+  gem 'rails-assets-jquery', '~> 3.4.1'
   gem 'rails-assets-jquery-cookie'
   gem 'rails-assets-momentjs'
   gem 'rails-assets-seiyria-bootstrap-slider'

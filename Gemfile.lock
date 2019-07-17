@@ -267,7 +267,7 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.3)
       sprockets-rails (>= 2.0.0)
-    rails-assets-jquery (2.2.4)
+    rails-assets-jquery (3.4.1)
     rails-assets-jquery-cookie (1.4.1)
       rails-assets-jquery (>= 1.2)
     rails-assets-momentjs (2.22.2)
@@ -414,7 +414,7 @@ DEPENDENCIES
   puma
   rack-protection
   rails (~> 5.2.0.rc1)
-  rails-assets-jquery (~> 2.2.4)!
+  rails-assets-jquery (~> 3.4.1)!
   rails-assets-jquery-cookie!
   rails-assets-momentjs!
   rails-assets-seiyria-bootstrap-slider!
