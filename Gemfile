@@ -62,7 +62,7 @@ end
 group :test do
   gem 'capybara_minitest_spec'
   gem 'capybara'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
   gem 'selenium-webdriver'
