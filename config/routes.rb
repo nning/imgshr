@@ -31,11 +31,11 @@ Rails.application.routes.draw do
   delete '-:token/pictures/multi-delete' => 'boss_tokens#destroy_multiple_pictures',
     as: :gallery_multiple_pictures_delete
 
-  get    '!:slug/:fingerprint' => 'pictures#gallery_show', as: :gallery_picture
-  patch  '!:slug/:id'          => 'pictures#update'
-  post   '!:slug'              => 'pictures#create'
-  post   'api/!:slug'          => 'pictures#api_create'
-  put    '!:slug/:id'          => 'pictures#update'
+  get    '!:slug/:key' => 'pictures#gallery_show', as: :gallery_picture
+  patch  '!:slug/:id'  => 'pictures#update'
+  post   '!:slug'      => 'pictures#create'
+  post   'api/!:slug'  => 'pictures#api_create'
+  put    '!:slug/:id'  => 'pictures#update'
 
   get    '!:slug(/tags/:tags)(/time/:since(/:until))(/stars/:min_rating(/:max_rating))' => 'galleries#show',
     as: :gallery_filter
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get    '!:slug/:id/rating' => 'ratings#show', as: :picture_rating
   post   '!:slug/:id/rating' => 'ratings#create'
 
-  get    '+:fingerprint' => 'pictures#show', as: :picture
+  get    '+:key' => 'pictures#show', as: :picture
 
   get    '=:slug' => 'temp_links#show', as: :temp_link
   post   '!:slug/:id/temp_link' => 'temp_links#create', as: :temp_link_create

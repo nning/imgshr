@@ -43,7 +43,7 @@ class GalleriesController < ApplicationController
     boss_token_session(gallery)
 
     if session['github_uid']
-      gallery.boss_token.update_attributes! \
+      gallery.boss_token.update! \
         github_uid: session['github_uid'].to_i,
         github_login: session['github_login']
     end
@@ -139,7 +139,7 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    gallery.update_attributes!(gallery_params)
+    gallery.update!(gallery_params)
     head :ok
   end
 

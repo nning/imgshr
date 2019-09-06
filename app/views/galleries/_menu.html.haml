@@ -10,10 +10,6 @@
         = icon :cog
       - else
         = icon :info_sign
-    - if @boss_token
-      = link_to '#', id: 'toggle-select', class: 'btn btn-default' do
-        = icon :check
-        Select
 
 = render 'galleries/upload'
 = render 'galleries/filter'

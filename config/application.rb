@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Imgshr
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -24,6 +24,7 @@ module Imgshr
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
 
     # Auto-loading in production
     config.enable_dependency_loading = true

@@ -36,7 +36,7 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
     let(:slug) { subject.slug }
 
     it :device_links_only do
-      subject.update_attributes!(device_links_only: true)
+      subject.update!(device_links_only: true)
 
       get gallery_url(slug)
       response.status.must_equal 404

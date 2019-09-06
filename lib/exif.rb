@@ -1,4 +1,4 @@
-module EXIF
+module Exif
   # http://www.sno.phy.queensu.ca/~phil/exiftool/TagNames/EXIF.html#Flash
   FLASH_MAP = {
      0x0 => 'No Flash',

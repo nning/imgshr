@@ -8,7 +8,7 @@ module SlugAble
   end
 
   def regenerate_slug!
-    update_attributes!(slug: generate_slug)
+    update!(slug: generate_slug)
   end
 
   def to_param

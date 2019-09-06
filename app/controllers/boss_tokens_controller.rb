@@ -9,40 +9,12 @@ class BossTokensController < ApplicationController
   def destroy_picture
     @boss_token.gallery
       .pictures
-      .first_by_fingerprint!(params[:id])
+      .first_by_key!(params[:id])
       .destroy!
 
     redirect_to gallery_path(@boss_token.gallery), flash: {
       info: 'Picture deleted!'
     }
-  end
-
-  def destroy_multiple_pictures
-    gallery = @boss_token.gallery
-    all_pictures = gallery.pictures
-    pictures = all_pictures
-
-    q = 'image_fingerprint like ?'
-    flash = {}
-
-    fingerprints = params[:pictures]
-
-    if fingerprints && fingerprints.size > 0
-      pictures = pictures.where(q, fingerprints.shift + '%')
-
-      fingerprints.each do |fp|
-        pictures = pictures.or(all_pictures.where(q, fp + '%'))
-      end
-
-      deleted_pictures = pictures.destroy_all
-      flash = {
-        flash: {
-          notice: 'Successfully deleted %s images' % deleted_pictures.count
-        }
-      }
-    end
-
-    redirect_to gallery, flash
   end
 
   def show
@@ -55,7 +27,7 @@ class BossTokensController < ApplicationController
         session["boss_page_visited_#{@boss_token.slug}"] = 1
 
         if session['github_uid'] && !@boss_token.github_uid && !admin?
-          @boss_token.update_attributes!(github_uid: session['github_uid'])
+          @boss_token.update!(github_uid: session['github_uid'])
         end
 
         if params[:redir]

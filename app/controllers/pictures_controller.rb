@@ -25,6 +25,8 @@ class PicturesController < ApplicationController
   end
 
   def create
+    # p upload_params
+
     upload_params.each do |image|
       @picture = gallery.pictures.build
 
@@ -42,7 +44,7 @@ class PicturesController < ApplicationController
 
   def gallery_show
     @gallery = Gallery.find_by_slug!(gallery_show_params[:slug])
-    @picture = @gallery.pictures.first_by_fingerprint!(gallery_show_params[:fingerprint])
+    @picture = @gallery.pictures.first_by_key!(gallery_show_params[:key])
 
     @milestones = @gallery.milestones.show_on_pictures
 
@@ -50,12 +52,12 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @picture = Picture.first_by_fingerprint!(show_params[:fingerprint])
+    @picture = Picture.first_by_key!(show_params[:key])
     @milestones = picture.gallery.milestones.show_on_pictures
   end
 
   def update
-    picture.update_attributes!(update_params)
+    picture.update!(update_params)
     head :ok
   end
 
@@ -66,11 +68,11 @@ class PicturesController < ApplicationController
   private
 
   def gallery_show_params
-    params.permit(:slug, :fingerprint)
+    params.permit(:slug, :key)
   end
 
   def show_params
-    params.permit(:fingerprint)
+    params.permit(:key)
   end
 
   def update_params

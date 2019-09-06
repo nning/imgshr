@@ -53,7 +53,7 @@ class GalleriesControllerTest < ActionController::TestCase
     end
 
     it 'should not update name if read-only' do
-      subject.update_attributes!(read_only: true)
+      subject.update!(read_only: true)
 
       put :update, params: { slug: slug, gallery: { name: 'foo' } }
       response.status.must_equal 403

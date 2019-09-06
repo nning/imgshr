@@ -1,3 +1,5 @@
+require_relative '../test_helper'
+
 class PictureTest < ActiveSupport::TestCase
   let(:gallery) { Gallery.create! }
 

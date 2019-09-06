@@ -6,6 +6,6 @@ class DeviceLink < ApplicationRecord
   scope :enabled, -> () { where(disabled: false) }
 
   def disable!
-    update_attributes!(disabled: true)
+    update!(disabled: true)
   end
 end

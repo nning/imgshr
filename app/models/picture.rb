@@ -20,14 +20,7 @@ class Picture < ApplicationRecord
 
   validates_with PictureImageValidator
 
-  validates :image_fingerprint,
-    uniqueness: {
-      scope: :gallery_id,
-      message: 'Picture already exists in gallery!'
-    }
-
   before_save :set_fallback_order_date
-  after_create :set_image_fingerprint!
 
   if !::Settings.foreground_processing && LabelImage.is_enabled?
     # TODO after_image_post_process without delay
@@ -52,10 +45,6 @@ class Picture < ApplicationRecord
     (ratings.sum(:score) / ratings.count.to_f).round(2)
   end
 
-  def image_fingerprint_short
-    @image_fingerprint_short ||= image_fingerprint[0..7]
-  end
-
   def photographed_or_created_at
     photographed_at || created_at
   end
@@ -63,7 +52,7 @@ class Picture < ApplicationRecord
   # TODO Referal of pictures by fingerprint assumes they are unique. Actually,
   #      we also need a slug, here.
   def to_param
-    image_fingerprint_short
+    image_file.key
   end
 
   def to_s
@@ -115,12 +104,19 @@ class Picture < ApplicationRecord
     pictures
   end
 
-  def self.first_by_fingerprint!(fp)
-    if fp.size == 8
-      where('image_fingerprint like ?', "#{fp}%").first!
-    else
-      find_by_image_fingerprint!(fp)
-    end
+  # def self.first_by_fingerprint!(fp)
+  #   if fp.size == 8
+  #     where('image_fingerprint like ?', "#{fp}%").first!
+  #   else
+  #     find_by_image_fingerprint!(fp)
+  #   end
+  # end
+
+  def self.first_by_key!(key)
+    with_attached_image_file
+      .references(:attachment_image_file)
+      .where(ActiveStorage::Blob.arel_table[:key].matches(key))
+      .first!
   end
 
   private
@@ -129,10 +125,10 @@ class Picture < ApplicationRecord
     self.order_date ||= self.created_at || Time.now
   end
 
-  def set_image_fingerprint!
-    update_attributes! \
-      image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
-  end
+  # def set_image_fingerprint!
+  #   update! \
+  #     image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
+  # end
 
   def enqueue_label_job
     LabelImageJob.set(wait: 25.seconds).perform_later(self)

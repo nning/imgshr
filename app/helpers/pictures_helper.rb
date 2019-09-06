@@ -1,6 +1,6 @@
 module PicturesHelper
   def exif_flash(picture)
-    EXIF::FLASH_MAP[picture.flash]
+    Exif::FLASH_MAP[picture.flash]
   end
 
   def hide_gallery?
