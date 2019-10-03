@@ -62,10 +62,10 @@ end
 group :test do
   gem 'capybara_minitest_spec'
   gem 'capybara'
-  gem 'webdrivers'
+  gem 'webdrivers', '>= 4.1.2'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '>= 3.142.4'
 end
 
 source 'https://rails-assets.org' do
