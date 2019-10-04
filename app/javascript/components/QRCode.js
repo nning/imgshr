@@ -13,12 +13,12 @@ export default class QRCode extends React.PureComponent {
     this.updateCanvas()
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     this.updateCanvas()
   }
 
   updateCanvas() {
-    qrcode.toCanvas(this.canvas, this.props.content, (err) => {
+    qrcode.toCanvas(this.canvas.current, this.props.content, (err) => {
       if (err) console.error(this.props.content, err)
     })
   }
