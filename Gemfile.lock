@@ -186,7 +186,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     local_time (2.1.0)
-    loofah (2.3.0)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -379,43 +379,43 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on!
   autoprefixer-rails
-  best_in_place
+  best_in_place (>= 3.1.1)
   bootsnap
   bootstrap-sass
   bundler (>= 1.8.4)
   capybara
   capybara_minitest_spec
-  coffee-rails
+  coffee-rails (>= 5.0.0)
   config
   coveralls
-  dotiw
+  dotiw (>= 4.0.1)
   exifr
   foreman
   hamlit
   image_processing
   jbuilder
-  jquery-infinite-pages
-  jquery-rails
-  kaminari
+  jquery-infinite-pages (>= 0.2.0)
+  jquery-rails (>= 4.3.5)
+  kaminari (>= 1.1.1)
   listen
   local_time
   mail
   mini_magick
-  minitest-spec-rails
+  minitest-spec-rails (>= 6.0.0)
   mysql2
   omniauth-github
   paperclip
   puma
   rack-protection
-  rails (~> 5.2.0.rc1)
+  rails (~> 5.2.3.0)
   rails-assets-jquery (~> 2.2.4)!
   rails-assets-jquery-cookie!
   rails-assets-momentjs!
   rails-assets-seiyria-bootstrap-slider!
-  react-rails
-  responders
+  react-rails (>= 2.6.0)
+  responders (>= 3.0.0)
   rqrcode
-  sassc-rails
+  sassc-rails (>= 2.1.2)
   secure_headers
   selenium-webdriver
   sidekiq (~> 5.2.7)
@@ -424,13 +424,13 @@ DEPENDENCIES
   spring
   spring-watcher-listen
   uglifier
-  web-console
+  web-console (>= 3.7.0)
   webdrivers
-  webpacker
-  yaml_db
+  webpacker (>= 4.0.7)
+  yaml_db (>= 0.7.0)
 
 RUBY VERSION
    ruby 2.6.1p33
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
