@@ -29,6 +29,8 @@ class Picture < ApplicationRecord
   before_save :set_fallback_order_date
   after_create :set_image_fingerprint!
 
+  before_save :update_order_date, if: :will_save_change_to_ignore_exif_date?
+
   if !::Settings.foreground_processing && LabelImage.is_enabled?
     # TODO after_image_post_process without delay
     after_create :enqueue_label_job
@@ -125,6 +127,10 @@ class Picture < ApplicationRecord
 
   private
 
+  def enqueue_label_job
+    LabelImageJob.set(wait: 25.seconds).perform_later(self)
+  end
+
   def set_fallback_order_date
     self.order_date ||= self.created_at || Time.now
   end
@@ -134,7 +140,13 @@ class Picture < ApplicationRecord
       image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
   end
 
-  def enqueue_label_job
-    LabelImageJob.set(wait: 25.seconds).perform_later(self)
+  def update_order_date
+    date = created_at
+
+    unless ignore_exif_date
+      date = image_file.metadata[:photographed_at] || created_at
+    end
+
+    update_columns(order_date: date)
   end
 end

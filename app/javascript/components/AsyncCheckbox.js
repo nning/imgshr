@@ -18,12 +18,19 @@ export default class AsyncCheckbox extends React.PureComponent {
 
   render() {
     return (
-      <input
-        type="checkbox"
-        name={this.props.name}
-        defaultChecked={this.props.checked}
-        onChange={this.onChange}
-      />
+      <>
+        <input
+          type="checkbox"
+          id={this.props.name}
+          name={this.props.name}
+          defaultChecked={this.props.checked}
+          onChange={this.onChange}
+        />
+
+        <label htmlFor={this.props.name}>
+          {this.props.label}
+        </label>
+      </>
     )
   }
 }
