@@ -9,7 +9,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-react": "^7.7.4",
     "@rails/webpacker": "^4.0.7",
-    "autoprefixer": "^9.6.0",
+    "autoprefixer": "^9.7.2",
     "axios": "^0.19.0",
     "libsodium-wrappers-sumo": "^0.7.2",
     "promise-queue": "^2.2.3",
