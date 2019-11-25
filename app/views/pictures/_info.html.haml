@@ -7,13 +7,14 @@
       %td  Order Date
       %td
         = timestamp_ago picture.order_date
-        %span{class: 'pull-right'}
-          = react_component :AsyncCheckbox,
-            { name: 'picture[ignore_exif_date]',
-              checked: picture.ignore_exif_date,
-              uri: gallery_picture_path(@gallery, picture),
-              label: 'Ignore EXIF Date',
-              reload: true }
+        - if writable?
+          %span{class: 'pull-right'}
+            = react_component :AsyncCheckbox,
+              { name: 'picture[ignore_exif_date]',
+                checked: picture.ignore_exif_date,
+                uri: gallery_picture_path(@gallery, picture),
+                label: 'Ignore EXIF Date',
+                reload: true }
     - if picture.camera?
       %tr
         %td  Camera
