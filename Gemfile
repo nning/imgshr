@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '~> 2.6.0'
 
 gem 'bundler', '>= 1.8.4'
-gem 'rails', '~> 5.2.0.rc1'
+gem 'rails', '~> 6.0.2'
 
 gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'autoprefixer-rails'
