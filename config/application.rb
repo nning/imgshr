@@ -1,3 +1,5 @@
+Warning[:deprecated] = false
+
 require_relative 'boot'
 
 require 'rails/all'

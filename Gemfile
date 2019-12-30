@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.6.0'
+ruby '~> 2.7.0'
 
 gem 'bundler', '>= 1.8.4'
 gem 'rails', '~> 5.2.0.rc1'
@@ -13,7 +13,7 @@ gem 'best_in_place'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
-gem 'config'
+gem 'config', github: 'qnighy/config', branch: 'ruby-2.7-new-ostruct-member'
 gem 'dotiw'
 gem 'exifr'
 gem 'hamlit'
