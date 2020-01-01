@@ -291,7 +291,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    react-rails (2.6.0)
+    react-rails (2.6.1)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
