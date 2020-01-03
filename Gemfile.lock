@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/qnighy/config.git
-  revision: 8f1b02209ebdfe8c41ff44c9edfa8e6151423fd6
+  revision: 84659e4d9d2863ac34d8abb5dcc45507fb95ff88
   branch: ruby-2.7-new-ostruct-member
   specs:
     config (2.0.0)
