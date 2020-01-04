@@ -4,10 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 2.7.0'
 
-# gem 'bundler', '>= 1.8.4'
 gem 'rails', '~> 6.0.2.1'
 
-# gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'acts-as-taggable-on'
 gem 'autoprefixer-rails'
 gem 'best_in_place'
