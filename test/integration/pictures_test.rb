@@ -11,13 +11,13 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
     end
 
     it 'downloads' do
-      visit(gallery_picture_path(subject.gallery, subject.image_fingerprint))
+      visit(gallery_picture_path(subject.gallery, subject))
 
       page.find('button.dropdown-toggle').click
       click_link('Download')
 
       page.response_headers['Content-Disposition']
-         .must_equal('attachment; filename="emsi.png"; filename*=UTF-8\'\'emsi.png')
+        .must_equal('attachment; filename="emsi.png"; filename*=UTF-8\'\'emsi.png')
 
       # p page.source
       # page.source.force_encoding('utf-8').must_equal(EMSI.read)
