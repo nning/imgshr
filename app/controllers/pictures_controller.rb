@@ -25,8 +25,6 @@ class PicturesController < ApplicationController
   end
 
   def create
-    # p upload_params
-
     upload_params.each do |image|
       @picture = gallery.pictures.build
 

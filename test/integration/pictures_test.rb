@@ -1,11 +1,11 @@
 require 'test_helper'
 
 class PicturesIntegrationTest < ActionDispatch::IntegrationTest
-  describe 'capybara', js: true do
+  describe 'pictures' do
     let(:gallery) { Gallery.create! }
     subject do
       pic = gallery.pictures.build
-      pic.image_file.attach(io: emsi(), filename: 'emsi.png')
+      pic.image_file.attach(io: emsi, filename: 'emsi.png')
       pic.save!
       pic
     end
@@ -14,14 +14,16 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       visit(gallery_picture_path(subject.gallery, subject))
       visit(page.find('.image a')[:href])
 
-      page.response_headers['Content-Type'].must_equal('image/png')
+      page.response_headers['Content-Type']
+        .must_equal('image/png')
     end
 
     it 'returns image variant' do
       visit(gallery_picture_path(subject.gallery, subject))
       visit(page.find('noscript img')[:src])
 
-      page.response_headers['Content-Type'].must_equal('image/png')
+      page.response_headers['Content-Type']
+        .must_equal('image/png')
     end
 
     it 'downloads' do
@@ -33,8 +35,8 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       page.response_headers['Content-Disposition']
         .must_equal('attachment; filename="emsi.png"; filename*=UTF-8\'\'emsi.png')
 
-      # p page.source
-      # page.source.force_encoding('utf-8').must_equal(EMSI.read)
+      page.source.force_encoding('utf-8')
+        .must_equal(emsi.read)
     end
   end
 end

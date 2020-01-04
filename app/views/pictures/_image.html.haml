@@ -2,8 +2,8 @@
 
 - if picture.plain?
   - size ||= :medium
-  - image = picture.image_file.variant(Settings.sizes.send(size))
-  - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad)
+  - image = picture.image_file.variant(Settings.sizes.send(size).to_hash)
+  - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
 
   = react_component :LazyPicture,
     { src: url_for(image),
