@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.6.0'
+ruby '~> 2.7.0'
 
-gem 'bundler', '>= 1.8.4'
-gem 'rails', '~> 6.0.0'
+# gem 'bundler', '>= 1.8.4'
+gem 'rails', '~> 6.0.2.1'
 
 gem 'acts-as-taggable-on', github: 'nning/acts-as-taggable-on', branch: 'rails-5.2-process_dirty_object'
 gem 'autoprefixer-rails'
@@ -13,7 +13,7 @@ gem 'best_in_place'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
-gem 'config'
+gem 'config', github: 'qnighy/config', branch: 'ruby-2.7-new-ostruct-member'
 gem 'dotiw'
 gem 'exifr'
 gem 'hamlit'
@@ -34,8 +34,9 @@ gem 'responders'
 gem 'rqrcode'
 gem 'sassc-rails'
 gem 'secure_headers'
-gem 'sidekiq'
+gem 'sidekiq', '~> 5.2.7'
 gem 'sinatra'
+gem 'sprockets', '~> 3'
 gem 'uglifier'
 gem 'webpacker'
 gem 'yaml_db'
@@ -55,14 +56,10 @@ group :development do
   gem 'web-console'
 end
 
-group :production do
-  gem 'skylight'
-end
-
 group :test do
   gem 'capybara_minitest_spec'
   gem 'capybara'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
   gem 'selenium-webdriver'

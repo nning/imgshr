@@ -76,7 +76,7 @@ class PicturesController < ApplicationController
   end
 
   def update_params
-    params.require(:picture).permit(:title, :tag_list)
+    params.require(:picture).permit(:title, :tag_list, :ignore_exif_date)
   end
 
   def upload_params

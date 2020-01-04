@@ -3,6 +3,12 @@ import React from 'react'
 import UploadFile from './UploadFile'
 
 export default class UploadList extends React.Component {
+  shouldComponentUpdate() {
+    // TODO Work-around for upload update callback in Upload component not
+    //      updating the individual file's progress in the state
+    return true
+  }
+
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
