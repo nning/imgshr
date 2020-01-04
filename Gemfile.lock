@@ -337,10 +337,6 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
-    skylight (4.2.0)
-      skylight-core (= 4.2.0)
-    skylight-core (4.2.0)
-      activesupport (>= 4.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -434,7 +430,6 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq (~> 5.2.7)
   sinatra
-  skylight
   spring
   spring-watcher-listen
   sprockets (~> 3)
