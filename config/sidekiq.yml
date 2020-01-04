@@ -2,5 +2,6 @@
   - default
   - temp_link_invalidation
   - label_image
+  - active_storage_analysis
 
 :pidfile: tmp/pids/sidekiq.pid
