@@ -10,6 +10,20 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       pic
     end
 
+    it 'returns original image' do
+      visit(gallery_picture_path(subject.gallery, subject))
+      visit(page.find('.image a')[:href])
+
+      page.response_headers['Content-Type'].must_equal('image/png')
+    end
+
+    it 'returns image variant' do
+      visit(gallery_picture_path(subject.gallery, subject))
+      visit(page.find('noscript img')[:src])
+
+      page.response_headers['Content-Type'].must_equal('image/png')
+    end
+
     it 'downloads' do
       visit(gallery_picture_path(subject.gallery, subject))
 
