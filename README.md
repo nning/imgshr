@@ -34,6 +34,8 @@ You can test this at https://imgshr.space!
 * Device token authentication for galleries
 * Symmetric client-side encrypted galleries with sharable secret based on
   libsodium (XSalsa20 for encryption, Poly1305 for authentication)
+* "Responsive Images Service": Resize and convert to webp for inclusion in
+  third-party sites
 
 ## Development
 

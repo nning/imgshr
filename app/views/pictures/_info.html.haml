@@ -77,3 +77,7 @@
       %tr
         %td  Auto Labels
         %td= picture.label_list
+    - if picture.gallery.responsive_image_service
+      %tr
+        %td  Id
+        %td= link_to picture.image_file.blob.key, responsive_image_path(picture, resize: 480)

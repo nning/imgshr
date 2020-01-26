@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   post   '!:slug/:id/rating' => 'ratings#create'
 
   get    '+:key' => 'pictures#show', as: :picture
+  get    'images/:key' => 'responsive_images#show', as: :responsive_image
 
   get    '=:slug' => 'temp_links#show', as: :temp_link
   post   '!:slug/:id/temp_link' => 'temp_links#create', as: :temp_link_create
