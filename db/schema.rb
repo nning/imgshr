@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_215556) do
+ActiveRecord::Schema.define(version: 2020_01_26_193129) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_215556) do
     t.boolean "endless_page", default: true, null: false
     t.boolean "device_links_only", default: false
     t.boolean "client_encrypted", default: false
+    t.boolean "responsive_image_service", default: false
     t.index ["slug"], name: "index_galleries_on_slug", unique: true
   end
 
