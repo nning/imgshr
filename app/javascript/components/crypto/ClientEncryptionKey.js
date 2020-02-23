@@ -63,7 +63,7 @@ export default class ClientEncryptionKey extends React.PureComponent {
             onClick={this.selectAllAndCopy}
             readOnly
           />
-1
+
           <span className="copied" style={this.state.copiedStyle}>
             copied!
           </span>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.application.config.active_storage.service == :local
+if [:local, :test].include? Rails.application.config.active_storage.service
   module ActiveStorage
     class RepresentationsController < BaseController
       include ActiveStorage::SetBlob
