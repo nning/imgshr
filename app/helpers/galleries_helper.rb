@@ -11,7 +11,8 @@ module GalleriesHelper
       until: params[:until],
       sort_by: params[:sort_by],
       min_rating: params[:min_rating],
-      max_rating: params[:max_rating]
+      max_rating: params[:max_rating],
+      reverse: params[:reverse]
     }
   end
 
