@@ -32,6 +32,9 @@ class Picture < ApplicationRecord
   scope :by_order_date, -> { order('order_date desc') }
   scope :by_created_at, -> { order('created_at desc') }
 
+  scope :by_order_date_reverse, -> { order('order_date asc') }
+  scope :by_created_at_reverse, -> { order('created_at asc') }
+
   scope :since, ->(date) { where('order_date >  ?', Date.parse(date)) }
   scope :until, ->(date) { where('order_date <= ?', Date.parse(date)) }
 

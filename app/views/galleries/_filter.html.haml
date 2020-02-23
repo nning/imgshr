@@ -32,6 +32,11 @@
               = select_tag :sort_by, options_for_select([:order_date, :created_at], params[:sort_by]), class: 'form-control'
           .row.form-group
             .col-xs-12.col-sm-3
+              = label_tag :reverse
+            .col-xs-12.col-sm-9
+              = check_box_tag :reverse, '', params[:reverse]
+          .row.form-group
+            .col-xs-12.col-sm-3
               = label_tag :rating
             .col-xs-12.col-sm-9
               = text_field_tag :rating, params[:rating], class: 'form-control slider', data: rating_slider_attributes

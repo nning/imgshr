@@ -170,6 +170,8 @@ class GalleriesController < ApplicationController
     order = :by_order_date
     order = :by_created_at if params[:sort_by] == 'created_at'
 
+    order = (order.to_s + '_reverse').to_sym if params[:reverse]
+
     @pictures ||= gallery.pictures
       .filtered(params)
       .send(order)
