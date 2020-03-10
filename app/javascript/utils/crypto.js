@@ -26,11 +26,7 @@ export function getKey() {
 
     if (hash === '') {
       if (stored) {
-        const storedKey = sodium.from_base64(stored)
-
-        for (const i in storedKey) {
-          if (storedKey.hasOwnProperty(i)) k[i] = storedKey[i]
-        }
+        k = sodium.from_base64(stored)
       } else {
         k = sodium.crypto_secretbox_keygen()
         localStorage.setItem(item, sodium.to_base64(k))
