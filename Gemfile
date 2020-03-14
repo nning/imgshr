@@ -12,7 +12,7 @@ gem 'best_in_place'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
-gem 'config', github: 'qnighy/config', branch: 'ruby-2.7-new-ostruct-member'
+gem 'config'
 gem 'dotiw'
 gem 'exifr'
 gem 'hamlit'
