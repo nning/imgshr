@@ -72,14 +72,15 @@
                     checked: @gallery.endless_page,
                     uri: gallery_path(@gallery) }
 
-            %tr
-              %td Responsive image service
-              %td
-                = react_component :AsyncCheckbox,
-                  { name: 'gallery[responsive_image_service]',
-                    checked: @gallery.responsive_image_service,
-                    uri: gallery_path(@gallery),
-                    reload: true }
+            - if !@gallery.client_encrypted
+              %tr
+                %td Responsive image service
+                %td
+                  = react_component :AsyncCheckbox,
+                    { name: 'gallery[responsive_image_service]',
+                      checked: @gallery.responsive_image_service,
+                      uri: gallery_path(@gallery),
+                      reload: true }
 
             %tr
               %td Authorized devices only
