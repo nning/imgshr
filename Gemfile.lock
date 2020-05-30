@@ -303,7 +303,7 @@ GEM
       tilt
     redis (4.1.4)
     regexp_parser (1.7.0)
-    responders (3.0.0)
+    responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rqrcode (1.1.2)
