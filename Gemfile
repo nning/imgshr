@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 2.7.0'
 
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 
 gem 'acts-as-taggable-on'
 gem 'autoprefixer-rails'
@@ -20,7 +20,7 @@ gem 'image_processing'
 gem 'jbuilder'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
-gem 'kaminari'
+gem 'kaminari', '>= 1.2.1'
 gem 'local_time'
 gem 'mail'
 gem 'mini_magick'
@@ -38,7 +38,7 @@ gem 'sinatra'
 gem 'sprockets', '~> 3'
 gem 'uglifier'
 gem 'webpacker'
-gem 'yaml_db'
+gem 'yaml_db', '>= 0.7.0'
 
 # Keep paperclip around for migration to ActiveStorage
 gem 'paperclip'
