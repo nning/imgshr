@@ -1,11 +1,11 @@
 # docker build -t imgshr -f deploy/Dockerfile .
 # docker run -it -v $(pwd)/deploy/database.yml:/app/config/database.yml imgshr
 
-FROM ruby:2.5
+FROM ruby:2.7
 
 RUN \
   apt-get update -qq && \
-  curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+  curl -sL https://deb.nodesource.com/setup_12.x | bash && \
   apt-get install -y build-essential libpq-dev nodejs && \
   rm -rf /var/lib/apt/lists/*
 
@@ -14,7 +14,8 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock package.json yarn.lock ./
 RUN \
-  bundle install --without development test && \
+  bundle config set without 'development test' && \
+  bundle install && \
   npm install -g yarn && \
   yarn
 

@@ -55,7 +55,7 @@ environment env
 #
 
 if env == 'production'
-  daemonize true
+  # daemonize true
 
   workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
