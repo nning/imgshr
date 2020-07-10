@@ -3,6 +3,10 @@
 
 FROM ruby:2.7
 
+ENV RAILS_ENV=production
+ENV RAILS_FORCE_SSL=false
+ENV RAILS_SERVE_STATIC_FILES=true
+
 RUN \
   apt-get update -qq && \
   curl -sL https://deb.nodesource.com/setup_12.x | bash && \
