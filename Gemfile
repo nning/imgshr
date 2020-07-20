@@ -13,7 +13,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'config'
-gem 'dotiw'
+gem 'dotiw', '< 5'
 gem 'exifr'
 gem 'hamlit'
 gem 'image_processing'
