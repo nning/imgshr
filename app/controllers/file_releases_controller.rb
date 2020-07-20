@@ -24,6 +24,6 @@ class FileReleasesController < ApplicationController
   end
 
   def create_params
-    params.permit(:branch, :file, :version)
+    params.permit(:branch, :download, :version)
   end
 end
