@@ -27,7 +27,9 @@ class BossTokensController < ApplicationController
         session["boss_page_visited_#{@boss_token.slug}"] = 1
 
         if session['github_uid'] && !@boss_token.github_uid && !admin?
-          @boss_token.update!(github_uid: session['github_uid'])
+          @boss_token.update! \
+            github_uid: session['github_uid'].to_i,
+            github_login: session['github_login']
         end
 
         if params[:redir]
