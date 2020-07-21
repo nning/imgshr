@@ -4,7 +4,7 @@ cache [@file_releases.first, :feed] do
     feed.updated @file_releases.first.updated_at
 
     @file_releases.each do |release|
-      url = absolute_url_for(release.file.url)
+      url = absolute_url_for(release.download)
 
       feed.entry(release, url: url) do |entry|
         entry.title(release)
