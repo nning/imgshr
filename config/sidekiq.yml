@@ -3,5 +3,6 @@
   - temp_link_invalidation
   - label_image
   - active_storage_analysis
+  - active_storage_purge
 
 :pidfile: tmp/pids/sidekiq.pid
