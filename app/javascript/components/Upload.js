@@ -14,7 +14,8 @@ export default class Upload extends React.PureComponent {
   state = {
     selectedFiles: [],
     uploading: false,
-    totalProgress: 0
+    totalProgress: 0,
+    errors: {}
   }
 
   url = ''
@@ -24,7 +25,9 @@ export default class Upload extends React.PureComponent {
     const files = Array.from(event.target.files)
 
     this.setState({
-      selectedFiles: this.filesWithStatus(files)
+      selectedFiles: this.filesWithStatus(files),
+      uploading: false,
+      totalProgress: 0
     })
   }
 
@@ -68,7 +71,18 @@ export default class Upload extends React.PureComponent {
     })
 
     Promise.all(promises)
-      .then(() => window.location.reload())
+      .then((responses) => {
+        const datas = responses.map(x => x.data)
+        const errors = {}
+
+        datas.forEach(data => Object.assign(errors, data.errors))
+
+        if (Object.keys(errors).length) {
+          this.setState({errors})
+        } else {
+          window.location.reload()
+        }
+      })
   }
 
 
@@ -159,6 +173,7 @@ export default class Upload extends React.PureComponent {
           <UploadList
             files={this.state.selectedFiles}
             uploading={this.state.uploading}
+            errors={this.state.errors}
           />
 
           <ProgressBar

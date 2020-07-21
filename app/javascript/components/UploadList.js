@@ -9,9 +9,17 @@ export default class UploadList extends React.Component {
     return true
   }
 
+  // TODO Make it completely compatible to the way Rails transforms file names
+  replaceSpecialChars(s) {
+    return s.replace(/:/, '-')
+  }
+
   render() {
     const files = this.props.files.map((file) => {
       const key = [file.obj.name, file.obj.size].join('-')
+
+      const name = this.replaceSpecialChars(file.obj.name)
+      const errors = this.props.errors[name]
 
       return (
         <UploadFile
@@ -21,6 +29,7 @@ export default class UploadList extends React.Component {
           progress={file.progress}
           remove={file.remove}
           uploading={this.props.uploading}
+          errors={errors}
         />
       )
     })

@@ -25,6 +25,8 @@ class PicturesController < ApplicationController
   end
 
   def create
+    errors = {}
+
     upload_params.each do |image|
       @picture = gallery.pictures.build
 
@@ -32,12 +34,11 @@ class PicturesController < ApplicationController
         @picture.image_file.attach(image)
         @picture.save!
       rescue ActiveRecord::RecordInvalid
-        redirect_to gallery, flash: { error: @picture.errors.full_messages.join(', ') }
-        return
+        errors[@picture.image_file.filename] = @picture.errors
       end
     end
 
-    redirect_to gallery unless request.xhr?
+    render json: {errors: errors}, status: :created
   end
 
   def gallery_show
