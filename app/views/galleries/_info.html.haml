@@ -46,7 +46,9 @@
           - if @boss_token
             %tr
               %td Boss link
-              %td= link_to @boss_token, gallery_delete_path(@boss_token)
+              %td
+                = link_to @boss_token, gallery_delete_path(@boss_token)
+                (can be used for <strong>deletion</strong>)
 
             %tr
               %td Read only
