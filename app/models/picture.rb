@@ -85,6 +85,12 @@ class Picture < ApplicationRecord
     gallery && !gallery.client_encrypted
   end
 
+  def preprocess_variants!
+    Settings.sizes.each do |size, options|
+      image_file.variant(**options).processed
+    end
+  end
+
   def self.filtered(params)
     pictures = all
 
@@ -109,14 +115,6 @@ class Picture < ApplicationRecord
     pictures
   end
 
-  # def self.first_by_fingerprint!(fp)
-  #   if fp.size == 8
-  #     where('image_fingerprint like ?', "#{fp}%").first!
-  #   else
-  #     find_by_image_fingerprint!(fp)
-  #   end
-  # end
-
   def self.first_by_key!(key)
     with_attached_image_file
       .references(:attachment_image_file)
@@ -133,11 +131,6 @@ class Picture < ApplicationRecord
   def set_fallback_order_date
     self.order_date ||= self.created_at || Time.now
   end
-
-  # def set_image_fingerprint!
-  #   update! \
-  #     image_fingerprint: Digest::MD5.hexdigest(self.image_file.download)
-  # end
 
   def update_order_date
     date = created_at

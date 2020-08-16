@@ -4,5 +4,6 @@
   - label_image
   - active_storage_analysis
   - active_storage_purge
+  - active_storage_resize
 
 :pidfile: tmp/pids/sidekiq.pid
