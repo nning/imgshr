@@ -22,7 +22,7 @@
 
     = render partial: 'shared/manifest'
 
-    %link{rel: 'preload', href: 'https://imgshr.space/assets/bootstrap/glyphicons-halflings-regular-fe185d11a49676890d47bb783312a0cda5a44c4039214094e7957b4c040ef11c.woff2', as: 'font'}
+    = preload_link_tag 'bootstrap/glyphicons-halflings-regular.woff2', as: :font
 
     = yield :auto_discovery
     = yield :gallery_meta_tags
