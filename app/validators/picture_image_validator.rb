@@ -12,14 +12,16 @@ class PictureImageValidator < ActiveModel::Validator
       return
     end
 
-    new_checksum = record.image_file.blob.checksum
-    existing_pictures = record.gallery.pictures
-      .includes(:image_file_blob)
-      .where(active_storage_blobs: {checksum: new_checksum})
+    if record.new_record?
+      new_checksum = record.image_file.blob.checksum
+      existing_pictures = record.gallery.pictures
+        .includes(:image_file_blob)
+        .where(active_storage_blobs: {checksum: new_checksum})
 
-    if existing_pictures.any?
-      record.errors[:base] << "Image already exists in gallery"
-      return
+      if existing_pictures.any?
+        record.errors[:base] << "Image already exists in gallery"
+        return
+      end
     end
   end
 end
