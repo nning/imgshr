@@ -25,6 +25,8 @@ gallery_creation:
 
 # client_encrypted_only: true
 
+preprocess_images: false
+
 icons:
   - sizes: 48x48
     src: /images/touch/48x48.png

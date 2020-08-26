@@ -34,7 +34,9 @@ class PicturesController < ApplicationController
         @picture.image_file.attach(image)
         @picture.save!
 
-        ImageResizeJob.perform_later(@picture)
+        if Settings.preprocess_images
+          ImageResizeJob.perform_later(@picture)
+        end
       rescue ActiveRecord::RecordInvalid
         errors[@picture.image_file.filename] = @picture.errors
       end
