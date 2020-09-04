@@ -10,14 +10,11 @@ if [:local, :test].include? Rails.application.config.active_storage.service
 
         type = @blob.content_type || DEFAULT_SEND_FILE_TYPE
 
-        original_variant = @blob.representation(params[:variation_key])
-
         if webp?
-          options = original_variant.variation.transformations.merge({convert: 'webp'})
-          variant = @blob.variant(options).processed
+          variant = @blob.variant({convert: 'web'}).processed
           type = 'image/webp'
         else
-          variant = original_variant.processed
+          variant = @blob.representation(params[:variation_key]).processed
         end
 
         send_data @blob.service.download(variant.key),

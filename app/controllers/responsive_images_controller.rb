@@ -12,13 +12,15 @@ class ResponsiveImagesController < ApplicationController
     end
 
     options = show_params.to_hash.select { |k, v| OPTIONS.include?(k.to_sym) }
-    options[:convert] = 'webp' if webp?
+    options[:convert] = 'web' if webp?
 
     type = image.blob.content_type || DEFAULT_SEND_FILE_TYPE
     type = 'image/webp' if webp?
 
+    variant = image.variant(options)
+
     # Generate variant file
-    variant = image.variant(options).processed
+    image.blob.representation(variant.variation.key).processed
 
     send_data image.service.download(variant.key),
       type: type,
