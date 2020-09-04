@@ -8,23 +8,11 @@ if [:local, :test].include? Rails.application.config.active_storage.service
       def show
         expires_in 1.year, public: true
 
-        type = @blob.content_type || DEFAULT_SEND_FILE_TYPE
-
-        if webp?
-          variant = @blob.variant({convert: 'web'}).processed
-          type = 'image/webp'
-        else
-          variant = @blob.representation(params[:variation_key]).processed
-        end
+        variant = @blob.representation(params[:variation_key]).processed
 
         send_data @blob.service.download(variant.key),
-          type: type, disposition: 'inline'
-      end
-
-      private
-
-      def webp?
-        request.headers['Accept'] =~ /image\/webp/
+          type: @blob.content_type || DEFAULT_SEND_FILE_TYPE,
+          disposition: 'inline'
       end
     end
   end
