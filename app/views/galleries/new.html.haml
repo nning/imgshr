@@ -12,9 +12,25 @@
     .jumbotron.jumbotron-color.text-center
       %h1 Welcome!
       %p
-        This is a simple image gallery sharing website.
+        imgshr is a self-hosted image gallery sharing service.
+        %br
+
+        Check out the
+        = succeed '!' do
+          %a{href: 'https://github.com/nning/imgshr#features', target: '_blank'}<
+            features
+
       - if show_create_button?
         %p
           = link_to galleries_path, method: :post, class: 'btn btn-lg btn-danger' do
             = icon :plus_sign
             Create gallery!
+
+      - if show_login_invitation?
+        %p
+          %small
+            Please
+            = succeed ',' do
+              %a{data: {turbolinks: false, method: 'post'}, rel: 'nofollow', href: '/login'}<
+                login with GitHub
+            this instance is login only.

@@ -36,6 +36,8 @@ You can test this at https://imgshr.space!
   libsodium (XSalsa20 for encryption, Poly1305 for authentication)
 * "Responsive Images Service": Resize and convert to webp for inclusion in
   third-party sites
+* Milestones can be set by gallery and shown on images (e.g. for showing time
+  since a certain event on photos)
 
 ## Development
 

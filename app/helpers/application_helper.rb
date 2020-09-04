@@ -72,4 +72,9 @@ module ApplicationHelper
 
     creation_enabled
   end
+
+  def show_login_invitation?
+    c = Settings.gallery_creation
+    return c && !c.disable && c.github
+  end
 end
