@@ -71,7 +71,9 @@ if env == 'production'
 
   dir = File.expand_path('../..', __FILE__)
 
-  stdout_redirect "#{dir}/log/puma.stdout.log", "#{dir}/log/puma.stderr.log", true
+  if ENV['RAILS_CONTAINER'].nil?
+    stdout_redirect "#{dir}/log/puma.stdout.log", "#{dir}/log/puma.stderr.log", true
+  end
 
   pidfile "#{dir}/tmp/pids/puma.pid"
   state_path "#{dir}/tmp/pids/puma.state"
