@@ -6,6 +6,7 @@ FROM ruby:2.7
 ENV RAILS_ENV=production
 ENV RAILS_FORCE_SSL=false
 ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_CONTAINER=true
 
 RUN \
   apt-get update -qq && \

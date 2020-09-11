@@ -24,6 +24,7 @@
 
 # Utility shell scripts
 /*.sh
+!/deploy.sh
 
 # Database config and env specific settings
 /config/database.yml
