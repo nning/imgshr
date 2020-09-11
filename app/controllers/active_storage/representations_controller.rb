@@ -12,7 +12,7 @@ if [:local, :test].include? Rails.application.config.active_storage.service
 
         original_variant = @blob.representation(params[:variation_key])
 
-        if webp?
+        if convert_to_webp?
           options = original_variant.variation.transformations.merge({convert: 'webp'})
           variant = @blob.variant(options).processed
           type = 'image/webp'
@@ -26,8 +26,8 @@ if [:local, :test].include? Rails.application.config.active_storage.service
 
       private
 
-      def webp?
-        request.headers['Accept'] =~ /image\/webp/
+      def convert_to_webp?
+        request.headers['Accept'] =~ /image\/webp/ && Settings.convert_to_webp
       end
     end
   end

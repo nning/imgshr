@@ -12,7 +12,7 @@ class ResponsiveImagesController < ApplicationController
     end
 
     options = show_params.to_hash.select { |k, v| OPTIONS.include?(k.to_sym) }
-    options[:convert] = 'webp' if webp?
+    options[:convert] = 'webp' if convert_to_webp?
 
     type = image.blob.content_type || DEFAULT_SEND_FILE_TYPE
     type = 'image/webp' if webp?
@@ -31,7 +31,7 @@ class ResponsiveImagesController < ApplicationController
     params.permit(:key, *OPTIONS)
   end
 
-  def webp?
-    request.headers['Accept'] =~ /image\/webp/
+  def convert_to_webp?
+    request.headers['Accept'] =~ /image\/webp/ && Settings.convert_to_webp
   end
 end
