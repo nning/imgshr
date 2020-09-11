@@ -27,7 +27,7 @@ if [:local, :test].include? Rails.application.config.active_storage.service
       private
 
       def convert_to_webp?
-        request.headers['Accept'] =~ /image\/webp/ && Settings.convert_to_webp
+        Settings.convert_to_webp && request.headers['Accept'] =~ /image\/webp/
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResponsiveImagesController < ApplicationController
   OPTIONS = [:resize, :quality, :rotate]
 
@@ -32,6 +34,6 @@ class ResponsiveImagesController < ApplicationController
   end
 
   def convert_to_webp?
-    request.headers['Accept'] =~ /image\/webp/ && Settings.convert_to_webp
+    Settings.convert_to_webp && request.headers['Accept'] =~ /image\/webp/
   end
 end
