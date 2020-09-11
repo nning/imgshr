@@ -27,6 +27,8 @@ gallery_creation:
 
 preprocess_images: false
 
+convert_to_webp: false
+
 icons:
   - sizes: 48x48
     src: /images/touch/48x48.png
