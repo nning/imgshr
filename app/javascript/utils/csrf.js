@@ -1,15 +1,10 @@
-import ReactDOM from 'react-dom'
-
 let cachedParams
 
 export function getParams(node) {
   if (!cachedParams) {
-    // eslint-disable-next-line react/no-find-dom-node
-    const html = ReactDOM.findDOMNode(node).closest('html')
-
-    const param = html.querySelector('meta[name="csrf-param"]')
+    const param = document.querySelector('meta[name="csrf-param"]')
       .getAttribute('content')
-    const token = html.querySelector('meta[name="csrf-token"]')
+    const token = document.querySelector('meta[name="csrf-token"]')
       .getAttribute('content')
 
     cachedParams = [param, token]
