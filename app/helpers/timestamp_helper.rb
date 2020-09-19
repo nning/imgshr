@@ -6,7 +6,8 @@ module TimestampHelper
       tooltip: tooltip
     }
 
-    react_component :Timestamp, props, prerender: true, tag: :span
+    # react_component :Timestamp, props, prerender: true, tag: :span
+    react_component :Timestamp, props, tag: :span
   end
 
   def timestamp_ago(time, tooltip: true)
