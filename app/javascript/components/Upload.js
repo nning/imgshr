@@ -64,7 +64,7 @@ export default class Upload extends React.PureComponent {
             )
 
             this.getUploadFunction(config, encryptedFile)()
-              .then(() => resolve())
+              .then(response => resolve(response))
           })
         })
       })
