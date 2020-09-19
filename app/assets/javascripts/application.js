@@ -17,7 +17,6 @@
 //= require bootstrap-sprockets
 //= require best_in_place
 //= require best_in_place.purr
-//= require momentjs
 //= require seiyria-bootstrap-slider
 //= require_tree .
 

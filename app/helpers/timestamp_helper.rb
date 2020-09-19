@@ -1,17 +1,16 @@
 module TimestampHelper
-  def timestamp(time, klass: :timestamp, tooltip: true)
-    attrs = {title: time}
-    attrs.merge!({data: {toggle: 'tooltip'}}) if tooltip
+  def timestamp(time, relative: false, tooltip: true)
+    props = {
+      time: DateTime.parse(time.to_s).to_s,
+      relative: relative,
+      tooltip: tooltip
+    }
 
-    content_tag(:span, attrs) do
-      content_tag(:span, class: klass) do
-        DateTime.parse(time.to_s).to_s
-      end
-    end
+    react_component :Timestamp, props, prerender: true, tag: :span
   end
 
   def timestamp_ago(time, tooltip: true)
-    timestamp(time, klass: :timestamp_ago, tooltip: tooltip)
+    timestamp(time, relative: true, tooltip: tooltip)
   end
 
   def relative_distance_of_time_in_words(from, to)
