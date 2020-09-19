@@ -276,8 +276,6 @@ GEM
       railties (= 6.0.3.3)
       sprockets-rails (>= 2.0.0)
     rails-assets-jquery (2.2.4)
-    rails-assets-jquery-cookie (1.4.1)
-      rails-assets-jquery (>= 1.2)
     rails-assets-seiyria-bootstrap-slider (10.6.2)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -426,7 +424,6 @@ DEPENDENCIES
   rack-protection
   rails (~> 6.0.3)
   rails-assets-jquery (~> 2.2.4)!
-  rails-assets-jquery-cookie!
   rails-assets-seiyria-bootstrap-slider!
   react-rails
   responders
