@@ -1,18 +1,15 @@
-var grid = $('#picture_grid');
-var pictures = [];
+(function () {
+  var grid = document.getElementById('picture_grid');
 
-<% @pictures.each do |picture| %>
-  var picture = $('<%= j render picture %>');
-  grid.append(picture);
-  pictures.push(picture);
-<% end %>
+  <% @pictures.each do |picture| %>
+    grid.insertAdjacentHTML('beforeend', '<%= j render picture %>');
+  <% end %>
 
-$('#gallery .pagination').html('<%= j render 'pagination_links' %>');
+  $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
-$(document).trigger('content:update');
+  $(document).trigger('content:update');
 
-if (typeof ReactRailsUJS !== 'undefined') {
-  pictures.forEach(function (picture) {
-    ReactRailsUJS.mountComponents(picture);
-  });
-}
+  if (typeof ReactRailsUJS !== 'undefined') {
+    ReactRailsUJS.mountComponents(grid);
+  }
+})();
