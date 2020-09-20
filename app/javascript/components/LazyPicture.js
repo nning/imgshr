@@ -1,5 +1,7 @@
 import React from 'react'
 
+import LazyLoad from 'react-lazyload'
+
 import Placeholder from './Placeholder'
 
 
@@ -37,47 +39,48 @@ export default class LazyPicture extends React.PureComponent {
 
   render() {
     return (
-      <React.Fragment>
-        {!this.state.error &&
-          <picture className={this.pictureClass()}>
-            {this.props.srcMobile !== null &&
-              <source
-                srcSet={this.props.srcMobile}
-                media="(max-width: 768px)"
+      <LazyLoad height={325} once>
+        <React.Fragment>
+          {!this.state.error &&
+            <picture className={this.pictureClass()}>
+              {this.props.srcMobile !== null &&
+                <source
+                  srcSet={this.props.srcMobile}
+                  media="(max-width: 768px)"
+                />
+              }
+
+              <img
+                src={this.props.src}
+                title={this.props.title}
+                alt={this.props.title}
+                onLoad={this.onLoad}
+                onError={this.onError}
               />
-            }
+            </picture>
+          }
 
-            <img
-              src={this.props.src}
+          {this.isFetching() &&
+            <Placeholder
+              status="fetching"
               title={this.props.title}
-              alt={this.props.title}
-              onLoad={this.onLoad}
-              onError={this.onError}
-              loading="lazy"
+              height={this.props.height}
+              width={this.props.width}
             />
-          </picture>
-        }
+          }
 
-        {this.isFetching() &&
-          <Placeholder
-            status="fetching"
-            title={this.props.title}
-            height={this.props.height}
-            width={this.props.width}
-          />
-        }
-
-        {this.isError() &&
-          <Placeholder
-            status="error:fetching"
-            icon="hourglass"
-            statusText="Not ready, yet"
-            title={this.props.title}
-            height={this.props.height}
-            width={this.props.width}
-          />
-        }
-      </React.Fragment>
+          {this.isError() &&
+            <Placeholder
+              status="error:fetching"
+              icon="hourglass"
+              statusText="Not ready, yet"
+              title={this.props.title}
+              height={this.props.height}
+              width={this.props.width}
+            />
+          }
+        </React.Fragment>
+      </LazyLoad>
     )
   }
 }
