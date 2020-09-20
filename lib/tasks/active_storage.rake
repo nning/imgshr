@@ -39,17 +39,23 @@ namespace :active_storage do
       }
     }
 
-    active_storage_blob_statement = ActiveRecord::Base.connection.raw_connection.prepare(<<-SQL)
-      INSERT INTO active_storage_blobs (
-        `key`, filename, content_type, metadata, byte_size, checksum, created_at
-      ) VALUES (?, ?, ?, '{}', ?, ?, ?)
-    SQL
+    active_storage_blob_statement = ActiveRecord::Base.connection.raw_connection.prepare(
+      'active_storage_blob_statement',
+      "
+        INSERT INTO active_storage_blobs (
+          key, filename, content_type, metadata, byte_size, checksum, created_at
+        ) VALUES ($1, $2, $3, '{}', $4, $5, $6)
+      "
+    )
 
-    active_storage_attachment_statement = ActiveRecord::Base.connection.raw_connection.prepare(<<-SQL)
-      INSERT INTO active_storage_attachments (
-        name, record_type, record_id, blob_id, created_at
-      ) VALUES (?, ?, ?, #{get_blob_id}, ?)
-    SQL
+    active_storage_attachment_statement = ActiveRecord::Base.connection.raw_connection.prepare(
+      'active_storage_attachment_statement',
+      "
+        INSERT INTO active_storage_attachments (
+          name, record_type, record_id, blob_id, created_at
+        ) VALUES ($1, $2, $3, #{get_blob_id}, $4)
+      "
+    )
 
     models = ActiveRecord::Base.descendants.reject(&:abstract_class?)
 
@@ -102,8 +108,8 @@ namespace :active_storage do
       end
     end
 
-    active_storage_attachment_statement.close
-    active_storage_blob_statement.close
+    # active_storage_attachment_statement.close
+    # active_storage_blob_statement.close
 
     ActiveRecord::Base.logger = old_logger
   end
