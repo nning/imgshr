@@ -7195,10 +7195,10 @@ react-lazyload@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.0.0.tgz#f9741daa823d95ddb4dd59527ca6b8845d1b4c3e"
   integrity sha512-wYR9iroanIUELPQ7YtgeHjl7KburmA1WxB2GurjAOs31B6IehxxvHEp/74pIaWJLv+o/ug952WoWqjFpDzl5Ig==
 
-react-scroll-up@^1.3.3:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/react-scroll-up/-/react-scroll-up-1.3.4.tgz#d12b3fa6ef18b7f16e243db53e9be218e01862ed"
-  integrity sha512-jXMoG1Cdkw636ZRLHU56KPppbitkEDSSSOHVXo+QUH+koGasfTXoWiaKxViNGZrJRtImToThlDKhEHD1KhfYCQ==
+react-scroll-up@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/react-scroll-up/-/react-scroll-up-1.3.5.tgz#c117148426f186e5170c4dd41e09e4a32dbe69f6"
+  integrity sha512-RpAobxiI8vQQPbK0qm4rTJAD16zZQ7sHS4H39pZHvMreQtPPDsoE8uR3Yj6rxO8Y9QlxGBjwrwz6AE+cuzCE7g==
   dependencies:
     detect-passive-events "^1.0.0"
     object-assign "^4.0.1"
