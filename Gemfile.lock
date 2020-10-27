@@ -71,7 +71,7 @@ GEM
       actionpack (>= 3.2)
       railties (>= 3.2)
     bindex (0.8.1)
-    bootsnap (1.4.8)
+    bootsnap (1.4.9)
       msgpack (~> 1.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
