@@ -50,6 +50,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          TZ: Europe/Berlin
         run: |
           bundle exec rails db:migrate
           bundle exec ./bin/webpack
