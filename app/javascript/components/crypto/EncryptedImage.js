@@ -48,18 +48,22 @@ export default class EncryptedImage extends React.PureComponent {
   }
 
   render() {
-    return this.state.status === 'ready' ? (
-      <img
-        src={this.state.src}
-        title={this.props.title}
-        alt={this.props.title}
-      />
-    ) : (
-      <Placeholder
-        status={this.state.status}
-        title={this.props.title}
-        error={this.state.error}
-      />
-    )
+    if (this.state.status === 'ready') {
+      return (
+        <img
+          src={this.state.src}
+          title={this.props.title}
+          alt={this.props.title}
+        />
+      )
+    } else {
+      return (
+        <Placeholder
+          status={this.state.status}
+          title={this.props.title}
+          error={this.state.error}
+        />
+      )
+    }
   }
 }
