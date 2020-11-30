@@ -2889,10 +2889,10 @@ detect-node@^2.0.4:
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
-detect-passive-events@^1.0.0:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/detect-passive-events/-/detect-passive-events-1.0.5.tgz#ce324db665123bef9e368b8059ff95d95217cc05"
-  integrity sha512-foW7Q35wwOCxVzW0xLf5XeB5Fhe7oyRgvkBYdiP9IWgLMzjqUqTvsJv9ymuEWGjY6AoDXD3OC294+Z9iuOw0QA==
+detect-passive-events@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/detect-passive-events/-/detect-passive-events-2.0.2.tgz#229d02a20c47371194a2def84144c07d83e324c2"
+  integrity sha512-Ru7Eiz+pCy++QpqaNOgaIjlM0PzxEsh3Etg3wtntNhW2r3H1/8KkcR8bX9ApPIZChiNO2Pz//60uUg29DPNh3Q==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -7201,12 +7201,12 @@ react-lazyload@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.1.0.tgz#2d2b172ede29f0a72dc4b329af6f1626ffd637d2"
   integrity sha512-WNkWS2jlLnAud2uEqi/Ud4TEjzOQzsN97NzbeRodB9k0TepnoadXDU2bee3PvfP3vpbepsZ716FjSb+xS1W4UQ==
 
-react-scroll-up@^1.3.3:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/react-scroll-up/-/react-scroll-up-1.3.5.tgz#c117148426f186e5170c4dd41e09e4a32dbe69f6"
-  integrity sha512-RpAobxiI8vQQPbK0qm4rTJAD16zZQ7sHS4H39pZHvMreQtPPDsoE8uR3Yj6rxO8Y9QlxGBjwrwz6AE+cuzCE7g==
+react-scroll-up@^1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/react-scroll-up/-/react-scroll-up-1.3.7.tgz#8cbc1ace1d7723a62bf432aef3dcad6a2664fd56"
+  integrity sha512-STijjW7R/cc2+6GswZzcBb73sQgtQP5IZnSIeJlKGb2I1WDyc1bl5dbHuPeklDY0OAf3opV2DUHXDYhItZe/cw==
   dependencies:
-    detect-passive-events "^1.0.0"
+    detect-passive-events "^2.0.2"
     object-assign "^4.0.1"
     prop-types "^15.5.8"
     tween-functions "^1.1.0"
