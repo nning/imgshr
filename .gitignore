@@ -49,8 +49,9 @@
 # Tensorflow image labelling data
 /lib/label_image/*
 
-# IntelliJ config
+# IDE config
 /.idea
+/.vscode
 
 # simplecov/Coveralls
 /coverage
