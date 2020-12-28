@@ -10,5 +10,7 @@ class RemovePaperclipFromPicturesAndFileReleases < ActiveRecord::Migration[5.2]
     remove_column :file_releases, :file_file_size, :bigint
     remove_column :file_releases, :file_updated_at, :datetime
     remove_column :file_releases, :file_fingerprint, :string
+  rescue Mysql2::Error, ActiveRecord::StatementInvalid
+    $stderr << "Paperclip columns not existing\n"
   end
 end

@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
   end
 
   create_table "file_releases", id: :integer, charset: "utf8", force: :cascade do |t|
+    t.string "file_fingerprint"
     t.string "version"
     t.datetime "created_at"
     t.datetime "updated_at"
