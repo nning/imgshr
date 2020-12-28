@@ -40,9 +40,6 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'yaml_db'
 
-# Keep paperclip around for migration to ActiveStorage
-gem 'paperclip'
-
 group :development do
   # gem 'better_errors'
   # gem 'binding_of_caller'

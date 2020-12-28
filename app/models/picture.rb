@@ -10,12 +10,6 @@ class Picture < ApplicationRecord
 
   has_one_attached :image_file
 
-  # TODO Remove after successful migration to ActiveStorage?
-  has_attached_file :image,
-    styles: {medium: '850x850>', thumb: '200x200>'},
-    url: '/system/:hash.:extension',
-    hash_secret: Rails.application.secrets[:secret_key_base]
-
   acts_as_taggable_on :tags, :labels
 
   validates_with PictureImageValidator

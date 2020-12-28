@@ -35,7 +35,7 @@ namespace :label_image do
         picture.send(:enqueue_label_job)
       else
         picture.label_image!
-        puts '%s (%s)' % [picture, picture.image_fingerprint_short]
+        puts '%s (%s)' % [picture, picture.to_param]
       end
     end
   end
