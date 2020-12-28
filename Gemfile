@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.7.0'
+ruby '~> 3.0.0'
 
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.0'
 
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
-gem 'best_in_place'
+gem 'best_in_place', github: 'mmotherwell/best_in_place'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
@@ -58,10 +58,11 @@ end
 group :test do
   gem 'capybara_minitest_spec'
   gem 'capybara'
-  gem 'webdrivers'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
+  gem 'rexml' # For selenium-webdriver in Ruby 3
   gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 source 'https://rails-assets.org' do
