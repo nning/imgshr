@@ -1,6 +1,6 @@
 # IMGSHR
 
-[![Build Status](https://img.shields.io/travis/nning/imgshr/master.svg)](https://travis-ci.org/nning/imgshr)
+[![Build Status](https://img.shields.io/github/workflow/status/nning/imgshr/Run%20tests.svg)](https://github.com/nning/imgshr/actions?query=workflow%3A%22Run+tests%22)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
 [![Coverage](https://img.shields.io/coveralls/nning/imgshr/master.svg)](https://coveralls.io/r/nning/imgshr)
 
@@ -82,5 +82,5 @@ The log can be followed with:
 
 ## License
 
-Copyright © 2014-2018 [henning mueller](https://nning.io/), released
+Copyright © 2014-2021 [henning mueller](https://nning.io/), released
 under the terms of [GNU AGPL 3.0](http://www.gnu.org/licenses/agpl-3.0.html).
