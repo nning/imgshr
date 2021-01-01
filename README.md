@@ -80,6 +80,10 @@ The log can be followed with:
     git pull
     ./deploy.sh up --build
 
+### traefik example
+
+See `examples/traefik` as a starting point for a deployment with traefik and Let's Encrypt.
+
 ## License
 
 Copyright © 2014-2021 [henning mueller](https://nning.io/), released

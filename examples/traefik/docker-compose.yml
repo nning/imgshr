@@ -1,0 +1,94 @@
+# Search for "example.com" and replace E-Mail addresses and domain names
+# WARNING: Configure secret keys in .env for production setups!
+
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.3
+    container_name: traefik
+    command:
+      # - --log.level=DEBUG
+      # - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --certificatesresolvers.letsencrypt.acme.email=ssl@example.com
+      - --certificatesresolvers.letsencrypt.acme.storage=acme.json
+      - --certificatesresolvers.letsencrypt.acme.keytype=EC384
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
+      - --certificatesresolvers.letsencrypt.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
+    ports:
+      - 80:80
+      - 443:443
+      # - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: '$MYSQL_ROOT_PASSWD'
+    volumes:
+      - db:/var/lib/mysql
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+
+  imgshr: &rails
+    image: nning2/imgshr:latest
+    container_name: imgshr
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./settings.yml:/app/config/settings/production.yml
+      - ./storage:/app/storage
+    environment:
+      DATABASE_URL: mysql2://root:$MYSQL_ROOT_PASSWD@db:3306/imgshr?encoding=utf8&pool=4&timeout=5000
+      REDIS_PROVIDER: REDIS_URL
+      REDIS_URL: redis://redis:6379
+      RAILS_ENV: production
+      RAILS_SERVE_STATIC_FILES: 'true'
+      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_MAX_THREADS: 4
+      SECRET_KEY_BASE: $SECRET_KEY_BASE
+      GITHUB_KEY: $GITHUB_KEY
+      GITHUB_SECRET: $GITHUB_SECRET
+    labels:
+      - traefik.enable=true
+
+      # Redirect http to https
+      - traefik.http.middlewares.imgshr_redirect.redirectscheme.scheme=https
+      - traefik.http.routers.imgshr_http.middlewares=imgshr_redirect
+
+      # Route http
+      - traefik.http.routers.imgshr_http.rule=Host(`imgshr.example.com`)
+      - traefik.http.routers.imgshr_http.entrypoints=http
+
+      # Route https and manage certificates
+      - traefik.http.routers.imgshr_https.rule=Host(`imgshr.example.com`)
+      - traefik.http.routers.imgshr_https.entrypoints=https
+      - traefik.http.routers.imgshr_https.tls=true
+      - traefik.http.routers.imgshr_https.tls.certresolver=letsencrypt
+
+      # Application upstream
+      - traefik.http.services.imgshr_https.loadbalancer.server.port=3000
+    restart: unless-stopped
+
+  sidekiq:
+    <<: *rails
+    container_name: sidekiq
+    command: bundle exec sidekiq
+    ports: []
+    labels: []
+
+volumes:
+  db:
+  storage:

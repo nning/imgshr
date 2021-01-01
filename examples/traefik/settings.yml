@@ -1,0 +1,30 @@
+authentication:
+  admin:
+    username: nning
+    password: sohreiMi7Oju
+    github_login: nning
+
+# foreground_processing: true
+
+# token_length: 8
+
+# temp_links:
+#   invalidate_after: 86400
+
+file_release_token: bie7iec3phouju6thuuh9IthuhiL5Kee
+
+# label_image:
+#   bin: lib/label_image/label_image
+#   graph: lib/label_image/inception_v3_2016_08_28_frozen.pb
+#   labels: lib/label_image/imagenet_slim_labels.txt
+#   threshold: 0.09
+
+gallery_creation:
+  disable: false
+  github: true
+
+# client_encrypted_only: true
+
+preprocess_images: true
+
+convert_to_webp: true
