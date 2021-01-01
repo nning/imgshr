@@ -1,7 +1,7 @@
 # docker build -t imgshr -f deploy/Dockerfile .
 # docker run -it -v $(pwd)/deploy/database.yml:/app/config/database.yml imgshr
 
-FROM ruby:2.7
+FROM ruby:3.0
 
 ENV RAILS_ENV=production
 ENV RAILS_FORCE_SSL=false
@@ -10,7 +10,7 @@ ENV RAILS_CONTAINER=true
 
 RUN \
   apt-get update -qq && \
-  curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+  curl -sL https://deb.nodesource.com/setup_14.x | bash && \
   apt-get install -y build-essential libpq-dev nodejs && \
   rm -rf /var/lib/apt/lists/*
 
