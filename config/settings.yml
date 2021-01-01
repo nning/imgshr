@@ -25,9 +25,9 @@ gallery_creation:
 
 # client_encrypted_only: true
 
-preprocess_images: false
+preprocess_images: true
 
-convert_to_webp: false
+convert_to_webp: true
 
 icons:
   - sizes: 48x48
