@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 06bf141730fa19fd2f74499942251ffe1b030b3f
+  revision: 509a3e6a01b3cc120c975dc7a9f89cf0d0ceac70
   specs:
-    acts-as-taggable-on (6.5.0)
+    acts-as-taggable-on (7.0.0)
       activerecord (>= 5.0, < 6.2)
 
 GIT
@@ -103,7 +103,7 @@ GEM
       capybara (>= 2)
       minitest (>= 4)
     childprocess (3.0.0)
-    chunky_png (1.3.15)
+    chunky_png (1.4.0)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -167,9 +167,11 @@ GEM
     erubi (1.10.0)
     execjs (2.7.0)
     exifr (1.3.9)
-    faraday (1.2.0)
+    faraday (1.3.0)
+      faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
+    faraday-net_http (1.0.0)
     ffi (1.14.2)
     foreman (0.87.2)
     globalid (0.4.2)
@@ -208,7 +210,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.3.3)
+    listen (3.4.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     local_time (2.1.0)
@@ -371,7 +373,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (4.4.1)
+    webdrivers (4.4.2)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
