@@ -47,5 +47,4 @@ services:
 volumes:
   db:
   redis:
-  config:
   storage:
