@@ -16,7 +16,7 @@
           Logged in as
           = login_name
     - else
-      = link_to login_path, data: { turbolinks: false, toggle: 'tooltip' }, title: 'Login with GitHub', method: :post do
+      = link_to '/auth/github', data: { turbolinks: false, toggle: 'tooltip' }, title: 'Login with GitHub', method: :post do
         = icon :user
         %span.sr-only
           Login with GitHub

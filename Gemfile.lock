@@ -124,7 +124,7 @@ GEM
       tins (~> 1.6)
     crass (1.0.6)
     deep_merge (1.2.1)
-    docile (1.3.4)
+    docile (1.3.5)
     dotiw (4.0.1)
       actionpack (>= 4)
       i18n
@@ -210,11 +210,11 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
-    listen (3.4.0)
+    listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     local_time (2.1.0)
-    loofah (2.8.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -247,7 +247,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    omniauth (2.0.0)
+    omniauth (2.0.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
@@ -257,6 +257,9 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     public_suffix (4.0.6)
     puma (4.3.7)
       nio4r (~> 2.0)
@@ -365,7 +368,7 @@ GEM
       tins (~> 1.0)
     thor (1.0.1)
     tilt (2.0.10)
-    tins (1.26.0)
+    tins (1.28.0)
       sync
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -425,6 +428,7 @@ DEPENDENCIES
   minitest-spec-rails
   mysql2
   omniauth-github
+  omniauth-rails_csrf_protection
   puma (~> 4)
   rack-protection
   rails (~> 6.1.1)

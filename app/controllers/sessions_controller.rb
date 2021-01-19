@@ -1,8 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-    redirect_to '/auth/github'
-  end
-
   def create
     session['github_uid']   = request.env['omniauth.auth'].uid
     session['github_login'] = request.env['omniauth.auth'].info.nickname
