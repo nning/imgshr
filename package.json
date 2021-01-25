@@ -11,7 +11,7 @@
     "@rails/webpacker": "^5.2.1",
     "autoprefixer": "^10.2.1",
     "axios": "^0.21.0",
-    "dayjs": "^1.10.2",
+    "dayjs": "^1.10.4",
     "libsodium-wrappers-sumo": "^0.7.2",
     "promise-queue": "^2.2.3",
     "prop-types": "^15.6.0",
