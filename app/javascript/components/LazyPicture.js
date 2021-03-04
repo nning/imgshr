@@ -25,7 +25,7 @@ export default class LazyPicture extends React.PureComponent {
   }
 
   isFetching = () => {
-    return !this.state.loaded && !this.state.error
+    return this.props.src && !this.state.loaded && !this.state.error
   }
 
   isError = () => {
@@ -77,6 +77,14 @@ export default class LazyPicture extends React.PureComponent {
               title={this.props.title}
               height={this.props.height}
               width={this.props.width}
+            />
+          }
+
+          {!this.props.src &&
+            <Placeholder
+              status="error:invalid"
+              statusText="Invalid image source"
+              title={this.props.title}
             />
           }
         </React.Fragment>

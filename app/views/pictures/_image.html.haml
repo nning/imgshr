@@ -1,19 +1,23 @@
 -# This is currently also used on galleries#show
 
 - if picture.plain?
-  - size ||= :medium
-  - image = picture.image_file.variant(Settings.sizes.send(size).to_hash)
-  - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
+  - begin
+    - size ||= :medium
+    - image = picture.image_file.variant(Settings.sizes.send(size).to_hash)
+    - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
 
-  = react_component :LazyPicture,
-    { src: url_for(image),
-      srcMobile: size == :small ? url_for(mediumBadImage) : nil,
-      title: picture.to_s,
-      height: picture.height,
-      width: picture.width }
+    = react_component :LazyPicture,
+      { src: url_for(image),
+        srcMobile: size == :small ? url_for(mediumBadImage) : nil,
+        title: picture.to_s,
+        height: picture.height,
+        width: picture.width }
 
-  %noscript
-    = image_tag image, title: picture, alt: picture
+    %noscript
+      = image_tag image, title: picture, alt: picture
+
+  - rescue
+    = react_component :LazyPicture, { title: picture.to_s }
 
 - else
   = react_component 'crypto/LazyEncryptedImage',

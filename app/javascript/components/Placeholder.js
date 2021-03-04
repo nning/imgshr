@@ -7,7 +7,8 @@ const ICON_MAP = {
   fetching: 'download',
   decrypting: 'lock',
   'error:fetching': 'remove-circle',
-  'error:decrypting': 'remove-circle'
+  'error:decrypting': 'remove-circle',
+  'error:invalid': 'remove-circle'
 }
 
 export default class Placeholder extends React.PureComponent {
