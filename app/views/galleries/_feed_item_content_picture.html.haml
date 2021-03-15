@@ -1,4 +1,4 @@
-= image_tag absolute_url_for(picture.image_file.variant(Settings.sizes.small)), title: picture, alt: picture
+= image_tag absolute_url_for(picture.image_file.variant(Settings.sizes.small.to_hash)), title: picture, alt: picture
 %p
   = link_to absolute_url_for(picture.gallery) do
     This picture is part of the
