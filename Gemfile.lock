@@ -125,8 +125,8 @@ GEM
     crass (1.0.6)
     deep_merge (1.2.1)
     docile (1.3.5)
-    dotiw (4.0.1)
-      actionpack (>= 4)
+    dotiw (5.3.0)
+      activesupport
       i18n
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
@@ -410,7 +410,7 @@ DEPENDENCIES
   coffee-rails
   config
   coveralls
-  dotiw (< 5)
+  dotiw (< 6)
   exifr
   foreman
   hamlit
