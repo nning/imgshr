@@ -174,7 +174,7 @@ GEM
     foreman (0.87.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hamlit (2.14.4)
+    hamlit (2.14.5)
       temple (>= 0.8.2)
       thor
       tilt
