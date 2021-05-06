@@ -232,7 +232,7 @@ GEM
     mini_mime (1.0.3)
     mini_portile2 (2.5.1)
     minitest (5.14.4)
-    minitest-spec-rails (6.0.3)
+    minitest-spec-rails (6.0.4)
       minitest (>= 5.0)
       railties (>= 4.1)
     msgpack (1.4.2)
