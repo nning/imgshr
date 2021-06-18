@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 7e696e3374c8bf2bac1f235fa0af83666c1fb967
+  revision: e2d211b66aa9f9b9fdc04430153de691248b02e9
   specs:
-    acts-as-taggable-on (7.0.0)
+    acts-as-taggable-on (8.1.0)
       activerecord (>= 5.0, < 6.2)
 
 GIT
@@ -116,7 +116,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     config (3.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
