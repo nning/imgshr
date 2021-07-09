@@ -54,8 +54,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara_minitest_spec'
-  gem 'capybara'
+  gem 'capybara_minitest_spec', '>= 1.0.7'
+  gem 'capybara', '>= 3.35.3'
   gem 'coveralls', require: false
   gem 'minitest-spec-rails'
   gem 'rexml' # For selenium-webdriver in Ruby 3
