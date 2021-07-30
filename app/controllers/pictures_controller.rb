@@ -39,6 +39,8 @@ class PicturesController < ApplicationController
         end
       rescue ActiveRecord::RecordInvalid
         errors[@picture.image_file.filename] = @picture.errors
+      rescue StandardError => e
+        errors[image.original_filename] = {base: [e]}
       end
     end
 
