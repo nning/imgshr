@@ -1,4 +1,5 @@
 version: 2
+updates:
   - package-ecosystem: bundler
     directory: '/'
     schedule:
@@ -9,5 +10,9 @@ version: 2
       interval: daily
   - package-ecosystem: docker
     directory: '/deploy'
+    schedule:
+      interval: daily
+  - package-ecosystem: github-actions
+    directory: '/'
     schedule:
       interval: daily
