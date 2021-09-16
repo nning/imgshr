@@ -1,0 +1,13 @@
+version: 2
+  - package-ecosystem: bundler
+    directory: '/'
+    schedule:
+      interval: daily
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+  - package-ecosystem: docker
+    directory: '/deploy'
+    schedule:
+      interval: daily
