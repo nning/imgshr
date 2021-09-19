@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: f0462a47d705fa5e5d6f9fdf1f4ad0697d91566a
+  revision: fe4dd2e1db7f78dd765a838fa69e7e20cc8db278
   specs:
     acts-as-taggable-on (8.1.0)
       activerecord (>= 5.0, < 6.2)
@@ -90,7 +90,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bindex (0.8.1)
-    bootsnap (1.8.1)
+    bootsnap (1.9.0)
       msgpack (~> 1.0)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -168,7 +168,7 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     exifr (1.3.9)
-    faraday (1.7.2)
+    faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
