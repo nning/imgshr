@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   post   '!:slug/milestones' => 'milestones#create', as: :milestone
   delete '!:slug/milestones' => 'milestones#destroy'
 
-  get    '-:token' => 'boss_tokens#show', as: :gallery_delete
+  get    '-:token' => 'boss_tokens#show', as: :boss_token
   delete '-:token' => 'boss_tokens#destroy'
 
   delete '-:token/:id' => 'boss_tokens#destroy_picture',

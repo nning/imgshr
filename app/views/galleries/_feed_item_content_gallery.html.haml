@@ -1,1 +1,1 @@
-%p= link_to "Visit #{gallery} on IMGSHR.", absolute_url_for(gallery)
+%p= link_to "Visit #{gallery} on IMGSHR", absolute_url_for(boss_token_path(gallery.boss_token, redir: true))

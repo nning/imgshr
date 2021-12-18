@@ -8,7 +8,7 @@
     .text-center
       %h2
         Boss page for
-        = link_to @boss_token.gallery, @boss_token.gallery
+        = link_to @boss_token.gallery
 
 .row
   .col-md-2
@@ -19,11 +19,11 @@
       pictures, to make a gallery read only, and to enable or disable ratings.
   .col-md-3
     %p.text-right
-      = link_to gallery_delete_path(@boss_token), method: :delete, class: 'btn btn-danger', data: { confirm: "Really delete #{@boss_token.gallery}?" } do
+      = link_to boss_token_path(@boss_token), method: :delete, class: 'btn btn-danger', data: { confirm: "Really delete #{@boss_token.gallery}?" } do
         = icon :delete
         Delete the whole gallery!
   .col-md-2
 
 .row
   .text-center
-    = image_tag gallery_delete_path(@boss_token, format: :svg), class: 'qr-code'
+    = image_tag boss_token_path(@boss_token, format: :svg), class: 'qr-code'
