@@ -4,11 +4,11 @@ class RatingsController < ApplicationController
 
   def create
     if session[rated_cookie] || !gallery.ratings_enabled
-      render nothing: true, status: 403
+      head :forbidden
     else
       picture.ratings.create!(create_params)
       session[rated_cookie] = true
-      render nothing: true
+      head :no_content
     end
   end
 

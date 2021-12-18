@@ -1,6 +1,7 @@
 require 'exifr/jpeg'
 
-class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer
+# TODO ImageAnalyzer.read_image is not found after upgrade to Rails 7
+class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer::ImageMagick
   alias_method :dimensions_metadata, :metadata
 
   def metadata
