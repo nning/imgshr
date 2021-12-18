@@ -48,7 +48,6 @@ group :development do
 
   gem 'foreman'
   gem 'listen'
-  gem 'spring-watcher-listen'
   gem 'spring'
   gem 'web-console'
 end

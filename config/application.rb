@@ -47,5 +47,7 @@ module Imgshr
     config.enable_dependency_loading = true
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.active_storage.variant_processor = :mini_magick
   end
 end
