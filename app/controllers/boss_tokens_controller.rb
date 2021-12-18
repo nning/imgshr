@@ -33,7 +33,7 @@ class BossTokensController < ApplicationController
         end
 
         if params[:redir]
-          redirect_to gallery_path(boss_token.gallery)
+          redirect_to gallery_path(@boss_token.gallery)
         end
       end
 
@@ -48,5 +48,11 @@ class BossTokensController < ApplicationController
 
   def boss_token
     @boss_token ||= BossToken.find_by_slug!(params[:token])
+
+    if !@boss_token.gallery
+      render status: :not_found, layout: false, file: 'public/404.html'
+    end
+
+    return @boss_token
   end
 end
