@@ -18,6 +18,10 @@ module AuthenticationConcern
     else
       before_action :enforce_github_admin, only: admin_actions
       before_action :enforce_github_login, only: login_actions
+
+      if auth_config.rss_token.present?
+        skip_before_action :enforce_github_admin, if: :rss_token_valid?
+      end
     end
   end
 
@@ -27,5 +31,10 @@ module AuthenticationConcern
 
   def enforce_github_login
     head :forbidden unless Authentication::Github.login?(session)
+  end
+
+  def rss_token_valid?
+    token = ::Settings.authentication.admin.rss_token
+    token.present? && params[:rss_token] == token && params[:action] == 'index'
   end
 end

@@ -3,6 +3,7 @@ authentication:
     username: admin
     password: password
     # github_login: nning
+    # rss_token: oF5yoo4ieD6eiRuc
 
 # foreground_processing: true
 
