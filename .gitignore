@@ -20,7 +20,6 @@
 
 # rbenv configuration
 /.rbenv-vars
-/.ruby-version
 
 # Utility shell scripts
 /*.sh
