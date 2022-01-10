@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 6fbd9d1434f3b628653cb9c5616f2cfe70892b89
+  revision: 866c38f8357a52d5b175b3499024f959d7ed7b55
   specs:
-    acts-as-taggable-on (9.0.0)
+    acts-as-taggable-on (9.0.1)
       activerecord (>= 6.0, < 7.1)
 
 GIT
