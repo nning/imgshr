@@ -122,7 +122,7 @@ class GalleriesController < ApplicationController
   end
 
   def index
-    @galleries = Gallery.includes(:boss_token).order('updated_at desc').all
+    @galleries = Gallery.includes(:boss_token).order('updated_at desc').first(50)
     session[:do_not_count] = true
 
     respond_to do |format|
