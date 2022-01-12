@@ -1,7 +1,7 @@
 # docker build -t imgshr -f deploy/Dockerfile .
 # docker run -it -v $(pwd)/deploy/database.yml:/app/config/database.yml imgshr
 
-FROM ruby:3.1.0
+FROM ruby:3.0
 
 ENV RAILS_ENV=production
 ENV RAILS_FORCE_SSL=false
