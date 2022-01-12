@@ -1,1 +1,6 @@
 %p= link_to "Visit #{gallery} on IMGSHR", absolute_url_for(boss_token_path(gallery.boss_token, redir: true))
+
+- if gallery.boss_token.github_login
+  %p
+    Created by
+    = link_to gallery.boss_token.github_login, 'https://github.com/' + gallery.boss_token.github_login
