@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_12_28_150503) do
 
-  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb3", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "boss_tokens", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "slug", null: false, collation: "utf8_bin"
+  create_table "boss_tokens", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "slug", null: false, collation: "utf8mb3_bin"
     t.integer "gallery_id"
     t.integer "github_uid"
     t.string "github_login"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["slug"], name: "index_boss_tokens_on_slug", unique: true
   end
 
-  create_table "device_links", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "device_links", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "gallery_id"
-    t.string "slug", null: false, collation: "utf8_bin"
+    t.string "slug", null: false, collation: "utf8mb3_bin"
     t.boolean "disabled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["slug"], name: "index_device_links_on_slug", unique: true
   end
 
-  create_table "file_releases", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "file_releases", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "file_fingerprint"
     t.string "version"
     t.datetime "created_at"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.string "branch"
   end
 
-  create_table "galleries", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "slug", null: false, collation: "utf8_bin"
+  create_table "galleries", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "slug", null: false, collation: "utf8mb3_bin"
     t.string "name"
     t.integer "visits", default: 0, null: false
     t.datetime "created_at"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["slug"], name: "index_galleries_on_slug", unique: true
   end
 
-  create_table "milestones", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "milestones", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "gallery_id"
     t.datetime "time", null: false
     t.string "description", null: false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["gallery_id"], name: "index_milestones_on_gallery_id"
   end
 
-  create_table "pictures", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "pictures", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "gallery_id", null: false
     t.string "image_fingerprint"
     t.string "title"
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["order_date"], name: "index_pictures_on_order_date"
   end
 
-  create_table "ratings", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "ratings", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "picture_id"
     t.integer "score", null: false
     t.datetime "created_at", null: false
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["picture_id"], name: "index_ratings_on_picture_id"
   end
 
-  create_table "taggings", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "taggings", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -135,15 +135,15 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "name", collation: "utf8_bin"
+  create_table "tags", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.string "name", collation: "utf8mb3_bin"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "temp_links", id: :integer, charset: "utf8", force: :cascade do |t|
+  create_table "temp_links", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "picture_id"
-    t.string "slug", null: false, collation: "utf8_bin"
+    t.string "slug", null: false, collation: "utf8mb3_bin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["picture_id"], name: "index_temp_links_on_picture_id"
