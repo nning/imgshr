@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_28_150503) do
-
+ActiveRecord::Schema[7.0].define(version: 2020_12_28_150503) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -29,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.text "metadata"
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -53,8 +52,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.integer "gallery_id"
     t.string "slug", null: false, collation: "utf8mb3_bin"
     t.boolean "disabled", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["gallery_id"], name: "index_device_links_on_gallery_id"
     t.index ["slug"], name: "index_device_links_on_slug", unique: true
   end
@@ -62,8 +61,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
   create_table "file_releases", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.string "file_fingerprint"
     t.string "version"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "branch"
   end
 
@@ -71,8 +70,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.string "slug", null: false, collation: "utf8mb3_bin"
     t.string "name"
     t.integer "visits", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.boolean "read_only", default: false
     t.boolean "ratings_enabled", default: true, null: false
     t.boolean "endless_page", default: true, null: false
@@ -84,11 +83,11 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
 
   create_table "milestones", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "gallery_id"
-    t.datetime "time", null: false
+    t.datetime "time", precision: nil, null: false
     t.string "description", null: false
     t.boolean "show_on_pictures", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["gallery_id"], name: "index_milestones_on_gallery_id"
   end
 
@@ -96,8 +95,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.integer "gallery_id", null: false
     t.string "image_fingerprint"
     t.string "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.timestamp "order_date"
     t.integer "ratings_count"
     t.boolean "image_processing"
@@ -111,8 +110,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
   create_table "ratings", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "picture_id"
     t.integer "score", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["picture_id"], name: "index_ratings_on_picture_id"
   end
 
@@ -123,7 +122,7 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
     t.string "tagger_type"
     t.integer "tagger_id"
     t.string "context", limit: 128
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
@@ -144,8 +143,8 @@ ActiveRecord::Schema.define(version: 2020_12_28_150503) do
   create_table "temp_links", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "picture_id"
     t.string "slug", null: false, collation: "utf8mb3_bin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["picture_id"], name: "index_temp_links_on_picture_id"
     t.index ["slug"], name: "index_temp_links_on_slug", unique: true
   end
