@@ -10,7 +10,7 @@
     "@babel/preset-react": "^7.8.0",
     "@rails/webpacker": "^5.2.1",
     "autoprefixer": "^10.3.5",
-    "axios": "^0.24.0",
+    "axios": "^0.26.1",
     "dayjs": "^1.10.2",
     "libsodium-wrappers-sumo": "^0.7.2",
     "promise-queue": "^2.2.3",
