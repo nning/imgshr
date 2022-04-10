@@ -238,7 +238,7 @@ GEM
     minitest-spec-rails (6.1.0)
       minitest (>= 5.0)
       railties (>= 4.1)
-    msgpack (1.4.5)
+    msgpack (1.5.1)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     mustermann (1.1.1)
@@ -322,14 +322,14 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    react-rails (2.6.1)
+    react-rails (2.6.2)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
       railties (>= 3.2)
       tilt
     redis (4.5.1)
-    regexp_parser (2.2.1)
+    regexp_parser (2.3.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
