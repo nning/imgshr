@@ -243,7 +243,7 @@ GEM
     multi_xml (0.6.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    mysql2 (0.5.3)
+    mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
       net-protocol
