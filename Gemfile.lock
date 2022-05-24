@@ -281,6 +281,7 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    psych (3.3.2)
     public_suffix (4.0.7)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -448,6 +449,7 @@ DEPENDENCIES
   mysql2
   omniauth-github
   omniauth-rails_csrf_protection
+  psych (< 4)
   puma (~> 4)
   rack-protection
   rails (~> 7.0.0)

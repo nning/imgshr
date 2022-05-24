@@ -5,13 +5,6 @@ class PicturesController < ApplicationController
 
   include ApplicationHelper
 
-  unless Rails.env.development?
-    http_basic_authenticate_with \
-      name: ::Settings.authentication.username,
-      password: ::Settings.authentication.password,
-      only: [:index]
-  end
-
   respond_to :html, :json
 
   before_action :enforce_read_only, only: [:api_create, :create, :update]
