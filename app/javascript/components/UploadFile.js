@@ -42,7 +42,7 @@ export default class UploadFile extends React.PureComponent {
         </td>
 
         <td className="upload__file__status">
-          {this.props.uploading &&
+          {Boolean(this.props.uploading) &&
             <div className="upload__file__progress">
               {progress}
             </div>
