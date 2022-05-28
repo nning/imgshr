@@ -122,13 +122,16 @@ class GalleriesController < ApplicationController
   end
 
   def index
-    @galleries = Gallery.includes(:boss_token).order('updated_at desc').first(50)
+    @galleries = Gallery.includes(:boss_token).order('updated_at desc')
     session[:do_not_count] = true
 
     respond_to do |format|
-      format.html
+      format.html do
+        @galleries = @galleries.all
+      end
 
       format.atom do
+        @galleries = @galleries.first(50)
         render layout: false
       end
     end
