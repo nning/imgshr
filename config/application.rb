@@ -26,7 +26,7 @@ Bundler.require(*Rails.groups)
 module Imgshr
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -49,5 +49,7 @@ module Imgshr
     config.active_job.queue_adapter = :sidekiq
 
     config.active_storage.variant_processor = :mini_magick
+
+    # config.active_record.legacy_connection_handling = false
   end
 end

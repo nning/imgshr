@@ -9,7 +9,7 @@ class PictureTest < ActiveSupport::TestCase
     it 'should attach image' do
       subject.image_file.attach(io: emsi(), filename: 'emsi.png')
       subject.save!
-      subject.image_file.wont_be_nil
+      _(subject.image_file).wont_be_nil
     end
   end
 
@@ -24,7 +24,7 @@ class PictureTest < ActiveSupport::TestCase
     subject { ImageExifAnalyzer.new(picture.image_file.blob) }
 
     it 'should return metadata' do
-      subject.metadata.must_equal({
+      _(subject.metadata).must_equal({
         width: 2000,
         height: 1331,
         camera: 'NIKON CORPORATION NIKON D700',

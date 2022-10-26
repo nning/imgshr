@@ -5,14 +5,14 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
 
   it :creation do
     post galleries_url
-    response.must_be :redirect?
+    _(response).must_be :redirect?
     slug = slug_redirected_to
 
     get gallery_url(slug)
-    response.must_be :successful?
+    _(response).must_be :successful?
 
     # post gallery_picture_url(slug)
-    # response.must_be :success?
+    # _(response).must_be :success?
   end
 
   describe :capybara, js: true do
@@ -27,7 +27,7 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
       attach_file('picture_image', IMAGES.first)
       click_button('Upload!')
       page.must_have_content('Picture count 1')
-      subject.pictures.count.must_equal(1)
+      _(subject.pictures.count).must_equal(1)
     end
   end
 
@@ -39,16 +39,16 @@ class GalleriesIntegrationTest < ActionDispatch::IntegrationTest
       subject.update!(device_links_only: true)
 
       get gallery_url(slug)
-      response.status.must_equal 404
+      _(response.status).must_equal 404
 
       post gallery_create_device_link_url(slug), xhr: true
-      response.must_be :successful?
+      _(response).must_be :successful?
 
       get device_link_path(subject.device_links.first.slug)
-      response.must_be :redirect?
+      _(response).must_be :redirect?
 
       get gallery_url(slug)
-      response.status.must_equal 200
+      _(response.status).must_equal 200
     end
   end
 

@@ -14,7 +14,7 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       visit(gallery_picture_path(subject.gallery, subject))
       visit(page.find('.image a')[:href])
 
-      page.response_headers['Content-Type']
+      _(page.response_headers['Content-Type'])
         .must_equal('image/png')
     end
 
@@ -22,7 +22,7 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       visit(gallery_picture_path(subject.gallery, subject))
       visit(page.find('noscript img')[:src])
 
-      page.response_headers['Content-Type']
+      _(page.response_headers['Content-Type'])
         .must_equal('image/png')
     end
 
@@ -32,10 +32,10 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
       page.find('button.dropdown-toggle').click
       click_link('Download')
 
-      page.response_headers['Content-Disposition']
+      _(page.response_headers['Content-Disposition'])
         .must_equal('attachment; filename="emsi.png"; filename*=UTF-8\'\'emsi.png')
 
-      page.source.force_encoding('utf-8')
+      _(page.source.force_encoding('utf-8'))
         .must_equal(emsi.read)
     end
   end
