@@ -5,7 +5,7 @@ version: '3'
 
 services:
   traefik:
-    image: traefik:v2.3
+    image: traefik:v2.9
     container_name: traefik
     command:
       # - --log.level=DEBUG
@@ -15,7 +15,7 @@ services:
       - --entrypoints.http.address=:80
       - --entrypoints.https.address=:443
       - --certificatesresolvers.letsencrypt.acme.email=ssl@example.com
-      - --certificatesresolvers.letsencrypt.acme.storage=acme.json
+      - --certificatesresolvers.letsencrypt.acme.storage=/acme/acme.json
       - --certificatesresolvers.letsencrypt.acme.keytype=EC384
       - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=http
       - --certificatesresolvers.letsencrypt.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
@@ -25,6 +25,7 @@ services:
       # - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/acme
     restart: unless-stopped
 
   db:
@@ -92,3 +93,4 @@ services:
 volumes:
   db:
   storage:
+  acme:
