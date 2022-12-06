@@ -276,7 +276,8 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
-    psych (3.3.4)
+    psych (5.0.0)
+      stringio
     public_suffix (5.0.0)
     puma (4.3.12)
       nio4r (~> 2.0)
@@ -378,6 +379,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stringio (3.0.2)
     sync (0.5.0)
     temple (0.9.1)
     term-ansicolor (1.7.1)
@@ -448,7 +450,7 @@ DEPENDENCIES
   mysql2
   omniauth-github
   omniauth-rails_csrf_protection
-  psych (< 4)
+  psych (< 6)
   puma (~> 4)
   rack-protection
   rails (~> 7.0.3)
