@@ -1,6 +1,6 @@
 # IMGSHR
 
-[![Build Status](https://img.shields.io/github/workflow/status/nning/imgshr/Run%20tests.svg)](https://github.com/nning/imgshr/actions?query=workflow%3A%22Run+tests%22)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nning/imgshr/test.yml)](https://github.com/nning/imgshr/actions?query=workflow%3A%22Run+tests%22)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
 [![Coverage](https://img.shields.io/coveralls/nning/imgshr/master.svg)](https://coveralls.io/r/nning/imgshr)
 
