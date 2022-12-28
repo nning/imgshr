@@ -27,7 +27,7 @@ gem 'mini_magick'
 gem 'mysql2'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
-gem 'puma', '~> 4'
+gem 'puma', '~> 6'
 gem 'psych', '< 4' # Necessary since update to Rails 7.0.3 and Ruby 3.1.2
 gem 'rack-protection'
 gem 'react-rails'
