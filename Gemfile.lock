@@ -280,7 +280,7 @@ GEM
       omniauth (~> 2.0)
     psych (3.3.4)
     public_suffix (5.0.1)
-    puma (4.3.12)
+    puma (6.1.0)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
@@ -451,7 +451,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-rails_csrf_protection
   psych (< 4)
-  puma (~> 4)
+  puma (~> 6)
   rack-protection
   rails (~> 7.0.3)
   rails-assets-jquery (~> 2.2.4)!
