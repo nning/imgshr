@@ -1,9 +1,17 @@
 name: Publish Docker image
 
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
-  push:
+  workflow_run:
+    workflows:
+      - Run tests
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   push_to_registry:
