@@ -14,6 +14,8 @@ services:
       - --providers.docker.exposedbydefault=false
       - --entrypoints.http.address=:80
       - --entrypoints.https.address=:443
+      - --entrypoints.https.http3
+      - --experimental.http3=true
       - --certificatesresolvers.letsencrypt.acme.email=ssl@example.com
       - --certificatesresolvers.letsencrypt.acme.storage=/acme/acme.json
       - --certificatesresolvers.letsencrypt.acme.keytype=EC384
@@ -21,7 +23,8 @@ services:
       - --certificatesresolvers.letsencrypt.acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
     ports:
       - 80:80
-      - 443:443
+      - 443:443/tcp
+      - 443:443/udp
       # - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
