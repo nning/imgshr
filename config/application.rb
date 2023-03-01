@@ -51,5 +51,15 @@ module Imgshr
     config.active_storage.variant_processor = :mini_magick
 
     # config.active_record.legacy_connection_handling = false
+
+
+    overrides = "#{Rails.root}/app/overrides"
+    Rails.autoloaders.main.ignore(overrides)
+
+    config.to_prepare do
+      Dir.glob("#{overrides}/**/*_override.rb").sort.each do |override|
+        load override
+      end
+    end
   end
 end

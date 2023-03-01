@@ -24,7 +24,7 @@ def args(key)
 end
 
 begin
-  dev_server = YAML.load_file(CONFIG_FILE)[RAILS_ENV]["dev_server"]
+  dev_server = YAML.load_file(CONFIG_FILE, aliases: true)[RAILS_ENV]["dev_server"]
 
   HOSTNAME          = args('--host') || dev_server["host"]
   PORT              = args('--port') || dev_server["port"]

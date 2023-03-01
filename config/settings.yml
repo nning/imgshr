@@ -29,6 +29,7 @@ gallery_creation:
 preprocess_images: true
 
 convert_to_webp: true
+convert_to_avif: true
 
 icons:
   - sizes: 48x48

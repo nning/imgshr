@@ -81,6 +81,11 @@ class Picture < ApplicationRecord
 
   def preprocess_variants!
     Settings.sizes.each do |size, options|
+      additional_options = {}
+      additional_options[:convert] = 'webp' if Settings.convert_to_webp
+      additional_options[:convert] = 'avif' if Settings.convert_to_avif
+      options.merge!(additional_options)
+
       image_file.variant(**options).processed
     end
   end
