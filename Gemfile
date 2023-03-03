@@ -63,6 +63,10 @@ group :test do
   gem 'webdrivers'
 end
 
+group :production do
+ gem 'skylight'
+end
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '~> 2.2.4'
   gem 'rails-assets-seiyria-bootstrap-slider'
