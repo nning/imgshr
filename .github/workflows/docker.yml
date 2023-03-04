@@ -41,9 +41,3 @@ jobs:
           tags: nning2/imgshr:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Call deployment update webhook
-        run: |
-          curl $DEPLOY_WEBHOOK_URL
-        env:
-          DEPLOY_WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
