@@ -15,6 +15,7 @@ on:
       - '*'
     tags:
       - '*'
+  workflow_dispatch:
 
 jobs:
   test:
@@ -47,9 +48,8 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install dependencies
+      - name: Install JavaScript dependencies
         run: |
-          bundle install
           npm install -g yarn
           yarn
 
