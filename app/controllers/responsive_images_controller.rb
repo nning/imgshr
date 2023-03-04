@@ -17,9 +17,9 @@ class ResponsiveImagesController < ApplicationController
 
     type = image.blob.content_type || DEFAULT_SEND_FILE_TYPE
 
-    if convert_to_webp?
-      options[:convert] = 'webp'
-      type = 'image/webp'
+    if convert_type = ContentType.convert_format(request)
+      options[:convert] = type.split('/').last
+      type = convert_type
     end
 
     # Generate variant file
@@ -34,9 +34,5 @@ class ResponsiveImagesController < ApplicationController
 
   def show_params
     params.permit(:key, *OPTIONS)
-  end
-
-  def convert_to_webp?
-    Settings.convert_to_webp && request.headers['Accept'] =~ /image\/webp/
   end
 end

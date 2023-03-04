@@ -6,7 +6,7 @@ if [:local, :test].include?(Rails.application.config.active_storage.service) && 
     alias_method :_show, :show
 
     def show
-      content_type = convert_format
+      content_type = ContentType.convert_format(request)
       return _show if !content_type
 
       if key = decode_verified_key
@@ -16,20 +16,6 @@ if [:local, :test].include?(Rails.application.config.active_storage.service) && 
       end
     rescue Errno::ENOENT
       head :not_found
-    end
-
-    private
-
-    def convert_format
-      accept = request.headers['Accept']
-
-      if Settings.convert_to_avif && accept =~ /image\/avif/
-        return 'image/avif'
-      elsif Settings.convert_to_webp && accept =~ /image\/webp/
-        return 'image/webp'
-      else
-        return false
-      end
     end
   end
 end
