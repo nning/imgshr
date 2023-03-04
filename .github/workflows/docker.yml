@@ -37,6 +37,8 @@ jobs:
           file: deploy/Dockerfile
           push: true
           tags: nning2/imgshr:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Call deployment update webhook
         run: |
