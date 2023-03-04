@@ -25,6 +25,9 @@ RUN \
   yarn
 
 COPY . .
+RUN \
+  SECRET_KEY_BASE="null" bundle exec rails assets:precompile && \
+  SECRET_KEY_BASE="null" bundle exec rails assets:clean
 
 EXPOSE 3000
 
