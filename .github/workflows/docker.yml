@@ -12,7 +12,6 @@ on:
       - main
     types:
       - completed
-  workflow_dispatch:
 
 jobs:
   push_to_registry:
