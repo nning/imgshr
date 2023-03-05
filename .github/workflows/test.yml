@@ -58,12 +58,24 @@ jobs:
           cp config/database.yml.mysql config/database.yml
           mysql -u root -h 127.0.0.1 -e 'create database imgshr_test;'
 
-      - name: Run tests
+      - name: Test database mirations
         env:
           RAILS_ENV: test
           TZ: Europe/Berlin
         run: |
           bundle exec rails db:migrate
+
+      - name: Test webpack bundling
+        run: |
           bundle exec ./bin/webpack
+
+      - name: Run Rails tests
+        env:
+          RAILS_ENV: test
+          TZ: Europe/Berlin
+        run: |
           bundle exec rails test
+
+      - name: Lint JavaScript code
+        run: |
           yarn lint
