@@ -56,7 +56,7 @@ end
 group :test do
   gem 'capybara_minitest_spec'
   gem 'capybara'
-  gem 'coveralls', require: false
+  gem 'coveralls_reborn', require: false
   gem 'minitest-spec-rails'
   gem 'rexml' # For selenium-webdriver in Ruby 3
   gem 'selenium-webdriver'
