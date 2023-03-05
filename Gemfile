@@ -21,6 +21,7 @@ gem 'jbuilder'
 gem 'jquery-infinite-pages'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'listen'
 gem 'local_time'
 gem 'mail'
 gem 'mini_magick'
@@ -48,7 +49,6 @@ group :development do
   # gem 'bullet'
 
   gem 'foreman'
-  gem 'listen'
   gem 'spring'
   gem 'web-console'
 end
