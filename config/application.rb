@@ -52,6 +52,10 @@ module Imgshr
 
     # config.active_record.legacy_connection_handling = false
 
+    if ENV['RAILS_CONTAINER'].present?
+      config.action_dispatch.default_headers['X-Container'] = ENV['HOSTNAME']
+    end
+
 
     overrides = "#{Rails.root}/app/overrides"
     Rails.autoloaders.main.ignore(overrides)
