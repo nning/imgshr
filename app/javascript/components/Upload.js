@@ -36,8 +36,6 @@ export default class Upload extends React.PureComponent {
   }
 
   upload = () => {
-    console.debug('hello from upload')
-
     const files = this.state.selectedFiles
     const promises = []
     const queue = new PromiseQueue(2, Infinity)
