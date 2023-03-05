@@ -127,15 +127,9 @@ GEM
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
     connection_pool (2.3.0)
-    coveralls_reborn (0.27.0)
-      simplecov (~> 0.22.0)
-      term-ansicolor (~> 1.7)
-      thor (~> 1.2)
-      tins (~> 1.32)
     crass (1.0.6)
     date (3.3.3)
     deep_merge (1.2.2)
-    docile (1.4.0)
     dotiw (4.0.1)
       actionpack (>= 4)
       i18n
@@ -359,12 +353,6 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.11.0)
-    simplecov (0.22.0)
-      docile (~> 1.1)
-      simplecov-html (~> 0.11)
-      simplecov_json_formatter (~> 0.1)
-    simplecov-html (0.12.3)
-    simplecov_json_formatter (0.1.4)
     sinatra (3.0.5)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -382,15 +370,10 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     stringio (3.0.5)
-    sync (0.5.0)
     temple (0.10.0)
-    term-ansicolor (1.7.1)
-      tins (~> 1.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
-    tins (1.32.1)
-      sync
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -434,7 +417,6 @@ DEPENDENCIES
   capybara_minitest_spec
   coffee-rails
   config
-  coveralls_reborn
   dotiw (< 5)
   exifr
   foreman

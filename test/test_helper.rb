@@ -5,8 +5,8 @@ require 'rails/test_help'
 require 'minitest/spec'
 require 'capybara/rails'
 
-require 'coveralls'
-Coveralls.wear!
+# require 'coveralls'
+# Coveralls.wear!
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
