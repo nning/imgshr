@@ -52,6 +52,7 @@ module Imgshr
 
     # config.active_record.legacy_connection_handling = false
 
+    config.action_dispatch.default_headers['X-Clacks-Overhead'] = 'GNU Fiete'
     if ENV['RAILS_CONTAINER'].present?
       config.action_dispatch.default_headers['X-Container'] = ENV['HOSTNAME']
     end
