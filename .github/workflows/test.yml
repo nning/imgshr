@@ -47,11 +47,12 @@ jobs:
         uses: actions/setup-node@v3.6.0
         with:
           node-version: 16.x
+          cache: npm
 
       - name: Install JavaScript dependencies
         run: |
           npm install -g yarn
-          yarn
+          yarn --frozen-lockfile
 
       - name: Setup database
         run: |
