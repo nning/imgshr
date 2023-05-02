@@ -276,7 +276,7 @@ GEM
     puma (6.2.2)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.4)
+    rack (2.2.7)
     rack-protection (3.0.6)
       rack
     rack-proxy (0.7.6)
@@ -348,11 +348,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sidekiq (7.0.9)
+    sidekiq (7.1.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+      redis-client (>= 0.14.0)
     sinatra (3.0.6)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -447,7 +447,7 @@ DEPENDENCIES
   sassc-rails
   secure_headers
   selenium-webdriver
-  sidekiq (~> 7.0.9)
+  sidekiq (~> 7.1.0)
   sinatra
   spring
   sprockets (~> 4)
