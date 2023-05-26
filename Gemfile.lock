@@ -126,7 +126,7 @@ GEM
     config (4.2.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    connection_pool (2.4.0)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     deep_merge (1.2.2)
@@ -348,7 +348,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sidekiq (7.1.0)
+    sidekiq (7.1.1)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -447,7 +447,7 @@ DEPENDENCIES
   sassc-rails
   secure_headers
   selenium-webdriver
-  sidekiq (~> 7.1.0)
+  sidekiq (~> 7.1.1)
   sinatra
   spring
   sprockets (~> 4)
