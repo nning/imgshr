@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require_relative '../../config/environment'
+
+def usage
+  $stderr.puts "#{File.basename($0)} <source_gallery> <target_gallery>"
+  exit 1
+end
+
+usage if ARGV.size < 2
+
+sourceID = ARGV.shift
+targetID = ARGV.shift
+
+source = Gallery.find_by_slug(sourceID)
+target = Gallery.find_by_slug(targetID)
+
+if source.nil?
+    $stderr.puts "Gallery #{sourceID} not found!"
+    exit 1
+end
+
+if target.nil?
+    $stderr.puts "Gallery #{targetID} not found!"
+    exit 1
+end
+
+# p source, target
+# exit 23
+
+source.pictures.each do |source_picture|
+    target_picture = target.pictures.build
+
+    target_picture.title = source_picture.title
+
+    target_picture.image_file.attach \
+        io: File.open(ActiveStorage::Blob.service.path_for(source_picture.image_file.key)),
+        filename: source_picture.image_file.filename,
+        content_type: source_picture.image_file.content_type
+
+    target_picture.created_at = source_picture.created_at
+    target_picture.updated_at = source_picture.updated_at
+    target_picture.order_date = source_picture.order_date
+
+    source_picture.tags.each do |tag|
+        target_picture.tag_list.add(tag.name)
+    end
+
+    source_picture.ratings.each do |rating|
+        target_picture.ratings.build(score: rating.score, created_at: rating.created_at, updated_at: rating.updated_at)
+    end
+
+    begin
+        target_picture.save!
+    rescue StandardError => e
+        puts "Picture #{source_picture.id} not saved: #{e.message}"
+        next
+    end
+
+    puts "Picture #{source_picture.id} saved"
+end
+
+# gallery = Gallery.find_by_slug(slug) || Gallery.find_by_name(slug)
+
+# if gallery
+#   files.each do |pattern|
+#     Dir[pattern].each do |file|
+#       picture = gallery.pictures.build
+#       picture.image = File.open(file)
+
+#       begin
+#         picture.save!
+#         puts file
+#       rescue StandardError => e
+#         puts file + ': ' + e.message
+#       end
+#     end
+#   end
+# else
+#   $stderr.puts "Gallery #{slug} not found!"
+#   exit 1
+# end
