@@ -43,10 +43,10 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v3.7.0
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: npm
 
       - name: Install JavaScript dependencies
