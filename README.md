@@ -88,5 +88,5 @@ See `examples/traefik` as a starting point for a deployment with traefik and Let
 
 ## License
 
-Copyright © 2014-2021 [henning mueller](https://nning.io/), released
+Copyright © 2014-2023 [henning mueller](https://nning.io/), released
 under the terms of [GNU AGPL 3.0](http://www.gnu.org/licenses/agpl-3.0.html).
