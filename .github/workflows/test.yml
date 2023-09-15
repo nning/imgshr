@@ -59,7 +59,7 @@ jobs:
           cp config/database.yml.mysql config/database.yml
           mysql -u root -h 127.0.0.1 -e 'create database imgshr_test;'
 
-      - name: Test database mirations
+      - name: Test database migrations
         env:
           RAILS_ENV: test
           TZ: Europe/Berlin
