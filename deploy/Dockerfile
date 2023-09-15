@@ -10,7 +10,7 @@ ENV RAILS_CONTAINER=true
 
 RUN \
   apt-get update -qq && \
-  curl -sL https://deb.nodesource.com/setup_16.x | bash && \
+  curl -sL https://deb.nodesource.com/setup_20.x | bash && \
   apt-get install -y build-essential nodejs && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \

@@ -49,6 +49,7 @@ module Imgshr
     config.active_job.queue_adapter = :sidekiq
 
     config.active_storage.variant_processor = :mini_magick
+    config.active_storage.track_variants = false
 
     # config.active_record.legacy_connection_handling = false
 
