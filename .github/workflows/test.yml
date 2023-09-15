@@ -34,6 +34,10 @@ jobs:
         ports:
           - 6379:6379
 
+    strategy:
+      matrix:
+        version: [16, 18, 20]
+
     steps:
       - uses: actions/checkout@v4
 
@@ -43,10 +47,10 @@ jobs:
           ruby-version: 3.2.2
           bundler-cache: true
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js ${{ matrix.version }}
         uses: actions/setup-node@v3.7.0
         with:
-          node-version: 16.x
+          node-version: ${{ matrix.version }}
           cache: npm
 
       - name: Install JavaScript dependencies
