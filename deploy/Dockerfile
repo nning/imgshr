@@ -1,4 +1,4 @@
-# docker build -t imgshr -f deploy/Dockerfile .
+# docker build --no-cache -t imgshr -f deploy/Dockerfile .
 # docker run -it -v $(pwd)/deploy/database.yml:/app/config/database.yml imgshr
 
 FROM ruby:3.2.2
@@ -8,11 +8,11 @@ ENV RAILS_FORCE_SSL=false
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV RAILS_CONTAINER=true
 
-COPY deploy/node_setup_20.x.sh /tmp
+COPY deploy/node_setup_16.x.sh /tmp
 RUN \
   apt-get update -qq && \
-  /tmp/node_setup_20.x.sh && \
-  apt-get install -y build-essential nodejs && \
+  /tmp/node_setup_16.x.sh && \
+  apt-get install -y build-essential nodejs=16* && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   useradd -m ruby && \
