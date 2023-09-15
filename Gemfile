@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.2.1'
+ruby '~> 3.2.2'
 
-gem 'rails', '~> 7.0.5'
+gem 'rails', '~> 7.0.8'
 
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
@@ -54,7 +54,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara_minitest_spec'
   gem 'capybara'
   # gem 'coveralls_reborn', require: false
   gem 'minitest-spec-rails'
