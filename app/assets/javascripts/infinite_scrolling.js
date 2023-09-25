@@ -1,16 +1,16 @@
 $(document).on('content:update', () => {
   const callback = (entries, observer) => {
     const entry = entries[0]
-    if (!entry?.isIntersecting) return
+    if (!entry || !entry.isIntersecting) return
 
-    const next = entry.target?.querySelector('a[rel=next]')?.href
+    const next = entry.target.querySelector('a[rel=next]')
     if (!next) {
       observer.unobserve(entry.target)
       return
     }
 
     $.ajax({
-      url: next,
+      url: next.href,
       dataType: 'script',
       success: () => observer.unobserve(entry.target)
     })
