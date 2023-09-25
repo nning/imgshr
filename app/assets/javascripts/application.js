@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.infinite-pages
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require best_in_place
@@ -20,5 +19,5 @@
 //= require_tree .
 
 $(document).on('ready', function() {
-  $(document).trigger('content:update');
-});
+  $(document).trigger('content:update')
+})

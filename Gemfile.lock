@@ -186,10 +186,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jquery-infinite-pages (0.2.0)
-      coffee-script
-      jquery-rails
-      railties (>= 3.1)
     jquery-rails (4.6.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -421,7 +417,6 @@ DEPENDENCIES
   hamlit
   image_processing
   jbuilder
-  jquery-infinite-pages
   jquery-rails
   kaminari
   listen
