@@ -12,7 +12,7 @@ class ImageExifAnalyzer < ActiveStorage::Analyzer::ImageAnalyzer::ImageMagick
         exif = EXIFR::JPEG.new(image.path)
         h.merge!({
           camera: exif_camera_string(exif),
-          photographed_at: exif.date_time_digitized || exif.date_time,
+          photographed_at: exif.date_time_digitized || exif.date_time_original || exif.date_time,
           aperture: exif.aperture_value || exif.f_number,
           shutter_speed: exif.shutter_speed_value || exif.exposure_time,
           iso_speed: exif.iso_speed_ratings,
