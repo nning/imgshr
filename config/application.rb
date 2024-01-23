@@ -43,9 +43,6 @@ module Imgshr
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
 
-    # Auto-loading in production
-    config.enable_dependency_loading = true
-
     config.active_job.queue_adapter = :sidekiq
 
     config.active_storage.variant_processor = :mini_magick
