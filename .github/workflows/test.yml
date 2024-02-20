@@ -40,13 +40,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.3
+          ruby-version: 3.3.0
           bundler-cache: true
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v3.8.1
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: npm
 
       - name: Install JavaScript dependencies
