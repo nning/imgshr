@@ -138,8 +138,8 @@ GEM
     crass (1.0.6)
     date (3.3.4)
     deep_merge (1.2.2)
-    dotiw (4.0.1)
-      actionpack (>= 4)
+    dotiw (5.3.3)
+      activesupport
       i18n
     drb (2.2.0)
       ruby2_keywords
@@ -446,7 +446,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   config
-  dotiw (< 5)
+  dotiw (< 6)
   exifr
   foreman
   hamlit
