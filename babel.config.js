@@ -35,12 +35,6 @@ module.exports = function(api) {
           modules: false,
           exclude: ['transform-typeof-symbol']
         }
-      ],
-      [
-        '@babel/preset-react',
-        {
-          development: isDevelopmentEnv
-        }
       ]
     ].filter(Boolean),
     plugins: [
@@ -52,6 +46,12 @@ module.exports = function(api) {
         '@babel/plugin-proposal-class-properties',
         {
           loose: true
+        }
+      ],
+      [
+        '@babel/plugin-proposal-object-rest-spread',
+        {
+          useBuiltIns: true
         }
       ],
       [
@@ -67,17 +67,9 @@ module.exports = function(api) {
         }
       ],
       [
-        '@babel/plugin-proposal-object-rest-spread',
-        {
-          useBuiltIns: true
-        }
-      ],
-      [
         '@babel/plugin-transform-runtime',
         {
-          helpers: false,
-          regenerator: true,
-          corejs: false
+          helpers: false
         }
       ],
       [
@@ -85,6 +77,12 @@ module.exports = function(api) {
         {
           async: false
         }
+      ],
+      [
+        '@babel/plugin-syntax-jsx'
+      ],
+      [
+        '@babel/plugin-transform-react-jsx'
       ]
     ].filter(Boolean)
   }
