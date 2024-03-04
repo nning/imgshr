@@ -11,7 +11,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-react": "^7.22.3",
     "@rails/webpacker": "5.4.4",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.18",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "libsodium-wrappers-sumo": "^0.7.2",
