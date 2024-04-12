@@ -39,6 +39,6 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.34.1",
     "jest": "^29.6.2",
-    "webpack-bundle-analyzer": "^4.9.0"
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }
