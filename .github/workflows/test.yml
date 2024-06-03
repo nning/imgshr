@@ -13,8 +13,6 @@ on:
   pull_request:
     branches:
       - '*'
-    tags:
-      - '*'
   workflow_dispatch:
 
 jobs:
@@ -40,7 +38,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.1
+          ruby-version: 3.3.2
           bundler-cache: true
 
       - name: Use Node.js 20.x
