@@ -28,7 +28,7 @@
     "webpack-dev-server": "^3"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@babel/plugin-transform-react-jsx": "^7.25.2",
     "babel-eslint": "^10.0.1",
     "eslint": "^7.17.0",
     "eslint-config-standard": "^16.0.0",
