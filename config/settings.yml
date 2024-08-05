@@ -1,4 +1,6 @@
 authentication:
+  allowed_github_users:
+    - nning
   admin:
     username: admin
     password: password
