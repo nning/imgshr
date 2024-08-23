@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 4acc154dcce00df211dd0d1d43812feaed557de0
+  revision: 0e67aab218f7b9d280a839146e2f9680a618c33f
   specs:
     acts-as-taggable-on (10.0.0)
-      activerecord (>= 6.1, < 7.2)
+      activerecord (>= 7.0, < 8.0)
+      zeitwerk (>= 2.4, < 3.0)
 
 GIT
   remote: https://github.com/mmotherwell/best_in_place.git
