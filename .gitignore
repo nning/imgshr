@@ -30,6 +30,7 @@
 /config/settings/development.yml
 /config/settings/production.yml
 /config/secrets.yml
+/config/credentials/*.key
 
 # Database dump
 /db/data.yml
