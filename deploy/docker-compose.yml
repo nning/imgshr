@@ -2,7 +2,7 @@ services:
   db:
     image: mariadb:10
     environment:
-      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWD}'
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWD}"
     volumes:
       - db:/var/lib/mysql
     restart: always
@@ -30,8 +30,9 @@ services:
       REDIS_PROVIDER: REDIS_URL
       REDIS_URL: redis://redis:6379
       RAILS_ENV: production
-      RAILS_FORCE_SSL: 'false'
-      RAILS_SERVE_STATIC_FILES: 'true'
+      RAILS_FORCE_SSL: "false"
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
       SECRET_KEY_BASE: $SECRET_KEY_BASE
       GITHUB_KEY: $GITHUB_KEY
       GITHUB_SECRET: $GITHUB_SECRET
