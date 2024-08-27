@@ -1,11 +1,9 @@
 # Search for "example.com" and replace E-Mail addresses and domain names
 # WARNING: Configure secret keys in .env for production setups!
 
-version: '3'
-
 services:
   traefik:
-    image: traefik:v2.9
+    image: traefik:v3.1
     container_name: traefik
     command:
       # - --log.level=DEBUG
@@ -35,7 +33,7 @@ services:
     image: mariadb:10
     container_name: db
     environment:
-      MYSQL_ROOT_PASSWORD: '$MYSQL_ROOT_PASSWD'
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWD
     volumes:
       - db:/var/lib/mysql
     restart: unless-stopped
@@ -53,18 +51,17 @@ services:
       - redis
     volumes:
       - ./settings.yml:/app/config/settings/production.yml
+      - ./credentials.yml.enc:/app/config/credentials/production.yml
       - ./storage:/app/storage
     environment:
       DATABASE_URL: mysql2://root:$MYSQL_ROOT_PASSWD@db:3306/imgshr?encoding=utf8&pool=4&timeout=5000
       REDIS_PROVIDER: REDIS_URL
       REDIS_URL: redis://redis:6379
       RAILS_ENV: production
-      RAILS_SERVE_STATIC_FILES: 'true'
-      RAILS_LOG_TO_STDOUT: 'true'
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
       RAILS_MAX_THREADS: 4
-      SECRET_KEY_BASE: $SECRET_KEY_BASE
-      GITHUB_KEY: $GITHUB_KEY
-      GITHUB_SECRET: $GITHUB_SECRET
+      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
     labels:
       - traefik.enable=true
 

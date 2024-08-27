@@ -33,9 +33,6 @@ services:
       RAILS_FORCE_SSL: "false"
       RAILS_SERVE_STATIC_FILES: "true"
       RAILS_MASTER_KEY: $RAILS_MASTER_KEY
-      SECRET_KEY_BASE: $SECRET_KEY_BASE
-      GITHUB_KEY: $GITHUB_KEY
-      GITHUB_SECRET: $GITHUB_SECRET
     restart: always
 
   sidekiq:
