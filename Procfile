@@ -1,3 +1,3 @@
-web: bundle exec rails s -p 3000
-webpacker: ./bin/webpack-dev-server
+web: env RUBY_DEBUG_OPEN=true bin/rails server -p 3000
+js: yarn build --watch
 sidekiq: bundle exec sidekiq
