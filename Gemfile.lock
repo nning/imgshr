@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/mbleigh/acts-as-taggable-on.git
-  revision: f7bfad9bf709dfa22d3002fff9ae89a2a810b433
+  revision: 69e6bffd12f50848e115c1e3da8ffaf0ea503001
   specs:
-    acts-as-taggable-on (11.0.0)
-      activerecord (>= 7.0, < 8.0)
+    acts-as-taggable-on (12.0.0)
+      activerecord (>= 7.1, < 8.1)
       zeitwerk (>= 2.4, < 3.0)
 
 GIT
@@ -370,7 +370,7 @@ GEM
     temple (0.10.3)
     thor (1.3.2)
     tilt (2.4.0)
-    timeout (0.4.1)
+    timeout (0.4.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.1)
@@ -402,7 +402,7 @@ GEM
     yaml_db (0.7.0)
       rails (>= 3.0)
       rake (>= 0.8.7)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   ruby
