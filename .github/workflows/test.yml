@@ -7,12 +7,12 @@ concurrency:
 on:
   push:
     branches:
-      - '*'
+      - "*"
     tags:
-      - '*'
+      - "*"
   pull_request:
     branches:
-      - '*'
+      - "*"
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.5
+          ruby-version: 3.3.6
           bundler-cache: true
 
       - name: Use Node.js 20.x
