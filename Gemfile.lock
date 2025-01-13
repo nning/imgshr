@@ -133,7 +133,7 @@ GEM
     config (5.5.2)
       deep_merge (~> 1.2, >= 1.2.1)
       ostruct
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crass (1.0.6)
     date (3.4.1)
     deep_merge (1.2.2)
@@ -192,7 +192,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     local_time (3.0.2)
-    logger (1.6.3)
+    logger (1.6.5)
     loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -313,7 +313,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    redis-client (0.22.2)
+    redis-client (0.23.1)
       connection_pool
     regexp_parser (2.9.2)
     reline (0.5.12)
@@ -346,7 +346,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sidekiq (7.3.6)
+    sidekiq (7.3.7)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -447,7 +447,7 @@ DEPENDENCIES
   sassc-rails
   secure_headers
   selenium-webdriver
-  sidekiq (~> 7.3.6)
+  sidekiq (~> 7.3.7)
   sinatra
   spring
   sprockets (~> 4)
