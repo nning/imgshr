@@ -313,7 +313,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    redis-client (0.23.1)
+    redis-client (0.23.2)
       connection_pool
     regexp_parser (2.9.2)
     reline (0.5.12)
@@ -346,7 +346,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sidekiq (7.3.7)
+    sidekiq (7.3.8)
+      base64
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
@@ -447,7 +448,7 @@ DEPENDENCIES
   sassc-rails
   secure_headers
   selenium-webdriver
-  sidekiq (~> 7.3.7)
+  sidekiq (~> 7.3.8)
   sinatra
   spring
   sprockets (~> 4)
