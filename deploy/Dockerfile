@@ -12,7 +12,7 @@ COPY deploy/node_setup_20.x.sh /tmp
 RUN \
   apt-get update -qq && \
   /tmp/node_setup_20.x.sh && \
-  apt-get install -y build-essential nodejs=20* git libmariadb-dev imagemagick && \
+  apt-get install -y build-essential nodejs=20* git libmariadb-dev imagemagick libyaml-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   rm /tmp/node_setup_20.x.sh && \
