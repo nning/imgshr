@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.4.1'
 
-gem 'rails', '~> 8.0.1'
+gem 'rails', '~> 8.0.2'
 
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
