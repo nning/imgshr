@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.4.2'
+ruby '~> 3.4.5'
 
 gem 'rails', '~> 8.0.2'
 
@@ -27,8 +27,8 @@ gem 'mini_magick'
 gem 'mysql2'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
-gem 'puma', '~> 6'
 gem 'psych', '< 6' # Necessary since update to Rails 7.0.3 and Ruby 3.1.2
+gem 'puma', '~> 6'
 gem 'rack-protection'
 gem 'react-rails'
 gem 'responders'
