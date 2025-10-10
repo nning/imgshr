@@ -17,7 +17,7 @@ GIT
 GEM
   remote: https://rails-assets.org/
   specs:
-    rails-assets-jquery (2.2.4)
+    rails-assets-jquery (3.7.1)
     rails-assets-seiyria-bootstrap-slider (10.6.2)
 
 GEM
@@ -452,7 +452,7 @@ DEPENDENCIES
   puma (~> 6)
   rack-protection
   rails (~> 8.0.2)
-  rails-assets-jquery (~> 2.2.4)!
+  rails-assets-jquery (~> 3.7.1)!
   rails-assets-seiyria-bootstrap-slider!
   react-rails
   responders
