@@ -59,7 +59,6 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'rexml' # For selenium-webdriver in Ruby 3
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end
 
 source 'https://rails-assets.org' do
