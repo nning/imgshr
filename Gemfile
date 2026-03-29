@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 3.4.5'
 
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.5'
 
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'autoprefixer-rails'
@@ -27,7 +27,7 @@ gem 'mini_magick'
 gem 'mysql2'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
-gem 'psych', '< 6' # Necessary since update to Rails 7.0.3 and Ruby 3.1.2
+gem 'psych', '< 6'
 gem 'puma', '~> 6'
 gem 'rack-protection'
 gem 'connection_pool', '< 3'
@@ -36,7 +36,7 @@ gem 'responders'
 gem 'rqrcode'
 gem 'sassc-rails'
 gem 'secure_headers'
-gem 'sidekiq', '~> 8.0.2'
+gem 'sidekiq', '~> 8.0'
 gem 'sinatra'
 gem 'sprockets', '~> 4'
 gem 'uglifier'
