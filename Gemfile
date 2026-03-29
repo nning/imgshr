@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.4.5'
+ruby '~> 4.0'
 
 gem 'rails', '~> 8.1.3'
 
@@ -13,6 +13,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'config'
+gem 'connection_pool', '~> 2.5'
 gem 'dotiw', '< 6'
 gem 'exifr'
 gem 'hamlit'
@@ -30,7 +31,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'psych', '< 6'
 gem 'puma', '~> 6'
 gem 'rack-protection'
-gem 'connection_pool', '~> 2.5'
 gem 'react-rails'
 gem 'responders'
 gem 'rqrcode'
