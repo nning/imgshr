@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# See https://github.com/rails/rails/blob/v7.0.4.2/activestorage/app/controllers/active_storage/disk_controller.rb#L12
+# See https://github.com/rails/rails/blob/v8.1.3/activestorage/app/controllers/active_storage/disk_controller.rb#L12
 
 if [:local, :test].include?(Rails.application.config.active_storage.service) && !ActiveStorage::DiskController.instance_methods.include?(:_show)
   ActiveStorage::DiskController.class_eval do
