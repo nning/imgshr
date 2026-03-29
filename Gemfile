@@ -30,6 +30,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'psych', '< 6' # Necessary since update to Rails 7.0.3 and Ruby 3.1.2
 gem 'puma', '~> 6'
 gem 'rack-protection'
+gem 'connection_pool', '< 3'
 gem 'react-rails'
 gem 'responders'
 gem 'rqrcode'
