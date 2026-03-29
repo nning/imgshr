@@ -1,6 +1,8 @@
 .upload
   &__list
     margin-top: 1em
+    table-layout: fixed
+    width: 100%
 
     & + .progress
       margin-bottom: 0
@@ -13,6 +15,11 @@
 
       &:last-child
         text-align: center
+
+      &:nth-child(2)
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
 
       &:nth-child(3)
         width: 6em
