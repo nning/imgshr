@@ -3,7 +3,9 @@ require Rails.root.join('app/validators/picture_image_validator')
 class Picture < ApplicationRecord
   include MetadataDelegator
 
-  belongs_to :gallery, touch: true
+  belongs_to :gallery
+
+  after_commit :touch_gallery_timestamp
 
   has_many :ratings, dependent: :destroy
   has_many :temp_links, dependent: :destroy
@@ -139,5 +141,14 @@ class Picture < ApplicationRecord
     end
 
     update_columns(order_date: date)
+  end
+
+  # Use update_all (raw SQL) instead of touch: true on the belongs_to association
+  # to avoid "Record has changed since last read" when multiple pictures in the
+  # same gallery are saved concurrently (e.g. bulk upload + Sidekiq jobs).
+  # after_commit runs outside the picture's transaction, and update_all bypasses
+  # ActiveRecord version checking entirely.
+  def touch_gallery_timestamp
+    Gallery.where(id: gallery_id).update_all(updated_at: Time.current)
   end
 end
