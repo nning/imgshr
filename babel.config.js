@@ -73,6 +73,9 @@ module.exports = function(api) {
         }
       ],
       [
+        '@babel/plugin-transform-for-of'
+      ],
+      [
         '@babel/plugin-transform-regenerator',
         {
           async: false
