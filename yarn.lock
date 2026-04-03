@@ -416,12 +416,12 @@
     "@babel/types" "^7.24.5"
 
 "@babel/helpers@^7.25.0":
-  version "7.25.0"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.25.0.tgz#e69beb7841cb93a6505531ede34f34e6a073650a"
-  integrity sha512-MjgLZ42aCm0oGjJj8CtSM3DB8NOOf8h2l7DCTePJs29u+v7yO/RBX9nShlKMgFnRks/Q4tBAe7Hxnov9VkGwLw==
+  version "7.29.2"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.29.2.tgz#9cfbccb02b8e229892c0b07038052cc1a8709c49"
+  integrity sha512-HoGuUs4sCZNezVEKdVcwqmZN8GoHirLUcLaYVNBK2J0DadGtdcqgr3BCbvH8+XUo4NGjNl3VOtSjEKNzqfFgKw==
   dependencies:
-    "@babel/template" "^7.25.0"
-    "@babel/types" "^7.25.0"
+    "@babel/template" "^7.28.6"
+    "@babel/types" "^7.29.0"
 
 "@babel/highlight@^7.10.4":
   version "7.24.5"
@@ -1280,11 +1280,9 @@
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
 "@babel/runtime@^7.15.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
-  version "7.24.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.5.tgz#230946857c053a36ccc66e1dd03b17dd0c4ed02c"
-  integrity sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==
-  dependencies:
-    regenerator-runtime "^0.14.0"
+  version "7.29.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.29.2.tgz#9a6e2d05f4b6692e1801cd4fb176ad823930ed5e"
+  integrity sha512-JiDShH45zKHWyGe4ZNVRrCjBz8Nh9TMmZG1kh4QTK8hCBTWBi8Da+i7s1fJw7/lYpM4ccepSNfqzZ/QvABBi5g==
 
 "@babel/template@^7.22.15", "@babel/template@^7.24.0", "@babel/template@^7.25.0", "@babel/template@^7.3.3":
   version "7.25.0"
@@ -5295,9 +5293,9 @@ flat-cache@^3.0.4:
     rimraf "^3.0.2"
 
 flatted@^3.2.2, flatted@^3.2.9:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
-  integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.4.2.tgz#f5c23c107f0f37de8dbdf24f13722b3b98d52726"
+  integrity sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==
 
 flatten@^1.0.2:
   version "1.0.3"
@@ -5957,9 +5955,9 @@ ignore@^5.1.1, ignore@^5.2.0:
   integrity sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==
 
 immutable@^4.0.0:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.5.tgz#f8b436e66d59f99760dc577f5c99a4fd2a5cc5a0"
-  integrity sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.8.tgz#02d183c7727fb2bb1d5d0380da0d779dce9296a7"
+  integrity sha512-d/Ld9aLbKpNwyl0KiM2CT1WYvkitQ1TSvmRtkcV8FKStiDoA7Slzgjmb/1G2yhKM1p0XeNOieaTbFZmU1d3Xuw==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -6971,9 +6969,9 @@ js-tokens@^3.0.2:
   integrity sha512-RjTcuD4xjtthQkaWH7dFlH85L+QaVtSoOyGdZ3g6HFhS9dFNDfLyqgm2NFe2X6cQpeFmt0452FJjFG5UameExg==
 
 js-yaml@^3.13.1, js-yaml@^3.14.1, js-yaml@^3.5.1:
-  version "3.14.1"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
-  integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
+  version "3.14.2"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.2.tgz#77485ce1dd7f33c061fd1b16ecea23b55fcb04b0"
+  integrity sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -9521,11 +9519,6 @@ regenerator-runtime@^0.13.9:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
   integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
-
-regenerator-runtime@^0.14.0:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
-  integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
 
 regenerator-transform@^0.15.2:
   version "0.15.2"
