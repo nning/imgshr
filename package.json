@@ -20,7 +20,7 @@
     "autoprefixer": "^10.4.20",
     "axios": "^1.6.8",
     "dayjs": "^1.11.13",
-    "libsodium-wrappers-sumo": "^0.7.2",
+    "libsodium-wrappers-sumo": "^0.8.2",
     "promise-queue": "^2.2.3",
     "prop-types": "^15.6.0",
     "qrcode": "^1.5.3",
