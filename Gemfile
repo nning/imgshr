@@ -13,7 +13,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'coffee-rails'
 gem 'config'
-gem 'connection_pool', '~> 2.5'
+gem 'connection_pool', '~> 3.0'
 gem 'dotiw', '< 6'
 gem 'exifr'
 gem 'hamlit'
