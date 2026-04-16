@@ -17,10 +17,15 @@ export default class AsyncCheckbox extends React.PureComponent {
       credentials: 'same-origin'
     })
       .then((response) => {
-        if (!response.ok) throw new Error('Request failed')
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`)
+        }
       })
       .then(() => {
         if (this.props.reload) window.location.reload()
+      })
+      .catch(() => {
+        e.target.checked = !e.target.checked
       })
   }
 

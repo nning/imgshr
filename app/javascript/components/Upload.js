@@ -129,7 +129,9 @@ export default class Upload extends React.PureComponent {
         credentials: 'same-origin'
       })
         .then((response) => {
-          if (!response.ok) throw new Error('Upload failed')
+          if (!response.ok) {
+            throw new Error(`Upload failed with status ${response.status}`)
+          }
 
           const contentType = response.headers.get('content-type') || ''
           if (contentType.includes('application/json')) {
@@ -144,6 +146,19 @@ export default class Upload extends React.PureComponent {
           }
 
           return {data: responseData}
+        })
+        .catch((error) => {
+          const escapedName = uploadFile.name.replace(/:/, '-')
+
+          return {
+            data: {
+              errors: {
+                [escapedName]: {
+                  base: [error.message]
+                }
+              }
+            }
+          }
         })
     }
   }
