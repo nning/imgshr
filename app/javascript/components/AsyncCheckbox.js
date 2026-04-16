@@ -5,11 +5,12 @@ import csrf from '../utils/csrf'
 
 export default class AsyncCheckbox extends React.PureComponent {
   onChange = (e) => {
-    const previousChecked = !e.target.checked
+    const nextChecked = e.target.checked
+    const previousChecked = !nextChecked
     e.target.setCustomValidity('')
 
     const data = csrf.getFormData(this)
-    data.append(this.props.name, e.target.checked)
+    data.append(this.props.name, nextChecked)
 
     fetch(this.props.uri, {
       method: 'PUT',
