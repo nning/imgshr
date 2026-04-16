@@ -144,7 +144,7 @@ export default class Upload extends React.PureComponent {
           return {data: responseData}
         })
         .catch((error) => {
-          const escapedName = uploadFile.name.replace(/:/, '-')
+          const escapedName = uploadFile.name.replace(/:/g, '-')
 
           return {
             data: {

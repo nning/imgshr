@@ -5,6 +5,7 @@ import csrf from '../utils/csrf'
 
 export default class AsyncCheckbox extends React.PureComponent {
   onChange = (e) => {
+    const previousChecked = !e.target.checked
     e.target.setCustomValidity('')
 
     const data = csrf.getFormData(this)
@@ -27,7 +28,7 @@ export default class AsyncCheckbox extends React.PureComponent {
         if (this.props.reload) window.location.reload()
       })
       .catch(() => {
-        e.target.checked = !e.target.checked
+        e.target.checked = previousChecked
         const message = 'Failed to update setting. Please try again.'
         e.target.setCustomValidity(message)
         e.target.reportValidity()
