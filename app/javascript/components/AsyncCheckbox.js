@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Axios from 'axios'
-
 import csrf from '../utils/csrf'
 
 
@@ -10,7 +8,17 @@ export default class AsyncCheckbox extends React.PureComponent {
     const data = csrf.getFormData(this)
     data.append(this.props.name, e.target.checked)
 
-    Axios.put(this.props.uri, data)
+    fetch(this.props.uri, {
+      method: 'PUT',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: data,
+      credentials: 'same-origin'
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Request failed')
+      })
       .then(() => {
         if (this.props.reload) window.location.reload()
       })
