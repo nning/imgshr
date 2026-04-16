@@ -141,10 +141,6 @@ export default class Upload extends React.PureComponent {
           return {}
         })
         .then((responseData) => {
-          if (typeof config.onUploadProgress === 'function') {
-            config.onUploadProgress({loaded: 1, total: 1})
-          }
-
           return {data: responseData}
         })
         .catch((error) => {
