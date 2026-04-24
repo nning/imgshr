@@ -144,7 +144,7 @@ GEM
       activesupport
       i18n
     drb (2.2.3)
-    erb (6.0.2)
+    erb (6.0.4)
     erubi (1.13.1)
     execjs (2.10.0)
     exifr (1.5.1)
