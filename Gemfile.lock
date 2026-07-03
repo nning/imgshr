@@ -105,10 +105,6 @@ GEM
       version_gem (~> 1.1, >= 1.1.10)
     autoprefixer-rails (10.4.21.0)
       execjs (~> 2)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     base64 (0.3.0)
     bigdecimal (4.1.2)
     bindex (0.8.1)
@@ -195,6 +191,8 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jsbundling-rails (1.3.1)
+      railties (>= 6.0.0)
     json (2.20.0)
     jwt (3.2.0)
       base64
@@ -214,7 +212,6 @@ GEM
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    local_time (3.0.3)
     logger (1.7.0)
     loofah (2.25.1)
       crass (~> 1.0.2)
@@ -312,8 +309,6 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
-    rack-proxy (0.8.2)
-      rack
     rack-session (2.1.2)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -364,12 +359,6 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
-    react-rails (3.3.1)
-      babel-transpiler (>= 0.7.0)
-      connection_pool
-      execjs
-      railties (>= 3.2)
-      tilt
     redis-client (0.30.0)
       connection_pool
     regexp_parser (2.12.0)
@@ -401,7 +390,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    semantic_range (3.1.1)
     sidekiq (8.1.6)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
@@ -427,11 +415,16 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.3.4)
+      railties (>= 6.0.0)
     temple (0.10.4)
     thor (1.5.0)
     tilt (2.7.0)
     timeout (0.6.1)
     tsort (0.2.0)
+    turbo-rails (2.0.23)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.1)
@@ -443,11 +436,6 @@ GEM
       actionview (>= 8.0.0)
       bindex (>= 0.4.0)
       railties (>= 8.0.0)
-    webpacker (5.4.4)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.11)
     websocket-driver (0.8.2)
       base64
@@ -490,9 +478,9 @@ DEPENDENCIES
   image_processing
   jbuilder
   jquery-rails
+  jsbundling-rails
   kaminari
   listen
-  local_time
   mail
   mini_magick
   minitest-spec-rails
@@ -504,7 +492,6 @@ DEPENDENCIES
   rails (~> 8.1.3)
   rails-assets-jquery (~> 2.2.4)!
   rails-assets-seiyria-bootstrap-slider!
-  react-rails
   responders
   rexml
   rqrcode
@@ -515,9 +502,10 @@ DEPENDENCIES
   sinatra
   spring
   sprockets (~> 4)
+  stimulus-rails
+  turbo-rails
   uglifier
   web-console
-  webpacker
   yaml_db
 
 RUBY VERSION

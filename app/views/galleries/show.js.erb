@@ -7,9 +7,5 @@
 
   $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
-  if (typeof ReactRailsUJS !== 'undefined') {
-    ReactRailsUJS.mountComponents(grid);
-  }
-
-  $(document).trigger('content:update');
+  document.dispatchEvent(new CustomEvent('content:update'));
 })();

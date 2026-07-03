@@ -8,14 +8,14 @@ ENV RAILS_FORCE_SSL=false
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV RAILS_CONTAINER=true
 
-COPY deploy/node_setup_22.x.sh /tmp
+COPY deploy/node_setup_24.x.sh /tmp
 RUN \
   apt-get update -qq && \
-  /tmp/node_setup_22.x.sh && \
-  apt-get install -y build-essential nodejs=22* git libmariadb-dev imagemagick libyaml-dev && \
+  /tmp/node_setup_24.x.sh && \
+  apt-get install -y build-essential nodejs=24* git libmariadb-dev imagemagick libyaml-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
-  rm /tmp/node_setup_22.x.sh && \
+  rm /tmp/node_setup_24.x.sh && \
   useradd -m ruby && \
   mkdir /app
 
@@ -26,29 +26,28 @@ COPY config config
 COPY db db
 COPY lib lib
 COPY public public
-COPY babel.config.js babel.config.js
 COPY config.ru config.ru
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 COPY package.json package.json
-COPY postcss.config.js postcss.config.js
+COPY package-lock.json package-lock.json
 COPY Procfile Procfile
 COPY Rakefile Rakefile
-COPY yarn.lock yarn.lock
+COPY esbuild.config.mjs esbuild.config.mjs
 COPY deploy/docker-entrypoint.sh docker-entrypoint.sh
 
 RUN \
   bundle config set without 'development test' && \
   bundle install && \
-  npm install -g yarn && \
-  yarn && \
+  npm ci && \
+  npm run build && \
   mkdir storage && \
   chown -R ruby:ruby . && \
   rm -rf /usr/local/bundle/cache /usr/local/share/.cache /var/lib/apt/lists/* /usr/share/doc /usr/share/man
 
 USER ruby
 RUN \
-  SECRET_KEY_BASE=null NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile && \
+  SECRET_KEY_BASE=null bundle exec rails assets:precompile && \
   SECRET_KEY_BASE=null bundle exec rails assets:clean
 
 EXPOSE 3000

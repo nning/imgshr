@@ -1,2 +1,3 @@
 - if Settings.client_encrypted_only || gallery.client_encrypted
-  = javascript_pack_tag 'sodium', async: true
+  -# Sodium is now imported directly via ESM in the encrypted_image and
+  -# client_encryption_key Stimulus controllers. No separate pack needed.

@@ -1,8 +1,6 @@
 # IMGSHR
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/nning/imgshr/test.yml?branch=main)](https://github.com/nning/imgshr/actions?query=workflow%3A%22Run+tests%22)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability/nning/imgshr.svg)](https://codeclimate.com/github/nning/imgshr)
-[![Coverage](https://img.shields.io/coveralls/nning/imgshr/master.svg)](https://coveralls.io/r/nning/imgshr)
 
 
 Simple image gallery sharing application. Galleries are creatable by everyone
@@ -43,11 +41,18 @@ You can test this at https://imgshr.space!
 
 ## Development
 
-    nvm use
-	npm install -g yarn
-	yarn
-	bundle
-	foreman start
+[Volta](https://volta.sh) is used to pin the Node.js version. Install it first:
+
+    curl https://get.volta.sh | bash
+
+Then set up the project:
+
+    npm install
+    bundle install
+    foreman start
+
+This starts the Rails web server, the esbuild JS watcher, and Sidekiq.
+The app is available at http://localhost:3000.
 
 ## Deployment using docker
 
@@ -88,5 +93,5 @@ See `examples/traefik` as a starting point for a deployment with traefik and Let
 
 ## License
 
-Copyright © 2014-2023 [henning mueller](https://nning.io/), released
+Copyright © 2014-2026 [henning mueller](https://nning.io/), released
 under the terms of [GNU AGPL 3.0](http://www.gnu.org/licenses/agpl-3.0.html).

@@ -4,22 +4,33 @@
   - begin
     - size ||= :medium
     - image = picture.image_file.variant(Settings.sizes.send(size).to_hash)
-    - mediumBadImage = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
+    - medium_bad_image = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
 
-    = react_component :LazyPicture,
-      { src: url_for(image),
-        srcMobile: size == :small ? url_for(mediumBadImage) : nil,
+    %picture
+      - if size == :small && medium_bad_image.present?
+        %source{srcset: url_for(medium_bad_image), media: '(max-width: 768px)'}
+
+      = image_tag image,
         title: picture.to_s,
-        height: picture.height,
-        width: picture.width }
+        alt: picture.to_s,
+        loading: 'lazy'
 
     %noscript
       = image_tag image, title: picture, alt: picture
 
   - rescue
-    = react_component :LazyPicture, { title: picture.to_s }
+    .placeholder
+      %span.glyphicon.glyphicon-remove-circle
+      .title= picture.to_s
+      .error:invalid
+        Invalid image source
 
 - else
-  = react_component 'crypto/LazyEncryptedImage',
-    { src: url_for(picture.image_file),
-      title: picture.to_s }
+  %div{data: {controller: 'encrypted-image', 'encrypted-image-src-value': url_for(picture.image_file)}}
+    .placeholder{data: {'encrypted-image-target': 'placeholder'}}
+      %span.glyphicon.glyphicon-lock
+      .title= picture.to_s
+      .decrypting
+        Decrypting...
+
+    %img{data: {'encrypted-image-target': 'image'}, alt: picture.to_s, loading: 'lazy', style: 'display: none'}

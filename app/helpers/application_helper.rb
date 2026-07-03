@@ -18,7 +18,6 @@ module ApplicationHelper
     params[:controller] + '-' + params[:action]
   end
 
-  # Convert flash message type to bootstrap class.
   def flash_class(type)
     ({notice: :info, alert: :warning, error: :danger}[type.to_sym] || type).to_s
   end
@@ -28,12 +27,21 @@ module ApplicationHelper
     URI(request.referer).path == url_for(gallery)
   end
 
-  # Helper for glyphicon span tags.
   def icon(name, options = {})
     name = name.to_s.gsub(/_/, '-')
     content_tag :span, nil, {
       class: "glyphicon glyphicon-#{name} #{options[:class]}",
       id: options[:id]
+    }
+  end
+
+  def async_checkbox(name:, checked:, uri:, label: nil, reload: false)
+    render partial: 'shared/async_checkbox', locals: {
+      name: name,
+      checked: checked,
+      uri: uri,
+      label: label,
+      reload: reload
     }
   end
 
