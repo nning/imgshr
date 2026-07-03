@@ -41,19 +41,20 @@ jobs:
           ruby-version: 4.0.5
           bundler-cache: true
 
-      - name: Use Node.js 22.x
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v6
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: npm
 
       - name: Install ImageMagick
         run: sudo apt-get install -y imagemagick
 
       - name: Install JavaScript dependencies
-        run: |
-          npm install -g yarn
-          yarn --frozen-lockfile
+        run: npm ci
+
+      - name: Build JavaScript bundle
+        run: npm run build
 
       - name: Setup database
         run: |
@@ -67,17 +68,9 @@ jobs:
         run: |
           bundle exec rails db:migrate
 
-      - name: Test webpack bundling
-        run: |
-          bundle exec ./bin/webpack
-
       - name: Run Rails tests
         env:
           RAILS_ENV: test
           TZ: Europe/Berlin
         run: |
           bundle exec rails test
-
-      - name: Lint JavaScript code
-        run: |
-          yarn lint
