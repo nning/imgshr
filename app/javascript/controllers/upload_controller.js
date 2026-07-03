@@ -88,8 +88,9 @@ export default class extends Controller {
             Object.assign(errors, result.data.errors)
           }
         })
+        const hasFileErrors = this.files.some((file) => Boolean(file.error))
 
-        if (Object.keys(errors).length) {
+        if (Object.keys(errors).length || hasFileErrors) {
           this.uploading = false
           this.applyErrors(errors)
           this.updateButton()
@@ -136,6 +137,7 @@ export default class extends Controller {
             const data = JSON.parse(xhr.responseText)
             resolve({ file, data })
           } catch {
+            file.error = "Upload failed"
             resolve({ file, data: { errors: {} } })
           }
         })
