@@ -14,4 +14,3 @@ document.addEventListener("turbo:frame-load", triggerContentUpdate)
 document.addEventListener("turbo:render", triggerContentUpdate)
 
 document.addEventListener("DOMContentLoaded", triggerContentUpdate)
-import "@hotwired/turbo-rails"
