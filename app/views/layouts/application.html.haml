@@ -10,18 +10,12 @@
     %meta{name: 'robots', content: 'noindex'}
 
     = stylesheet_link_tag 'application',
-      media: :all,
-      data: { turbolinks_track: true, turbolinks_eval: false },
-      integrity: true
+      media: :all
 
     = csrf_meta_tag
 
-    = javascript_pack_tag 'main'
-    = javascript_include_tag 'application',
-      data_turbolinks_track: true,
-      integrity: true,
-      async: true,
-      defer: true
+    = javascript_include_tag 'application', defer: true
+    = javascript_include_tag 'legacy', defer: true
 
     = render partial: 'shared/manifest'
 

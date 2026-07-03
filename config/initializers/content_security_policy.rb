@@ -8,16 +8,15 @@ Rails.application.config.content_security_policy do |p|
     p.font_src    :self, :https, :data
     p.img_src     :self, :https, :data          # data: client encryption
     p.object_src  :none
-    p.script_src  :self, :https, :unsafe_eval   # unsafe_eval: endless scrolling
+    p.script_src  :self, :https
     p.style_src   :self, :https, :unsafe_inline # unsafe_inline: ratings
   else
     p.default_src :self, :http
     p.font_src    :self, :http, :data
     p.img_src     :self, :http, :data
     p.object_src  :none
-    p.script_src  :self, :http, :unsafe_eval
+    p.script_src  :self, :http
     p.style_src   :self, :http, :unsafe_inline
-    p.connect_src :self, :data, 'http://localhost:3035', 'ws://localhost:3035'
   end
 
   # Specify URI for violation reports

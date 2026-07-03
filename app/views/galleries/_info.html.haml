@@ -53,45 +53,40 @@
             %tr
               %td Read only
               %td
-                = react_component :AsyncCheckbox,
-                  { name: 'gallery[read_only]',
-                    checked: @gallery.read_only,
-                    uri: gallery_path(@gallery) }
+                = async_checkbox name: 'gallery[read_only]',
+                  checked: @gallery.read_only,
+                  uri: gallery_path(@gallery)
 
             %tr
               %td Ratings
               %td
-                = react_component :AsyncCheckbox,
-                  { name: 'gallery[ratings_enabled]',
-                    checked: @gallery.ratings_enabled,
-                    uri: gallery_path(@gallery) }
+                = async_checkbox name: 'gallery[ratings_enabled]',
+                  checked: @gallery.ratings_enabled,
+                  uri: gallery_path(@gallery)
 
             %tr
               %td Endless page
               %td
-                = react_component :AsyncCheckbox,
-                  { name: 'gallery[endless_page]',
-                    checked: @gallery.endless_page,
-                    uri: gallery_path(@gallery) }
+                = async_checkbox name: 'gallery[endless_page]',
+                  checked: @gallery.endless_page,
+                  uri: gallery_path(@gallery)
 
             - if !@gallery.client_encrypted
               %tr
                 %td Responsive image service
                 %td
-                  = react_component :AsyncCheckbox,
-                    { name: 'gallery[responsive_image_service]',
-                      checked: @gallery.responsive_image_service,
-                      uri: gallery_path(@gallery),
-                      reload: true }
+                  = async_checkbox name: 'gallery[responsive_image_service]',
+                    checked: @gallery.responsive_image_service,
+                    uri: gallery_path(@gallery),
+                    reload: true
 
             %tr
               %td Authorized devices only
               %td
                 %p
-                  = react_component :AsyncCheckbox,
-                    { name: 'gallery[device_links_only]',
-                      checked: @gallery.device_links_only,
-                      uri: gallery_path(@gallery) }
+                  = async_checkbox name: 'gallery[device_links_only]',
+                    checked: @gallery.device_links_only,
+                    uri: gallery_path(@gallery)
 
                   = link_to 'Create device link!',
                     gallery_create_device_link_path(@gallery),
@@ -129,11 +124,10 @@
             %tr
               %td Client Encryption
               %td
-                = react_component :AsyncCheckbox,
-                  { name: 'gallery[client_encrypted]',
-                    checked: @gallery.client_encrypted,
-                    uri: gallery_path(@gallery),
-                    reload: true }
+                = async_checkbox name: 'gallery[client_encrypted]',
+                  checked: @gallery.client_encrypted,
+                  uri: gallery_path(@gallery),
+                  reload: true
 
           - if @gallery.client_encrypted
             %tr
@@ -141,11 +135,20 @@
                 Gallery URL
                 %br
                 %strong (with client encryption key)
-              %td= react_component 'crypto/ClientEncryptionKey'
+              %td
+                %div{data: {controller: 'client-encryption-key'}}
+                  %div
+                    %a{href: '#', data: {'client-encryption-key-target': 'url'}}
+                      %canvas{data: {'client-encryption-key-target': 'qrCode', controller: 'qr-code'}}
+                  %div
+                    %input{type: 'text', readonly: true, data: {'client-encryption-key-target': 'keyInput', action: 'click->client-encryption-key#selectAllAndCopy'}}
+                    %span.copied{data: {'client-encryption-key-target': 'copied'}, style: 'opacity: 0'}
+                      copied!
           - else
             %tr
               %td Gallery URL
-              %td= react_component :QRCode, { content: gallery_url(@gallery) }
+              %td
+                %canvas{data: {controller: 'qr-code', 'qr-code-content-value': gallery_url(@gallery)}}
 
 
       .modal-footer

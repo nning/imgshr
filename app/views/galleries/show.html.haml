@@ -17,10 +17,17 @@
   - if @pictures.empty?
     = render 'empty_gallery'
   - else
-    #pictures.col-xs-12{data: {endless: @gallery.endless_page}}
+    #pictures.col-xs-12
       #picture_grid
         = render partial: 'pictures/picture', collection: @pictures
 
-      = render 'pagination'
+      %div{data: {controller: 'infinite-scroll', 'infinite-scroll-endless-value': @gallery.endless_page}}
+        = render 'pagination'
 
-= react_component :ScrollToTopButton
+%div{data: {controller: 'scroll-to-top'}}
+  %button.btn.btn-default.ScrollToTop{
+    type: 'button',
+    title: 'Back to top',
+    data: {'scroll-to-top-target': 'button', action: 'click->scroll-to-top#scrollTop'}
+  }
+    %span.glyphicon.glyphicon-chevron-up

@@ -39,12 +39,15 @@
 # Assets in public folder
 /public/assets/
 /public/google*.html
+/app/assets/builds/
+
+# Old webpacker packs (no longer used)
+/public/packs
+/public/packs-test
 
 # Deployment bundle
 /vendor/bundle/
 
-/public/packs
-/public/packs-test
 /node_modules
 
 # Tensorflow image labelling data
@@ -60,9 +63,6 @@
 # ActiveStorage folder
 /storage
 
-/public/packs
-/public/packs-test
-/node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
