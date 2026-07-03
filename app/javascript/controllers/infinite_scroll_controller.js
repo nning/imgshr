@@ -30,14 +30,19 @@ export default class extends Controller {
   }
 
   loadMore(url) {
-    fetch(url, { headers: { Accept: "text/javascript" } })
-      .then((response) => response.text())
-      .then((js) => {
-        const fn = new Function(js)
-        fn()
-      })
-      .finally(() => {
-        this.loading = false
-      })
+    const parsedUrl = new URL(url, window.location.origin)
+    parsedUrl.pathname = parsedUrl.pathname + ".js"
+
+    const script = document.createElement("script")
+    script.src = parsedUrl.toString()
+    script.onload = () => {
+      script.remove()
+      this.loading = false
+    }
+    script.onerror = () => {
+      script.remove()
+      this.loading = false
+    }
+    document.head.appendChild(script)
   }
 }

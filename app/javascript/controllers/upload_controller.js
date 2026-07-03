@@ -18,6 +18,15 @@ function filesize(bytes) {
   return `${bytes.toFixed(1)} ${units[u]}`
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+}
+
 function csrfToken() {
   return document.querySelector('meta[name="csrf-token"]')?.content
 }
@@ -99,10 +108,11 @@ export default class extends Controller {
         const xhr = new XMLHttpRequest()
         const data = new FormData()
         data.append("picture[image][]", uploadFile)
-        data.append(
-          document.querySelector('meta[name="csrf-param"]')?.content,
-          csrfToken()
-        )
+        const csrfParam = document.querySelector('meta[name="csrf-param"]')?.content
+        const token = csrfToken()
+        if (csrfParam && token) {
+          data.append(csrfParam, token)
+        }
 
         xhr.open("POST", url)
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
@@ -117,6 +127,11 @@ export default class extends Controller {
         })
 
         xhr.addEventListener("load", () => {
+          if (xhr.status < 200 || xhr.status >= 300) {
+            file.error = `Upload failed (${xhr.status})`
+            resolve({ file, data: { errors: {} } })
+            return
+          }
           try {
             const data = JSON.parse(xhr.responseText)
             resolve({ file, data })
@@ -174,7 +189,7 @@ export default class extends Controller {
           : `${file.progress}%`
 
       const errorHtml = file.error
-        ? `<div class="upload__file__error">${file.error}</div>`
+        ? `<div class="upload__file__error">${escapeHtml(file.error)}</div>`
         : ""
 
       const actionsHtml = this.uploading
@@ -189,7 +204,7 @@ export default class extends Controller {
         <tr class="upload__file">
           <td><span class="glyphicon glyphicon-file"></span></td>
           <td class="upload__file__name">
-            ${file.obj.name}
+            ${escapeHtml(file.obj.name)}
             ${errorHtml}
           </td>
           <td class="upload__file__size">${filesize(file.obj.size)}</td>

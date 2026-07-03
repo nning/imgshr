@@ -12,7 +12,7 @@ export default class extends Controller {
       this.urlTarget.href = url
 
       qrcode.toCanvas(this.qrCodeTarget, url, (err) => {
-        if (err) console.error(url, err)
+        if (err) console.error("QR code generation error", err)
       })
     })
   }
@@ -20,8 +20,20 @@ export default class extends Controller {
   selectAllAndCopy() {
     this.keyInputTarget.focus()
     this.keyInputTarget.select()
-    document.execCommand("copy")
-    this.copiedTarget.style.opacity = "1"
-    this.copiedTarget.style.marginLeft = "1em"
+
+    const showCopied = () => {
+      this.copiedTarget.style.opacity = "1"
+      this.copiedTarget.style.marginLeft = "1em"
+    }
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(this.keyInputTarget.value).then(showCopied).catch(() => {
+        document.execCommand("copy")
+        showCopied()
+      })
+    } else {
+      document.execCommand("copy")
+      showCopied()
+    }
   }
 }

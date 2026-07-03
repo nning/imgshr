@@ -1,6 +1,6 @@
 module TimestampHelper
   def timestamp(time, relative: false, tooltip: true)
-    t = time.is_a?(Time) ? time : Time.parse(time.to_s)
+    t = time.respond_to?(:to_time) ? time.to_time : Time.parse(time.to_s)
 
     if relative
       text = time_ago_in_words(t) + ' ago'
