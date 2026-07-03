@@ -1,6 +1,6 @@
-.async-checkbox{data: {controller: 'async-checkbox', 'async-checkbox-reload-value': reload}}
+.async-checkbox{data: {controller: 'async-checkbox', 'async-checkbox-reload-value': reload, 'async-checkbox-uri-value': uri}}
   = check_box_tag name, '1', checked,
     id: name,
-    data: {action: 'change->async-checkbox#toggle', 'async-checkbox-uri-value': uri}
+    data: {action: 'change->async-checkbox#toggle'}
   - if label
     = label_tag name, label
