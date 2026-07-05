@@ -80,8 +80,10 @@ export function encrypt(file) {
           nonceAndEncrypted.set(encrypted, sodium.crypto_secretbox_NONCEBYTES)
 
           resolve(nonceAndEncrypted)
-        })
+        }).catch(reject)
       }
+
+      reader.onerror = (err) => reject(err)
     })
   })
 }

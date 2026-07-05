@@ -25,7 +25,7 @@ const config = {
   bundle: true,
   entryPoints: ["app/javascript/application.js"],
   outdir: "app/assets/builds",
-  sourcemap: true,
+  sourcemap: watch,
   format: "esm",
   splitting: true,
   plugins: [rails(), libsodiumPlugin],

@@ -99,6 +99,11 @@ export default class extends Controller {
           window.location.reload()
         }
       })
+      .catch(() => {
+        this.uploading = false
+        this.updateButton()
+        this.renderList()
+      })
   }
 
   uploadFile(file) {

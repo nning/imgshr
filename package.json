@@ -1,7 +1,6 @@
 {
   "scripts": {
     "build": "node esbuild.config.mjs",
-    "build:css": "sass ./app/assets/stylesheets/application.css.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "watch": "node esbuild.config.mjs --watch"
   },
   "dependencies": {
