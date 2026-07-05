@@ -38,11 +38,21 @@ export default class extends Controller {
     script.onload = () => {
       script.remove()
       this.loading = false
+      this.recheck()
     }
     script.onerror = () => {
       script.remove()
       this.loading = false
     }
     document.head.appendChild(script)
+  }
+
+  // Re-observing forces the IntersectionObserver to deliver the current
+  // intersection state, so the next page loads even when the pagination
+  // element never left the viewport.
+  recheck() {
+    if (!this.observer) return
+    this.observer.unobserve(this.element)
+    this.observer.observe(this.element)
   }
 }

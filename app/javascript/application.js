@@ -4,10 +4,9 @@ import "./controllers"
 Turbo.session.drive = false
 
 function triggerContentUpdate() {
+  // A native CustomEvent also triggers jQuery handlers registered via
+  // $(document).on("content:update"), so a single dispatch is sufficient.
   document.dispatchEvent(new CustomEvent("content:update"))
-  if (typeof window.$ === "function") {
-    window.$(document).trigger("content:update")
-  }
 }
 
 document.addEventListener("turbo:frame-load", triggerContentUpdate)

@@ -6,6 +6,25 @@ export default class extends Controller {
   static values = { src: String }
 
   connect() {
+    // Defer fetching/decrypting until the image is near the viewport,
+    // matching the previous LazyLoad behavior.
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return
+        this.observer.disconnect()
+        this.observer = null
+        this.load()
+      },
+      { rootMargin: "50%" }
+    )
+    this.observer.observe(this.element)
+  }
+
+  disconnect() {
+    if (this.observer) this.observer.disconnect()
+  }
+
+  load() {
     fetch(this.srcValue)
       .then((response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`)

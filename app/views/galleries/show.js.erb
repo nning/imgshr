@@ -8,7 +8,4 @@
   $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
   document.dispatchEvent(new CustomEvent('content:update'));
-  if (typeof window.$ === 'function') {
-    window.$(document).trigger('content:update');
-  }
 })();
