@@ -26,11 +26,16 @@ const config = {
   entryPoints: ["app/javascript/application.js"],
   outdir: "app/assets/builds",
   sourcemap: watch,
+  minify: !watch,
   format: "esm",
   splitting: true,
   plugins: [rails(), libsodiumPlugin],
   loader: { ".js": "js" },
-  chunkNames: "[name]-[hash]",
+  // The ".digested" suffix tells Sprockets these files are already
+  // fingerprinted, so it serves them under their original names. Without it,
+  // Sprockets re-digests the chunk filenames and the relative dynamic
+  // import() references inside the entrypoint 404 in production.
+  chunkNames: "[name]-[hash].digested",
 }
 
 if (watch) {

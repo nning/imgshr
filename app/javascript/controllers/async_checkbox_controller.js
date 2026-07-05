@@ -7,21 +7,23 @@ export default class extends Controller {
   }
 
   toggle(e) {
-    const checked = e.target.checked
-    const name = e.target.name
+    const checkbox = e.target
     const data = new FormData()
-    data.append(name, checked)
+    data.append(checkbox.name, checkbox.checked)
 
     fetch(this.uriValue, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "X-Requested-With": "XMLHttpRequest",
-        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content,
-        "X-HTTP-Method-Override": "PUT"
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')?.content
       },
       body: data
-    }).then(() => {
+    }).then((response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
       if (this.reloadValue) window.location.reload()
+    }).catch((err) => {
+      console.error("Failed to update setting", err)
+      checkbox.checked = !checkbox.checked
     })
   }
 }

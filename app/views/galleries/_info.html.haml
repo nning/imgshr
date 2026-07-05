@@ -139,7 +139,7 @@
                 %div{data: {controller: 'client-encryption-key'}}
                   %div
                     %a{href: '#', data: {'client-encryption-key-target': 'url'}}
-                      %canvas{data: {'client-encryption-key-target': 'qrCode', controller: 'qr-code'}}
+                      %canvas{data: {'client-encryption-key-target': 'qrCode'}}
                   %div
                     %input{type: 'text', readonly: true, data: {'client-encryption-key-target': 'keyInput', action: 'click->client-encryption-key#selectAllAndCopy'}}
                     %span.copied{data: {'client-encryption-key-target': 'copied'}, style: 'opacity: 0'}

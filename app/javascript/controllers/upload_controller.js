@@ -33,7 +33,7 @@ function csrfToken() {
 
 export default class extends Controller {
   static targets = ["input", "list", "progress", "progressBar", "button"]
-  static values = { encrypt: Boolean }
+  static values = { encrypt: Boolean, url: String }
 
   connect() {
     this.files = []
@@ -107,7 +107,7 @@ export default class extends Controller {
   }
 
   uploadFile(file) {
-    const url = this.element.dataset.uploadUrl || ""
+    const url = this.urlValue
 
     return this.prepareFile(file).then((uploadFile) => {
       return new Promise((resolve) => {
