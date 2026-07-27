@@ -27,7 +27,7 @@ class PicturesController < ApplicationController
         @picture.image_file.attach(image)
         @picture.save!
 
-        if Settings.preprocess_images
+        if Settings.preprocess_images && @picture.plain?
           ImageResizeJob.perform_later(@picture)
         end
       rescue ActiveRecord::RecordInvalid
