@@ -164,12 +164,19 @@ export default class extends Controller {
       this.renderList()
 
       return encrypt(file.obj).then((encrypted) => {
-        return new File([encrypted], `${file.obj.name}.bin`, {
+        // The server keys upload errors by the uploaded filename
+        // (@picture.image_file.filename / image.original_filename), which for
+        // encrypted uploads is the .bin name. Track it on the file object so
+        // applyErrors can match per-file errors regardless of encryption.
+        const uploadName = `${file.obj.name}.bin`
+        file.uploadName = uploadName
+        return new File([encrypted], uploadName, {
           type: "application/octet-stream"
         })
       })
     }
 
+    file.uploadName = file.obj.name
     return Promise.resolve(file.obj)
   }
 
@@ -253,10 +260,10 @@ export default class extends Controller {
   applyErrors(errors) {
     Object.keys(errors).forEach((key) => {
       const file = this.files.find((f) => {
-        const name = f.obj.name.replace(/:/, "-")
+        const name = (f.uploadName || f.obj.name).replace(/:/, "-")
         return name === key
       })
-      if (file) file.error = errors[key].join(", ")
+      if (file) file.error = (errors[key].base || []).join(", ")
     })
   }
 }
