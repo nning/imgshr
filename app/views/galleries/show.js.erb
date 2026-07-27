@@ -7,5 +7,9 @@
 
   $('#gallery .pagination').html('<%= j render 'pagination_links' %>');
 
+  // jQuery 2.x does not observe native CustomEvents; trigger the jQuery event
+  // too so legacy CoffeeScript handlers (dropdowns, tooltips, best_in_place,
+  // slider, raty) reinitialize on the newly inserted content.
   document.dispatchEvent(new CustomEvent('content:update'));
+  if (typeof $ === 'function') $(document).trigger('content:update');
 })();
