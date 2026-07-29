@@ -6,6 +6,8 @@
     - image = picture.image_file.variant(Settings.sizes.send(size).to_hash)
     - medium_bad_image = picture.image_file.variant(Settings.sizes.mediumBad.to_hash)
 
+    - aspect = picture_aspect_ratio(picture)
+    - intrinsic = (size == :small) ? picture_intrinsic_attrs(picture) : {}
     %picture
       - if size == :small && medium_bad_image.present?
         %source{srcset: url_for(medium_bad_image), media: '(max-width: 768px)'}
@@ -13,7 +15,10 @@
       = image_tag image,
         title: picture.to_s,
         alt: picture.to_s,
-        loading: 'lazy'
+        loading: 'lazy',
+        width: intrinsic[:width],
+        height: intrinsic[:height],
+        style: aspect ? "aspect-ratio: #{aspect};" : nil
 
     %noscript
       = image_tag image, title: picture, alt: picture
@@ -26,11 +31,13 @@
         Invalid image source
 
 - else
+  - aspect = picture_aspect_ratio(picture)
   %div{data: {controller: 'encrypted-image', 'encrypted-image-src-value': url_for(picture.image_file)}}
-    .placeholder{data: {'encrypted-image-target': 'placeholder'}}
+    .placeholder{data: {'encrypted-image-target': 'placeholder'}, style: aspect ? "aspect-ratio: #{aspect};" : nil}
       %span.glyphicon.glyphicon-lock
       .title= picture.to_s
       .decrypting
         Decrypting...
 
-    %img{data: {'encrypted-image-target': 'image'}, alt: picture.to_s, loading: 'lazy', style: 'display: none'}
+    %img{data: {'encrypted-image-target': 'image'}, alt: picture.to_s, loading: 'lazy', style: aspect ? "aspect-ratio: #{aspect}; display: none" : 'display: none'}
+

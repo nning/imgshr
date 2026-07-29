@@ -21,6 +21,24 @@
     margin-bottom: 5px;
   }
 
+  // When the server knows the real aspect ratio, an inline
+  // `aspect-ratio: w / h` style is set. Let the box derive its width from
+  // the ratio at the grid's fixed height, instead of forcing a 325x325
+  // square for every image. Keep min-height as a floor for images whose
+  // dimensions are not yet analyzed.
+  &[style*='aspect-ratio'] {
+    @media (min-width: 769px) {
+      height: 325px !important;
+      width: auto !important;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+
   .glyphicon {
     font-size: 3rem;
     margin-bottom: .75rem;
