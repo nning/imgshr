@@ -8,20 +8,23 @@
 
     - aspect = picture_aspect_ratio(picture)
     - intrinsic = (size == :small) ? picture_intrinsic_attrs(picture) : {}
-    %picture
-      - if size == :small && medium_bad_image.present?
-        %source{srcset: url_for(medium_bad_image), media: '(max-width: 768px)'}
+    .lazy-image{data: {controller: 'lazy-image'}}
+      %picture
+        - if size == :small && medium_bad_image.present?
+          %source{srcset: url_for(medium_bad_image), media: '(max-width: 768px)'}
 
-      = image_tag image,
-        title: picture.to_s,
-        alt: picture.to_s,
-        loading: 'lazy',
-        width: intrinsic[:width],
-        height: intrinsic[:height],
-        style: aspect ? "aspect-ratio: #{aspect};" : nil
+        = image_tag image,
+          title: picture.to_s,
+          alt: picture.to_s,
+          loading: 'lazy',
+          width: intrinsic[:width],
+          height: intrinsic[:height],
+          style: aspect ? "aspect-ratio: #{aspect};" : nil,
+          data: {'lazy-image-target': 'image', action: 'load->lazy-image#onLoad error->lazy-image#onError'}
 
-    %noscript
-      = image_tag image, title: picture, alt: picture
+      .placeholder.lazy-image__placeholder{data: {'lazy-image-target': 'placeholder'}, style: aspect ? "aspect-ratio: #{aspect};" : nil}
+        %span.glyphicon.glyphicon-download
+        .lazy-image__status Loading...
 
   - rescue
     .placeholder

@@ -20,7 +20,7 @@ class PicturesIntegrationTest < ActionDispatch::IntegrationTest
 
     it 'returns image variant' do
       visit(gallery_picture_path(subject.gallery, subject))
-      visit(page.find('noscript img')[:src])
+      visit(page.find('picture img')[:src])
 
       _(page.response_headers['Content-Type'])
         .must_equal('image/png')
