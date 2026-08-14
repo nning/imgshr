@@ -6,12 +6,12 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
-    "esbuild": "^0.25.5",
-    "esbuild-rails": "^1.0.7",
-    "libsodium-wrappers-sumo": "^0.7.16",
+    "esbuild": "^0.28.2",
+    "esbuild-rails": "^1.0.8",
+    "libsodium-wrappers-sumo": "^0.8.4",
     "qrcode": "^1.5.4"
   },
   "volta": {
-    "node": "24.18.0"
+    "node": "24.19.0"
   }
 }
